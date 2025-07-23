@@ -133,6 +133,8 @@ export const TopUI: React.FC<TopUIProps> = ({ hp, maxHp, mana, maxMana, xp, leve
 interface BottomUIProps {
   stats: PlayerStats;
   skills: Record<string, Skill>;
+  equippedSkills: string[];
+  maxActiveSkills: number;
   onActivateSkill: (skillId: string) => void;
   onOpenSkillTree: () => void;
   skillPoints: number;

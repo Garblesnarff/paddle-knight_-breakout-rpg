@@ -45,12 +45,13 @@ const App: React.FC = () => {
     const [maxActiveSkills, setMaxActiveSkills] = useState(2);
     const [equippedSkills, setEquippedSkills] = useState<string[]>([]);
     const [permanentStats, setPermanentStats] = useState<Partial<PlayerStats>>({});
+    const [cosmetics, setCosmetics] = useState<Cosmetics>({ ballEffect: 'none' });
     
     const gameAreaRef = useRef<HTMLDivElement>(null);
 
     const playerStats = React.useMemo(() => {
         const stats: PlayerStats = { ...INITIAL_PLAYER_STATS };
-        Object.entries(unlockedSkills).forEach(([skillId, sLevel]) => {
+        Object.entries(unlockedSkills).forEach(([skillId, sLevel]: [string, number]) => {
             if (sLevel > 0) {
                 const skillData = SKILL_TREE_DATA[skillId];
                 if (skillData) {
@@ -77,7 +78,14 @@ const App: React.FC = () => {
 
     const [mana, setMana] = useState(maxMana);
     
-    const paddleWidth = hp;
+    const paddleWidth = 100; // Default paddle width, adjust as needed
+
+    const paddleStyle: React.CSSProperties = {
+        left: paddleX,
+        top: PADDLE_Y,
+        width: paddleWidth,
+        height: PADDLE_HEIGHT,
+    };
 
     const resetGame = useCallback(() => {
         setUnlockedSkills({});
@@ -110,7 +118,7 @@ const App: React.FC = () => {
         setManaBurnActiveUntil(null);
         setMaxActiveSkills(2);
         setEquippedSkills([]);
-    }, [permanentStats]);
+    }, [permanentStats, cosmetics]);
     
     useEffect(() => {
         setMana(maxMana);
@@ -121,7 +129,7 @@ const App: React.FC = () => {
         let timer: ReturnType<typeof setTimeout> | undefined;
         if (activeBuffs.haste || activeBuffs.power) {
             timer = setTimeout(() => {
-                setActiveBuffs(b => ({ ...b, haste: false, power: false }));
+                setActiveBuffs((b: RunicEmpowermentBuffs) => ({ ...b, haste: false, power: false }));
             }, 3000);
         }
         return () => clearTimeout(timer);
@@ -139,8 +147,8 @@ const App: React.FC = () => {
     
     const handleCloseSkillTree = useCallback(() => {
         if (gameStatus === GameStatus.SkillTree) {
-            setHp(currentHp => Math.min(currentHp, maxHp));
-            setMana(currentMana => Math.min(currentMana, maxMana));
+            setHp((currentHp: number) => Math.min(currentHp, maxHp));
+            setMana((currentMana: number) => Math.min(currentMana, maxMana));
             setGameStatus(GameStatus.Playing);
         }
     }, [gameStatus, maxHp, maxMana]);
@@ -155,15 +163,15 @@ const App: React.FC = () => {
         if (skillPoints >= cost && currentLevel < skill.maxLevel) {
             const areDependenciesMet = skill.dependencies.every(depId => (unlockedSkills[depId] || 0) > 0);
             if (areDependenciesMet) {
-                setSkillPoints(sp => sp - cost);
-                setUnlockedSkills(prev => ({
+                setSkillPoints((sp: number) => sp - cost);
+                setUnlockedSkills((prev: Record<string, number>) => ({
                     ...prev,
                     [skillId]: (prev[skillId] || 0) + 1,
                 }));
 
                 // Auto-equip active skills if there's space
                 if (skill.type === SkillType.Active && !equippedSkills.includes(skillId) && equippedSkills.length < maxActiveSkills) {
-                    setEquippedSkills(prev => [...prev, skillId]);
+                    setEquippedSkills((prev: string[]) => [...prev, skillId]);
                 }
             }
         }
@@ -228,9 +236,9 @@ const App: React.FC = () => {
 
         switch(skillId) {
             case 'multiBall':
-                setBalls(prev => {
+                setBalls((prev: Ball[]) => {
                     if (prev.length > 0 && isBallLaunched) {
-                        const originalBall = prev.find(b => b.vy !== 0) || prev[0];
+                        const originalBall = prev.find((b: Ball) => b.vy !== 0) || prev[0];
                         return [
                             ...prev,
                             { ...originalBall, id: Date.now(), vx: -originalBall.vx, vy: originalBall.vy, damage: originalBall.damage },
@@ -256,16 +264,16 @@ const App: React.FC = () => {
             case 'timeWarp': {
                 const MANA_COST = 150;
                 if (mana < MANA_COST || balls.length === 0) return;
-                setMana(m => m - MANA_COST);
+                setMana((m: number) => m - MANA_COST);
 
                 const rewindTime = now - 2000;
-                const newBalls = balls.map(ball => {
+                const newBalls = balls.map((ball: Ball) => {
                     const history = ballHistory[ball.id];
                     if (!history || history.length === 0) {
                         return ball; // No history, return as is
                     }
                     
-                    const targetEntry = history.reduce((prev, curr) => {
+                    const targetEntry = history.reduce((prev: BallHistoryEntry, curr: BallHistoryEntry) => {
                         return Math.abs(curr.timestamp - rewindTime) < Math.abs(prev.timestamp - rewindTime) ? curr : prev;
                     });
 
@@ -281,7 +289,7 @@ const App: React.FC = () => {
         }
 
         if (updatedSkill) {
-            setSkills(prev => ({...prev, [skillId]: updatedSkill as Skill }));
+            setSkills((prev: Record<string, Skill>) => ({...prev, [skillId]: updatedSkill as Skill }));
         }
 
     }, [skills, isBallLaunched, playerStats, mana, paddleX, paddleWidth, balls, ballHistory, manaBurnActiveUntil]);
@@ -333,7 +341,7 @@ const App: React.FC = () => {
                     return;
                 }
 
-                setMana(m => m - MANA_COST);
+                setMana((m: number) => m - MANA_COST);
 
                 const startX = paddleX + paddleWidth / 2;
                 const startY = PADDLE_Y - 24;
@@ -359,9 +367,9 @@ const App: React.FC = () => {
                     radius: 12,
                     damage: orbDamage,
                 };
-                setArcaneOrbs(prev => [...prev, newOrb]);
+                setArcaneOrbs((prev: ArcaneOrb[]) => [...prev, newOrb]);
 
-                setSkills(prev => ({
+                setSkills((prev: Record<string, Skill>) => ({
                     ...prev,
                     arcaneOrb: { ...prev.arcaneOrb, lastUsed: Date.now() }
                 }));
@@ -371,7 +379,7 @@ const App: React.FC = () => {
             }
         } else if (!isBallLaunched && gameStatus === GameStatus.Playing) {
             setIsBallLaunched(true);
-            setBalls(prevBalls => prevBalls.map((ball, index) => index === 0 ? { ...ball, vx: 4, vy: -4, damage: playerStats.power } : ball));
+            setBalls((prevBalls: Ball[]) => prevBalls.map((ball: Ball, index: number) => index === 0 ? { ...ball, vx: 4, vy: -4, damage: playerStats.power } : ball));
         }
     }, [isBallLaunched, gameStatus, playerStats.power, targetingSkillId, mana, paddleX, paddleWidth, mousePos, playerStats.wisdom]);
 
@@ -432,27 +440,27 @@ const App: React.FC = () => {
         if (updates.isBallLaunched !== undefined) setIsBallLaunched(updates.isBallLaunched);
         
         if (updates.newExplosions) {
-            setExplosions(current => [...current, ...updates.newExplosions]);
+            setExplosions((current: Explosion[]) => [...current, ...updates.newExplosions!]);
         }
         if (updates.newElementalBeams) {
-            setElementalBeams(current => [...current, ...updates.newElementalBeams]);
+            setElementalBeams((current: ElementalBeam[]) => [...current, ...updates.newElementalBeams!]);
         }
 
         if (updates.manaBurnActivated) {
             setManaBurnActiveUntil(Date.now() + ARCHMAGE_MANA_BURN_DURATION);
         }
 
-        setExplosions(current => current.filter(e => Date.now() - e.createdAt < e.duration));
-        setElementalBeams(current => current.filter(b => Date.now() - b.createdAt < b.duration));
+        setExplosions((current: Explosion[]) => current.filter((e: Explosion) => Date.now() - e.createdAt < e.duration));
+        setElementalBeams((current: ElementalBeam[]) => current.filter((b: ElementalBeam) => Date.now() - b.createdAt < b.duration));
 
 
         let finalHp = hp;
         if (updates.levelUps && updates.levelUps > 0) {
-            setSkillPoints(sp => sp + updates.levelUps);
-            const newMaxHp = playerStats.vitality + ((level + updates.levelUps) - 1) * 10;
+            setSkillPoints((sp: number) => sp + updates.levelUps!);
+            const newMaxHp = playerStats.vitality + ((level + updates.levelUps!) - 1) * 10;
             finalHp = newMaxHp; // Full heal on level up
             setMana(maxMana); // Full mana on level up
-            setLevel(l => l + updates.levelUps);
+            setLevel((l: number) => l + updates.levelUps!);
             setLevelUpMessage(`Level Up! +${updates.levelUps} Skill Point!`);
             setTimeout(() => setLevelUpMessage(null), 2500);
         }
@@ -464,14 +472,14 @@ const App: React.FC = () => {
         }
         
         setHp(finalHp);
-        if (updates.manaSpent) setMana(m => Math.max(0, m - updates.manaSpent));
-        if (updates.manaGained) setMana(m => Math.min(maxMana, m + updates.manaGained));
+        if (updates.manaSpent !== undefined) setMana((m: number) => Math.max(0, m - updates.manaSpent));
+        if (updates.manaGained !== undefined) setMana((m: number) => Math.min(maxMana, m + updates.manaGained));
 
-        if (updates.goldGained) setGold(g => g + updates.goldGained);
-        if (updates.scoreGained) setScore(s => s + updates.scoreGained);
+        if (updates.goldGained !== undefined) setGold((g: number) => g + updates.goldGained);
+        if (updates.scoreGained !== undefined) setScore((s: number) => s + updates.scoreGained);
 
         if (updates.chargesConsumed) {
-            setSkills(prev => {
+            setSkills((prev: Record<string, Skill>) => {
                 const nextSkills = {...prev};
                 updates.chargesConsumed?.forEach(({skillId, amount}) => {
                     const skill = nextSkills[skillId];
@@ -493,18 +501,18 @@ const App: React.FC = () => {
 
                     const rand = Math.random();
                     if (rand < 0.33) {
-                        setActiveBuffs(b => ({ haste: true, power: false, shield: false }));
+                        setActiveBuffs((b: RunicEmpowermentBuffs) => ({ haste: true, power: false, shield: false }));
                     } else if (rand < 0.66) {
-                        setActiveBuffs(b => ({ haste: false, power: true, shield: false }));
+                        setActiveBuffs((b: RunicEmpowermentBuffs) => ({ haste: false, power: true, shield: false }));
                     } else {
-                        setActiveBuffs(b => ({ ...b, shield: true }));
+                        setActiveBuffs((b: RunicEmpowermentBuffs) => ({ ...b, shield: true }));
                     }
                 } else {
                     setRunicEmpowermentCounter(counter);
                 }
             }
             if (updates.shieldUsed) {
-                setActiveBuffs(b => ({ ...b, shield: false }));
+                setActiveBuffs((b: RunicEmpowermentBuffs) => ({ ...b, shield: false }));
             }
         }
 
@@ -513,7 +521,7 @@ const App: React.FC = () => {
         } else if (updates.stageCompleted) {
             if (stage === 2) {
                 setMaxActiveSkills(3);
-                setPermanentStats(prev => ({ ...prev, wisdom: (prev.wisdom || 0) + 10 }));
+                setPermanentStats((prev: Partial<PlayerStats>) => ({ ...prev, wisdom: (prev.wisdom || 0) + 10 }));
             }
             const nextStageNum = stage + 1;
             if (nextStageNum > MAX_LEVELS) {
@@ -785,13 +793,7 @@ const App: React.FC = () => {
                         {projectiles.map(p => (
                              <div key={p.id} className={`absolute rounded ${p.size > 8 ? 'bg-orange-500 shadow-lg shadow-orange-500/50' : 'bg-pink-500 rounded-full'}`} style={{ left: p.x, top: p.y, width: p.size, height: p.size * 2 }}></div>
                         ))}
-                                                const paddleStyle: React.CSSProperties = { left: paddleX, top: PADDLE_Y, width: paddleWidth, height: PADDLE_HEIGHT };
-                        if (cosmetics.paddleEffect === 'magical') {
-                            paddleStyle.boxShadow = '0 0 15px 5px #a855f7';
-                            paddleStyle.border = '1px solid #d8b4fe';
-                        }
-
-                        return <div className="absolute bg-gradient-to-b from-slate-400 to-slate-600 rounded-sm shadow-lg border-t-2 border-slate-300 border-b-2 border-slate-700" style={paddleStyle}></div>
+                        <div className="absolute bg-gradient-to-b from-slate-400 to-slate-600 rounded-sm shadow-lg border-t-2 border-slate-300 border-b-2 border-slate-700" style={paddleStyle}></div>
                         {skills.barrier.activeUntil && Date.now() < skills.barrier.activeUntil && (
                             <div className="absolute bg-cyan-400/30 border-t-2 border-cyan-200 animate-pulse" style={{ left: 0, top: PADDLE_Y - 10, width: GAME_WIDTH, height: 10 }}></div>
                         )}
