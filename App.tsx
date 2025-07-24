@@ -3,12 +3,17 @@ import { GameStatus, Brick, Ball, PlayerStats, Skill, BrickType, Projectile, Exp
 import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, INITIAL_PLAYER_STATS, INITIAL_SKILLS, BRICK_PROPERTIES, LEVEL_UP_XP, BOSS_ENRAGE_THRESHOLD, ARCHMAGE_MANA_BURN_DURATION } from './constants';
 import { SKILL_TREE_DATA } from './game/skills';
 import { MAX_LEVELS, createBricksForStage } from './game/level-manager';
+import { STAGE_CONFIG } from './game/stage-config';
 import { StartScreen } from './components/StartScreen';
 import { GameOverScreen } from './components/GameOverScreen';
+import { VictoryScreen } from './components/VictoryScreen';
+import { Shop } from './components/Shop';
 import { TopUI, BottomUI } from './components/GameUI';
 import { SkillTree } from './components/SkillTree';
+import { StageSelector } from './components/StageSelector';
 import { runGameIteration } from './game/gameEngine';
 import { useGameLoop } from './hooks/useGameLoop';
+import SaveManager from './services/SaveManager';
 
 const App: React.FC = () => {
     const [gameStatus, setGameStatus] = useState<GameStatus>(GameStatus.Start);
@@ -46,6 +51,61 @@ const App: React.FC = () => {
     const [equippedSkills, setEquippedSkills] = useState<string[]>([]);
     const [permanentStats, setPermanentStats] = useState<Partial<PlayerStats>>({});
     const [cosmetics, setCosmetics] = useState<Cosmetics>({ ballEffect: 'none' });
+    const [currentStageId, setCurrentStageId] = useState(1);
+    const [stageBricksTotal, setStageBricksTotal] = useState(0);
+    const [stageInitialHp, setStageInitialHp] = useState(0);
+    const [lastStageGold, setLastStageGold] = useState(0);
+    const [lastStageStars, setLastStageStars] = useState(0);
+    const [stageStartTime, setStageStartTime] = useState(0); // Add this line
+
+    const calculateStars = (): number => {
+        const stageConfig = STAGE_CONFIG.find(s => s.id === currentStageId);
+        if (!stageConfig) return 1;
+
+        let stars = 1; // Always get 1 star for completing
+
+        // Star 2: HP requirement
+        const hpPercent = (hp / stageInitialHp) * 100;
+        if (hpPercent >= stageConfig.starCriteria.minHpPercent) {
+            stars++;
+        }
+
+        // Star 3: Time requirement + all bricks
+        const timeTaken = Date.now() - stageStartTime;
+        const allBricksDestroyed = bricks.length === 0;
+        if (timeTaken <= stageConfig.starCriteria.time && allBricksDestroyed) {
+            stars++;
+        }
+
+        return stars;
+    };
+
+    useEffect(() => {
+        // Load saved data on component mount
+        const savedData = SaveManager.load();
+
+        // Apply saved player data
+        setGold(savedData.player.gold);
+        setSkillPoints(savedData.player.skillPoints);
+        setUnlockedSkills(savedData.player.unlockedSkills);
+
+        // You'll use stage data when we build the stage selector
+        console.log('Game loaded:', savedData);
+    }, []);
+
+    const handleStageComplete = (stageId: number, stars: number, score: number) => {
+        const completionTime = Date.now() - stageStartTime; // You'll need to track this
+
+        SaveManager.updateStageData(stageId, {
+            stars: Math.max(stars, SaveManager.load().stages[stageId]?.stars || 0),
+            bestScore: Math.max(score, SaveManager.load().stages[stageId]?.bestScore || 0),
+            bestTime: Math.min(completionTime, SaveManager.load().stages[stageId]?.bestTime || Infinity),
+            completed: true
+        });
+
+        // Unlock next stage
+        SaveManager.unlockNextStage(stageId + 1);
+    };
     
     const gameAreaRef = useRef<HTMLDivElement>(null);
 
@@ -136,7 +196,18 @@ const App: React.FC = () => {
     }, [activeBuffs.haste, activeBuffs.power]);
 
     const handleStart = () => {
+        setGameStatus(GameStatus.StageSelect);
+    };
+
+    const handleStageSelect = (stageId: number) => {
+        setCurrentStageId(stageId);
         resetGame();
+        const stageBricks = createBricksForStage(stageId);
+        setBricks(stageBricks);
+        setStageBricksTotal(stageBricks.length);
+        setStageStartTime(Date.now());
+        setStageInitialHp(maxHp);
+        setGameStatus(GameStatus.Playing);
     };
 
     const handleOpenSkillTree = useCallback(() => {
@@ -519,36 +590,12 @@ const App: React.FC = () => {
         if (hp > 0 && finalHp <= 0) {
             setGameStatus(GameStatus.GameOver);
         } else if (updates.stageCompleted) {
-            if (stage === 2) {
-                setMaxActiveSkills(3);
-                setPermanentStats((prev: Partial<PlayerStats>) => ({ ...prev, wisdom: (prev.wisdom || 0) + 10 }));
-            }
-            const nextStageNum = stage + 1;
-            if (nextStageNum > MAX_LEVELS) {
-                setGameStatus(GameStatus.Victory);
-            } else {
-                setGameStatus(GameStatus.Paused);
-                setStage(nextStageNum);
-                setLevelUpMessage(`Stage ${nextStageNum}`);
-                setTimeout(() => {
-                    setBricks(createBricksForStage(nextStageNum));
-                    setBalls([{ id: Date.now(), x: paddleX + paddleWidth / 2, y: PADDLE_Y - 20, vx: 0, vy: 0, size: BALL_RADIUS, damage: 0 }]);
-                    setIsBallLaunched(false);
-                    setProjectiles([]);
-                    setHomingProjectiles([]);
-                    setExplosions([]);
-                    setArcaneOrbs([]);
-                    setElementalBeams([]);
-                    setFireRainZones([]);
-                    setIceSpikeFields([]);
-                    setLightningStrikes([]);
-                    setArcaneOverloadRings([]);
-                    setFinalGambitBeams([]);
-                    setBallHistory({});
-                    setLevelUpMessage(null);
-                    setGameStatus(GameStatus.Playing);
-                }, 2000);
-            }
+            const stars = calculateStars();
+            const goldEarned = 100 + (stars * 25) + (stars === 3 ? 50 : 0);
+            setLastStageGold(goldEarned);
+            setLastStageStars(stars);
+            handleStageComplete(currentStageId, stars, score);
+            setGameStatus(GameStatus.VictoryScreen);
         }
     }, [balls, bricks, projectiles, homingProjectiles, arcaneOrbs, fireRainZones, iceSpikeFields, lightningStrikes, arcaneOverloadRings, finalGambitBeams, paddleX, paddleWidth, playerStats, skills, isBallLaunched, hp, mana, maxMana, xp, level, unlockedSkills, stage, score, gold, activeBuffs, runicEmpowermentCounter]);
 
@@ -614,6 +661,12 @@ const App: React.FC = () => {
     return (
         <div className="flex items-center justify-center w-full h-screen bg-gray-900">
             {gameStatus === GameStatus.Start && <StartScreen onStart={handleStart} />}
+            {gameStatus === GameStatus.StageSelect && (
+                <StageSelector 
+                    onSelectStage={handleStageSelect}
+                    onBack={() => setGameStatus(GameStatus.Start)}
+                />
+            )}
             
             {(gameStatus !== GameStatus.Start) && (
                  <div className="absolute inset-0 bg-gray-800 -z-10" style={{backgroundImage: "repeating-linear-gradient(0deg, #374151, #374151 1px, transparent 1px, transparent 20px), repeating-linear-gradient(90deg, #374151, #374151 1px, transparent 1px, transparent 20px)", backgroundSize: '40px 40px', opacity: 0.1}}></div>
@@ -842,6 +895,7 @@ const App: React.FC = () => {
             )}
 
             {(gameStatus === GameStatus.GameOver || gameStatus === GameStatus.Victory) && <GameOverScreen score={score} isVictory={gameStatus === GameStatus.Victory} onRestart={handleStart} />}
+            {gameStatus === GameStatus.VictoryScreen && <VictoryScreen stars={lastStageStars} score={score} goldEarned={lastStageGold} onContinue={() => setGameStatus(GameStatus.StageSelect)} />}
             <SkillTree isOpen={gameStatus === GameStatus.SkillTree} onClose={handleCloseSkillTree} skillPoints={skillPoints} unlockedSkills={unlockedSkills} onLearnSkill={handleLearnSkill} />
         </div>
     );

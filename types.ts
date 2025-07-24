@@ -1,9 +1,11 @@
 export enum GameStatus {
   Start,
+  StageSelect,
   Playing,
   Paused,
   GameOver,
   Victory,
+  VictoryScreen,
   SkillTree,
   Targeting
 }
