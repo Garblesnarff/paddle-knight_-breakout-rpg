@@ -1,7 +1,7 @@
 import React from 'react';
-import { PlayerStats, Skill, RunicEmpowermentBuffs } from '../types';
-import { LEVEL_UP_XP } from '../constants';
-import { IconBolt, IconShield, IconHeart, IconSitemap, IconGoldCoin, IconBrain, IconWind, IconBan } from './Icons';
+import { PlayerStats, Skill, RunicEmpowermentBuffs } from '../../types/game.types';
+import { LEVEL_UP_XP } from '../../constants/game.constants';
+import { IconBolt, IconShield, IconHeart, IconSitemap, IconGoldCoin, IconBrain, IconWind, IconBan } from '../common/Icons';
 
 // --- Internal Components (not exported) ---
 

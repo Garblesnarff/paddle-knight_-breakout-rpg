@@ -1,0 +1,8 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders Ball component 1`] = `
+<div
+  class="absolute rounded-full bg-gradient-to-br from-yellow-300 to-orange-500 shadow-xl border-2 border-yellow-100/50"
+  style="left: 100px; top: 100px; width: 20px; height: 20px;"
+/>
+`;

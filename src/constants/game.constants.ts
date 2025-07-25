@@ -1,4 +1,4 @@
-import { BrickType, PlayerStats, Skill } from './types';
+import { BrickType, PlayerStats, Skill } from '../types/game.types';
 
 export const GAME_WIDTH = 800;
 export const GAME_HEIGHT = 600;
@@ -15,35 +15,45 @@ export const INITIAL_PLAYER_STATS: PlayerStats = {
   agility: 7,
   luck: 1,
   wisdom: 1,
-  vitality: 100
+  vitality: 100,
 };
 
 export const INITIAL_SKILLS: Record<string, Skill> = {
-    multiBall: { id: 'multiBall', name: 'Multi-Ball', cooldown: 20000, lastUsed: -20000, duration: 5000 },
-    timeSlow: { id: 'timeSlow', name: 'Time Slow', cooldown: 25000, lastUsed: -25000, duration: 7000 },
-    barrier: { id: 'barrier', name: 'Barrier', cooldown: 30000, lastUsed: -30000, duration: 10000 },
-    elementalInfusion: { id: 'elementalInfusion', name: 'Elemental Infusion', cooldown: 30000, lastUsed: -30000, charges: 5 },
-    arcaneOrb: { id: 'arcaneOrb', name: 'Arcane Orb', cooldown: 20000, lastUsed: -20000 },
-    timeWarp: { id: 'timeWarp', name: 'Time Warp', cooldown: 60000, lastUsed: -60000 },
+  multiBall: { id: 'multiBall', name: 'Multi-Ball', cooldown: 20000, lastUsed: -20000, duration: 5000 },
+  timeSlow: { id: 'timeSlow', name: 'Time Slow', cooldown: 25000, lastUsed: -25000, duration: 7000 },
+  barrier: { id: 'barrier', name: 'Barrier', cooldown: 30000, lastUsed: -30000, duration: 10000 },
+  elementalInfusion: {
+    id: 'elementalInfusion',
+    name: 'Elemental Infusion',
+    cooldown: 30000,
+    lastUsed: -30000,
+    charges: 5,
+  },
+  arcaneOrb: { id: 'arcaneOrb', name: 'Arcane Orb', cooldown: 20000, lastUsed: -20000 },
+  timeWarp: { id: 'timeWarp', name: 'Time Warp', cooldown: 60000, lastUsed: -60000 },
 };
 
 export const BRICK_PROPERTIES: Record<BrickType, { color: string; maxHp: number; points: number }> = {
-    // Stage 1
-    [BrickType.Grunt]: { color: 'bg-gray-500', maxHp: 1, points: 10 },
-    [BrickType.Soldier]: { color: 'bg-blue-500', maxHp: 2, points: 20 },
-    [BrickType.Archer]: { color: 'bg-green-600', maxHp: 1, points: 30 },
-    [BrickType.Mage]: { color: 'bg-purple-600', maxHp: 2, points: 40 },
-    [BrickType.Tank]: { color: 'bg-gray-400', maxHp: 5, points: 50 },
-    [BrickType.Chaos]: { color: 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500', maxHp: 3, points: 100 },
-    [BrickType.Boss]: { color: 'bg-red-800', maxHp: 100, points: 1000 },
-    // Stage 2
-    [BrickType.Apprentice]: { color: 'bg-sky-400', maxHp: 3, points: 60 },
-    [BrickType.Fire]: { color: 'bg-orange-600', maxHp: 2, points: 50 },
-    [BrickType.Ice]: { color: 'bg-cyan-300', maxHp: 4, points: 50 },
-    [BrickType.Lightning]: { color: 'bg-yellow-400', maxHp: 2, points: 70 },
-    [BrickType.Mirror]: { color: 'bg-slate-300', maxHp: 3, points: 80 },
-    [BrickType.Rune]: { color: 'bg-indigo-500', maxHp: 4, points: 90 },
-    [BrickType.ArchmageBoss]: { color: 'bg-indigo-700', maxHp: 250, points: 5000 },
+  // Stage 1
+  [BrickType.Grunt]: { color: 'bg-gray-500', maxHp: 1, points: 10 },
+  [BrickType.Soldier]: { color: 'bg-blue-500', maxHp: 2, points: 20 },
+  [BrickType.Archer]: { color: 'bg-green-600', maxHp: 1, points: 30 },
+  [BrickType.Mage]: { color: 'bg-purple-600', maxHp: 2, points: 40 },
+  [BrickType.Tank]: { color: 'bg-gray-400', maxHp: 5, points: 50 },
+  [BrickType.Chaos]: {
+    color: 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500',
+    maxHp: 3,
+    points: 100,
+  },
+  [BrickType.Boss]: { color: 'bg-red-800', maxHp: 100, points: 1000 },
+  // Stage 2
+  [BrickType.Apprentice]: { color: 'bg-sky-400', maxHp: 3, points: 60 },
+  [BrickType.Fire]: { color: 'bg-orange-600', maxHp: 2, points: 50 },
+  [BrickType.Ice]: { color: 'bg-cyan-300', maxHp: 4, points: 50 },
+  [BrickType.Lightning]: { color: 'bg-yellow-400', maxHp: 2, points: 70 },
+  [BrickType.Mirror]: { color: 'bg-slate-300', maxHp: 3, points: 80 },
+  [BrickType.Rune]: { color: 'bg-indigo-500', maxHp: 4, points: 90 },
+  [BrickType.ArchmageBoss]: { color: 'bg-indigo-700', maxHp: 250, points: 5000 },
 };
 
 export const LEVEL_UP_XP = 200;

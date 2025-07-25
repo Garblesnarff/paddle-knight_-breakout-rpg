@@ -1,6 +1,6 @@
 import React from 'react';
-import { SKILL_TREE_DATA } from '../game/skills';
-import { SkillNode } from '../types';
+import { SKILL_TREE_DATA } from '../../game/data/skills/skills';
+import { SkillNode } from '../../types/ui.types';
 import { IconBolt, IconHeart, IconShield, IconStar, IconSitemap, IconBrain, IconSparkles, IconWind, IconOrb, IconElementalTrail, IconTimeRewind } from './Icons';
 
 const SKILL_ICONS: Record<string, React.ReactNode> = {
