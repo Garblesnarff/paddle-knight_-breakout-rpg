@@ -1,5 +1,22 @@
+/**
+ * Purpose: Single-tick simulation for the Breakout RPG game world.
+ * Inputs:
+ *   - state: GameState snapshot containing entities (balls, bricks, hazards), player stats, skills, and UI state.
+ * Outputs:
+ *   - GameStateUpdate: A delta to be merged into React state by the caller (App.tsx).
+ * Invariants:
+ *   - Does not mutate the input state object; uses local copies (e.g., workingBricks).
+ *   - Public API remains runGameIteration(state) with the same types and behavior (behavior parity).
+ * Side-effects:
+ *   - None directly (pure w.r.t. caller), but reads wall-clock time via internal timeNow() that defaults to Date.now().
+ * Notes:
+ *   - For future determinism, timeNow can be replaced with an injected time source without changing the public signature.
+ */
 import { Ball, Brick, Projectile, PlayerStats, Skill, BrickType, Explosion, RunicEmpowermentBuffs, ArcaneOrb, ElementalBeam, HomingProjectile, FireRainZone, IceSpikeField, LightningStrike, ArcaneOverloadRing, FinalGambitBeam } from '../types';
 import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, BRICK_PROPERTIES, LEVEL_UP_XP, BOSS_MOVE_SPEED, BOSS_ATTACK_COOLDOWN, BOSS_PROJECTILE_SPEED, BOSS_PROJECTILE_DAMAGE, BOSS_ENRAGE_THRESHOLD, ARCHMAGE_TELEPORT_COOLDOWN, ARCHMAGE_SUMMON_COOLDOWN, ARCHMAGE_MAX_APPRENTICES, ARCHMAGE_MISSILE_COOLDOWN, ARCHMAGE_MISSILE_SPEED, ARCHMAGE_MISSILE_TURN_RATE, ARCHMAGE_MISSILE_DAMAGE, BRICK_WIDTH, BRICK_HEIGHT, ARCHMAGE_PHASE2_THRESHOLD, ARCHMAGE_ELEMENTAL_STORM_COOLDOWN, FIRE_RAIN_DURATION, FIRE_RAIN_DAMAGE, FIRE_RAIN_RADIUS, ICE_SPIKE_DURATION, ICE_SPIKE_HEIGHT, ICE_SPIKE_WIDTH, LIGHTNING_STRIKE_WARNING_DURATION, LIGHTNING_STRIKE_STRIKE_DURATION, LIGHTNING_STRIKE_DAMAGE, LIGHTNING_STRIKE_WIDTH, ARCHMAGE_MIRROR_IMAGE_COOLDOWN, ARCHMAGE_MAX_CLONES, ARCHMAGE_MANA_BURN_COOLDOWN, ARCHMAGE_PHASE3_THRESHOLD, ARCHMAGE_FINAL_GAMBIT_THRESHOLD, ARCHMAGE_CHAOS_MAGIC_COOLDOWN, ARCHMAGE_ARCANE_OVERLOAD_COOLDOWN, ARCANE_OVERLOAD_RING_DURATION, ARCANE_OVERLOAD_RING_DAMAGE, FINAL_GAMBIT_BEAM_WARNING_DURATION, FINAL_GAMBIT_BEAM_STRIKE_DURATION, FINAL_GAMBIT_BEAM_DAMAGE } from '../constants';
+import { lineRectCollision } from './core/collisions';
+import { stepProjectiles, stepHomingProjectiles } from './core/projectiles';
+import { updateBallsAndCollisions } from './core/balls';
 
 interface GameState {
     balls: Ball[];
@@ -57,26 +74,9 @@ interface GameStateUpdate {
     manaBurnActivated?: boolean;
 }
 
-// --- Collision Helper Functions ---
+/** Internal time getter to centralize wall-clock access for future testability. */
+const timeNow = (): number => Date.now();
 
-function lineLineCollision(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, x4: number, y4: number): boolean {
-    const den = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-    if (den === 0) return false;
-
-    const t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / den;
-    const u = -((x1 - x2) * (y1 - y3) - (y1 - y2) * (x1 - x3)) / den;
-
-    return t > 0 && t < 1 && u > 0 && u < 1;
-}
-
-function lineRectCollision(x1: number, y1: number, x2: number, y2: number, rect: Brick): boolean {
-    const left = lineLineCollision(x1, y1, x2, y2, rect.x, rect.y, rect.x, rect.y + rect.height);
-    const right = lineLineCollision(x1, y1, x2, y2, rect.x + rect.width, rect.y, rect.x + rect.width, rect.y + rect.height);
-    const top = lineLineCollision(x1, y1, x2, y2, rect.x, rect.y, rect.x + rect.width, rect.y);
-    const bottom = lineLineCollision(x1, y1, x2, y2, rect.x, rect.y + rect.height, rect.x + rect.width, rect.y + rect.height);
-
-    return left || right || top || bottom;
-}
 
 
 const findEmptySpotForBrick = (bricks: Brick[], width: number, height: number): {x: number, y: number} | null => {
@@ -101,7 +101,7 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
 
     let workingBricks: Brick[] = originalBricks.map(b => ({ ...b }));
 
-    const now = Date.now();
+    const now = timeNow();
     const isTimeSlowed = skills.timeSlow.activeUntil && now < skills.timeSlow.activeUntil;
     const timeFactor = isTimeSlowed ? 0.25 : 1;
 
@@ -149,163 +149,35 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
             }];
         }
     } else {
-        // 1. Update ball positions and handle wall/paddle collisions
-        updatedBalls = balls.map(ball => {
-            let { x, y, vx, vy, damage, slowedUntil, isSpikeSlowedUntil } = ball;
-            
-            const isSlowed = slowedUntil && now < slowedUntil;
-            const isSpikeSlowed = isSpikeSlowedUntil && now < isSpikeSlowedUntil;
-            const hasteMultiplier = activeBuffs.haste ? 1.5 : 1;
-            const ballTimeFactor = timeFactor * (isSlowed ? 0.8 : 1) * (isSpikeSlowed ? 0.3 : 1);
-            const ballSpeedMultiplier = (1 + (playerStats.agility - 1) * 0.05) * ballTimeFactor * hasteMultiplier;
-        
-            x += vx * ballSpeedMultiplier;
-            y += vy * ballSpeedMultiplier;
-
-            if (x <= 0 || x >= GAME_WIDTH - ball.size * 2) vx = -vx;
-            if (y <= 0) vy = -vy;
-
-            if (y >= PADDLE_Y - ball.size && y <= PADDLE_Y + PADDLE_HEIGHT && x + ball.size > paddleX && x < paddleX + paddleWidth) {
-                vy = -Math.abs(vy) * 1.02;
-                let hitPos = (x - (paddleX + paddleWidth / 2)) / (paddleWidth / 2);
-                vx = hitPos * 5;
-                damage = playerStats.power; 
-            }
-            
-            return { ...ball, x, y, vx, vy, damage };
-        }).filter(ball => ball.y < GAME_HEIGHT);
-
-        if (balls.length > 0 && updatedBalls.length === 0) {
-            damageToPlayer += 10;
-            if (hp - damageToPlayer > 0) {
-                nextBallLaunchedState = false;
-                updatedBalls.push({ id: Date.now(), x: paddleX + paddleWidth / 2, y: PADDLE_Y - 20, vx: 0, vy: 0, size: BALL_RADIUS, damage: 0 });
-            }
-        }
-
-        // Process Ice Spike Fields on Balls
-        if (newIceSpikeFields.length > 0) {
-            updatedBalls = updatedBalls.map(ball => {
-                for (const field of newIceSpikeFields) {
-                    if (ball.x + ball.size > field.x && ball.x < field.x + field.width &&
-                        ball.y + ball.size > field.y && ball.y < field.y + field.height)
-                    {
-                        return { ...ball, isSpikeSlowedUntil: now + 1000 };
-                    }
-                }
-                return ball;
-            });
-        }
-        
-        const hasBreakthrough = (unlockedSkills.breakthrough || 0) > 0;
-        const hasMasterOfElements = (unlockedSkills.masterOfElements || 0) > 0;
-        let damageMap = new Map<number, number>();
-        let triggeredLightningStrikes = 0;
-        const ballDamage = playerStats.power * (activeBuffs.power ? 2 : 1);
-
-        updatedBalls = updatedBalls.map(ball => {
-            if (ball.vx === 0 && ball.vy === 0) return ball;
-            let mutableBall = { ...ball };
-
-            for (const brick of workingBricks) {
-                const totalDamageToBrick = damageMap.get(brick.id) || 0;
-                if (totalDamageToBrick >= brick.hp) continue;
-
-                const ballCenterX = mutableBall.x + mutableBall.size;
-                const ballCenterY = mutableBall.y + mutableBall.size;
-                const brickCenterX = brick.x + brick.width / 2;
-                const brickCenterY = brick.y + brick.height / 2;
-                const dx = ballCenterX - brickCenterX;
-                const dy = ballCenterY - brickCenterY;
-                const combinedHalfWidths = mutableBall.size + brick.width / 2;
-                const combinedHalfHeights = mutableBall.size + brick.height / 2;
-
-                if (Math.abs(dx) < combinedHalfWidths && Math.abs(dy) < combinedHalfHeights) {
-                    const overlapX = combinedHalfWidths - Math.abs(dx);
-                    const overlapY = combinedHalfHeights - Math.abs(dy);
-
-                    if (brick.isClone) {
-                        damageMap.set(brick.id, 1);
-                        if (overlapX < overlapY) { mutableBall.vx = -mutableBall.vx; } else { mutableBall.vy = -mutableBall.vy; }
-                        newExplosions.push({id: Date.now() + Math.random(), x: brick.x + brick.width/2, y: brick.y + brick.height/2, radius: brick.width / 2, duration: 200, createdAt: now});
-                        break;
-                    }
-                    
-                    const elementalInfusionSkill = skills.elementalInfusion;
-                    if (elementalInfusionSkill && (elementalInfusionSkill.charges || 0) > 0) {
-                        chargesConsumed.push({ skillId: 'elementalInfusion', amount: 1 });
-                        const randomEffect = Math.random();
-                        if (randomEffect < 0.33) { // Fire
-                             const explosionRadius = 50 + playerStats.wisdom * 2;
-                             newExplosions.push({id: Date.now() + Math.random(), x: brick.x + brick.width/2, y: brick.y + brick.height/2, radius: explosionRadius, duration: 300, createdAt: now});
-                        } else if (randomEffect < 0.66) { // Ice
-                            mutableBall.slowedUntil = now + 3000;
-                        } else { // Lightning
-                            triggeredLightningStrikes++;
-                        }
-                    }
-
-                    // Shield logic takes precedence
-                    if (brick.shieldHp && brick.shieldHp > 0) {
-                        brick.shieldHp -= 1; // Shield absorbs one hit
-                        if (overlapX < overlapY) { mutableBall.vx = -mutableBall.vx; } else { mutableBall.vy = -mutableBall.vy; }
-                        break; // Ball bounces, its turn is over for this tick
-                    }
-                    
-                    if (brick.type === BrickType.Mirror) {
-                        damageMap.set(brick.id, totalDamageToBrick + ballDamage);
-                        mutableBall.vx *= -1;
-                        mutableBall.vy *= -1;
-                        mutableBall.x += mutableBall.vx;
-                        mutableBall.y += mutableBall.vy;
-                        break; 
-                    }
-                    if (brick.type === BrickType.Ice) {
-                        mutableBall.slowedUntil = now + 2000;
-                    }
-
-                    if (hasBreakthrough && mutableBall.damage > 0) {
-                        const damageToDeal = Math.min(mutableBall.damage, brick.hp - totalDamageToBrick);
-                        const brickDestroyed = (totalDamageToBrick + damageToDeal) >= brick.hp;
-
-                        damageMap.set(brick.id, totalDamageToBrick + damageToDeal);
-                        mutableBall.damage -= damageToDeal;
-
-                        if (brickDestroyed && hasMasterOfElements) {
-                            const beamDamage = playerStats.wisdom * 0.5 * magicDamageModifier;
-                            const beamRange = 250;
-                            const ballVelMag = Math.hypot(mutableBall.vx, mutableBall.vy);
-                            if (ballVelMag > 0) {
-                                const normalizedVx = mutableBall.vx / ballVelMag;
-                                const normalizedVy = mutableBall.vy / ballVelMag;
-                                
-                                const beamStartX = brick.x + brick.width / 2;
-                                const beamStartY = brick.y + brick.height / 2;
-                                const beamEndX = beamStartX + normalizedVx * beamRange;
-                                const beamEndY = beamStartY + normalizedVy * beamRange;
-                                
-                                newElementalBeams.push({ id: Date.now() + Math.random(), x1: beamStartX, y1: beamStartY, x2: beamEndX, y2: beamEndY, createdAt: now, duration: 150 });
-                                
-                                // Find all bricks hit by this beam
-                                for (const otherBrick of workingBricks) {
-                                    if (otherBrick.id === brick.id) continue;
-                                    if (lineRectCollision(beamStartX, beamStartY, beamEndX, beamEndY, otherBrick)) {
-                                        const currentDamage = damageMap.get(otherBrick.id) || 0;
-                                        damageMap.set(otherBrick.id, currentDamage + beamDamage);
-                                    }
-                                }
-                            }
-                        }
-                    } else {
-                        damageMap.set(brick.id, totalDamageToBrick + ballDamage);
-                        if (overlapX < overlapY) { mutableBall.vx = -mutableBall.vx; } else { mutableBall.vy = -mutableBall.vy; }
-                        break;
-                    }
-                }
-            }
-            return mutableBall;
+        // 1. Update ball movement and brick collisions via core module
+        const ballsResult = updateBallsAndCollisions({
+            balls,
+            bricks: workingBricks,
+            paddleX,
+            paddleWidth,
+            playerPower: playerStats.power,
+            playerAgility: playerStats.agility,
+            playerWisdom: playerStats.wisdom,
+            unlockedSkills,
+            activeBuffs,
+            skills: {
+                timeSlow: skills.timeSlow,
+                elementalInfusion: skills.elementalInfusion
+            } as any,
+            now,
+            timeFactor,
+            isBallLaunched,
+            maxMana,
+            hp
         });
-
+        updatedBalls = ballsResult.updatedBalls;
+        workingBricks = ballsResult.workingBricks;
+        nextBallLaunchedState = ballsResult.nextBallLaunchedState;
+        damageToPlayer += ballsResult.damageToPlayerDelta;
+        let damageMap = ballsResult.damageMap;
+        let triggeredLightningStrikes = ballsResult.triggeredLightningStrikes;
+        newExplosions.push(...ballsResult.newExplosions);
+        newElementalBeams.push(...ballsResult.newBeams);
         let bricksToTeleport = new Set<number>();
         let destroyedLightningBricks = 0;
         workingBricks = workingBricks.map(brick => {
@@ -739,50 +611,26 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
         }
 
         const isBarrierActive = skills.barrier.activeUntil && now < skills.barrier.activeUntil;
-        newProjectiles = newProjectiles.map(p => ({...p, y: p.y + p.vy * timeFactor})).filter(p => {
-            if(isBarrierActive && p.y > PADDLE_Y - 20 && p.y < PADDLE_Y - 10) return false;
-            if(p.y > PADDLE_Y && p.y < PADDLE_Y + PADDLE_HEIGHT && p.x > paddleX && p.x < paddleX + paddleWidth) {
-                 const damage = (p.size > 8 ? BOSS_PROJECTILE_DAMAGE : 5);
-                 damageToPlayer += Math.max(1, damage - playerStats.defense);
-                 return false;
-            }
-            return p.y < GAME_HEIGHT;
+        const projStep = stepProjectiles({
+            projectiles: newProjectiles,
+            paddleX,
+            paddleWidth,
+            timeFactor,
+            isBarrierActive: !!isBarrierActive,
+            playerDefense: playerStats.defense
         });
+        newProjectiles = projStep.projectiles;
+        damageToPlayer += projStep.damageToPlayer;
 
-        // Homing Projectiles
-        const paddleCenterX = paddleX + paddleWidth / 2;
-        const paddleCenterY = PADDLE_Y + PADDLE_HEIGHT / 2;
-
-        newHomingProjectiles = newHomingProjectiles.map(p => {
-            const targetDx = paddleCenterX - p.x;
-            const targetDy = paddleCenterY - p.y;
-            const targetDist = Math.hypot(targetDx, targetDy);
-
-            if (targetDist > 1) {
-                const targetDirX = targetDx / targetDist;
-                const targetDirY = targetDy / targetDist;
-                
-                const currentSpeed = Math.hypot(p.vx, p.vy) || ARCHMAGE_MISSILE_SPEED;
-                
-                const newVx = p.vx * (1 - ARCHMAGE_MISSILE_TURN_RATE) + targetDirX * currentSpeed * ARCHMAGE_MISSILE_TURN_RATE;
-                const newVy = p.vy * (1 - ARCHMAGE_MISSILE_TURN_RATE) + targetDirY * currentSpeed * ARCHMAGE_MISSILE_TURN_RATE;
-                
-                const newMag = Math.hypot(newVx, newVy);
-                p.vx = (newVx / newMag) * ARCHMAGE_MISSILE_SPEED;
-                p.vy = (newVy / newMag) * ARCHMAGE_MISSILE_SPEED;
-            }
-
-            p.x += p.vx * timeFactor;
-            p.y += p.vy * timeFactor;
-            return p;
-
-        }).filter(p => {
-            if (p.y + p.size > PADDLE_Y && p.y < PADDLE_Y + PADDLE_HEIGHT && p.x + p.size > paddleX && p.x < paddleX + paddleWidth) {
-                damageToPlayer += Math.max(1, ARCHMAGE_MISSILE_DAMAGE - playerStats.defense);
-                return false;
-            }
-            return p.y < GAME_HEIGHT + 20 && p.y + p.size > -20 && p.x < GAME_WIDTH + 20 && p.x + p.size > -20;
+        const homingStep = stepHomingProjectiles({
+            homingProjectiles: newHomingProjectiles,
+            paddleX,
+            paddleWidth,
+            timeFactor,
+            playerDefense: playerStats.defense
         });
+        newHomingProjectiles = homingStep.homingProjectiles;
+        damageToPlayer += homingStep.damageToPlayer;
     }
 
     // Process environmental hazards

@@ -1,3 +1,17 @@
+/**
+ * Purpose: Create initial bricks for a given stage based on declarative layouts.
+ * Inputs:
+ *   - stage: number (1-based index) selecting from ALL_LEVEL_LAYOUTS.
+ * Outputs:
+ *   - Brick[]: array of fully-initialized bricks with positions and hp set from BRICK_PROPERTIES.
+ * Invariants:
+ *   - Behavior parity with previous implementation.
+ *   - Does not mutate layout data; constructs new Brick objects.
+ * Side-effects:
+ *   - Reads current wall-clock time via Date.now() for boss timers (kept for parity).
+ * Notes:
+ *   - Layouts are treated as data; validation can be performed externally using game/schemas.ts.
+ */
 import { Brick, BrickType } from '../types';
 import { GAME_WIDTH, BRICK_WIDTH, BRICK_HEIGHT, BRICK_GAP, BRICK_PROPERTIES, BOSS_MOVE_SPEED } from '../constants';
 import { LEVEL_LAYOUTS as STAGE1_LAYOUTS } from './stages/stage-1/layouts';
