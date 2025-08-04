@@ -148,17 +148,32 @@ const App: React.FC = () => {
     };
 
     const resetGame = useCallback(() => {
-        setUnlockedSkills({});
-        setSkillPoints(0);
-        setHp(INITIAL_PLAYER_STATS.vitality + (permanentStats.vitality || 0));
+        setHp(maxHp);
+        setMana(maxMana);
         setXp(0);
         setLevel(1);
-        setStage(1);
-        setGold(0);
         setScore(0);
-        setSkills(JSON.parse(JSON.stringify(INITIAL_SKILLS)));
+        // Preserve purchased skills (unlockedSkills) across stages, but reset per-run skill runtime state.
+        // Do NOT overwrite to INITIAL_SKILLS which would clear lastUsed/charges state incorrectly relative to unlocks.
+        setSkills(prev => {
+            const next = { ...prev };
+            // Reset runtime-only fields on skills for a new run
+            Object.keys(next).forEach((key) => {
+                const s = next[key];
+                // Reset cooldowns and durations
+                next[key] = {
+                    ...s,
+                    lastUsed: 0,
+                    activeUntil: undefined,
+                    // Reset charges to their initial per-run value if the skill defines charges
+                    ...(INITIAL_SKILLS[key as keyof typeof INITIAL_SKILLS]?.charges !== undefined
+                        ? { charges: INITIAL_SKILLS[key as keyof typeof INITIAL_SKILLS]!.charges }
+                        : {})
+                };
+            });
+            return next;
+        });
         setGameStatus(GameStatus.Playing);
-        setBricks(createBricksForStage(1));
         setBalls([{ id: 0, x: GAME_WIDTH / 2, y: PADDLE_Y - 20, vx: 0, vy: 0, size: BALL_RADIUS, damage: 0 }]);
         setIsBallLaunched(false);
         setProjectiles([]);
@@ -178,7 +193,7 @@ const App: React.FC = () => {
         setManaBurnActiveUntil(null);
         setMaxActiveSkills(2);
         setEquippedSkills([]);
-    }, [permanentStats, cosmetics]);
+    }, [maxHp, maxMana, cosmetics, INITIAL_SKILLS]);
     
     useEffect(() => {
         setMana(maxMana);
@@ -201,6 +216,7 @@ const App: React.FC = () => {
 
     const handleStageSelect = (stageId: number) => {
         setCurrentStageId(stageId);
+        setStage(stageId);
         resetGame();
         const stageBricks = createBricksForStage(stageId);
         setBricks(stageBricks);
@@ -543,11 +559,16 @@ const App: React.FC = () => {
         }
         
         setHp(finalHp);
-        if (updates.manaSpent !== undefined) setMana((m: number) => Math.max(0, m - updates.manaSpent));
-        if (updates.manaGained !== undefined) setMana((m: number) => Math.min(maxMana, m + updates.manaGained));
+        const manaSpentVal = (updates as any).manaSpent as number | undefined;
+        const manaGainedVal = (updates as any).manaGained as number | undefined;
+        const goldGainedVal = (updates as any).goldGained as number | undefined;
+        const scoreGainedVal = (updates as any).scoreGained as number | undefined;
 
-        if (updates.goldGained !== undefined) setGold((g: number) => g + updates.goldGained);
-        if (updates.scoreGained !== undefined) setScore((s: number) => s + updates.scoreGained);
+        if (typeof manaSpentVal === 'number') setMana((m: number) => Math.max(0, m - manaSpentVal));
+        if (typeof manaGainedVal === 'number') setMana((m: number) => Math.min(maxMana, m + manaGainedVal));
+
+        if (typeof goldGainedVal === 'number') setGold((g: number) => g + goldGainedVal);
+        if (typeof scoreGainedVal === 'number') setScore((s: number) => s + scoreGainedVal);
 
         if (updates.chargesConsumed) {
             setSkills((prev: Record<string, Skill>) => {
