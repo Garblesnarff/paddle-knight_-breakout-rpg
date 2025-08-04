@@ -1,8 +1,9 @@
-// StageSelector.tsx
+ // StageSelector.tsx
 import React from 'react';
 import { STAGE_CONFIG, StageInfo } from '../game/stage-config';
 import SaveManager from '../services/SaveManager';
 import { IconLock, IconStar } from './Icons';
+import { Shop } from './Shop';
 
 interface StageSelectorProps {
     onSelectStage: (stageId: number) => void;
@@ -12,6 +13,7 @@ interface StageSelectorProps {
 export const StageSelector: React.FC<StageSelectorProps> = ({ onSelectStage, onBack }) => {
     const savedData = SaveManager.load();
     const [selectedStage, setSelectedStage] = React.useState<StageInfo | null>(null);
+    const [isShopOpen, setIsShopOpen] = React.useState(false);
 
     const renderStageNode = (stage: StageInfo) => {
         const isUnlocked = stage.id <= savedData.player.highestStageUnlocked;
@@ -52,17 +54,27 @@ export const StageSelector: React.FC<StageSelectorProps> = ({ onSelectStage, onB
     };
 
     return (
+        <>
+            {isShopOpen && <Shop onClose={() => setIsShopOpen(false)} />}
         <div className="flex items-center justify-center w-full h-screen bg-gray-900">
             <div className="relative w-full max-w-6xl h-[600px] bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg border-4 border-gray-700 p-8">
                 {/* Header */}
                 <div className="flex justify-between items-center mb-8">
                     <h1 className="text-4xl font-medieval text-yellow-300">Select Your Quest</h1>
-                    <button 
-                        onClick={onBack}
-                        className="px-6 py-2 bg-red-700 hover:bg-red-600 rounded text-white font-bold"
-                    >
-                        Back
-                    </button>
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={() => setIsShopOpen(true)}
+                            className="px-6 py-2 bg-yellow-700 hover:bg-yellow-600 rounded text-white font-bold"
+                        >
+                            Shop
+                        </button>
+                        <button 
+                            onClick={onBack}
+                            className="px-6 py-2 bg-red-700 hover:bg-red-600 rounded text-white font-bold"
+                        >
+                            Back
+                        </button>
+                    </div>
                 </div>
 
                 {/* Stage Map */}
@@ -142,5 +154,6 @@ export const StageSelector: React.FC<StageSelectorProps> = ({ onSelectStage, onB
                 )}
             </div>
         </div>
+        </>
     );
 };

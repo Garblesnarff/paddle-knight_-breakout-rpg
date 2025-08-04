@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { GameStatus, Brick, Ball, PlayerStats, Skill, BrickType, Projectile, Explosion, RunicEmpowermentBuffs, ArcaneOrb, ElementalBeam, BallHistoryEntry, HomingProjectile, FireRainZone, IceSpikeField, LightningStrike, ArcaneOverloadRing, FinalGambitBeam, SkillType, Cosmetics } from './types';
 import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, INITIAL_PLAYER_STATS, INITIAL_SKILLS, BRICK_PROPERTIES, LEVEL_UP_XP, BOSS_ENRAGE_THRESHOLD, ARCHMAGE_MANA_BURN_DURATION } from './constants';
 import { SKILL_TREE_DATA } from './game/skills';
+import { SHOP_ITEMS } from './game/shop-items';
 import { MAX_LEVELS, createBricksForStage } from './game/level-manager';
 import { STAGE_CONFIG } from './game/stage-config';
 import { StartScreen } from './components/StartScreen';
@@ -89,6 +90,25 @@ const App: React.FC = () => {
         setSkillPoints(savedData.player.skillPoints);
         setUnlockedSkills(savedData.player.unlockedSkills);
 
+        // Aggregate permanent stat bonuses from shop purchases
+        const aggregated: Partial<PlayerStats> = {};
+        const unlocked = savedData.player.unlockedSkills || {};
+        Object.entries(unlocked).forEach(([key, level]) => {
+            const item = SHOP_ITEMS.find(i => i.id === key);
+            if (!item) return;
+            if (item.category === 'stats' && level > 0) {
+                // Each item defines which stat it affects and how much per level
+                // Expect item.statKey in PlayerStats keys and item.perLevel as number
+                const statKey = (item as any).statKey as keyof PlayerStats | undefined;
+                const perLevel = (item as any).perLevel as number | undefined;
+                if (statKey && typeof perLevel === 'number') {
+                    const totalBonus = level * perLevel;
+                    aggregated[statKey] = (aggregated[statKey] || 0) + totalBonus as any;
+                }
+            }
+        });
+        setPermanentStats(aggregated);
+
         // You'll use stage data when we build the stage selector
         console.log('Game loaded:', savedData);
     }, []);
@@ -110,7 +130,20 @@ const App: React.FC = () => {
     const gameAreaRef = useRef<HTMLDivElement>(null);
 
     const playerStats = React.useMemo(() => {
+        // Start from base stats, then apply permanent shop bonuses, then apply skill tree/unlockedSkills
         const stats: PlayerStats = { ...INITIAL_PLAYER_STATS };
+
+        // Apply permanent baseline bonuses from shop
+        Object.entries(permanentStats).forEach(([k, v]) => {
+            const key = k as keyof PlayerStats;
+            const val = v as number;
+            if (typeof val === 'number') {
+                // Only add to numeric stats that exist on PlayerStats
+                (stats as any)[key] = ((stats as any)[key] || 0) + val;
+            }
+        });
+
+        // Apply per-run skill tree bonuses on top
         Object.entries(unlockedSkills).forEach(([skillId, sLevel]: [string, number]) => {
             if (sLevel > 0) {
                 const skillData = SKILL_TREE_DATA[skillId];
@@ -125,7 +158,7 @@ const App: React.FC = () => {
             }
         });
         return stats;
-    }, [unlockedSkills]);
+    }, [unlockedSkills, permanentStats]);
     
     const maxHp = playerStats.vitality + (level > 1 ? (level - 1) * 10 : 0);
     const maxMana = React.useMemo(() => {
