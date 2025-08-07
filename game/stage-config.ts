@@ -62,5 +62,36 @@ export const STAGE_CONFIG: StageInfo[] = [
         position: { x: 100, y: 400 },
         starCriteria: { time: 150000, minHpPercent: 75 }
     },
-    // ... add the rest of stage 2 levels
+    {
+        id: 7,
+        name: "Runic Halls",
+        description: "Rune and Mirror constructs complicate combat",
+        world: 2,
+        position: { x: 250, y: 420 },
+        starCriteria: { time: 170000, minHpPercent: 75 }
+    },
+    {
+        id: 8,
+        name: "Elemental Gauntlet",
+        description: "Fire, Ice, and Lightning trials test your mettle",
+        world: 2,
+        position: { x: 400, y: 440 },
+        starCriteria: { time: 190000, minHpPercent: 70 }
+    },
+    {
+        id: 9,
+        name: "Hall of Echoes",
+        description: "Mirror images and apprentices swarm the halls",
+        world: 2,
+        position: { x: 550, y: 430 },
+        starCriteria: { time: 210000, minHpPercent: 70 }
+    },
+    {
+        id: 10,
+        name: "Archmage’s Sanctum",
+        description: "Final duel against the Archmage of Bricks",
+        world: 2,
+        position: { x: 700, y: 420 },
+        starCriteria: { time: 240000, minHpPercent: 65 }
+    },
 ];
