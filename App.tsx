@@ -641,7 +641,7 @@ const App: React.FC = () => {
 
         if (hp > 0 && finalHp <= 0) {
             setGameStatus(GameStatus.GameOver);
-        } else if (updates.stageCompleted) {
+        } else if (updates.worldCompleted) {
             const stars = calculateStars();
             const goldEarned = 100 + (stars * 25) + (stars === 3 ? 50 : 0);
             setLastWorldGold(goldEarned);

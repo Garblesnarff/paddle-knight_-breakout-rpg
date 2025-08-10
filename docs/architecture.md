@@ -8,7 +8,7 @@ Current High-Level Structure
 - hooks/useGameLoop.ts: rAF loop to drive per-frame updates.
 - game/gameEngine.ts: Core per-tick simulation logic (ball physics, brick interactions, boss logic, hazards, skill interactions).
 - game/level-manager.ts: World brick generation from layout data.
-- game/stages/*: Layout (data arrays) and world-specific skills data.
+- game/worlds/*: Layout (data arrays) and world-specific skills data.
 - game/skills.ts: Aggregates skill trees.
 - services/SaveManager.ts: Save/load and world progress persistence (LocalStorage).
 - services/geminiService.ts: Non-critical “legend generation” feature (not used in gameplay).
@@ -42,8 +42,8 @@ Phased Plan
 
 Key Contracts To Keep Stable
 - runGameIteration(state) -> updates (shape unchanged).
-- createBricksForStage(stage) -> Brick[] (unchanged behavior).
-- SaveManager public API (load, save, updateStageData, addGold, unlockNextStage).
+- createBricksForWorld(world) -> Brick[] (unchanged behavior).
+- SaveManager public API (load, save, updateWorldData, addGold, unlockNextWorld).
 
 Glossary
 - Tick: Single update cycle of gameEngine.

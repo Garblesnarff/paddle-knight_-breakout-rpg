@@ -9,7 +9,7 @@ Repo inventory (current)
 - components/GameUI.tsx: 200
 - constants.ts: 94
 - services/SaveManager.ts: 139
-- Stage layouts: small (≤42 lines)
+- World layouts: small (≤42 lines)
 
 Only the first four require attention for the “<200 lines” target.
 
@@ -43,7 +43,7 @@ Changes
      - Lightning chain resolution
      - Archmage and classic boss logic
      - Barrier/mana-shield damage handling
-     - Stage completion logic
+     - World completion logic
    - Build verified: npm run build (vite) succeeded
 
 Behavior parity: Maintained. No public import path changes for callers.
@@ -98,7 +98,7 @@ PR 5: GameUI.tsx trim (at 200)
 Optional (not currently required by inventory)
 - constants split: Only if file grows ≥200; keep constants.ts as a barrel.
 - SaveManager split: Only if ≥200; separate serialization vs storage.
-- Stage layouts split: Only if any single file grows ≥200; split by level and provide index barrel.
+- World layouts split: Only if any single file grows ≥200; split by level and provide index barrel.
 
 ---
 

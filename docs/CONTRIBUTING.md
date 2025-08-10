@@ -45,7 +45,7 @@ Folder Conventions
 Validation
 - Use zod schemas (game/schemas.ts) for:
   - Save data (services/SaveManager boundaries)
-  - Stage layouts and configs (when loading data)
+  - World layouts and configs (when loading data)
 - Validate only at boundaries; never inside hot loops.
 
 Testing (Optional)

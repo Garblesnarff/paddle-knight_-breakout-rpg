@@ -70,7 +70,7 @@ interface GameStateUpdate {
     goldGained?: number;
     scoreGained?: number;
     levelUps?: number;
-    stageCompleted?: boolean;
+    worldCompleted?: boolean;
     manaSpent?: number;
     manaGained?: number;
     newExplosions?: Explosion[];
@@ -422,9 +422,9 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
     if (manaBurnWasActivated) updates.manaBurnActivated = true;
 
     if (workingBricks.length === 0 && originalBricks.length > 0 && !originalBricks.some(b => b.type === BrickType.Boss || b.type === BrickType.ArchmageBoss)) {
-        updates.stageCompleted = true;
+        updates.worldCompleted = true;
     } else if (workingBricks.filter(b => b.type !== BrickType.ArchmageBoss || !b.isClone).length === 0 && originalBricks.length > 0) {
-         updates.stageCompleted = true;
+         updates.worldCompleted = true;
     }
 
     return updates;

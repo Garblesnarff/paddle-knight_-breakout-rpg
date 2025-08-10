@@ -1,4 +1,4 @@
-# Stage 2 Development Plan: The Arcane Citadel
+# World 2 Development Plan: The Arcane Citadel
 
 This document tracks the features and progress for the second stage of Paddle Knight.
 
@@ -22,7 +22,7 @@ You've defeated the Brick Lord and now ascend to the magical floating citadel wh
 - **Mirror Bricks** (Silver): Reflects projectiles back at you
 - **Rune Bricks** (Purple with symbols): Buff nearby bricks with shields
 
-**Stage 2 Skill Tree Branch - The Arcane Path:**
+**World 2 Skill Tree Branch - The Arcane Path:**
 - **Tier 1:**
   - Arcane Intellect (Passive): +3 Wisdom per level, increases mana pool by 20
   - Spell Power (Passive): Magic effects deal 15% more damage per level
@@ -77,7 +77,7 @@ You've defeated the Brick Lord and now ascend to the magical floating citadel wh
 - ✅ **Mirror Bricks:** Implement logic to reflect player projectiles.
 - ✅ **Rune Bricks:** Implement logic to apply shield buffs to adjacent bricks.
 
-### Stage 2 Skills
+### World 2 Skills
 - ✅ **Arcane Intellect (Passive):** Implemented. Correctly increases Wisdom and Max Mana.
 - ✅ **Mana Shield (Triggered):** Implemented. Consumes mana to block 50% of incoming damage when the skill is learned.
 - ✅ **Tier 1 - Spell Power (Passive):** Add skill node and implement logic for increased magic damage.
@@ -108,7 +108,7 @@ You've defeated the Brick Lord and now ascend to the magical floating citadel wh
   - [x] Implement `Chaos Magic` ball direction changes.
   - [x] Implement `Final Gambit` channelled beam attack.
 
-### Stage Rewards
+### World Rewards
 - [x] Implement logic to unlock a 3rd active skill slot.
 - [x] Implement system for permanent stat rewards.
 - [x] Implement cosmetic system for paddle/ball effects.
