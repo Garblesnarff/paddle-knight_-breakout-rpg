@@ -53,6 +53,7 @@ const App: React.FC = () => {
     const [permanentStats, setPermanentStats] = useState<Partial<PlayerStats>>({});
     const [cosmetics, setCosmetics] = useState<Cosmetics>({ ballEffect: 'none' });
     const [currentWorldId, setCurrentWorldId] = useState(1);
+    const [currentStageId, setCurrentStageId] = useState(1);  // Added current stage tracking
     const [worldBricksTotal, setWorldBricksTotal] = useState(0);
     const [worldInitialHp, setWorldInitialHp] = useState(0);
     const [lastWorldGold, setLastWorldGold] = useState(0);
@@ -60,7 +61,7 @@ const App: React.FC = () => {
     const [worldStartTime, setWorldStartTime] = useState(0);
 
     const calculateStars = (): number => {
-        const stageConfig = WORLD_CONFIG.find(s => s.id === currentWorldId);
+        const stageConfig = WORLD_CONFIG.find(s => s.id === currentStageId);
         if (!stageConfig) return 1;
 
         let stars = 1; // Always get 1 star for completing
@@ -242,14 +243,18 @@ const App: React.FC = () => {
     }, [activeBuffs.haste, activeBuffs.power]);
 
     const handleStart = () => {
+        console.log('handleStart called - transitioning to WorldSelect');
         setGameStatus(GameStatus.WorldSelect);
     };
 
     const handleWorldSelect = (worldId: number) => {
+        console.log('handleWorldSelect called with worldId:', worldId);
         setCurrentWorldId(worldId);
         setWorld(worldId);
+        setCurrentStageId(worldId); // Start with first stage of the world
         resetGame();
         const worldBricks = createBricksForWorld(worldId);
+        console.log('Created bricks for world:', worldBricks.length, 'bricks');
         setBricks(worldBricks);
         setWorldBricksTotal(worldBricks.length);
         setWorldStartTime(Date.now());
@@ -257,6 +262,49 @@ const App: React.FC = () => {
         setGameStatus(GameStatus.Playing);
     };
 
+    const handleStageComplete = (stageId: number, stars: number, score: number) => {
+        const completionTime = Date.now() - worldStartTime;
+        const savedData = SaveManager.load();
+        
+        // For now, use the legacy method to avoid type issues
+        // TODO: Fix type issues with updateStageData
+        const currentWorldData = savedData.worlds[currentWorldId] || {
+            stages: {},
+            totalWorldStars: 0,
+            completedStages: 0
+        };
+        
+        // Update the stage data manually
+        const updatedStages = {
+            ...currentWorldData.stages,
+            [stageId]: {
+                stars: Math.max(stars, currentWorldData.stages?.[stageId]?.stars || 0),
+                bestScore: Math.max(score, currentWorldData.stages?.[stageId]?.bestScore || 0),
+                bestTime: Math.min(completionTime, currentWorldData.stages?.[stageId]?.bestTime || Infinity),
+                completed: true
+            }
+        };
+        
+        // Update world data with new stages
+        SaveManager.updateWorldData(currentWorldId, {
+            stages: updatedStages,
+            totalWorldStars: currentWorldData.totalWorldStars,
+            completedStages: currentWorldData.completedStages
+        });
+
+        // Check if this was the final stage of the world
+        const worldStages = WORLD_CONFIG.filter(w => w.world === currentWorldId);
+        const updatedSavedData = SaveManager.load();
+        const isWorldComplete = worldStages.every(stage => 
+            updatedSavedData.worlds[currentWorldId]?.stages?.[stage.id]?.completed
+        );
+
+        if (isWorldComplete) {
+            // Unlock next world if this one is complete
+            SaveManager.unlockNextWorld(currentWorldId + 1);
+        }
+    };
+    
     const handleOpenSkillTree = useCallback(() => {
         if (gameStatus === GameStatus.Playing) {
             setGameStatus(GameStatus.SkillTree);
@@ -646,7 +694,7 @@ const App: React.FC = () => {
             const goldEarned = 100 + (stars * 25) + (stars === 3 ? 50 : 0);
             setLastWorldGold(goldEarned);
             setLastWorldStars(stars);
-            handleWorldComplete(currentWorldId, stars, score);
+            handleStageComplete(currentStageId, stars, score);
             setGameStatus(GameStatus.VictoryScreen);
         }
     }, [balls, bricks, projectiles, homingProjectiles, arcaneOrbs, fireRainZones, iceSpikeFields, lightningStrikes, arcaneOverloadRings, finalGambitBeams, paddleX, paddleWidth, playerStats, skills, isBallLaunched, hp, mana, maxMana, xp, level, unlockedSkills, world, score, gold, activeBuffs, runicEmpowermentCounter]);
@@ -709,6 +757,8 @@ const App: React.FC = () => {
             </div>
         )
     };
+    
+    console.log('App render - gameStatus:', gameStatus);
     
     return (
         <div className="flex items-center justify-center w-full h-screen bg-gray-900">

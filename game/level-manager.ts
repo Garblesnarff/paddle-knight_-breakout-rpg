@@ -13,13 +13,15 @@
  *   - Layouts are treated as data; validation can be performed externally using game/schemas.ts.
  */
 import { Brick, BrickType } from '../types';
-import { GAME_WIDTH, BRICK_WIDTH, BRICK_HEIGHT, BRICK_GAP, BRICK_PROPERTIES, BOSS_MOVE_SPEED } from '../constants';
+import { GAME_WIDTH, BRICK_WIDTH, BRICK_HEIGHT, BRICK_GAP, BRICK_PROPERTIES, BOSS_MOVE_SPEED, GEARSPRITE_DODGE_CHANCE } from '../constants';
 import { LEVEL_LAYOUTS as WORLD1_LAYOUTS } from './worlds/world-1/layouts';
 import { LEVEL_LAYOUTS as WORLD2_LAYOUTS } from './worlds/world-2/layouts';
+import { LEVEL_LAYOUTS as WORLD3_LAYOUTS } from './worlds/world-3/layouts';
 
 export const ALL_LEVEL_LAYOUTS = [
     ...WORLD1_LAYOUTS,
     ...WORLD2_LAYOUTS,
+    ...WORLD3_LAYOUTS,
 ];
 
 export const MAX_LEVELS = ALL_LEVEL_LAYOUTS.length;
@@ -68,8 +70,21 @@ export const createBricksForWorld = (world: number): Brick[] => {
                     phase: 1,
                     currentElementalAttack: 'fire'
                 });
+            } else if (brickType === BrickType.PrimeSynthesizer) {
+                bricks.push({
+                    id: currentId++,
+                    x: GAME_WIDTH / 2 - 90,
+                    y: 20,
+                    width: 180,
+                    height: 50,
+                    type: BrickType.PrimeSynthesizer,
+                    hp: brickProps.maxHp,
+                    maxHp: brickProps.maxHp,
+                    lastAttackTime: Date.now(),
+                    phase: 1
+                });
             } else {
-                 bricks.push({
+                const brick: Brick = {
                     id: currentId++,
                     x: startX + c * (BRICK_WIDTH + BRICK_GAP),
                     y: r * (BRICK_HEIGHT + BRICK_GAP) + 80,
@@ -79,7 +94,14 @@ export const createBricksForWorld = (world: number): Brick[] => {
                     hp: brickProps.maxHp,
                     maxHp: brickProps.maxHp,
                     vx: brickType === BrickType.Soldier ? 1 : 0,
-                });
+                };
+                
+                // Add Bio-Forge specific properties
+                if (brickType === BrickType.Gearsprite) {
+                    brick.dodgeChance = GEARSPRITE_DODGE_CHANCE;
+                }
+                
+                bricks.push(brick);
             }
         });
     });

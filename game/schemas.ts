@@ -70,92 +70,88 @@ export function validateLayouts(layouts: unknown): { ok: boolean; errors: string
  * Does not mutate input; only verifies presence and primitive types.
  */
 export interface SaveDataLike {
-  version: string;
-  player: {
-    gold: number;
-    totalStars: number;
-    highestWorldUnlocked: number;
-    skillPoints: number;
-    unlockedSkills: Record<string, number>;
-  };
-  worlds: {
-    [worldId: string]: {
-      stars: number;
-      bestScore: number;
-      bestTime: number;
-      completed: boolean;
+    version?: string;
+    player?: {
+        gold?: number;
+        totalWorldStars?: number;  // Renamed from totalStars
+        highestWorldUnlocked?: number;
+        skillPoints?: number;
+        unlockedSkills?: Record<string, number>;
     };
-  };
-  settings: {
-    soundVolume: number;
-    musicVolume: number;
-  };
-  statistics: {
-    totalPlayTime: number;
-    totalBricksDestroyed: number;
-    totalBossesDefeated: number;
-  };
+    worlds?: {
+        [worldId: string]: {
+            stages?: {
+                [stageId: string]: {
+                    stars?: number;
+                    bestScore?: number;
+                    bestTime?: number;
+                    completed?: boolean;
+                };
+            };
+            totalWorldStars?: number;
+            completedStages?: number;
+        };
+    };
+    settings?: {
+        soundVolume?: number;
+        musicVolume?: number;
+    };
+    statistics?: {
+        totalPlayTime?: number;
+        totalBricksDestroyed?: number;
+        totalBossesDefeated?: number;
+    };
 }
 
-export function validateSaveData(data: unknown): { ok: boolean; errors: string[] } {
-  const errors: string[] = [];
-  if (!isObject(data)) {
-    return { ok: false, errors: ["SaveData is not an object"] };
-  }
-
-  // version
-  if (typeof (data as any).version !== "string") errors.push("version must be string");
-
-  // player
-  const player = (data as any).player;
-  if (!isObject(player)) {
-    errors.push("player must be object");
-  } else {
-    if (!isNumber(player.gold)) errors.push("player.gold must be number");
-    if (!isNumber(player.totalStars)) errors.push("player.totalStars must be number");
-    if (!isNumber(player.highestWorldUnlocked)) errors.push("player.highestWorldUnlocked must be number");
-    if (!isNumber(player.skillPoints)) errors.push("player.skillPoints must be number");
-    if (!isRecordOfNumbers(player.unlockedSkills)) errors.push("player.unlockedSkills must be Record<string, number>");
-  }
-
-  // worlds
-  const worlds = (data as any).worlds;
-  if (!isObject(worlds)) {
-    errors.push("worlds must be object");
-  } else {
-    for (const k of Object.keys(worlds)) {
-      const s = (worlds as any)[k];
-      if (!isObject(s)) {
-        errors.push(`worlds[${k}] must be object`);
-        continue;
-      }
-      if (!isNumber(s.stars)) errors.push(`worlds[${k}].stars must be number`);
-      if (!isNumber(s.bestScore)) errors.push(`worlds[${k}].bestScore must be number`);
-      if (!isNumber(s.bestTime)) errors.push(`worlds[${k}].bestTime must be number`);
-      if (typeof s.completed !== "boolean") errors.push(`worlds[${k}].completed must be boolean`);
+export function validateSaveData(data: any): data is SaveDataLike {
+    if (!data || typeof data !== 'object') return false;
+    
+    // Check player data
+    if (data.player && typeof data.player === 'object') {
+        if (data.player.gold !== undefined && typeof data.player.gold !== 'number') return false;
+        if (data.player.totalWorldStars !== undefined && typeof data.player.totalWorldStars !== 'number') return false;
+        if (data.player.highestWorldUnlocked !== undefined && typeof data.player.highestWorldUnlocked !== 'number') return false;
+        if (data.player.skillPoints !== undefined && typeof data.player.skillPoints !== 'number') return false;
+        if (data.player.unlockedSkills !== undefined && typeof data.player.unlockedSkills !== 'object') return false;
     }
-  }
-
-  // settings
-  const settings = (data as any).settings;
-  if (!isObject(settings)) {
-    errors.push("settings must be object");
-  } else {
-    if (!isNumber(settings.soundVolume)) errors.push("settings.soundVolume must be number");
-    if (!isNumber(settings.musicVolume)) errors.push("settings.musicVolume must be number");
-  }
-
-  // statistics
-  const statistics = (data as any).statistics;
-  if (!isObject(statistics)) {
-    errors.push("statistics must be object");
-  } else {
-    if (!isNumber(statistics.totalPlayTime)) errors.push("statistics.totalPlayTime must be number");
-    if (!isNumber(statistics.totalBricksDestroyed)) errors.push("statistics.totalBricksDestroyed must be number");
-    if (!isNumber(statistics.totalBossesDefeated)) errors.push("statistics.totalBossesDefeated must be number");
-  }
-
-  return { ok: errors.length === 0, errors };
+    
+    // Check worlds data
+    if (data.worlds && typeof data.worlds === 'object') {
+        for (const worldId in data.worlds) {
+            const world = data.worlds[worldId];
+            if (typeof world !== 'object') return false;
+            
+            if (world.stages && typeof world.stages === 'object') {
+                for (const stageId in world.stages) {
+                    const stage = world.stages[stageId];
+                    if (typeof stage !== 'object') return false;
+                    
+                    if (stage.stars !== undefined && typeof stage.stars !== 'number') return false;
+                    if (stage.bestScore !== undefined && typeof stage.bestScore !== 'number') return false;
+                    if (stage.bestTime !== undefined && typeof stage.bestTime !== 'number') return false;
+                    if (stage.completed !== undefined && typeof stage.completed !== 'boolean') return false;
+                }
+            }
+            
+            if (world.totalWorldStars !== undefined && typeof world.totalWorldStars !== 'number') return false;
+            if (world.completedStages !== undefined && typeof world.completedStages !== 'number') return false;
+        }
+    }
+    
+    // Check settings
+    if (data.settings && typeof data.settings === 'object') {
+        if (data.settings.soundVolume !== undefined && typeof data.settings.soundVolume !== 'number') return false;
+        if (data.settings.musicVolume !== undefined && typeof data.settings.musicVolume !== 'number') return false;
+    }
+    
+    // Check statistics
+    if (data.statistics && typeof data.statistics === 'object') {
+        if (data.statistics.totalPlayTime !== undefined && typeof data.statistics.totalPlayTime !== 'number') return false;
+        if (data.statistics.totalBricksDestroyed !== undefined && typeof data.statistics.totalBricksDestroyed !== 'number') return false;
+        if (data.statistics.totalBossesDefeated !== undefined && typeof data.statistics.totalBossesDefeated !== 'number') return false;
+    }
+    
+    return true;
 }
 
 /** Helpers */

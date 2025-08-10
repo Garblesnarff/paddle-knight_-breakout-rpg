@@ -44,6 +44,14 @@ export const BRICK_PROPERTIES: Record<BrickType, { color: string; maxHp: number;
     [BrickType.Mirror]: { color: 'bg-slate-300', maxHp: 3, points: 80 },
     [BrickType.Rune]: { color: 'bg-indigo-500', maxHp: 4, points: 90 },
     [BrickType.ArchmageBoss]: { color: 'bg-indigo-700', maxHp: 250, points: 5000 },
+    // World 3 - Bio-Forge Nexus
+    [BrickType.Gearsprite]: { color: 'bg-cyan-400', maxHp: 3, points: 85 },
+    [BrickType.VineBot]: { color: 'bg-green-500', maxHp: 4, points: 95 },
+    [BrickType.ScrapGolem]: { color: 'bg-gray-600', maxHp: 6, points: 130 },
+    [BrickType.Corruptor]: { color: 'bg-purple-500', maxHp: 5, points: 110 },
+    [BrickType.HiveMind]: { color: 'bg-pink-400', maxHp: 7, points: 160 },
+    [BrickType.Replicator]: { color: 'bg-blue-400', maxHp: 4, points: 100 },
+    [BrickType.PrimeSynthesizer]: { color: 'bg-gradient-to-r from-purple-600 to-pink-600', maxHp: 300, points: 7500 },
 };
 
 export const LEVEL_UP_XP = 200;
@@ -92,3 +100,32 @@ export const ARCANE_OVERLOAD_RING_DAMAGE = 8;
 export const FINAL_GAMBIT_BEAM_WARNING_DURATION = 2000; // ms
 export const FINAL_GAMBIT_BEAM_STRIKE_DURATION = 5000; // ms
 export const FINAL_GAMBIT_BEAM_DAMAGE = 30;
+
+// Bio-Forge Nexus Constants
+export const GEARSPRITE_DODGE_CHANCE = 0.35; // 35% dodge chance
+export const VINEBOT_TENTACLE_COOLDOWN = 4000; // 4 seconds
+export const VINEBOT_TRAP_DURATION = 2000; // 2 seconds at 10% speed
+export const SCRAPGOLEM_EXPLOSION_COUNT = 3; // Spawn 3 Gearsprites
+export const CORRUPTOR_PULSE_COOLDOWN = 10000; // 10 seconds
+export const CORRUPTOR_DISABLE_DURATION = 5000; // 5 seconds
+export const HIVEMIND_SPAWN_COOLDOWN = 5000; // 5 seconds
+export const REPLICATOR_REPLICATION_COOLDOWN = 3000; // 3 seconds
+export const SELF_REPAIR_COOLDOWN = 5000; // 5 seconds
+export const SELF_REPAIR_AMOUNT = 1; // 1 HP
+
+// Environmental Hazards
+export const OVERGROWTH_BALL_SPEED_REDUCTION = 0.7; // 30% reduction
+export const OVERGROWTH_PADDLE_SPEED_REDUCTION = 0.8; // 20% reduction
+export const ENERGY_SURGE_DURATION = 1000; // 1 second
+export const ENERGY_SURGE_DAMAGE = 8;
+export const REPLICATION_FIELD_TIMER = 15000; // 15 seconds
+
+// Prime Synthesizer Boss
+export const PRIME_SYNTHESIZER_PHASE2_THRESHOLD = 0.7; // 70% HP
+export const PRIME_SYNTHESIZER_PHASE3_THRESHOLD = 0.4; // 40% HP
+export const PRIME_SYNTHESIZER_FINAL_GAMBIT_THRESHOLD = 0.1; // 10% HP
+export const TENDRIL_STRIKE_COOLDOWN = 6000; // 6 seconds
+export const DRONE_SWARM_COOLDOWN = 8000; // 8 seconds
+export const ENERGY_BEAM_DURATION = 3000; // 3 seconds
+export const CORRUPTING_PULSE_COOLDOWN = 12000; // 12 seconds
+export const REPLICATION_CASCADE_CHANCE = 0.25; // 25%

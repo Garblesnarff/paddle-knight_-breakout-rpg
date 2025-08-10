@@ -12,7 +12,7 @@
  * Notes:
  *   - For future determinism, timeNow can be replaced with an injected time source without changing the public signature.
  */
-import { Ball, Brick, Projectile, PlayerStats, Skill, BrickType, Explosion, RunicEmpowermentBuffs, ArcaneOrb, ElementalBeam, HomingProjectile, FireRainZone, IceSpikeField, LightningStrike, ArcaneOverloadRing, FinalGambitBeam } from '../types';
+import { Ball, Brick, Projectile, PlayerStats, Skill, BrickType, Explosion, RunicEmpowermentBuffs, ArcaneOrb, ElementalBeam, HomingProjectile, FireRainZone, IceSpikeField, LightningStrike, ArcaneOverloadRing, FinalGambitBeam, OvergrowthZone, EnergySurge, ReplicationField, PlayerDebuff } from '../types';
 import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, BRICK_PROPERTIES, LEVEL_UP_XP, BOSS_MOVE_SPEED, BOSS_ATTACK_COOLDOWN, BOSS_PROJECTILE_SPEED, BOSS_PROJECTILE_DAMAGE, BOSS_ENRAGE_THRESHOLD, ARCHMAGE_TELEPORT_COOLDOWN, ARCHMAGE_SUMMON_COOLDOWN, ARCHMAGE_MAX_APPRENTICES, ARCHMAGE_MISSILE_COOLDOWN, ARCHMAGE_MISSILE_SPEED, ARCHMAGE_MISSILE_TURN_RATE, ARCHMAGE_MISSILE_DAMAGE, BRICK_WIDTH, BRICK_HEIGHT, ARCHMAGE_PHASE2_THRESHOLD, ARCHMAGE_ELEMENTAL_STORM_COOLDOWN, FIRE_RAIN_DURATION, FIRE_RAIN_DAMAGE, FIRE_RAIN_RADIUS, ICE_SPIKE_DURATION, ICE_SPIKE_HEIGHT, ICE_SPIKE_WIDTH, LIGHTNING_STRIKE_WARNING_DURATION, LIGHTNING_STRIKE_STRIKE_DURATION, LIGHTNING_STRIKE_DAMAGE, LIGHTNING_STRIKE_WIDTH, ARCHMAGE_MIRROR_IMAGE_COOLDOWN, ARCHMAGE_MAX_CLONES, ARCHMAGE_MANA_BURN_COOLDOWN, ARCHMAGE_PHASE3_THRESHOLD, ARCHMAGE_FINAL_GAMBIT_THRESHOLD, ARCHMAGE_CHAOS_MAGIC_COOLDOWN, ARCHMAGE_ARCANE_OVERLOAD_COOLDOWN, ARCANE_OVERLOAD_RING_DURATION, ARCANE_OVERLOAD_RING_DAMAGE, FINAL_GAMBIT_BEAM_WARNING_DURATION, FINAL_GAMBIT_BEAM_STRIKE_DURATION, FINAL_GAMBIT_BEAM_DAMAGE } from '../constants';
 import { lineRectCollision } from './core/collisions';
 import { stepProjectiles, stepHomingProjectiles } from './core/projectiles';
@@ -24,6 +24,10 @@ import {
     stepEnvironmentalHazards,
 } from './core/hazards';
 import { stepBossArchmage, stepBossClassic } from './core/boss';
+import { stepBioForgeMechanics } from './core/bio-forge';
+import { stepEnvironmentalHazards as stepBioForgeEnvironmental } from './core/bio-forge/environmental';
+import { stepPrimeSynthesizer } from './core/boss/prime-synthesizer';
+import { stepDebuffSystem } from './core/debuffs';
 
 interface GameState {
     balls: Ball[];
@@ -50,6 +54,11 @@ interface GameState {
     activeBuffs: RunicEmpowermentBuffs;
     maxActiveSkills: number;
     equippedSkills: string[];
+    // Bio-Forge Nexus state
+    overgrowthZones?: OvergrowthZone[];
+    energySurges?: EnergySurge[];
+    replicationFields?: ReplicationField[];
+    playerDebuffs?: PlayerDebuff[];
 }
 
 interface GameStateUpdate {

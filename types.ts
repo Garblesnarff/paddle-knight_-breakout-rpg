@@ -27,6 +27,14 @@ export enum BrickType {
   Mirror,
   Rune,
   ArchmageBoss,
+  // World 3 - Bio-Forge Nexus
+  Gearsprite,
+  VineBot,
+  ScrapGolem,
+  Corruptor,
+  HiveMind,
+  Replicator,
+  PrimeSynthesizer,
 }
 
 export interface Brick {
@@ -53,6 +61,18 @@ export interface Brick {
   lastArcaneOverloadTime?: number;
   lastChaosMagicTime?: number;
   isFinalGambit?: boolean;
+  // Bio-Forge Nexus properties
+  dodgeChance?: number;
+  lastDodgeTime?: number;
+  lastTentacleTime?: number;
+  lastSelfRepairTime?: number;
+  lastSkillDisableTime?: number;
+  lastSpawnTime?: number;
+  lastReplicationTime?: number;
+  isSpawned?: boolean;
+  parentId?: number;
+  trapDuration?: number;
+  slowedUntil?: number;
 }
 
 export interface Ball {
@@ -214,4 +234,46 @@ export interface BallHistoryEntry {
 export interface Cosmetics {
     paddleEffect?: string;
     ballEffect?: string;
+}
+
+// Bio-Forge Nexus Environmental Hazards
+export interface OvergrowthZone {
+    id: number;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    ballSpeedReduction: number; // 0.7 for 30% reduction
+    paddleSpeedReduction: number; // 0.8 for 20% reduction
+}
+
+export interface EnergySurge {
+    id: number;
+    x1: number;
+    y1: number;
+    x2: number;
+    y2: number;
+    createdAt: number;
+    duration: number;
+    damage: number;
+}
+
+export interface ReplicationField {
+    id: number;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    replicationTimer: number; // 15000ms
+    bricksInField: number[]; // Track brick IDs in the field
+}
+
+// Player Debuff System
+export interface PlayerDebuff {
+    id: string;
+    type: 'skillDisable' | 'slowMovement' | 'reducedDamage';
+    skillId?: string; // For skill disable debuffs
+    severity?: number; // For percentage-based debuffs
+    appliedAt: number;
+    duration: number;
 }
