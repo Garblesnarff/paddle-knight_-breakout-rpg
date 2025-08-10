@@ -1,9 +1,9 @@
-// stage-config.ts
-export interface StageInfo {
+// world-config.ts
+export interface WorldInfo {
     id: number;
     name: string;
     description: string;
-    world: number;  // 1 = Stage 1 (Brick Lord), 2 = Stage 2 (Archmage)
+    world: number;  // 1 = World 1 (Brick Lord), 2 = World 2 (Archmage)
     position: { x: number; y: number }; // Position on the map
     starCriteria: {
         time: number;  // Max time in ms for 3rd star
@@ -11,7 +11,7 @@ export interface StageInfo {
     };
 }
 
-export const STAGE_CONFIG: StageInfo[] = [
+export const WORLD_CONFIG: WorldInfo[] = [
     // World 1: The Brick Kingdom
     {
         id: 1,
@@ -95,3 +95,5 @@ export const STAGE_CONFIG: StageInfo[] = [
         starCriteria: { time: 240000, minHpPercent: 65 }
     },
 ];
+
+

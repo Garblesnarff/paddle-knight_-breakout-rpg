@@ -49,7 +49,7 @@ export function validateLayout(layout: unknown): { ok: boolean; errors: string[]
 }
 
 /**
- * Validate multiple layouts (stage-level).
+ * Validate multiple layouts (world-level).
  */
 export function validateLayouts(layouts: unknown): { ok: boolean; errors: string[] } {
   const errors: string[] = [];
@@ -74,12 +74,12 @@ export interface SaveDataLike {
   player: {
     gold: number;
     totalStars: number;
-    highestStageUnlocked: number;
+    highestWorldUnlocked: number;
     skillPoints: number;
     unlockedSkills: Record<string, number>;
   };
-  stages: {
-    [stageId: string]: {
+  worlds: {
+    [worldId: string]: {
       stars: number;
       bestScore: number;
       bestTime: number;
@@ -113,26 +113,26 @@ export function validateSaveData(data: unknown): { ok: boolean; errors: string[]
   } else {
     if (!isNumber(player.gold)) errors.push("player.gold must be number");
     if (!isNumber(player.totalStars)) errors.push("player.totalStars must be number");
-    if (!isNumber(player.highestStageUnlocked)) errors.push("player.highestStageUnlocked must be number");
+    if (!isNumber(player.highestWorldUnlocked)) errors.push("player.highestWorldUnlocked must be number");
     if (!isNumber(player.skillPoints)) errors.push("player.skillPoints must be number");
     if (!isRecordOfNumbers(player.unlockedSkills)) errors.push("player.unlockedSkills must be Record<string, number>");
   }
 
-  // stages
-  const stages = (data as any).stages;
-  if (!isObject(stages)) {
-    errors.push("stages must be object");
+  // worlds
+  const worlds = (data as any).worlds;
+  if (!isObject(worlds)) {
+    errors.push("worlds must be object");
   } else {
-    for (const k of Object.keys(stages)) {
-      const s = (stages as any)[k];
+    for (const k of Object.keys(worlds)) {
+      const s = (worlds as any)[k];
       if (!isObject(s)) {
-        errors.push(`stages[${k}] must be object`);
+        errors.push(`worlds[${k}] must be object`);
         continue;
       }
-      if (!isNumber(s.stars)) errors.push(`stages[${k}].stars must be number`);
-      if (!isNumber(s.bestScore)) errors.push(`stages[${k}].bestScore must be number`);
-      if (!isNumber(s.bestTime)) errors.push(`stages[${k}].bestTime must be number`);
-      if (typeof s.completed !== "boolean") errors.push(`stages[${k}].completed must be boolean`);
+      if (!isNumber(s.stars)) errors.push(`worlds[${k}].stars must be number`);
+      if (!isNumber(s.bestScore)) errors.push(`worlds[${k}].bestScore must be number`);
+      if (!isNumber(s.bestTime)) errors.push(`worlds[${k}].bestTime must be number`);
+      if (typeof s.completed !== "boolean") errors.push(`worlds[${k}].completed must be boolean`);
     }
   }
 

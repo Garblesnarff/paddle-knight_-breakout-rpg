@@ -1,6 +1,6 @@
 export enum GameStatus {
   Start,
-  StageSelect,
+  WorldSelect,
   Playing,
   Paused,
   GameOver,
@@ -11,7 +11,7 @@ export enum GameStatus {
 }
 
 export enum BrickType {
-  // Stage 1
+  // World 1
   Grunt,
   Soldier,
   Archer,
@@ -19,7 +19,7 @@ export enum BrickType {
   Tank,
   Chaos,
   Boss,
-  // Stage 2
+  // World 2
   Apprentice,
   Fire,
   Ice,

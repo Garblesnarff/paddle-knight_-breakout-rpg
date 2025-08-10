@@ -28,7 +28,7 @@ export const INITIAL_SKILLS: Record<string, Skill> = {
 };
 
 export const BRICK_PROPERTIES: Record<BrickType, { color: string; maxHp: number; points: number }> = {
-    // Stage 1
+    // World 1
     [BrickType.Grunt]: { color: 'bg-gray-500', maxHp: 1, points: 10 },
     [BrickType.Soldier]: { color: 'bg-blue-500', maxHp: 2, points: 20 },
     [BrickType.Archer]: { color: 'bg-green-600', maxHp: 1, points: 30 },
@@ -36,7 +36,7 @@ export const BRICK_PROPERTIES: Record<BrickType, { color: string; maxHp: number;
     [BrickType.Tank]: { color: 'bg-gray-400', maxHp: 5, points: 50 },
     [BrickType.Chaos]: { color: 'bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500', maxHp: 3, points: 100 },
     [BrickType.Boss]: { color: 'bg-red-800', maxHp: 100, points: 1000 },
-    // Stage 2
+    // World 2
     [BrickType.Apprentice]: { color: 'bg-sky-400', maxHp: 3, points: 60 },
     [BrickType.Fire]: { color: 'bg-orange-600', maxHp: 2, points: 50 },
     [BrickType.Ice]: { color: 'bg-cyan-300', maxHp: 4, points: 50 },
@@ -48,14 +48,14 @@ export const BRICK_PROPERTIES: Record<BrickType, { color: string; maxHp: number;
 
 export const LEVEL_UP_XP = 200;
 
-// Stage 1 Boss
+// World 1 Boss
 export const BOSS_MOVE_SPEED = 2;
 export const BOSS_ATTACK_COOLDOWN = 2000; // ms
 export const BOSS_PROJECTILE_SPEED = 4;
 export const BOSS_PROJECTILE_DAMAGE = 15;
 export const BOSS_ENRAGE_THRESHOLD = 0.5; // 50% HP
 
-// Stage 2 Boss
+// World 2 Boss
 export const ARCHMAGE_TELEPORT_COOLDOWN = 5000; // ms
 export const ARCHMAGE_MISSILE_COOLDOWN = 3500; // ms
 export const ARCHMAGE_SUMMON_COOLDOWN = 10000; // ms

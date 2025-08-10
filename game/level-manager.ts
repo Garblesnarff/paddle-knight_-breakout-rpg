@@ -1,7 +1,7 @@
 /**
- * Purpose: Create initial bricks for a given stage based on declarative layouts.
+ * Purpose: Create initial bricks for a given world based on declarative layouts.
  * Inputs:
- *   - stage: number (1-based index) selecting from ALL_LEVEL_LAYOUTS.
+ *   - world: number (1-based index) selecting from ALL_LEVEL_LAYOUTS.
  * Outputs:
  *   - Brick[]: array of fully-initialized bricks with positions and hp set from BRICK_PROPERTIES.
  * Invariants:
@@ -14,19 +14,19 @@
  */
 import { Brick, BrickType } from '../types';
 import { GAME_WIDTH, BRICK_WIDTH, BRICK_HEIGHT, BRICK_GAP, BRICK_PROPERTIES, BOSS_MOVE_SPEED } from '../constants';
-import { LEVEL_LAYOUTS as STAGE1_LAYOUTS } from './stages/stage-1/layouts';
-import { LEVEL_LAYOUTS as STAGE2_LAYOUTS } from './stages/stage-2/layouts';
+import { LEVEL_LAYOUTS as WORLD1_LAYOUTS } from './worlds/world-1/layouts';
+import { LEVEL_LAYOUTS as WORLD2_LAYOUTS } from './worlds/world-2/layouts';
 
 export const ALL_LEVEL_LAYOUTS = [
-    ...STAGE1_LAYOUTS,
-    ...STAGE2_LAYOUTS,
+    ...WORLD1_LAYOUTS,
+    ...WORLD2_LAYOUTS,
 ];
 
 export const MAX_LEVELS = ALL_LEVEL_LAYOUTS.length;
 
-export const createBricksForStage = (stage: number): Brick[] => {
+export const createBricksForWorld = (world: number): Brick[] => {
     const bricks: Brick[] = [];
-    const layout = ALL_LEVEL_LAYOUTS[stage - 1];
+    const layout = ALL_LEVEL_LAYOUTS[world - 1];
     if (!layout) return [];
 
     let currentId = 0;

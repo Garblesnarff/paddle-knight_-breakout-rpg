@@ -77,10 +77,10 @@ interface TopUIProps {
   xp: number;
   level: number;
   gold: number;
-  stage: number;
+  world: number;
 }
 
-export const TopUI: React.FC<TopUIProps> = ({ hp, maxHp, mana, maxMana, xp, level, gold, stage }) => {
+export const TopUI: React.FC<TopUIProps> = ({ hp, maxHp, mana, maxMana, xp, level, gold, world }) => {
     const hpPercentage = (hp / maxHp) * 100;
     const manaPercentage = maxMana > 0 ? (mana / maxMana) * 100 : 0;
     const xpPercentage = (xp / LEVEL_UP_XP) * 100;
@@ -113,7 +113,7 @@ export const TopUI: React.FC<TopUIProps> = ({ hp, maxHp, mana, maxMana, xp, leve
                      <div className="text-center text-sm font-semibold -mt-[17px] text-white" style={{textShadow: '1px 1px 2px #000'}}>{xp} / {LEVEL_UP_XP}</div>
                 </div>
             </div>
-            {stage > 1 && maxMana > 0 && (
+            {world > 1 && maxMana > 0 && (
                  <div className="mt-2 px-2">
                     <div className="text-sky-400 text-sm font-bold mb-1">Mana</div>
                     <div className="w-full bg-black/50 rounded-full h-3 shadow-inner border border-black/30">
@@ -139,12 +139,12 @@ interface BottomUIProps {
   onOpenSkillTree: () => void;
   skillPoints: number;
   unlockedSkills: Record<string, number>;
-  stage: number;
+  world: number;
   activeBuffs: RunicEmpowermentBuffs;
   manaBurnActiveUntil: number | null;
 }
 
-export const BottomUI: React.FC<BottomUIProps> = ({ stats, skills, equippedSkills, maxActiveSkills, onActivateSkill, onOpenSkillTree, skillPoints, unlockedSkills, stage, activeBuffs, manaBurnActiveUntil }) => {
+export const BottomUI: React.FC<BottomUIProps> = ({ stats, skills, equippedSkills, maxActiveSkills, onActivateSkill, onOpenSkillTree, skillPoints, unlockedSkills, world, activeBuffs, manaBurnActiveUntil }) => {
     const now = Date.now();
     const activeSkillsToShow = equippedSkills.map(id => skills[id]).filter(Boolean);
     const isManaBurned = manaBurnActiveUntil && now < manaBurnActiveUntil;
@@ -164,7 +164,7 @@ export const BottomUI: React.FC<BottomUIProps> = ({ stats, skills, equippedSkill
                   <StatDisplay icon={<IconBolt />} label="Power" value={stats.power} color="text-red-400" />
                   <StatDisplay icon={<IconHeart />} label="Vitality" value={stats.vitality} color="text-pink-400" />
                   <StatDisplay icon={<IconShield />} label="Defense" value={stats.defense} color="text-blue-400" />
-                  {stage > 1 && <StatDisplay icon={<IconBrain />} label="Wisdom" value={stats.wisdom} color="text-purple-400" />}
+                  {world > 1 && <StatDisplay icon={<IconBrain />} label="Wisdom" value={stats.wisdom} color="text-purple-400" />}
                 </div>
                 <div className="flex flex-col gap-1 items-start ml-2">
                   <BuffsDisplay buffs={activeBuffs} />

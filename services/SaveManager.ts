@@ -4,12 +4,12 @@ export interface SaveData {
     player: {
         gold: number;
         totalStars: number;
-        highestStageUnlocked: number;
+        highestWorldUnlocked: number;
         skillPoints: number;
         unlockedSkills: Record<string, number>;
     };
-    stages: {
-        [stageId: number]: {
+    worlds: {
+        [worldId: number]: {
             stars: number;        // 0-3
             bestScore: number;
             bestTime: number;     // in milliseconds
@@ -48,11 +48,11 @@ class SaveManager {
             player: {
                 gold: 0,
                 totalStars: 0,
-                highestStageUnlocked: 1,
+                highestWorldUnlocked: 1,
                 skillPoints: 0,
                 unlockedSkills: {}
             },
-            stages: {},
+            worlds: {},
             settings: {
                 soundVolume: 0.5,
                 musicVolume: 0.5
@@ -103,24 +103,60 @@ class SaveManager {
 
     // Handle save migration for future versions
     private migrateSave(oldSave: any): SaveData {
-        // For now, just return a new save
-        // In the future, you'd convert old save formats here
-        console.warn('Save migration not implemented, creating new save');
-        return this.createNewSave();
+        // Migrate from stage-based keys to world-based keys if needed
+        try {
+            const migrated: SaveData = {
+                version: this.CURRENT_VERSION,
+                player: {
+                    gold: Number(oldSave?.player?.gold) || 0,
+                    totalStars: Number(oldSave?.player?.totalStars) || 0,
+                    highestWorldUnlocked: Number(oldSave?.player?.highestWorldUnlocked ?? oldSave?.player?.highestStageUnlocked ?? 1),
+                    skillPoints: Number(oldSave?.player?.skillPoints) || 0,
+                    unlockedSkills: typeof oldSave?.player?.unlockedSkills === 'object' && oldSave?.player?.unlockedSkills !== null ? oldSave.player.unlockedSkills : {},
+                },
+                worlds: {},
+                settings: {
+                    soundVolume: Number(oldSave?.settings?.soundVolume) || 0.5,
+                    musicVolume: Number(oldSave?.settings?.musicVolume) || 0.5,
+                },
+                statistics: {
+                    totalPlayTime: Number(oldSave?.statistics?.totalPlayTime) || 0,
+                    totalBricksDestroyed: Number(oldSave?.statistics?.totalBricksDestroyed) || 0,
+                    totalBossesDefeated: Number(oldSave?.statistics?.totalBossesDefeated) || 0,
+                },
+            };
+
+            const oldStages = oldSave?.stages || oldSave?.worlds || {};
+            if (oldStages && typeof oldStages === 'object') {
+                for (const k of Object.keys(oldStages)) {
+                    const s = oldStages[k];
+                    migrated.worlds[Number(k)] = {
+                        stars: Number(s?.stars) || 0,
+                        bestScore: Number(s?.bestScore) || 0,
+                        bestTime: Number(s?.bestTime) ?? Infinity,
+                        completed: Boolean(s?.completed) || false,
+                    };
+                }
+            }
+            return migrated;
+        } catch (e) {
+            console.warn('Migration failed, creating new save');
+            return this.createNewSave();
+        }
     }
 
     // Utility methods for common operations
-    updateStageData(stageId: number, data: Partial<SaveData['stages'][number]>): void {
+    updateWorldData(worldId: number, data: Partial<SaveData['worlds'][number]>): void {
         const save = this.load();
-        if (!save.stages[stageId]) {
-            save.stages[stageId] = {
+        if (!save.worlds[worldId]) {
+            save.worlds[worldId] = {
                 stars: 0,
                 bestScore: 0,
                 bestTime: Infinity,
                 completed: false
             };
         }
-        save.stages[stageId] = { ...save.stages[stageId], ...data };
+        save.worlds[worldId] = { ...save.worlds[worldId], ...data };
         this.save(save);
     }
 
@@ -130,9 +166,9 @@ class SaveManager {
         this.save(save);
     }
 
-    unlockNextStage(stageId: number): void {
+    unlockNextWorld(worldId: number): void {
         const save = this.load();
-        save.player.highestStageUnlocked = Math.max(save.player.highestStageUnlocked, stageId);
+        save.player.highestWorldUnlocked = Math.max(save.player.highestWorldUnlocked, worldId);
         this.save(save);
     }
 }

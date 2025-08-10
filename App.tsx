@@ -3,15 +3,15 @@ import { GameStatus, Brick, Ball, PlayerStats, Skill, BrickType, Projectile, Exp
 import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, INITIAL_PLAYER_STATS, INITIAL_SKILLS, BRICK_PROPERTIES, LEVEL_UP_XP, BOSS_ENRAGE_THRESHOLD, ARCHMAGE_MANA_BURN_DURATION } from './constants';
 import { SKILL_TREE_DATA } from './game/skills';
 import { SHOP_ITEMS } from './game/shop-items';
-import { MAX_LEVELS, createBricksForStage } from './game/level-manager';
-import { STAGE_CONFIG } from './game/stage-config';
+import { MAX_LEVELS, createBricksForWorld } from './game/level-manager';
+import { WORLD_CONFIG } from './game/world-config';
 import { StartScreen } from './components/StartScreen';
 import { GameOverScreen } from './components/GameOverScreen';
 import { VictoryScreen } from './components/VictoryScreen';
 import { Shop } from './components/Shop';
 import { TopUI, BottomUI } from './components/GameUI';
 import { SkillTree } from './components/SkillTree';
-import { StageSelector } from './components/StageSelector';
+import { WorldSelector } from './components/WorldSelector';
 import { runGameIteration } from './game/gameEngine';
 import { useGameLoop } from './hooks/useGameLoop';
 import SaveManager from './services/SaveManager';
@@ -35,7 +35,7 @@ const App: React.FC = () => {
     const [hp, setHp] = useState(INITIAL_PLAYER_STATS.vitality);
     const [xp, setXp] = useState(0);
     const [level, setLevel] = useState(1);
-    const [stage, setStage] = useState(1);
+    const [world, setWorld] = useState(1);
     const [gold, setGold] = useState(0);
     const [score, setScore] = useState(0);
     const [skills, setSkills] = useState<Record<string, Skill>>(JSON.parse(JSON.stringify(INITIAL_SKILLS)));
@@ -52,27 +52,27 @@ const App: React.FC = () => {
     const [equippedSkills, setEquippedSkills] = useState<string[]>([]);
     const [permanentStats, setPermanentStats] = useState<Partial<PlayerStats>>({});
     const [cosmetics, setCosmetics] = useState<Cosmetics>({ ballEffect: 'none' });
-    const [currentStageId, setCurrentStageId] = useState(1);
-    const [stageBricksTotal, setStageBricksTotal] = useState(0);
-    const [stageInitialHp, setStageInitialHp] = useState(0);
-    const [lastStageGold, setLastStageGold] = useState(0);
-    const [lastStageStars, setLastStageStars] = useState(0);
-    const [stageStartTime, setStageStartTime] = useState(0); // Add this line
+    const [currentWorldId, setCurrentWorldId] = useState(1);
+    const [worldBricksTotal, setWorldBricksTotal] = useState(0);
+    const [worldInitialHp, setWorldInitialHp] = useState(0);
+    const [lastWorldGold, setLastWorldGold] = useState(0);
+    const [lastWorldStars, setLastWorldStars] = useState(0);
+    const [worldStartTime, setWorldStartTime] = useState(0);
 
     const calculateStars = (): number => {
-        const stageConfig = STAGE_CONFIG.find(s => s.id === currentStageId);
+        const stageConfig = WORLD_CONFIG.find(s => s.id === currentWorldId);
         if (!stageConfig) return 1;
 
         let stars = 1; // Always get 1 star for completing
 
         // Star 2: HP requirement
-        const hpPercent = (hp / stageInitialHp) * 100;
+        const hpPercent = (hp / worldInitialHp) * 100;
         if (hpPercent >= stageConfig.starCriteria.minHpPercent) {
             stars++;
         }
 
         // Star 3: Time requirement + all bricks
-        const timeTaken = Date.now() - stageStartTime;
+        const timeTaken = Date.now() - worldStartTime;
         const allBricksDestroyed = bricks.length === 0;
         if (timeTaken <= stageConfig.starCriteria.time && allBricksDestroyed) {
             stars++;
@@ -109,22 +109,20 @@ const App: React.FC = () => {
         });
         setPermanentStats(aggregated);
 
-        // You'll use stage data when we build the stage selector
+        // You'll use world data when we build the world selector
         console.log('Game loaded:', savedData);
     }, []);
 
-    const handleStageComplete = (stageId: number, stars: number, score: number) => {
-        const completionTime = Date.now() - stageStartTime; // You'll need to track this
-
-        SaveManager.updateStageData(stageId, {
-            stars: Math.max(stars, SaveManager.load().stages[stageId]?.stars || 0),
-            bestScore: Math.max(score, SaveManager.load().stages[stageId]?.bestScore || 0),
-            bestTime: Math.min(completionTime, SaveManager.load().stages[stageId]?.bestTime || Infinity),
+    const handleWorldComplete = (worldId: number, stars: number, score: number) => {
+        const completionTime = Date.now() - worldStartTime;
+        const save = SaveManager.load();
+        SaveManager.updateWorldData(worldId, {
+            stars: Math.max(stars, save.worlds[worldId]?.stars || 0),
+            bestScore: Math.max(score, save.worlds[worldId]?.bestScore || 0),
+            bestTime: Math.min(completionTime, save.worlds[worldId]?.bestTime || Infinity),
             completed: true
         });
-
-        // Unlock next stage
-        SaveManager.unlockNextStage(stageId + 1);
+        SaveManager.unlockNextWorld(worldId + 1);
     };
     
     const gameAreaRef = useRef<HTMLDivElement>(null);
@@ -163,11 +161,11 @@ const App: React.FC = () => {
     const maxHp = playerStats.vitality + (level > 1 ? (level - 1) * 10 : 0);
     const maxMana = React.useMemo(() => {
         const arcaneIntellectLevel = unlockedSkills['arcaneIntellect'] || 0;
-        if (stage > 1 || arcaneIntellectLevel > 0) {
+        if (world > 1 || arcaneIntellectLevel > 0) {
             return 100 + (arcaneIntellectLevel * 20);
         }
         return 0;
-    }, [unlockedSkills, stage]);
+    }, [unlockedSkills, world]);
 
     const [mana, setMana] = useState(maxMana);
     
@@ -244,18 +242,18 @@ const App: React.FC = () => {
     }, [activeBuffs.haste, activeBuffs.power]);
 
     const handleStart = () => {
-        setGameStatus(GameStatus.StageSelect);
+        setGameStatus(GameStatus.WorldSelect);
     };
 
-    const handleStageSelect = (stageId: number) => {
-        setCurrentStageId(stageId);
-        setStage(stageId);
+    const handleWorldSelect = (worldId: number) => {
+        setCurrentWorldId(worldId);
+        setWorld(worldId);
         resetGame();
-        const stageBricks = createBricksForStage(stageId);
-        setBricks(stageBricks);
-        setStageBricksTotal(stageBricks.length);
-        setStageStartTime(Date.now());
-        setStageInitialHp(maxHp);
+        const worldBricks = createBricksForWorld(worldId);
+        setBricks(worldBricks);
+        setWorldBricksTotal(worldBricks.length);
+        setWorldStartTime(Date.now());
+        setWorldInitialHp(maxHp);
         setGameStatus(GameStatus.Playing);
     };
 
@@ -646,12 +644,12 @@ const App: React.FC = () => {
         } else if (updates.stageCompleted) {
             const stars = calculateStars();
             const goldEarned = 100 + (stars * 25) + (stars === 3 ? 50 : 0);
-            setLastStageGold(goldEarned);
-            setLastStageStars(stars);
-            handleStageComplete(currentStageId, stars, score);
+            setLastWorldGold(goldEarned);
+            setLastWorldStars(stars);
+            handleWorldComplete(currentWorldId, stars, score);
             setGameStatus(GameStatus.VictoryScreen);
         }
-    }, [balls, bricks, projectiles, homingProjectiles, arcaneOrbs, fireRainZones, iceSpikeFields, lightningStrikes, arcaneOverloadRings, finalGambitBeams, paddleX, paddleWidth, playerStats, skills, isBallLaunched, hp, mana, maxMana, xp, level, unlockedSkills, stage, score, gold, activeBuffs, runicEmpowermentCounter]);
+    }, [balls, bricks, projectiles, homingProjectiles, arcaneOrbs, fireRainZones, iceSpikeFields, lightningStrikes, arcaneOverloadRings, finalGambitBeams, paddleX, paddleWidth, playerStats, skills, isBallLaunched, hp, mana, maxMana, xp, level, unlockedSkills, world, score, gold, activeBuffs, runicEmpowermentCounter]);
 
     useGameLoop(gameTick, gameStatus === GameStatus.Playing);
 
@@ -715,9 +713,9 @@ const App: React.FC = () => {
     return (
         <div className="flex items-center justify-center w-full h-screen bg-gray-900">
             {gameStatus === GameStatus.Start && <StartScreen onStart={handleStart} />}
-            {gameStatus === GameStatus.StageSelect && (
-                <StageSelector 
-                    onSelectStage={handleStageSelect}
+            {gameStatus === GameStatus.WorldSelect && (
+                <WorldSelector 
+                    onSelectWorld={handleWorldSelect}
                     onBack={() => setGameStatus(GameStatus.Start)}
                 />
             )}
@@ -729,7 +727,7 @@ const App: React.FC = () => {
             {(gameStatus === GameStatus.Playing || gameStatus === GameStatus.Paused || gameStatus === GameStatus.SkillTree || gameStatus === GameStatus.Targeting) && (
                 <div className="flex flex-col gap-2 p-2 bg-gradient-to-b from-gray-800 to-black/80 border-4 border-slate-900/80 rounded-xl shadow-2xl shadow-purple-900/50" style={{ width: GAME_WIDTH + 32 }}>
                     
-                    <TopUI hp={hp} maxHp={maxHp} mana={mana} maxMana={maxMana} xp={xp} level={level} gold={gold} stage={stage}/>
+                    <TopUI hp={hp} maxHp={maxHp} mana={mana} maxMana={maxMana} xp={xp} level={level} gold={gold} world={world}/>
                     
                     <div className="relative shadow-inner cursor-pointer bg-black/50 border-2 border-slate-900" style={{ width: GAME_WIDTH, height: GAME_HEIGHT }} ref={gameAreaRef} onClick={handleGameClick}>
                         
@@ -944,12 +942,12 @@ const App: React.FC = () => {
                         )}
                     </div>
                     
-                    <BottomUI stats={playerStats} skills={skills} equippedSkills={equippedSkills} maxActiveSkills={maxActiveSkills} onActivateSkill={handleSkillActivation} onOpenSkillTree={handleOpenSkillTree} skillPoints={skillPoints} unlockedSkills={unlockedSkills} stage={stage} activeBuffs={activeBuffs} manaBurnActiveUntil={manaBurnActiveUntil} />
+                    <BottomUI stats={playerStats} skills={skills} equippedSkills={equippedSkills} maxActiveSkills={maxActiveSkills} onActivateSkill={handleSkillActivation} onOpenSkillTree={handleOpenSkillTree} skillPoints={skillPoints} unlockedSkills={unlockedSkills} world={world} activeBuffs={activeBuffs} manaBurnActiveUntil={manaBurnActiveUntil} />
                 </div>
             )}
 
             {(gameStatus === GameStatus.GameOver || gameStatus === GameStatus.Victory) && <GameOverScreen score={score} isVictory={gameStatus === GameStatus.Victory} onRestart={handleStart} />}
-            {gameStatus === GameStatus.VictoryScreen && <VictoryScreen stars={lastStageStars} score={score} goldEarned={lastStageGold} onContinue={() => setGameStatus(GameStatus.StageSelect)} />}
+            {gameStatus === GameStatus.VictoryScreen && <VictoryScreen stars={lastWorldStars} score={score} goldEarned={lastWorldGold} onContinue={() => setGameStatus(GameStatus.WorldSelect)} />}
             <SkillTree isOpen={gameStatus === GameStatus.SkillTree} onClose={handleCloseSkillTree} skillPoints={skillPoints} unlockedSkills={unlockedSkills} onLearnSkill={handleLearnSkill} />
         </div>
     );

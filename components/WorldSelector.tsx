@@ -1,23 +1,23 @@
- // StageSelector.tsx
+// WorldSelector.tsx
 import React from 'react';
-import { STAGE_CONFIG, StageInfo } from '../game/stage-config';
+import { WORLD_CONFIG, WorldInfo } from '../game/world-config';
 import SaveManager from '../services/SaveManager';
 import { IconLock, IconStar } from './Icons';
 import { Shop } from './Shop';
 
-interface StageSelectorProps {
-    onSelectStage: (stageId: number) => void;
+interface WorldSelectorProps {
+    onSelectWorld: (worldId: number) => void;
     onBack: () => void;
 }
 
-export const StageSelector: React.FC<StageSelectorProps> = ({ onSelectStage, onBack }) => {
+export const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onBack }) => {
     const savedData = SaveManager.load();
-    const [selectedStage, setSelectedStage] = React.useState<StageInfo | null>(null);
+    const [selectedStage, setSelectedStage] = React.useState<WorldInfo | null>(null);
     const [isShopOpen, setIsShopOpen] = React.useState(false);
 
-    const renderStageNode = (stage: StageInfo) => {
-        const isUnlocked = stage.id <= savedData.player.highestStageUnlocked;
-        const stageData = savedData.stages[stage.id];
+    const renderStageNode = (stage: WorldInfo) => {
+        const isUnlocked = stage.id <= savedData.player.highestWorldUnlocked;
+        const stageData = savedData.worlds[stage.id];
         const stars = stageData?.stars || 0;
 
         return (
@@ -60,7 +60,7 @@ export const StageSelector: React.FC<StageSelectorProps> = ({ onSelectStage, onB
             <div className="relative w-full max-w-6xl h-[600px] bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg border-4 border-gray-700 p-8">
                 {/* Header */}
                 <div className="flex justify-between items-center mb-8">
-                    <h1 className="text-4xl font-medieval text-yellow-300">Select Your Quest</h1>
+                    <h1 className="text-4xl font-medieval text-yellow-300">Select Your World</h1>
                     <div className="flex items-center gap-3">
                         <button
                             onClick={() => setIsShopOpen(true)}
@@ -77,12 +77,12 @@ export const StageSelector: React.FC<StageSelectorProps> = ({ onSelectStage, onB
                     </div>
                 </div>
 
-                {/* Stage Map */}
+                {/* World Map */}
                 <div className="relative h-[400px] bg-gray-800/50 rounded-lg">
-                    {/* Draw paths between stages */}
+                    {/* Draw paths between worlds */}
                     <svg className="absolute inset-0 w-full h-full">
-                        {STAGE_CONFIG.slice(0, -1).map((stage, i) => {
-                            const nextStage = STAGE_CONFIG[i + 1];
+                        {WORLD_CONFIG.slice(0, -1).map((stage, i) => {
+                            const nextStage = WORLD_CONFIG[i + 1];
                             if (stage.world !== nextStage.world) return null;
                             
                             return (
@@ -100,11 +100,11 @@ export const StageSelector: React.FC<StageSelectorProps> = ({ onSelectStage, onB
                         })}
                     </svg>
 
-                    {/* Render stage nodes */}
-                    {STAGE_CONFIG.map(renderStageNode)}
+                    {/* Render world nodes */}
+                    {WORLD_CONFIG.map(renderStageNode)}
                 </div>
 
-                {/* Stage Details Panel */}
+                {/* World Details Panel */}
                 {selectedStage && (
                     <div className="absolute bottom-8 left-8 right-8 bg-gray-800 border-2 border-gray-600 rounded-lg p-6">
                         <div className="flex justify-between items-start">
@@ -117,7 +117,7 @@ export const StageSelector: React.FC<StageSelectorProps> = ({ onSelectStage, onB
                                 <div className="space-y-2">
                                     <div className="flex items-center gap-2">
                                         <IconStar className="w-5 h-5 text-yellow-400" />
-                                        <span className="text-sm">Complete the stage</span>
+                                        <span className="text-sm">Complete the world</span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <IconStar className="w-5 h-5 text-yellow-400" />
@@ -135,18 +135,18 @@ export const StageSelector: React.FC<StageSelectorProps> = ({ onSelectStage, onB
                             </div>
 
                             <div className="text-right">
-                                {savedData.stages[selectedStage.id] && (
+                                {savedData.worlds[selectedStage.id] && (
                                     <div className="text-sm text-gray-400 mb-4">
-                                        <p>Best Score: {savedData.stages[selectedStage.id].bestScore}</p>
-                                        <p>Best Time: {(savedData.stages[selectedStage.id].bestTime / 1000).toFixed(1)}s</p>
+                                        <p>Best Score: {savedData.worlds[selectedStage.id].bestScore}</p>
+                                        <p>Best Time: {(savedData.worlds[selectedStage.id].bestTime / 1000).toFixed(1)}s</p>
                                     </div>
                                 )}
                                 
                                 <button
-                                    onClick={() => onSelectStage(selectedStage.id)}
+                                    onClick={() => onSelectWorld(selectedStage.id)}
                                     className="px-8 py-3 bg-green-600 hover:bg-green-500 rounded-lg text-white font-bold text-xl"
                                 >
-                                    Launch Stage
+                                    Launch World
                                 </button>
                             </div>
                         </div>
@@ -157,3 +157,5 @@ export const StageSelector: React.FC<StageSelectorProps> = ({ onSelectStage, onB
         </>
     );
 };
+
+

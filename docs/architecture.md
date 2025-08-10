@@ -7,10 +7,10 @@ Current High-Level Structure
 - App.tsx: React composition shell and primary game state ownership.
 - hooks/useGameLoop.ts: rAF loop to drive per-frame updates.
 - game/gameEngine.ts: Core per-tick simulation logic (ball physics, brick interactions, boss logic, hazards, skill interactions).
-- game/level-manager.ts: Stage brick generation from layout data.
-- game/stages/*: Layout (data arrays) and stage-specific skills data.
+- game/level-manager.ts: World brick generation from layout data.
+- game/stages/*: Layout (data arrays) and world-specific skills data.
 - game/skills.ts: Aggregates skill trees.
-- services/SaveManager.ts: Save/load and stage progress persistence (LocalStorage).
+- services/SaveManager.ts: Save/load and world progress persistence (LocalStorage).
 - services/geminiService.ts: Non-critical “legend generation” feature (not used in gameplay).
 - components/*: UI views and game HUD.
 

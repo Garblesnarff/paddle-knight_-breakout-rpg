@@ -4,13 +4,13 @@ import { SkillNode } from '../types';
 import { IconBolt, IconHeart, IconShield, IconStar, IconSitemap, IconBrain, IconSparkles, IconWind, IconOrb, IconElementalTrail, IconTimeRewind } from './Icons';
 
 const SKILL_ICONS: Record<string, React.ReactNode> = {
-    // Stage 1
+    // World 1
     powerBoost: <IconBolt />,
     vitalityBoost: <IconHeart />,
     breakthrough: <IconSitemap />,
     defenseBoost: <IconShield />,
     multiBallUnlock: <IconStar />,
-    // Stage 2
+    // World 2
     arcaneIntellect: <IconBrain />,
     manaShield: <IconSparkles />,
     spellPower: <IconSparkles />,

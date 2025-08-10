@@ -249,7 +249,7 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
             earnedXp += orbsStep.earnedXp;
             earnedScore += orbsStep.earnedScore;
 
-            // Lightning triggers: destroyed lightning bricks + any from balls stage
+            // Lightning triggers: destroyed lightning bricks + any from balls world
             const totalLightningTriggers = orbsStep.destroyedLightningBricks + triggeredLightningStrikesFromBalls;
             if (totalLightningTriggers > 0) {
                 const lightningStep = stepLightningChains({
@@ -264,7 +264,7 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
                 earnedScore += lightningStep.earnedScore;
             }
         } else {
-            // Still resolve chains if balls stage triggered them
+            // Still resolve chains if balls world triggered them
             const totalLightningTriggers = triggeredLightningStrikesFromBalls;
             if (totalLightningTriggers > 0) {
                 const lightningStep = stepLightningChains({
