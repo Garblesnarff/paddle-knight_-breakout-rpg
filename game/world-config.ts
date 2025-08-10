@@ -3,13 +3,26 @@ export interface WorldInfo {
     id: number;
     name: string;
     description: string;
-    world: number;  // 1 = World 1 (Brick Lord), 2 = World 2 (Archmage)
+    world: number;  // 1 = World 1 (Brick Lord), 2 = World 2 (Archmage), 3 = World 3 (Bio-Forge)
     stage: number;  // 1-5 within each world
     position: { x: number; y: number }; // Position on the map
     starCriteria: {
         time: number;  // Max time in ms for 3rd star
         minHpPercent: number; // Min HP % for 2nd star
     };
+}
+
+export interface WorldTheme {
+    worldId: number;
+    title: string;
+    subtitle: string;
+    description: string;
+    icon: string;
+    gradient: string;
+    accentColor: string;
+    difficulty: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
+    keyFeatures: string[];
+    enemies: string[];
 }
 
 export const WORLD_CONFIG: WorldInfo[] = [
@@ -187,4 +200,46 @@ export const getWorldEarnedStars = (worldNumber: number, worldData: Record<numbe
     }, 0);
 };
 
+// World Themes for Card Display
+export const WORLD_THEMES: WorldTheme[] = [
+    {
+        worldId: 1,
+        title: "The Brick Kingdom",
+        subtitle: "Medieval Conquest",
+        description: "A realm of knights, archers, and fortress walls. Master the fundamentals of breakout combat while battling through castle defenses.",
+        icon: "🏰",
+        gradient: "from-amber-600 via-yellow-600 to-orange-700",
+        accentColor: "border-yellow-400",
+        difficulty: "Beginner",
+        keyFeatures: ["Basic Combat", "RPG Stats", "Boss Battles"],
+        enemies: ["Grunts", "Soldiers", "Archers", "Mages", "Tanks", "Chaos", "Brick Lord"]
+    },
+    {
+        worldId: 2,
+        title: "Arcane Citadel",
+        subtitle: "Elemental Mastery",
+        description: "Enter a world of magical forces and elemental chaos. Face wizards, apprentices, and reality-bending spells in this mystical domain.",
+        icon: "🔮",
+        gradient: "from-purple-600 via-indigo-600 to-blue-700",
+        accentColor: "border-purple-400",
+        difficulty: "Intermediate",
+        keyFeatures: ["Elemental Magic", "Environmental Hazards", "Advanced Skills"],
+        enemies: ["Apprentices", "Fire Bricks", "Ice Bricks", "Lightning", "Mirrors", "Runes", "Archmage"]
+    },
+    {
+        worldId: 3,
+        title: "Bio-Forge Nexus",
+        subtitle: "Techno-Organic Fusion",
+        description: "Where ancient life meets advanced machinery. Navigate adaptive enemies, environmental corruption, and reality-warping technology.",
+        icon: "🦾",
+        gradient: "from-emerald-600 via-teal-600 to-cyan-700",
+        accentColor: "border-emerald-400",
+        difficulty: "Advanced",
+        keyFeatures: ["Adaptive AI", "Debuff Systems", "Environmental Hazards"],
+        enemies: ["Gearsprites", "Vine-Bots", "Scrap Golems", "Corruptors", "Hive Minds", "Replicators", "Prime Synthesizer"]
+    }
+];
 
+export const getWorldTheme = (worldId: number): WorldTheme | undefined => {
+    return WORLD_THEMES.find(theme => theme.worldId === worldId);
+};
