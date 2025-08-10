@@ -1,9 +1,9 @@
-˚import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { GameStatus, Brick, Ball, PlayerStats, Skill, BrickType, Projectile, Explosion, RunicEmpowermentBuffs, ArcaneOrb, ElementalBeam, BallHistoryEntry, HomingProjectile, FireRainZone, IceSpikeField, LightningStrike, ArcaneOverloadRing, FinalGambitBeam, SkillType, Cosmetics } from './types';
 import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, INITIAL_PLAYER_STATS, INITIAL_SKILLS, BRICK_PROPERTIES, LEVEL_UP_XP, BOSS_ENRAGE_THRESHOLD, ARCHMAGE_MANA_BURN_DURATION } from './constants';
 import { SKILL_TREE_DATA } from './game/skills';
 import { SHOP_ITEMS } from './game/shop-items';
-import { MAX_LEVELS, createBricksForWorld } from './game/level-manager';
+import { MAX_LEVELS, createBricksForWorld, createBricksForStage } from './game/level-manager';
 import { WORLD_CONFIG } from './game/world-config';
 import { StartScreen } from './components/StartScreen';
 import { GameOverScreen } from './components/GameOverScreen';
@@ -12,6 +12,7 @@ import { Shop } from './components/Shop';
 import { TopUI, BottomUI } from './components/GameUI';
 import { SkillTree } from './components/SkillTree';
 import { WorldSelector } from './components/WorldSelector';
+import { StageSelector } from './components/StageSelector';
 import { runGameIteration } from './game/gameEngine';
 import { useGameLoop } from './hooks/useGameLoop';
 import SaveManager from './services/SaveManager';
@@ -54,6 +55,7 @@ const App: React.FC = () => {
     const [cosmetics, setCosmetics] = useState<Cosmetics>({ ballEffect: 'none' });
     const [currentWorldId, setCurrentWorldId] = useState(1);
     const [currentStageId, setCurrentStageId] = useState(1);  // Added current stage tracking
+    const [selectedWorldForStages, setSelectedWorldForStages] = useState(1);
     const [worldBricksTotal, setWorldBricksTotal] = useState(0);
     const [worldInitialHp, setWorldInitialHp] = useState(0);
     const [lastWorldGold, setLastWorldGold] = useState(0);
@@ -249,14 +251,26 @@ const App: React.FC = () => {
 
     const handleWorldSelect = (worldId: number) => {
         console.log('handleWorldSelect called with worldId:', worldId);
-        setCurrentWorldId(worldId);
-        setWorld(worldId);
-        setCurrentStageId(worldId); // Start with first stage of the world
+        setSelectedWorldForStages(worldId);
+        setGameStatus(GameStatus.StageSelect);
+    };
+
+    const handleStageSelect = (stageId: number) => {
+        console.log('handleStageSelect called with stageId:', stageId);
+        
+        // Find the stage config to get the world information
+        const stageConfig = WORLD_CONFIG.find(s => s.id === stageId);
+        if (!stageConfig) return;
+        
+        setCurrentWorldId(stageConfig.world);
+        setWorld(stageConfig.world);
+        setCurrentStageId(stageId);
         resetGame();
-        const worldBricks = createBricksForWorld(worldId);
-        console.log('Created bricks for world:', worldBricks.length, 'bricks');
-        setBricks(worldBricks);
-        setWorldBricksTotal(worldBricks.length);
+        
+        const stageBricks = createBricksForStage(stageId); // Use stageId for specific stage
+        console.log('Created bricks for stage:', stageBricks.length, 'bricks');
+        setBricks(stageBricks);
+        setWorldBricksTotal(stageBricks.length);
         setWorldStartTime(Date.now());
         setWorldInitialHp(maxHp);
         setGameStatus(GameStatus.Playing);
@@ -769,8 +783,15 @@ const App: React.FC = () => {
                     onBack={() => setGameStatus(GameStatus.Start)}
                 />
             )}
+            {gameStatus === GameStatus.StageSelect && (
+                <StageSelector 
+                    worldId={selectedWorldForStages}
+                    onSelectStage={handleStageSelect}
+                    onBack={() => setGameStatus(GameStatus.WorldSelect)}
+                />
+            )}
             
-            {(gameStatus !== GameStatus.Start) && (
+            {(gameStatus !== GameStatus.Start && gameStatus !== GameStatus.WorldSelect && gameStatus !== GameStatus.StageSelect) && (
                  <div className="absolute inset-0 bg-gray-800 -z-10" style={{backgroundImage: "repeating-linear-gradient(0deg, #374151, #374151 1px, transparent 1px, transparent 20px), repeating-linear-gradient(90deg, #374151, #374151 1px, transparent 1px, transparent 20px)", backgroundSize: '40px 40px', opacity: 0.1}}></div>
             )}
 

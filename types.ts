@@ -1,6 +1,7 @@
 export enum GameStatus {
   Start,
   WorldSelect,
+  StageSelect,
   Playing,
   Paused,
   GameOver,

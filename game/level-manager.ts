@@ -26,12 +26,36 @@ export const ALL_LEVEL_LAYOUTS = [
 
 export const MAX_LEVELS = ALL_LEVEL_LAYOUTS.length;
 
+// Map stage ID to layout index
+export const getLayoutIndexForStage = (stageId: number): number => {
+    // Stage IDs are 1-15, layout indices are 0-14
+    // Stages 1-5: World 1 (layouts 0-4)
+    // Stages 6-10: World 2 (layouts 5-9)  
+    // Stages 11-15: World 3 (layouts 10-14)
+    return stageId - 1;
+};
+
 export const createBricksForWorld = (world: number): Brick[] => {
     const bricks: Brick[] = [];
     const layout = ALL_LEVEL_LAYOUTS[world - 1];
     if (!layout) return [];
 
+    return createBricksFromLayout(layout);
+};
+
+export const createBricksForStage = (stageId: number): Brick[] => {
+    const bricks: Brick[] = [];
+    const layoutIndex = getLayoutIndexForStage(stageId);
+    const layout = ALL_LEVEL_LAYOUTS[layoutIndex];
+    if (!layout) return [];
+
+    return createBricksFromLayout(layout);
+};
+
+function createBricksFromLayout(layout: (BrickType | null)[][]): Brick[] {
+    const bricks: Brick[] = [];
     let currentId = 0;
+    
     layout.forEach((row, r) => {
         const cols = row.length;
         const totalBrickWidth = cols * (BRICK_WIDTH + BRICK_GAP) - BRICK_GAP;
@@ -136,4 +160,4 @@ export const createBricksForWorld = (world: number): Brick[] => {
     }
 
     return bricks;
-};
+}
