@@ -58,6 +58,7 @@ const App: React.FC = () => {
     const [selectedWorldForStages, setSelectedWorldForStages] = useState(1);
     const [worldBricksTotal, setWorldBricksTotal] = useState(0);
     const [worldInitialHp, setWorldInitialHp] = useState(0);
+    const [stageInitialHp, setStageInitialHp] = useState(0);
     const [lastWorldGold, setLastWorldGold] = useState(0);
     const [lastWorldStars, setLastWorldStars] = useState(0);
     const [worldStartTime, setWorldStartTime] = useState(0);
@@ -69,7 +70,7 @@ const App: React.FC = () => {
         let stars = 1; // Always get 1 star for completing
 
         // Star 2: HP requirement
-        const hpPercent = (hp / worldInitialHp) * 100;
+        const hpPercent = (hp / stageInitialHp) * 100;
         if (hpPercent >= stageConfig.starCriteria.minHpPercent) {
             stars++;
         }
@@ -272,7 +273,7 @@ const App: React.FC = () => {
         setBricks(stageBricks);
         setWorldBricksTotal(stageBricks.length);
         setWorldStartTime(Date.now());
-        setWorldInitialHp(maxHp);
+        setStageInitialHp(maxHp);
         setGameStatus(GameStatus.Playing);
     };
 
@@ -798,7 +799,7 @@ const App: React.FC = () => {
             {(gameStatus === GameStatus.Playing || gameStatus === GameStatus.Paused || gameStatus === GameStatus.SkillTree || gameStatus === GameStatus.Targeting) && (
                 <div className="flex flex-col gap-2 p-2 bg-gradient-to-b from-gray-800 to-black/80 border-4 border-slate-900/80 rounded-xl shadow-2xl shadow-purple-900/50" style={{ width: GAME_WIDTH + 32 }}>
                     
-                    <TopUI hp={hp} maxHp={maxHp} mana={mana} maxMana={maxMana} xp={xp} level={level} gold={gold} world={world}/>
+                    <TopUI hp={hp} maxHp={maxHp} mana={mana} maxMana={maxMana} xp={xp} level={level} gold={gold} world={world} worldStartTime={worldStartTime} />
                     
                     <div className="relative shadow-inner cursor-pointer bg-black/50 border-2 border-slate-900" style={{ width: GAME_WIDTH, height: GAME_HEIGHT }} ref={gameAreaRef} onClick={handleGameClick}>
                         

@@ -78,9 +78,25 @@ interface TopUIProps {
   level: number;
   gold: number;
   world: number;
+  worldStartTime: number;
 }
 
-export const TopUI: React.FC<TopUIProps> = ({ hp, maxHp, mana, maxMana, xp, level, gold, world }) => {
+export const TopUI: React.FC<TopUIProps> = ({ hp, maxHp, mana, maxMana, xp, level, gold, world, worldStartTime }) => {
+    const [elapsedTime, setElapsedTime] = React.useState(0);
+
+    React.useEffect(() => {
+        const timer = setInterval(() => {
+            setElapsedTime(Date.now() - worldStartTime);
+        }, 1000);
+        return () => clearInterval(timer);
+    }, [worldStartTime]);
+
+    const formatTime = (ms: number) => {
+        const minutes = Math.floor(ms / 60000);
+        const seconds = Math.floor((ms % 60000) / 1000);
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    };
+
     const hpPercentage = (hp / maxHp) * 100;
     const manaPercentage = maxMana > 0 ? (mana / maxMana) * 100 : 0;
     const xpPercentage = (xp / LEVEL_UP_XP) * 100;
@@ -125,6 +141,7 @@ export const TopUI: React.FC<TopUIProps> = ({ hp, maxHp, mana, maxMana, xp, leve
             <div className="flex items-center justify-center text-2xl font-bold text-yellow-400 text-center mt-3 gap-2">
                 <IconGoldCoin className="w-7 h-7" />
                 <span>{gold}</span>
+                <span className="text-white ml-4">{formatTime(elapsedTime)}</span>
             </div>
         </div>
     );
