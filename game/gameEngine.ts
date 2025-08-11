@@ -554,10 +554,8 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
         updates.playerDebuffs = newPlayerDebuffs;
     }
 
-    if (workingBricks.length === 0 && originalBricks.length > 0 && !originalBricks.some(b => b.type === BrickType.Boss || b.type === BrickType.ArchmageBoss || b.type === BrickType.PrimeSynthesizer)) {
+    if (workingBricks.filter(b => !b.isClone).length === 0 && originalBricks.length > 0) {
         updates.worldCompleted = true;
-    } else if (workingBricks.filter(b => (b.type !== BrickType.ArchmageBoss && b.type !== BrickType.PrimeSynthesizer) || !b.isClone).length === 0 && originalBricks.length > 0) {
-         updates.worldCompleted = true;
     }
 
     return updates;

@@ -6,6 +6,17 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+PLAN.md*
+REFactor-PLAN.md*
+the-aetherium-nexus-world-plan.md*
+clockwork-spire-world-plan.md*
+bio-forge-nexus-world-plan.md*
+abyssal-depths-world-plan.md*
+world-implementation-architect.md*
+CLAUDE.md*
+GEMINI.md*
+
+
 
 node_modules
 dist

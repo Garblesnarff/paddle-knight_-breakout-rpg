@@ -95,7 +95,7 @@ export const SkillTree: React.FC<SkillTreeProps> = ({ isOpen, onClose, skillPoin
 
     return (
         <div className="absolute inset-0 bg-black/80 flex items-center justify-center z-50 backdrop-blur-sm">
-            <div className="relative w-full max-w-6xl h-auto bg-gray-900 border-4 border-purple-700 rounded-2xl shadow-lg p-6">
+            <div className="relative w-full max-w-6xl h-auto max-h-screen overflow-y-auto bg-gray-900 border-4 border-purple-700 rounded-2xl shadow-lg p-6">
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-4xl font-medieval text-yellow-300">Skill Tree</h2>
                     <div className="text-2xl font-bold text-green-400">Skill Points: {skillPoints}</div>
