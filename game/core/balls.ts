@@ -156,7 +156,9 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
 
   const hasBreakthrough = (unlockedSkills.breakthrough || 0) > 0;
   const hasMasterOfElements = (unlockedSkills.masterOfElements || 0) > 0;
-  const ballDamage = playerPower * (activeBuffs.power ? 2 : 1);
+  const ballDamageBoostLevel = unlockedSkills.ballDamageBoost || 0;
+  const ballDamageMultiplier = 1 + ballDamageBoostLevel * 0.1;
+  const ballDamage = playerPower * (activeBuffs.power ? 2 : 1) * ballDamageMultiplier;
 
   updatedBalls = updatedBalls.map(ball => {
     if (ball.vx === 0 && ball.vy === 0) return ball;

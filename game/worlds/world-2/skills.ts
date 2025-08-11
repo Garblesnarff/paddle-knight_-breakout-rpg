@@ -69,7 +69,7 @@ export const WORLD_2_SKILLS: Record<string, SkillNode> = {
         cost: () => 5,
         dependencies: ['breakthrough'],
         type: SkillType.Passive,
-        position: { row: 2, col: 1 },
+        position: { row: 3, col: 1 },
     },
     'timeWarp': {
         id: 'timeWarp',

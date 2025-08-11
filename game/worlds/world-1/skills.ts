@@ -21,15 +21,25 @@ export const WORLD_1_SKILLS: Record<string, SkillNode> = {
         type: SkillType.Passive,
         position: { row: 0, col: 2 },
     },
+    'ballDamageBoost': {
+        id: 'ballDamageBoost',
+        name: 'Ball Damage Boost',
+        description: (level) => `Increases ball damage by ${level * 10}%. Next: +10% damage.`,
+        maxLevel: 5,
+        cost: (level) => level + 1,
+        dependencies: ['powerBoost'],
+        type: SkillType.Passive,
+        position: { row: 1, col: 0 },
+    },
     'breakthrough': {
         id: 'breakthrough',
         name: 'Breakthrough',
         description: () => 'Ball pierces destroyed bricks, carrying remaining damage to the next target.',
         maxLevel: 1,
         cost: () => 3,
-        dependencies: ['powerBoost'],
+        dependencies: ['ballDamageBoost'],
         type: SkillType.Passive,
-        position: { row: 1, col: 0 },
+        position: { row: 2, col: 0 },
     },
     'defenseBoost': {
         id: 'defenseBoost',
@@ -49,7 +59,7 @@ export const WORLD_1_SKILLS: Record<string, SkillNode> = {
         cost: () => 2,
         dependencies: ['breakthrough'],
         type: SkillType.Active,
-        position: { row: 2, col: 0 },
+        position: { row: 3, col: 0 },
     },
 };
 
