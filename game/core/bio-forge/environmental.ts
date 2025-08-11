@@ -84,14 +84,19 @@ export function stepEnvironmentalHazards(args: EnvironmentalHazardsArgs): Enviro
         field.bricksInField = bricksInField.map(b => b.id);
         
         if (bricksInField.length > 0 && now >= field.replicationTimer) {
-            // Replicate a random brick in the field
-            const randomBrick = bricksInField[Math.floor(Math.random() * bricksInField.length)];
-            const replica = createFieldReplica(nextBrickId++, randomBrick, field, bricks);
-            
-            if (replica) {
-                newBricks.push(replica);
-                // Reset field timer
-                field.replicationTimer = now + REPLICATION_FIELD_TIMER;
+            // Only replicate if there aren't too many spawned bricks already
+            const totalSpawnedInField = bricks.filter(b => b.isSpawned).length;
+            if (totalSpawnedInField < 30) { // Limit field replication
+                // Replicate a random brick in the field
+                const randomBrick = bricksInField[Math.floor(Math.random() * bricksInField.length)];
+                const replica = createFieldReplica(nextBrickId++, randomBrick, field, bricks);
+                
+                if (replica) {
+                    replica.isSpawned = true; // Mark as spawned for cleanup
+                    newBricks.push(replica);
+                    // Reset field timer
+                    field.replicationTimer = now + REPLICATION_FIELD_TIMER;
+                }
             }
         }
     });

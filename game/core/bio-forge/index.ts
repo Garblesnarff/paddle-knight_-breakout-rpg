@@ -25,7 +25,9 @@ import {
     SELF_REPAIR_AMOUNT,
     BRICK_WIDTH,
     BRICK_HEIGHT,
-    BRICK_GAP
+    BRICK_GAP,
+    GAME_WIDTH,
+    GAME_HEIGHT
 } from '../../../constants';
 import { BRICK_PROPERTIES } from '../../../constants';
 
@@ -55,9 +57,28 @@ export function stepBioForgeMechanics(args: BioForgeStepArgs): BioForgeStepResul
     let paddleSlowMultiplier = 1.0;
 
     let nextBrickId = Math.max(...bricks.map(b => b.id), 0) + 1;
+    
+    // Clean up orphaned spawned bricks (when parent is definitely dead/missing)
+    for (let i = updatedBricks.length - 1; i >= 0; i--) {
+        const brick = updatedBricks[i];
+        if (brick.isSpawned && brick.parentId) {
+            const parent = updatedBricks.find(b => b.id === brick.parentId);
+            // Only remove if parent is completely missing or definitely dead (hp <= 0)
+            if (!parent || parent.hp <= 0) {
+                updatedBricks.splice(i, 1);
+            }
+        }
+    }
+    
+    // Global safety limit to prevent lag from too many spawned bricks
+    const totalSpawnedBricks = updatedBricks.filter(b => b.isSpawned).length;
+    const maxSpawnedBricks = 50; // Global limit
 
     for (let i = 0; i < updatedBricks.length; i++) {
         const brick = updatedBricks[i];
+
+        // Skip processing if brick is dead or destroyed
+        if (brick.hp <= 0) continue;
 
         // Self-repair system for applicable brick types
         if (canSelfRepair(brick.type) && brick.hp < brick.maxHp) {
@@ -111,33 +132,43 @@ export function stepBioForgeMechanics(args: BioForgeStepArgs): BioForgeStepResul
                 break;
 
             case BrickType.HiveMind:
-                // Handle drone spawning
+                // Handle drone spawning with limit to prevent lag
                 if (!brick.lastSpawnTime || (now - brick.lastSpawnTime >= HIVEMIND_SPAWN_COOLDOWN)) {
-                    // Spawn a drone brick nearby
-                    const drone = createDroneBrick(nextBrickId++, brick.x, brick.y - BRICK_HEIGHT - BRICK_GAP);
-                    if (drone) {
-                        newBricks.push(drone);
-                        brick.lastSpawnTime = now;
+                    const existingDrones = updatedBricks.filter(b => b.isSpawned && b.parentId === brick.id).length;
+                    const maxDrones = 5; // Limit drones per HiveMind
+                    
+                    if (existingDrones < maxDrones && totalSpawnedBricks < maxSpawnedBricks) {
+                        const drone = createDroneBrick(nextBrickId++, brick.x, brick.y - BRICK_HEIGHT - BRICK_GAP);
+                        if (drone) {
+                            drone.parentId = brick.id; // Mark as spawned by this HiveMind
+                            newBricks.push(drone);
+                        }
                     }
+                    brick.lastSpawnTime = now;
                 }
                 break;
 
             case BrickType.Replicator:
-                // Handle replication when not recently hit
+                // Handle replication when not recently hit, with limit to prevent infinite growth
                 if (!brick.lastReplicationTime || (now - brick.lastReplicationTime >= REPLICATOR_REPLICATION_COOLDOWN)) {
-                    // Find adjacent space to replicate
-                    const replica = createReplicaBrick(nextBrickId++, brick, updatedBricks);
-                    if (replica) {
-                        newBricks.push(replica);
-                        brick.lastReplicationTime = now;
+                    const existingReplicas = updatedBricks.filter(b => b.isSpawned && b.parentId === brick.id).length;
+                    const maxReplicas = 2; // Limit replicas per Replicator
+                    
+                    if (existingReplicas < maxReplicas && totalSpawnedBricks < maxSpawnedBricks) {
+                        const replica = createReplicaBrick(nextBrickId++, brick, updatedBricks);
+                        if (replica) {
+                            replica.parentId = brick.id; // Mark as spawned by this Replicator
+                            newBricks.push(replica);
+                        }
                     }
+                    brick.lastReplicationTime = now;
                 }
                 break;
         }
     }
 
     return {
-        bricks: updatedBricks,
+        bricks: updatedBricks, // Already cleaned up orphaned bricks above
         newBricks: newBricks.length > 0 ? newBricks : undefined,
         playerDebuffs: updatedPlayerDebuffs,
         ballsTrapped: ballsTrapped.length > 0 ? ballsTrapped : undefined,
@@ -191,13 +222,18 @@ function canSelfRepair(brickType: BrickType): boolean {
 }
 
 function createDroneBrick(id: number, x: number, y: number): Brick | null {
-    // Simple drone with minimal HP
+    // Simple drone with minimal HP and safe positioning
+    const droneWidth = BRICK_WIDTH * 0.7;
+    const droneHeight = BRICK_HEIGHT * 0.7;
+    const safeX = Math.max(droneWidth/2, Math.min(x + Math.random() * 60 - 30, GAME_WIDTH - droneWidth));
+    const safeY = Math.max(0, Math.min(y, GAME_HEIGHT - droneHeight - 50));
+    
     return {
         id,
-        x: x + Math.random() * 60 - 30, // Slight random offset
-        y: Math.max(0, y),
-        width: BRICK_WIDTH * 0.7, // Smaller than normal bricks
-        height: BRICK_HEIGHT * 0.7,
+        x: safeX,
+        y: safeY,
+        width: droneWidth,
+        height: droneHeight,
         type: BrickType.Grunt, // Use existing type for simplicity
         hp: 1,
         maxHp: 1,
@@ -224,7 +260,9 @@ function createReplicaBrick(id: number, originalBrick: Brick, existingBricks: Br
             Math.abs(brick.y - newY) < BRICK_HEIGHT
         );
         
-        if (!occupied && newX >= 0 && newY >= 0) {
+        if (!occupied && newX >= 0 && newY >= 0 && 
+            newX + BRICK_WIDTH <= GAME_WIDTH && 
+            newY + BRICK_HEIGHT <= GAME_HEIGHT - 50) { // Keep away from paddle area
             return {
                 ...originalBrick,
                 id,

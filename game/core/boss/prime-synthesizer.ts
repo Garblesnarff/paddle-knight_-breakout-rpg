@@ -46,13 +46,15 @@ export interface PrimeSynthesizerResult {
     playerDebuffs: PlayerDebuff[];
     forcedEvolution?: boolean; // Transform all remaining bricks
     isFinalGambit?: boolean;
+    cleanupSpawned?: boolean; // Remove all spawned entities when boss dies
 }
 
 export function stepPrimeSynthesizer(args: PrimeSynthesizerArgs): PrimeSynthesizerResult {
     const { boss, bricks, balls, paddleX, paddleWidth, playerDebuffs, now } = args;
     
     if (boss.type !== BrickType.PrimeSynthesizer || boss.hp <= 0) {
-        return { boss, playerDebuffs };
+        // Boss is dead - stop all mechanics and clean up spawned entities
+        return { boss, playerDebuffs, cleanupSpawned: true };
     }
     
     const hpPercentage = boss.hp / boss.maxHp;
@@ -66,10 +68,16 @@ export function stepPrimeSynthesizer(args: PrimeSynthesizerArgs): PrimeSynthesiz
     
     boss.phase = currentPhase;
     
-    // Final Gambit check
+    // Final Gambit check - only trigger once
     if (hpPercentage <= PRIME_SYNTHESIZER_FINAL_GAMBIT_THRESHOLD && !boss.isFinalGambit) {
         boss.isFinalGambit = true;
+        boss.finalGambitTriggeredAt = now;
         return handleFinalGambit(args);
+    }
+    
+    // Continue Final Gambit if already triggered, but with limited spawning
+    if (boss.isFinalGambit && boss.finalGambitTriggeredAt) {
+        return handleFinalGambitContinuous(args);
     }
     
     // Self-repair for all phases
@@ -80,16 +88,28 @@ export function stepPrimeSynthesizer(args: PrimeSynthesizerArgs): PrimeSynthesiz
         }
     }
     
+    // For testing: allow drone spawning in all phases, not just Phase 1
+    let result;
     switch (currentPhase) {
         case 1:
-            return handlePhase1(args);
+            result = handlePhase1(args);
+            break;
         case 2:
-            return handlePhase2(args);
+            result = handlePhase2(args);
+            // Also try spawning drones in Phase 2 for testing
+            const phase1Result = handlePhase1(args);
+            if (phase1Result.newBricks) {
+                result.newBricks = (result.newBricks || []).concat(phase1Result.newBricks);
+            }
+            break;
         case 3:
-            return handlePhase3(args);
+            result = handlePhase3(args);
+            break;
         default:
-            return { boss, playerDebuffs };
+            result = { boss, playerDebuffs };
     }
+    
+    return result;
 }
 
 function handlePhase1(args: PrimeSynthesizerArgs): PrimeSynthesizerResult {
@@ -105,17 +125,31 @@ function handlePhase1(args: PrimeSynthesizerArgs): PrimeSynthesizerResult {
         boss.lastAttackTime = now;
     }
     
-    // Drone Swarm
+    // Drone Swarm - limit total drone count to prevent lag
     if (!boss.lastSpawnTime || (now - boss.lastSpawnTime >= DRONE_SWARM_COOLDOWN)) {
-        const droneCount = 3 + Math.floor(Math.random() * 3); // 3-5 drones
+        const existingDrones = bricks.filter(b => b.isSpawned && b.parentId === boss.id).length;
+        const totalSpawnedBricks = bricks.filter(b => b.isSpawned).length;
+        const maxDrones = 8; // Limit total drones
+        const maxGlobalSpawned = 50; // Global safety limit
         
-        for (let i = 0; i < droneCount; i++) {
-            const drone = createDroneBrick(
-                nextBrickId++, 
-                boss.x + Math.random() * boss.width,
-                boss.y + boss.height + 20 + (i * 30)
-            );
-            newBricks.push(drone);
+        if (existingDrones < maxDrones && totalSpawnedBricks < maxGlobalSpawned) {
+            const droneCount = Math.min(3, maxDrones - existingDrones); // Spawn up to 3, but not exceeding max
+            
+            for (let i = 0; i < droneCount; i++) {
+                // Calculate safe spawn position within game bounds
+                const spawnX = Math.max(BRICK_WIDTH, Math.min(
+                    boss.x + Math.random() * Math.max(boss.width - BRICK_WIDTH, BRICK_WIDTH),
+                    GAME_WIDTH - BRICK_WIDTH
+                ));
+                const spawnY = Math.max(0, Math.min(
+                    boss.y + boss.height + 20 + (i * 30),
+                    GAME_HEIGHT - BRICK_HEIGHT - 50 // Keep away from paddle area
+                ));
+                
+                const drone = createDroneBrick(nextBrickId++, spawnX, spawnY);
+                drone.parentId = boss.id; // Mark as spawned by this boss
+                newBricks.push(drone);
+            }
         }
         
         boss.lastSpawnTime = now;
@@ -207,17 +241,26 @@ function handleFinalGambit(args: PrimeSynthesizerArgs): PrimeSynthesizerResult {
     // Boss becomes stationary
     boss.vx = 0;
     
-    // Rapidly spawn all enemy types
+    // Rapidly spawn all enemy types (limited to prevent lag)
+    const totalSpawnedBricks = bricks.filter(b => b.isSpawned).length;
+    const maxGlobalSpawned = 50; // Global safety limit
     const enemyTypes = [BrickType.Gearsprite, BrickType.VineBot, BrickType.Corruptor];
     
-    for (let i = 0; i < 3; i++) {
+    const spawnCount = Math.min(3, maxGlobalSpawned - totalSpawnedBricks);
+    for (let i = 0; i < spawnCount; i++) {
         const enemyType = enemyTypes[i % enemyTypes.length];
-        const enemy = createFinalGambitEnemy(
-            nextBrickId++,
-            enemyType,
-            boss.x + Math.random() * boss.width,
-            boss.y + boss.height + 20 + (i * 40)
-        );
+        
+        // Calculate safe spawn position within game bounds
+        const spawnX = Math.max(BRICK_WIDTH, Math.min(
+            boss.x + Math.random() * Math.max(boss.width - BRICK_WIDTH, BRICK_WIDTH),
+            GAME_WIDTH - BRICK_WIDTH
+        ));
+        const spawnY = Math.max(0, Math.min(
+            boss.y + boss.height + 20 + (i * 40),
+            GAME_HEIGHT - BRICK_HEIGHT - 50 // Keep away from paddle area
+        ));
+        
+        const enemy = createFinalGambitEnemy(nextBrickId++, enemyType, spawnX, spawnY);
         newBricks.push(enemy);
     }
     
@@ -230,6 +273,28 @@ function handleFinalGambit(args: PrimeSynthesizerArgs): PrimeSynthesizerResult {
     return {
         boss,
         newBricks: newBricks.length > 0 ? newBricks : undefined,
+        newProjectiles: newProjectiles.length > 0 ? newProjectiles : undefined,
+        playerDebuffs: args.playerDebuffs,
+        isFinalGambit: true
+    };
+}
+
+function handleFinalGambitContinuous(args: PrimeSynthesizerArgs): PrimeSynthesizerResult {
+    const { boss, bricks, now } = args;
+    const newProjectiles: any[] = [];
+    
+    // Boss remains stationary
+    boss.vx = 0;
+    
+    // Only spawn continuous energy surges, not more enemies
+    if (!boss.lastEnergyBurstTime || (now - boss.lastEnergyBurstTime >= 2000)) { // Every 2 seconds
+        const surge = createFinalGambitSurge(now);
+        newProjectiles.push(surge);
+        boss.lastEnergyBurstTime = now;
+    }
+    
+    return {
+        boss,
         newProjectiles: newProjectiles.length > 0 ? newProjectiles : undefined,
         playerDebuffs: args.playerDebuffs,
         isFinalGambit: true

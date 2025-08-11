@@ -9,6 +9,7 @@ import { Ball, Brick, Explosion, ElementalBeam, RunicEmpowermentBuffs, FireRainZ
 import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, BRICK_PROPERTIES, BRICK_WIDTH, BRICK_HEIGHT, LIGHTNING_STRIKE_WARNING_DURATION, LIGHTNING_STRIKE_STRIKE_DURATION, LIGHTNING_STRIKE_DAMAGE, LIGHTNING_STRIKE_WIDTH, FIRE_RAIN_DURATION, FIRE_RAIN_DAMAGE, FIRE_RAIN_RADIUS, ICE_SPIKE_DURATION, ICE_SPIKE_HEIGHT, ICE_SPIKE_WIDTH, ARCHMAGE_FINAL_GAMBIT_THRESHOLD, FINAL_GAMBIT_BEAM_WARNING_DURATION, FINAL_GAMBIT_BEAM_STRIKE_DURATION } from '../../constants';
 import { BrickType } from '../../types';
 import { lineRectCollision } from './collisions';
+import { handleGearspriteDodge } from './bio-forge';
 
 export interface UpdateBallsArgs {
   balls: Ball[];
@@ -39,6 +40,7 @@ export interface UpdateBallsResult {
   newBeams: ElementalBeam[];
   bricksDestroyedThisTick: number;
   chaosMagicWasTriggered: boolean;
+  scrapGolemExplosionBricks?: Brick[];
 }
 
 /**
@@ -81,6 +83,7 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
   let triggeredLightningStrikes = 0;
   let bricksDestroyedThisTick = 0;
   let chaosMagicWasTriggered = false;
+  let scrapGolemExplosionBricks: Brick[] = [];
 
   if (!isBallLaunched) {
     if (updatedBalls.length > 0) {
@@ -165,6 +168,14 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
       if (Math.abs(dx) < combinedHalfWidths && Math.abs(dy) < combinedHalfHeights) {
         const overlapX = combinedHalfWidths - Math.abs(dx);
         const overlapY = combinedHalfHeights - Math.abs(dy);
+
+        // Bio-Forge Nexus: Gearsprite dodge mechanic
+        if (brick.type === BrickType.Gearsprite) {
+          if (handleGearspriteDodge(brick, now)) {
+            // Gearsprite dodged the ball - no collision occurs
+            continue;
+          }
+        }
 
         if (brick.isClone) {
           damageMap.set(brick.id, 1);
@@ -258,6 +269,7 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
     newExplosions,
     newBeams,
     bricksDestroyedThisTick,
-    chaosMagicWasTriggered
+    chaosMagicWasTriggered,
+    scrapGolemExplosionBricks: scrapGolemExplosionBricks.length > 0 ? scrapGolemExplosionBricks : undefined
   };
 }

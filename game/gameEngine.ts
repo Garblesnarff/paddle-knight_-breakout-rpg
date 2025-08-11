@@ -24,7 +24,7 @@ import {
     stepEnvironmentalHazards,
 } from './core/hazards';
 import { stepBossArchmage, stepBossClassic } from './core/boss';
-import { stepBioForgeMechanics } from './core/bio-forge';
+import { stepBioForgeMechanics, handleScrapGolemExplosion } from './core/bio-forge';
 import { stepEnvironmentalHazards as stepBioForgeEnvironmental } from './core/bio-forge/environmental';
 import { stepPrimeSynthesizer } from './core/boss/prime-synthesizer';
 import { stepDebuffSystem } from './core/debuffs';
@@ -88,6 +88,11 @@ interface GameStateUpdate {
     bricksDestroyed?: number;
     shieldUsed?: boolean;
     manaBurnActivated?: boolean;
+    // Bio-Forge Nexus state updates
+    overgrowthZones?: OvergrowthZone[];
+    energySurges?: EnergySurge[];
+    replicationFields?: ReplicationField[];
+    playerDebuffs?: PlayerDebuff[];
 }
 
 /** Internal time getter to centralize wall-clock access for future testability. */
@@ -113,7 +118,7 @@ const findEmptySpotForBrick = (bricks: Brick[], width: number, height: number): 
 };
 
 export const runGameIteration = (state: GameState): GameStateUpdate => {
-    let { balls, bricks: originalBricks, projectiles, homingProjectiles, arcaneOrbs, fireRainZones, iceSpikeFields, lightningStrikes, arcaneOverloadRings, finalGambitBeams, paddleX, paddleWidth, playerStats, skills, isBallLaunched, hp, xp, level, unlockedSkills, mana, maxMana, activeBuffs } = state;
+    let { balls, bricks: originalBricks, projectiles, homingProjectiles, arcaneOrbs, fireRainZones, iceSpikeFields, lightningStrikes, arcaneOverloadRings, finalGambitBeams, paddleX, paddleWidth, playerStats, skills, isBallLaunched, hp, xp, level, unlockedSkills, mana, maxMana, activeBuffs, overgrowthZones = [], energySurges = [], replicationFields = [], playerDebuffs = [] } = state;
 
     let workingBricks: Brick[] = originalBricks.map(b => ({ ...b }));
 
@@ -147,6 +152,12 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
     let shieldWasUsed = false;
     let manaBurnWasActivated = false;
     let chaosMagicWasTriggered = false;
+
+    // Bio-Forge Nexus working state
+    let newOvergrowthZones = [...overgrowthZones];
+    let newEnergySurges = [...energySurges];
+    let newReplicationFields = [...replicationFields];
+    let newPlayerDebuffs = [...playerDebuffs];
     
     const updates: GameStateUpdate = {};
     
@@ -194,6 +205,11 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
         const triggeredLightningStrikesFromBalls = ballsResult.triggeredLightningStrikes;
         newExplosions.push(...ballsResult.newExplosions);
         newElementalBeams.push(...ballsResult.newBeams);
+        
+        // Handle ScrapGolem explosion bricks from balls
+        if (ballsResult.scrapGolemExplosionBricks) {
+            workingBricks.push(...ballsResult.scrapGolemExplosionBricks);
+        }
 
         // Apply damage map to bricks (XP/score/gold handling)
         workingBricks = workingBricks.map(brick => {
@@ -209,6 +225,11 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
                     if (brick.type === BrickType.Fire) {
                         const explosionRadius = 50 + playerStats.wisdom * 2;
                         newExplosions.push({ id: now + Math.random(), x: brick.x + brick.width/2, y: brick.y + brick.height/2, radius: explosionRadius, duration: 300, createdAt: now });
+                    }
+                    // Bio-Forge Nexus: ScrapGolem explosion spawning
+                    if (brick.type === BrickType.ScrapGolem) {
+                        const explosionBricks = handleScrapGolemExplosion(brick, workingBricks);
+                        workingBricks.push(...explosionBricks);
                     }
                 }
                 bricksDestroyedThisTick++;
@@ -302,7 +323,84 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
             earnedScore += aoeStep.earnedScore;
         }
 
-        // 6) Boss behaviors (Archmage phases and Classic)
+        // 6) Bio-Forge Nexus mechanics (world 3)
+        const bioForgeStep = stepBioForgeMechanics({
+            bricks: workingBricks,
+            balls: updatedBalls,
+            now,
+            playerDebuffs: newPlayerDebuffs,
+            paddleX,
+            paddleWidth
+        });
+        workingBricks = bioForgeStep.bricks; // This already includes cleaned up bricks
+        if (bioForgeStep.newBricks) {
+            workingBricks.push(...bioForgeStep.newBricks);
+        }
+        newPlayerDebuffs = bioForgeStep.playerDebuffs;
+        
+        // Handle Bio-Forge environmental hazards
+        const bioForgeEnvStep = stepBioForgeEnvironmental({
+            overgrowthZones: newOvergrowthZones,
+            energySurges: newEnergySurges,
+            replicationFields: newReplicationFields,
+            balls: updatedBalls,
+            bricks: workingBricks,
+            paddleX,
+            paddleWidth,
+            now
+        });
+        newOvergrowthZones = bioForgeEnvStep.overgrowthZones;
+        newEnergySurges = bioForgeEnvStep.energySurges;
+        newReplicationFields = bioForgeEnvStep.replicationFields;
+        if (bioForgeEnvStep.newBricks) {
+            workingBricks.push(...bioForgeEnvStep.newBricks);
+        }
+        if (bioForgeEnvStep.paddleDamage) {
+            damageToPlayer += bioForgeEnvStep.paddleDamage;
+        }
+        
+        // Handle Prime Synthesizer boss (Bio-Forge world boss)
+        const primeSynthesizerBosses = workingBricks.filter(b => b.type === BrickType.PrimeSynthesizer);
+        for (const boss of primeSynthesizerBosses) {
+            const primeSynthesizerStep = stepPrimeSynthesizer({
+                boss,
+                bricks: workingBricks,
+                balls: updatedBalls,
+                paddleX,
+                paddleWidth,
+                playerDebuffs: newPlayerDebuffs,
+                now
+            });
+            
+            // Update boss in working bricks
+            const bossIndex = workingBricks.findIndex(b => b.id === boss.id);
+            if (bossIndex !== -1) {
+                workingBricks[bossIndex] = primeSynthesizerStep.boss;
+            }
+            
+            if (primeSynthesizerStep.newBricks) {
+                workingBricks.push(...primeSynthesizerStep.newBricks);
+            }
+            if (primeSynthesizerStep.playerDebuffs) {
+                newPlayerDebuffs = primeSynthesizerStep.playerDebuffs;
+            }
+            
+            // Clean up spawned bricks if boss is dead
+            if (primeSynthesizerStep.cleanupSpawned) {
+                workingBricks = workingBricks.filter(b => !b.isSpawned || b.parentId !== boss.id);
+            }
+        }
+        
+        // Process debuff system
+        const debuffStep = stepDebuffSystem({
+            debuffs: newPlayerDebuffs,
+            skills,
+            equippedSkills: state.equippedSkills || [],
+            now
+        });
+        newPlayerDebuffs = debuffStep.debuffs;
+        
+        // 7) Boss behaviors (Archmage phases and Classic)
         // Archmage
         const archmageStep = stepBossArchmage({
             bricks: workingBricks,
@@ -430,9 +528,35 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
     if (shieldWasUsed) updates.shieldUsed = true;
     if (manaBurnWasActivated) updates.manaBurnActivated = true;
 
-    if (workingBricks.length === 0 && originalBricks.length > 0 && !originalBricks.some(b => b.type === BrickType.Boss || b.type === BrickType.ArchmageBoss)) {
+    // Final cleanup: Remove any remaining orphaned spawned bricks
+    workingBricks = workingBricks.filter(brick => {
+        if (!brick.isSpawned || !brick.parentId) return true;
+        
+        // Check if parent still exists and is alive
+        const parent = workingBricks.find(b => b.id === brick.parentId);
+        return parent && parent.hp > 0;
+    });
+    
+    // Update bricks in the result
+    updates.bricks = workingBricks;
+    
+    // Update Bio-Forge Nexus state
+    if (newOvergrowthZones.length > 0 || overgrowthZones.length > 0) {
+        updates.overgrowthZones = newOvergrowthZones;
+    }
+    if (newEnergySurges.length > 0 || energySurges.length > 0) {
+        updates.energySurges = newEnergySurges;
+    }
+    if (newReplicationFields.length > 0 || replicationFields.length > 0) {
+        updates.replicationFields = newReplicationFields;
+    }
+    if (newPlayerDebuffs.length > 0 || playerDebuffs.length > 0) {
+        updates.playerDebuffs = newPlayerDebuffs;
+    }
+
+    if (workingBricks.length === 0 && originalBricks.length > 0 && !originalBricks.some(b => b.type === BrickType.Boss || b.type === BrickType.ArchmageBoss || b.type === BrickType.PrimeSynthesizer)) {
         updates.worldCompleted = true;
-    } else if (workingBricks.filter(b => b.type !== BrickType.ArchmageBoss || !b.isClone).length === 0 && originalBricks.length > 0) {
+    } else if (workingBricks.filter(b => (b.type !== BrickType.ArchmageBoss && b.type !== BrickType.PrimeSynthesizer) || !b.isClone).length === 0 && originalBricks.length > 0) {
          updates.worldCompleted = true;
     }
 
