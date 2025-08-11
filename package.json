@@ -5,13 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:new": "VITE_USE_NEW_APP=true vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preview:new": "VITE_USE_NEW_APP=true vite preview"
   },
   "dependencies": {
     "@google/genai": "^1.9.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "zustand": "^4.5.5",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

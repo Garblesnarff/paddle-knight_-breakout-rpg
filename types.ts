@@ -36,6 +36,14 @@ export enum BrickType {
   HiveMind,
   Replicator,
   PrimeSynthesizer,
+  // World 4 - Clockwork Spire
+  Gear,
+  Steam,
+  Clockwork,
+  Tesla,
+  Piston,
+  Assembly,
+  ChronoEngineerBoss,
 }
 
 export interface Brick {
@@ -74,6 +82,8 @@ export interface Brick {
   parentId?: number;
   trapDuration?: number;
   slowedUntil?: number;
+  // Clockwork Spire properties
+  lastRebuildTime?: number;
 }
 
 export interface Ball {
@@ -86,6 +96,9 @@ export interface Ball {
   damage: number;
   slowedUntil?: number;
   isSpikeSlowedUntil?: number;
+  // Clockwork Spire temporary speed-up (overclock) window and stacks
+  overclockUntil?: number;
+  overclockStacks?: number;
 }
 
 export interface PlayerStats {
@@ -95,6 +108,7 @@ export interface PlayerStats {
   luck: number;
   wisdom: number;
   vitality: number;
+  ingenuity?: number; // New stat for Clockwork Spire
 }
 
 export interface Skill {

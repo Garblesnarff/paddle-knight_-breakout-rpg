@@ -1,6 +1,6 @@
 // WorldSelector.tsx
 import React from 'react';
-import { WORLD_CONFIG, getWorldStages, getWorldTotalStars, getWorldEarnedStars, getWorldTheme, WorldTheme } from '../game/world-config';
+import { getWorldStages, getWorldTotalStars, getWorldEarnedStars, getWorldTheme } from '../game/world-config';
 import SaveManager from '../services/SaveManager';
 
 interface WorldSelectorProps {
@@ -173,6 +173,7 @@ export const WorldSelector: React.FC<WorldSelectorProps> = ({ onSelectWorld, onB
                     {renderWorldCard(1)}
                     {renderWorldCard(2)}
                     {renderWorldCard(3)}
+                    {renderWorldCard(4)}
                 </div>
             </div>
 

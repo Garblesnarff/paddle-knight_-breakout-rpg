@@ -62,6 +62,7 @@ const App: React.FC = () => {
     const [lastWorldGold, setLastWorldGold] = useState(0);
     const [lastWorldStars, setLastWorldStars] = useState(0);
     const [worldStartTime, setWorldStartTime] = useState(0);
+  const [usedEmergencyRepair, setUsedEmergencyRepair] = useState(false);
 
     const calculateStars = (): number => {
         const stageConfig = WORLD_CONFIG.find(s => s.id === currentStageId);
@@ -119,12 +120,13 @@ const App: React.FC = () => {
 
     const handleWorldComplete = (worldId: number, stars: number, score: number) => {
         const completionTime = Date.now() - worldStartTime;
-        const save = SaveManager.load();
-        SaveManager.updateWorldData(worldId, {
-            stars: Math.max(stars, save.worlds[worldId]?.stars || 0),
-            bestScore: Math.max(score, save.worlds[worldId]?.bestScore || 0),
-            bestTime: Math.min(completionTime, save.worlds[worldId]?.bestTime || Infinity),
-            completed: true
+        // Use stage-aware updater for correctness
+        const stageId = currentStageId;
+        SaveManager.updateStageData(worldId, stageId, {
+            stars,
+            bestScore: score,
+            bestTime: completionTime,
+            completed: true,
         });
         SaveManager.unlockNextWorld(worldId + 1);
     };
@@ -155,6 +157,7 @@ const App: React.FC = () => {
                         case 'vitalityBoost': stats.vitality += sLevel * 20; break;
                         case 'defenseBoost': stats.defense += sLevel * 1; break;
                         case 'arcaneIntellect': stats.wisdom += sLevel * 3; break;
+                        case 'ingeniousMind': stats.ingenuity = (stats.ingenuity || 0) + sLevel * 3; break;
                     }
                 }
             }
@@ -228,6 +231,7 @@ const App: React.FC = () => {
         setManaBurnActiveUntil(null);
         setMaxActiveSkills(2);
         setEquippedSkills([]);
+        setUsedEmergencyRepair(false);
     }, [maxHp, maxMana, cosmetics, INITIAL_SKILLS]);
     
     useEffect(() => {
@@ -404,7 +408,9 @@ const App: React.FC = () => {
         if (!skill) return;
         
         const isManaBurned = manaBurnActiveUntil && now < manaBurnActiveUntil;
-        const effectiveCooldown = isManaBurned ? skill.cooldown * 2 : skill.cooldown;
+        const ingenuityCdr = (playerStats.ingenuity || 0) * 0.02; // 2% per point
+        const ingenuityCooldownMultiplier = Math.max(0.5, 1 - ingenuityCdr);
+        const effectiveCooldown = (isManaBurned ? skill.cooldown * 2 : skill.cooldown) * ingenuityCooldownMultiplier;
 
         if (skillId !== 'arcaneOrb' && now - skill.lastUsed < effectiveCooldown) return;
 
@@ -442,6 +448,37 @@ const App: React.FC = () => {
             case 'elementalInfusion':
                 updatedSkill = { ...skill, lastUsed: now, charges: INITIAL_SKILLS.elementalInfusion.charges };
                 break;
+            case 'overclockSkill': {
+                // Apply overclock buff to balls
+                const duration = (INITIAL_SKILLS.overclockSkill.duration || 5000) * (1 + (playerStats.wisdom * 0.05));
+                setBalls(prev => prev.map(b => ({ ...b, overclockUntil: now + duration })));
+                updatedSkill = { ...skill, lastUsed: now, activeUntil: now + duration };
+                break;
+            }
+            case 'steamBurst': {
+                // Fire three projectiles upward from paddle
+                const baseX = paddleX + paddleWidth / 2;
+                const y = PADDLE_Y - 10;
+                const sizes = [6, 6, 6];
+                const offsets = [-20, 0, 20];
+                const speed = -6;
+                setProjectiles(prev => ([
+                    ...prev,
+                    { id: Date.now(), x: baseX + offsets[0], y, vy: speed, size: sizes[0] },
+                    { id: Date.now() + 1, x: baseX + offsets[1], y, vy: speed, size: sizes[1] },
+                    { id: Date.now() + 2, x: baseX + offsets[2], y, vy: speed, size: sizes[2] },
+                ]));
+                updatedSkill = { ...skill, lastUsed: now };
+                break;
+            }
+            case 'chronoBreak': {
+                // Freeze bricks for duration
+                const duration = (INITIAL_SKILLS.chronoBreak.duration || 3000) * (1 + (playerStats.wisdom * 0.05));
+                const until = now + duration;
+                setBricks(prev => prev.map(b => ({ ...b, slowedUntil: until })));
+                updatedSkill = { ...skill, lastUsed: now, activeUntil: until };
+                break;
+            }
             case 'timeWarp': {
                 const MANA_COST = 150;
                 if (mana < MANA_COST || balls.length === 0) return;
@@ -650,6 +687,16 @@ const App: React.FC = () => {
         
         if (updates.damageToPlayer) {
             finalHp = Math.max(0, finalHp - updates.damageToPlayer);
+        }
+
+        // Emergency Repair triggered skill
+        if ((unlockedSkills['emergencyRepair'] || 0) > 0 && !usedEmergencyRepair) {
+            const threshold = 0.3 * maxHp;
+            if (finalHp > 0 && finalHp <= threshold) {
+                const heal = Math.round(0.25 * maxHp);
+                finalHp = Math.min(maxHp, finalHp + heal);
+                setUsedEmergencyRepair(true);
+            }
         }
         
         setHp(finalHp);

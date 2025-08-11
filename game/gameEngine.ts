@@ -13,7 +13,7 @@
  *   - For future determinism, timeNow can be replaced with an injected time source without changing the public signature.
  */
 import { Ball, Brick, Projectile, PlayerStats, Skill, BrickType, Explosion, RunicEmpowermentBuffs, ArcaneOrb, ElementalBeam, HomingProjectile, FireRainZone, IceSpikeField, LightningStrike, ArcaneOverloadRing, FinalGambitBeam, OvergrowthZone, EnergySurge, ReplicationField, PlayerDebuff } from '../types';
-import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, BRICK_PROPERTIES, LEVEL_UP_XP, BOSS_MOVE_SPEED, BOSS_ATTACK_COOLDOWN, BOSS_PROJECTILE_SPEED, BOSS_PROJECTILE_DAMAGE, BOSS_ENRAGE_THRESHOLD, ARCHMAGE_TELEPORT_COOLDOWN, ARCHMAGE_SUMMON_COOLDOWN, ARCHMAGE_MAX_APPRENTICES, ARCHMAGE_MISSILE_COOLDOWN, ARCHMAGE_MISSILE_SPEED, ARCHMAGE_MISSILE_TURN_RATE, ARCHMAGE_MISSILE_DAMAGE, BRICK_WIDTH, BRICK_HEIGHT, ARCHMAGE_PHASE2_THRESHOLD, ARCHMAGE_ELEMENTAL_STORM_COOLDOWN, FIRE_RAIN_DURATION, FIRE_RAIN_DAMAGE, FIRE_RAIN_RADIUS, ICE_SPIKE_DURATION, ICE_SPIKE_HEIGHT, ICE_SPIKE_WIDTH, LIGHTNING_STRIKE_WARNING_DURATION, LIGHTNING_STRIKE_STRIKE_DURATION, LIGHTNING_STRIKE_DAMAGE, LIGHTNING_STRIKE_WIDTH, ARCHMAGE_MIRROR_IMAGE_COOLDOWN, ARCHMAGE_MAX_CLONES, ARCHMAGE_MANA_BURN_COOLDOWN, ARCHMAGE_PHASE3_THRESHOLD, ARCHMAGE_FINAL_GAMBIT_THRESHOLD, ARCHMAGE_CHAOS_MAGIC_COOLDOWN, ARCHMAGE_ARCANE_OVERLOAD_COOLDOWN, ARCANE_OVERLOAD_RING_DURATION, ARCANE_OVERLOAD_RING_DAMAGE, FINAL_GAMBIT_BEAM_WARNING_DURATION, FINAL_GAMBIT_BEAM_STRIKE_DURATION, FINAL_GAMBIT_BEAM_DAMAGE } from '../constants';
+import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, BRICK_PROPERTIES, LEVEL_UP_XP, BOSS_MOVE_SPEED, BOSS_ATTACK_COOLDOWN, BOSS_PROJECTILE_SPEED, BOSS_PROJECTILE_DAMAGE, BOSS_ENRAGE_THRESHOLD, ARCHMAGE_TELEPORT_COOLDOWN, ARCHMAGE_SUMMON_COOLDOWN, ARCHMAGE_MAX_APPRENTICES, ARCHMAGE_MISSILE_COOLDOWN, ARCHMAGE_MISSILE_SPEED, ARCHMAGE_MISSILE_TURN_RATE, ARCHMAGE_MISSILE_DAMAGE, BRICK_WIDTH, BRICK_HEIGHT, ARCHMAGE_PHASE2_THRESHOLD, ARCHMAGE_ELEMENTAL_STORM_COOLDOWN, FIRE_RAIN_DURATION, FIRE_RAIN_DAMAGE, FIRE_RAIN_RADIUS, ICE_SPIKE_DURATION, ICE_SPIKE_HEIGHT, ICE_SPIKE_WIDTH, LIGHTNING_STRIKE_WARNING_DURATION, LIGHTNING_STRIKE_STRIKE_DURATION, LIGHTNING_STRIKE_DAMAGE, LIGHTNING_STRIKE_WIDTH, ARCHMAGE_MIRROR_IMAGE_COOLDOWN, ARCHMAGE_MAX_CLONES, ARCHMAGE_MANA_BURN_COOLDOWN, ARCHMAGE_PHASE3_THRESHOLD, ARCHMAGE_FINAL_GAMBIT_THRESHOLD, ARCHMAGE_CHAOS_MAGIC_COOLDOWN, ARCHMAGE_ARCANE_OVERLOAD_COOLDOWN, ARCANE_OVERLOAD_RING_DURATION, ARCANE_OVERLOAD_RING_DAMAGE, FINAL_GAMBIT_BEAM_WARNING_DURATION, FINAL_GAMBIT_BEAM_STRIKE_DURATION, FINAL_GAMBIT_BEAM_DAMAGE, ASSEMBLY_REBUILD_INTERVAL, STEAM_ZONE_DURATION, STEAM_ZONE_RADIUS } from '../constants';
 import { lineRectCollision } from './core/collisions';
 import { stepProjectiles, stepHomingProjectiles } from './core/projectiles';
 import { updateBallsAndCollisions } from './core/balls';
@@ -23,7 +23,7 @@ import {
     stepLightningChains,
     stepEnvironmentalHazards,
 } from './core/hazards';
-import { stepBossArchmage, stepBossClassic } from './core/boss';
+import { stepBossArchmage, stepBossClassic, stepChronoEngineer } from './core/boss';
 import { stepBioForgeMechanics, handleScrapGolemExplosion } from './core/bio-forge';
 import { stepEnvironmentalHazards as stepBioForgeEnvironmental } from './core/bio-forge/environmental';
 import { stepPrimeSynthesizer } from './core/boss/prime-synthesizer';
@@ -195,7 +195,10 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
             timeFactor,
             isBallLaunched,
             maxMana,
-            hp
+            hp,
+            // Extra stats for clockwork crits
+            ...(playerStats.ingenuity !== undefined ? { playerIngenuity: playerStats.ingenuity } : {}),
+            playerLuck: playerStats.luck,
         });
         updatedBalls = ballsResult.updatedBalls;
         workingBricks = ballsResult.workingBricks;
@@ -212,6 +215,7 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
         }
 
         // Apply damage map to bricks (XP/score/gold handling)
+        let teslaHazardsToCreate = 0;
         workingBricks = workingBricks.map(brick => {
             const totalDamage = damageMap.get(brick.id) || 0;
             if (totalDamage <= 0) return brick;
@@ -219,12 +223,27 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
             if (newHp <= 0) {
                 if (!brick.isClone) {
                     const brickProps = BRICK_PROPERTIES[brick.type];
-                    earnedXp += brickProps.points;
-                    earnedGold += Math.ceil(brickProps.points / 10 * (1 + playerStats.luck * 0.05));
+                    // Mechanical XP/Gold bonuses
+                    const isMechanical = [BrickType.Gear, BrickType.Steam, BrickType.Clockwork, BrickType.Tesla, BrickType.Piston, BrickType.Assembly, BrickType.ChronoEngineerBoss].includes(brick.type);
+                    const ingenuityBonus = (playerStats.ingenuity || 0) * 0.05;
+                    const baseGold = Math.ceil(brickProps.points / 10);
+                    let goldGain = baseGold * (1 + playerStats.luck * 0.05);
+                    if (isMechanical) goldGain *= 1.25 * (1 + ingenuityBonus);
+                    earnedGold += Math.ceil(goldGain);
+                    let xpGain = brickProps.points;
+                    if (isMechanical) xpGain = Math.ceil(xpGain * (1 + ingenuityBonus));
+                    earnedXp += xpGain;
                     earnedScore += brickProps.points;
                     if (brick.type === BrickType.Fire) {
                         const explosionRadius = 50 + playerStats.wisdom * 2;
                         newExplosions.push({ id: now + Math.random(), x: brick.x + brick.width/2, y: brick.y + brick.height/2, radius: explosionRadius, duration: 300, createdAt: now });
+                    }
+                    if (brick.type === BrickType.Steam) {
+                        // Create a lingering steam zone using fire rain visual/damage
+                        newFireRainZones.push({ id: now + Math.random(), x: brick.x + brick.width/2, y: brick.y + brick.height/2, radius: STEAM_ZONE_RADIUS, duration: STEAM_ZONE_DURATION, createdAt: now });
+                    }
+                    if (brick.type === BrickType.Tesla) {
+                        teslaHazardsToCreate += 1;
                     }
                     // Bio-Forge Nexus: ScrapGolem explosion spawning
                     if (brick.type === BrickType.ScrapGolem) {
@@ -323,6 +342,48 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
             earnedScore += aoeStep.earnedScore;
         }
 
+        // Spawn Tesla cardinal lightning hazards after damage resolution
+        if (teslaHazardsToCreate > 0) {
+            for (let i = 0; i < teslaHazardsToCreate; i++) {
+                // Create four strikes at quarter widths
+                const strikeWidth = LIGHTNING_STRIKE_WIDTH;
+                // Vertical strikes (left/right of center)
+                newLightningStrikes.push({ id: now + Math.random(), x: GAME_WIDTH * 0.25, y: 0, width: strikeWidth, height: GAME_HEIGHT, createdAt: now, warningDuration: LIGHTNING_STRIKE_WARNING_DURATION, strikeDuration: LIGHTNING_STRIKE_STRIKE_DURATION });
+                newLightningStrikes.push({ id: now + Math.random(), x: GAME_WIDTH * 0.75, y: 0, width: strikeWidth, height: GAME_HEIGHT, createdAt: now, warningDuration: LIGHTNING_STRIKE_WARNING_DURATION, strikeDuration: LIGHTNING_STRIKE_STRIKE_DURATION });
+                // Horizontal strikes (near top/bottom)
+                newLightningStrikes.push({ id: now + Math.random(), x: 0, y: GAME_HEIGHT * 0.25, width: GAME_WIDTH, height: strikeWidth, createdAt: now, warningDuration: LIGHTNING_STRIKE_WARNING_DURATION, strikeDuration: LIGHTNING_STRIKE_STRIKE_DURATION });
+                newLightningStrikes.push({ id: now + Math.random(), x: 0, y: GAME_HEIGHT * 0.75, width: GAME_WIDTH, height: strikeWidth, createdAt: now, warningDuration: LIGHTNING_STRIKE_WARNING_DURATION, strikeDuration: LIGHTNING_STRIKE_STRIKE_DURATION });
+            }
+        }
+
+        // Clockwork Steam lingering zones and Assembly rebuilds
+        // Steam lingering damage zones piggyback on explosions with reduced damage over time (simplified)
+        // Assembly: rebuild random destroyed brick every interval
+        let nextId = Math.max(0, ...workingBricks.map(b => b.id)) + 1;
+        const assemblyBricks = workingBricks.filter(b => b.type === BrickType.Assembly);
+        assemblyBricks.forEach(assembly => {
+            if (!assembly.lastRebuildTime) assembly.lastRebuildTime = now;
+            if (now - assembly.lastRebuildTime >= ASSEMBLY_REBUILD_INTERVAL) {
+                assembly.lastRebuildTime = now;
+                // Find a spot near assembly to rebuild a basic Gear brick
+                const newBrick = {
+                    id: nextId++,
+                    x: Math.max(0, Math.min(assembly.x + (Math.random() * 80 - 40), GAME_WIDTH - BRICK_WIDTH)),
+                    y: Math.max(60, assembly.y + (Math.random() * 60 - 30)),
+                    width: BRICK_WIDTH,
+                    height: BRICK_HEIGHT,
+                    type: BrickType.Gear,
+                    hp: BRICK_PROPERTIES[BrickType.Gear].maxHp,
+                    maxHp: BRICK_PROPERTIES[BrickType.Gear].maxHp,
+                } as Brick;
+                // Ensure it doesn't overlap too much
+                const overlaps = workingBricks.some(b => !(newBrick.x + newBrick.width < b.x || newBrick.x > b.x + b.width || newBrick.y + newBrick.height < b.y || newBrick.y > b.y + b.height));
+                if (!overlaps) {
+                    workingBricks.push(newBrick);
+                }
+            }
+        });
+
         // 6) Bio-Forge Nexus mechanics (world 3)
         const bioForgeStep = stepBioForgeMechanics({
             bricks: workingBricks,
@@ -400,7 +461,7 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
         });
         newPlayerDebuffs = debuffStep.debuffs;
         
-        // 7) Boss behaviors (Archmage phases and Classic)
+        // 7) Boss behaviors (Archmage, Classic, Chrono-Engineer)
         // Archmage
         const archmageStep = stepBossArchmage({
             bricks: workingBricks,
@@ -443,6 +504,17 @@ export const runGameIteration = (state: GameState): GameStateUpdate => {
         });
         workingBricks = classicStep.bricks;
         newProjectiles.push(...classicStep.projectiles);
+
+        // Chrono-Engineer
+        const chronoStep = stepChronoEngineer({
+            bricks: workingBricks,
+            balls: updatedBalls,
+            now,
+            paddleX,
+            paddleWidth
+        });
+        workingBricks = chronoStep.bricks;
+        updatedBalls = chronoStep.balls;
     }
 
     // Process environmental hazards via core module

@@ -9,3 +9,9 @@ export {
   type StepBossClassicArgs,
   type StepBossClassicResult,
 } from './classic';
+
+export {
+  stepChronoEngineer,
+  type StepChronoEngineerArgs,
+  type StepChronoEngineerResult,
+} from './chrono-engineer';

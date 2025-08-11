@@ -17,21 +17,24 @@ import { GAME_WIDTH, BRICK_WIDTH, BRICK_HEIGHT, BRICK_GAP, BRICK_PROPERTIES, BOS
 import { LEVEL_LAYOUTS as WORLD1_LAYOUTS } from './worlds/world-1/layouts';
 import { LEVEL_LAYOUTS as WORLD2_LAYOUTS } from './worlds/world-2/layouts';
 import { LEVEL_LAYOUTS as WORLD3_LAYOUTS } from './worlds/world-3/layouts';
+import { LEVEL_LAYOUTS as WORLD4_LAYOUTS } from './worlds/world-4/layouts';
 
 export const ALL_LEVEL_LAYOUTS = [
     ...WORLD1_LAYOUTS,
     ...WORLD2_LAYOUTS,
     ...WORLD3_LAYOUTS,
+    ...WORLD4_LAYOUTS,
 ];
 
 export const MAX_LEVELS = ALL_LEVEL_LAYOUTS.length;
 
 // Map stage ID to layout index
 export const getLayoutIndexForStage = (stageId: number): number => {
-    // Stage IDs are 1-15, layout indices are 0-14
+    // Stage IDs are 1-20, layout indices are 0-19
     // Stages 1-5: World 1 (layouts 0-4)
     // Stages 6-10: World 2 (layouts 5-9)  
     // Stages 11-15: World 3 (layouts 10-14)
+    // Stages 16-20: World 4 (layouts 15-19)
     return stageId - 1;
 };
 
@@ -107,6 +110,19 @@ function createBricksFromLayout(layout: (BrickType | null)[][]): Brick[] {
                     lastAttackTime: Date.now(),
                     phase: 1
                 });
+            } else if (brickType === BrickType.ChronoEngineerBoss) {
+                bricks.push({
+                    id: currentId++,
+                    x: GAME_WIDTH / 2 - 90,
+                    y: 20,
+                    width: 200,
+                    height: 60,
+                    type: BrickType.ChronoEngineerBoss,
+                    hp: brickProps.maxHp,
+                    maxHp: brickProps.maxHp,
+                    lastAttackTime: Date.now(),
+                    phase: 1
+                });
             } else {
                 const brick: Brick = {
                     id: currentId++,
@@ -123,6 +139,10 @@ function createBricksFromLayout(layout: (BrickType | null)[][]): Brick[] {
                 // Add Bio-Forge specific properties
                 if (brickType === BrickType.Gearsprite) {
                     brick.dodgeChance = GEARSPRITE_DODGE_CHANCE;
+                }
+                // Clockwork: initialize assembly timers
+                if (brickType === BrickType.Assembly) {
+                    brick.lastRebuildTime = Date.now();
                 }
                 
                 bricks.push(brick);

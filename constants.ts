@@ -15,7 +15,8 @@ export const INITIAL_PLAYER_STATS: PlayerStats = {
   agility: 7,
   luck: 1,
   wisdom: 1,
-  vitality: 100
+  vitality: 100,
+  ingenuity: 0,
 };
 
 export const INITIAL_SKILLS: Record<string, Skill> = {
@@ -25,6 +26,9 @@ export const INITIAL_SKILLS: Record<string, Skill> = {
     elementalInfusion: { id: 'elementalInfusion', name: 'Elemental Infusion', cooldown: 30000, lastUsed: -30000, charges: 5 },
     arcaneOrb: { id: 'arcaneOrb', name: 'Arcane Orb', cooldown: 20000, lastUsed: -20000 },
     timeWarp: { id: 'timeWarp', name: 'Time Warp', cooldown: 60000, lastUsed: -60000 },
+    overclockSkill: { id: 'overclockSkill', name: 'Overclock', cooldown: 30000, lastUsed: -30000, duration: 5000 },
+    steamBurst: { id: 'steamBurst', name: 'Steam Burst', cooldown: 45000, lastUsed: -45000 },
+    chronoBreak: { id: 'chronoBreak', name: 'Chrono Break', cooldown: 90000, lastUsed: -90000, duration: 3000 },
 };
 
 export const BRICK_PROPERTIES: Record<BrickType, { color: string; maxHp: number; points: number }> = {
@@ -52,6 +56,14 @@ export const BRICK_PROPERTIES: Record<BrickType, { color: string; maxHp: number;
     [BrickType.HiveMind]: { color: 'bg-pink-400', maxHp: 7, points: 160 },
     [BrickType.Replicator]: { color: 'bg-blue-400', maxHp: 4, points: 100 },
     [BrickType.PrimeSynthesizer]: { color: 'bg-gradient-to-r from-purple-600 to-pink-600', maxHp: 300, points: 7500 },
+    // World 4 - Clockwork Spire
+    [BrickType.Gear]: { color: 'bg-gradient-to-br from-amber-700 to-yellow-600', maxHp: 3, points: 90 },
+    [BrickType.Steam]: { color: 'bg-gray-400', maxHp: 2, points: 80 },
+    [BrickType.Clockwork]: { color: 'bg-amber-600', maxHp: 3, points: 95 },
+    [BrickType.Tesla]: { color: 'bg-sky-500', maxHp: 2, points: 110 },
+    [BrickType.Piston]: { color: 'bg-zinc-500', maxHp: 4, points: 120 },
+    [BrickType.Assembly]: { color: 'bg-orange-800', maxHp: 5, points: 150 },
+    [BrickType.ChronoEngineerBoss]: { color: 'bg-yellow-800', maxHp: 280, points: 8000 },
 };
 
 export const LEVEL_UP_XP = 200;
@@ -129,3 +141,17 @@ export const DRONE_SWARM_COOLDOWN = 3000; // 3 seconds (reduced for testing)
 export const ENERGY_BEAM_DURATION = 3000; // 3 seconds
 export const CORRUPTING_PULSE_COOLDOWN = 12000; // 12 seconds
 export const REPLICATION_CASCADE_CHANCE = 0.25; // 25%
+
+// Clockwork Spire constants
+export const CLOCKWORK_GEAR_ROTATE_HITS = 3;
+export const STEAM_ZONE_DURATION = 3000; // ms
+export const STEAM_ZONE_RADIUS = 60;
+export const CLOCKWORK_SPEEDUP_PERCENT = 0.25; // 25% per hit, stacks additively as multiplier
+export const TESLA_SHOT_DIRECTIONS = 4;
+export const PISTON_KNOCKBACK_MULTIPLIER = 1.5;
+export const ASSEMBLY_REBUILD_INTERVAL = 10000; // ms
+export const CHRONO_ENGINEER_PHASE2_THRESHOLD = 0.7;
+export const CHRONO_ENGINEER_PHASE3_THRESHOLD = 0.4;
+export const CHRONO_ENGINEER_FINAL_COUNTDOWN_THRESHOLD = 0.1;
+export const CHRONO_ENGINEER_SPEED_ZONE_INTERVAL = 6000;
+export const CHRONO_ENGINEER_TIME_DISTORT_INTERVAL = 5000;

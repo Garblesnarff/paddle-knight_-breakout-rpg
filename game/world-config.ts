@@ -3,7 +3,7 @@ export interface WorldInfo {
     id: number;
     name: string;
     description: string;
-    world: number;  // 1 = World 1 (Brick Lord), 2 = World 2 (Archmage), 3 = World 3 (Bio-Forge)
+    world: number;  // 1 = World 1 (Brick Lord), 2 = World 2 (Archmage), 3 = World 3 (Bio-Forge), 4 = World 4 (Clockwork)
     stage: number;  // 1-5 within each world
     position: { x: number; y: number }; // Position on the map
     starCriteria: {
@@ -164,6 +164,52 @@ export const WORLD_CONFIG: WorldInfo[] = [
         position: { x: 700, y: 540 },
         starCriteria: { time: 300000, minHpPercent: 55 }
     },
+    // World 4: Clockwork Spire
+    {
+        id: 16,
+        name: "The Winding Entrance",
+        description: "Tutorial for mechanical enemies",
+        world: 4,
+        stage: 1,
+        position: { x: 100, y: 660 },
+        starCriteria: { time: 150000, minHpPercent: 75 }
+    },
+    {
+        id: 17,
+        name: "Gear Gallery",
+        description: "Rotating Gear Bricks",
+        world: 4,
+        stage: 2,
+        position: { x: 250, y: 680 },
+        starCriteria: { time: 170000, minHpPercent: 70 }
+    },
+    {
+        id: 18,
+        name: "Steam Factory",
+        description: "Lingering steam damage zones",
+        world: 4,
+        stage: 3,
+        position: { x: 400, y: 700 },
+        starCriteria: { time: 190000, minHpPercent: 70 }
+    },
+    {
+        id: 19,
+        name: "Tesla Laboratory",
+        description: "Tesla chains and fields",
+        world: 4,
+        stage: 4,
+        position: { x: 550, y: 690 },
+        starCriteria: { time: 210000, minHpPercent: 65 }
+    },
+    {
+        id: 20,
+        name: "Engineer's Forge",
+        description: "Final boss battle with the Chrono-Engineer",
+        world: 4,
+        stage: 5,
+        position: { x: 700, y: 680 },
+        starCriteria: { time: 300000, minHpPercent: 60 }
+    },
 ];
 
 // Helper functions for world management
@@ -237,6 +283,18 @@ export const WORLD_THEMES: WorldTheme[] = [
         difficulty: "Advanced",
         keyFeatures: ["Adaptive AI", "Debuff Systems", "Environmental Hazards"],
         enemies: ["Gearsprites", "Vine-Bots", "Scrap Golems", "Corruptors", "Hive Minds", "Replicators", "Prime Synthesizer"]
+    },
+    {
+        worldId: 4,
+        title: "Clockwork Spire",
+        subtitle: "Temporal Engineering",
+        description: "A mechanical tower that controls time itself. Navigate gears, steam, and electricity while mastering temporal mechanics.",
+        icon: "🕰️",
+        gradient: "from-amber-700 via-yellow-700 to-zinc-700",
+        accentColor: "border-amber-300",
+        difficulty: "Expert",
+        keyFeatures: ["Temporal Effects", "Mechanical Hazards", "Cooldown Mastery"],
+        enemies: ["Gear", "Steam", "Clockwork", "Tesla", "Piston", "Assembly", "Chrono-Engineer"]
     }
 ];
 

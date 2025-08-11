@@ -33,6 +33,8 @@ export interface SaveData {
     };
 }
 
+import { SaveSchema } from '@/src/data/schemas/save.schema';
+
 class SaveManager {
     private static instance: SaveManager;
     private readonly SAVE_KEY = 'paddleKnight_saveData';
@@ -90,7 +92,14 @@ class SaveManager {
                 return this.migrateSave(savedData);
             }
 
-            return savedData;
+            // Runtime validation in development; warn and reset if invalid
+            const validation = SaveSchema.safeParse(savedData);
+            if (!validation.success) {
+                console.warn('Invalid save format detected. Resetting to a new save. Details:', validation.error.flatten());
+                return this.createNewSave();
+            }
+
+            return validation.data as SaveData;
         } catch (error) {
             console.error('Failed to load save:', error);
             return this.createNewSave();

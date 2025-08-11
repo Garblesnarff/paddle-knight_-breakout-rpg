@@ -182,6 +182,9 @@ export const BottomUI: React.FC<BottomUIProps> = ({ stats, skills, equippedSkill
                   <StatDisplay icon={<IconHeart />} label="Vitality" value={stats.vitality} color="text-pink-400" />
                   <StatDisplay icon={<IconShield />} label="Defense" value={stats.defense} color="text-blue-400" />
                   {world > 1 && <StatDisplay icon={<IconBrain />} label="Wisdom" value={stats.wisdom} color="text-purple-400" />}
+                  {typeof stats.ingenuity === 'number' && world >= 4 && (
+                    <StatDisplay icon={<IconBrain />} label="Ingenuity" value={stats.ingenuity as number} color="text-amber-400" />
+                  )}
                 </div>
                 <div className="flex flex-col gap-1 items-start ml-2">
                   <BuffsDisplay buffs={activeBuffs} />

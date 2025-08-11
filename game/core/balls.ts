@@ -76,6 +76,7 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
   const hasteMultiplier = activeBuffs.haste ? 1.5 : 1;
 
   const magicDamageModifier = 1 + (playerWisdom * 0.05) + ((unlockedSkills.spellPower || 0) * 0.15);
+  const ingenuity = (args as any).playerIngenuity || 0;
 
   let newExplosions: Explosion[] = [];
   let newBeams: ElementalBeam[] = [];
@@ -114,7 +115,11 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
     const isSlowed = slowedUntil && now < slowedUntil;
     const isSpikeSlowed = isSpikeSlowedUntil && now < isSpikeSlowedUntil;
     const ballTimeFactor = localTimeFactor * timeFactor * (isSlowed ? 0.8 : 1) * (isSpikeSlowed ? 0.3 : 1);
-    const ballSpeedMultiplier = (1 + (playerAgility - 1) * 0.05) * ballTimeFactor * hasteMultiplier;
+    const isOverclocked = (ball as any).overclockUntil && now < (ball as any).overclockUntil;
+    const overclockStacks = (ball as any).overclockStacks || 0;
+    const overclockMultiplier = isOverclocked ? (1 + 0.5) : 1; // 50% faster when Overclock active
+    const stackMultiplier = 1 + overclockStacks * 0.25; // each stack +25%
+    const ballSpeedMultiplier = (1 + (playerAgility - 1) * 0.05) * ballTimeFactor * hasteMultiplier * overclockMultiplier * stackMultiplier;
 
     x += vx * ballSpeedMultiplier;
     y += vy * ballSpeedMultiplier;
@@ -127,6 +132,11 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
       let hitPos = (x - (paddleX + paddleWidth / 2)) / (paddleWidth / 2);
       vx = hitPos * 5;
       damage = playerPower;
+      // Precision Timing: center 20% doubles damage
+      const hasPrecisionTiming = (unlockedSkills.precisionTiming || 0) > 0;
+      if (hasPrecisionTiming && Math.abs(hitPos) <= 0.2) {
+        damage = playerPower * 2;
+      }
     }
 
     return { ...ball, x, y, vx, vy, damage };
@@ -216,6 +226,15 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
         if (brick.type === BrickType.Ice) {
           mutableBall.slowedUntil = now + 2000;
         }
+        // Clockwork Spire mechanics
+        if (brick.type === BrickType.Clockwork) {
+          // Speed up ball on hit (stacks)
+          mutableBall.overclockStacks = (mutableBall.overclockStacks || 0) + 1;
+        }
+        if (brick.type === BrickType.Piston) {
+          // Knock back ball harder
+          if (overlapX < overlapY) { mutableBall.vx = -mutableBall.vx * 1.5; } else { mutableBall.vy = -mutableBall.vy * 1.5; }
+        }
 
         if (hasBreakthrough && mutableBall.damage > 0) {
           const damageToDeal = Math.min(mutableBall.damage, brick.hp - totalDamageToBrick);
@@ -250,7 +269,13 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
             }
           }
         } else {
-          damageMap.set(brick.id, totalDamageToBrick + ballDamage);
+          // Crit chance via Ingenuity
+          const ingenuity = (args as any).playerIngenuity || 0;
+          const baseDamage = ballDamage;
+          const critChance = Math.min(0.75, ingenuity * 0.02 + ((args as any).playerLuck || 0) * 0.01);
+          const isCrit = Math.random() < critChance;
+          const critMultiplier = isCrit ? 2 : 1;
+          damageMap.set(brick.id, totalDamageToBrick + baseDamage * critMultiplier);
           if (overlapX < overlapY) { mutableBall.vx = -mutableBall.vx; } else { mutableBall.vy = -mutableBall.vy; }
           break;
         }
