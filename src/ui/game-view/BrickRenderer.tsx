@@ -33,6 +33,11 @@ export const BrickRenderer: React.FC<BrickRendererProps> = ({ brick }) => {
         background = 'linear-gradient(135deg, #7c3aed, #8b5cf6, #a855f7)';
         glowEffect = '0 0 12px rgba(124, 58, 237, 0.4)';
         break;
+      case 24: // Catalyst
+        background = 'linear-gradient(135deg, #581c87, #7c3aed, #a855f7, #581c87)';
+        glowEffect = '0 0 15px rgba(139, 92, 246, 0.7)';
+        borderColor = '#a855f7';
+        break;
       default:
         background = baseColor;
     }
@@ -56,6 +61,32 @@ export const BrickRenderer: React.FC<BrickRendererProps> = ({ brick }) => {
       glowEffect = (glowEffect ? glowEffect + ', ' : '') + '0 0 10px 3px #67e8f9';
     } else if (brick.type === 3) { // Lightning
       glowEffect = (glowEffect ? glowEffect + ', ' : '') + '0 0 12px 3px #eab308';
+    }
+
+    // Catalyst empowerment effects
+    if (brick.isEmpowered && brick.empowermentType) {
+      switch (brick.empowermentType) {
+        case 'fire':
+          glowEffect = (glowEffect ? glowEffect + ', ' : '') + '0 0 20px 8px #ef4444';
+          borderColor = '#dc2626';
+          background = 'linear-gradient(135deg, #dc2626, #ef4444, #f87171)';
+          break;
+        case 'ice':
+          glowEffect = (glowEffect ? glowEffect + ', ' : '') + '0 0 20px 8px #06b6d4';
+          borderColor = '#0891b2';
+          background = 'linear-gradient(135deg, #0891b2, #06b6d4, #67e8f9)';
+          break;
+        case 'lightning':
+          glowEffect = (glowEffect ? glowEffect + ', ' : '') + '0 0 25px 10px #eab308';
+          borderColor = '#ca8a04';
+          background = 'linear-gradient(135deg, #ca8a04, #eab308, #facc15)';
+          break;
+        case 'rune':
+          glowEffect = (glowEffect ? glowEffect + ', ' : '') + '0 0 18px 6px #8b5cf6';
+          borderColor = '#7c3aed';
+          background = 'linear-gradient(135deg, #7c3aed, #8b5cf6, #a855f7)';
+          break;
+      }
     }
 
     return {
@@ -193,6 +224,26 @@ export const BrickRenderer: React.FC<BrickRendererProps> = ({ brick }) => {
             borderRadius: '4px',
           }}
         />
+      )}
+
+      {/* Empowerment symbol for empowered bricks */}
+      {brick.isEmpowered && brick.empowermentType && (
+        <div
+          className="empowerment-symbol"
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            fontSize: '16px',
+            color: '#ffffff',
+            fontWeight: 'bold',
+            textShadow: '0 0 4px #000000',
+            zIndex: 10,
+          }}
+        >
+          ⚡
+        </div>
       )}
     </div>
   );

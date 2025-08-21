@@ -44,6 +44,8 @@ export enum BrickType {
   Piston,
   Assembly,
   ChronoEngineerBoss,
+  // Catalyst Bricks
+  Catalyst,
 }
 
 export interface Brick {
@@ -84,6 +86,10 @@ export interface Brick {
   slowedUntil?: number;
   // Clockwork Spire properties
   lastRebuildTime?: number;
+  // Catalyst empowerment properties
+  isEmpowered?: boolean;
+  empowermentType?: 'fire' | 'ice' | 'lightning' | 'rune';
+  empoweredUntil?: number;
 }
 
 export interface Ball {

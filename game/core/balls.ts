@@ -108,6 +108,55 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
     };
   }
 
+  // Helper function to find adjacent bricks for catalyst empowerment
+  const findAdjacentBricks = (catalystBrick: Brick, allBricks: Brick[]): Brick[] => {
+    const adjacentBricks: Brick[] = [];
+    const searchRadius = 1.5 * BRICK_WIDTH; // 1.5 brick widths
+
+    for (const brick of allBricks) {
+      if (brick.id === catalystBrick.id || brick.hp <= 0) continue;
+
+      const distance = Math.sqrt(
+        Math.pow(brick.x - catalystBrick.x, 2) + Math.pow(brick.y - catalystBrick.y, 2)
+      );
+
+      if (distance <= searchRadius) {
+        adjacentBricks.push(brick);
+      }
+    }
+
+    return adjacentBricks;
+  };
+
+  // Helper function to empower elemental bricks
+  const empowerElementalBricks = (bricks: Brick[], now: number): Brick[] => {
+    return bricks.map(brick => {
+      let empowermentType: 'fire' | 'ice' | 'lightning' | 'rune' | undefined;
+
+      // Determine empowerment type based on brick type
+      if (brick.type === BrickType.Fire) {
+        empowermentType = 'fire';
+      } else if (brick.type === BrickType.Ice) {
+        empowermentType = 'ice';
+      } else if (brick.type === BrickType.Lightning) {
+        empowermentType = 'lightning';
+      } else if (brick.type === BrickType.Rune) {
+        empowermentType = 'rune';
+      }
+
+      if (empowermentType) {
+        return {
+          ...brick,
+          isEmpowered: true,
+          empowermentType,
+          empoweredUntil: now + 1000 // Empowerment lasts for 1 second (single use)
+        };
+      }
+
+      return brick;
+    });
+  };
+
   // Move balls and basic world/paddle collision
   updatedBalls = updatedBalls.map(ball => {
     let { x, y, vx, vy, damage, slowedUntil, isSpikeSlowedUntil } = ball;
@@ -238,6 +287,51 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
           if (overlapX < overlapY) { mutableBall.vx = -mutableBall.vx * 1.5; } else { mutableBall.vy = -mutableBall.vy * 1.5; }
         }
 
+        // Handle empowered brick effects
+        if (brick.isEmpowered && brick.empowermentType && brick.empoweredUntil && now < brick.empoweredUntil) {
+          switch (brick.empowermentType) {
+            case 'fire':
+              // Empowered Fire: Triple explosion radius and damage
+              const empoweredExplosionRadius = (50 + playerWisdom * 2) * 3;
+              newExplosions.push({
+                id: Date.now() + Math.random(),
+                x: brick.x + brick.width / 2,
+                y: brick.y + brick.height / 2,
+                radius: empoweredExplosionRadius,
+                duration: 400,
+                createdAt: now
+              });
+              break;
+            case 'ice':
+              // Empowered Ice: Flash freeze all bricks in the row for 3 seconds
+              workingBricks = workingBricks.map(wb => {
+                if (wb.y === brick.y && wb.id !== brick.id) {
+                  return { ...wb, slowedUntil: now + 3000 };
+                }
+                return wb;
+              });
+              break;
+            case 'lightning':
+              // Empowered Lightning: Chain to 3-5 additional targets
+              triggeredLightningStrikes += 3 + Math.floor(Math.random() * 3); // 3-5 extra strikes
+              break;
+            case 'rune':
+              // Empowered Rune: Shield all bricks in row and column
+              workingBricks = workingBricks.map(wb => {
+                if ((wb.y === brick.y || wb.x === brick.x) && wb.id !== brick.id) {
+                  return { ...wb, shieldHp: (wb.shieldHp || 0) + 2 };
+                }
+                return wb;
+              });
+              break;
+          }
+
+          // Remove empowerment after use (single use)
+          brick.isEmpowered = false;
+          brick.empowermentType = undefined;
+          brick.empoweredUntil = undefined;
+        }
+
         if (hasBreakthrough && mutableBall.damage > 0) {
           const damageToDeal = Math.min(mutableBall.damage, brick.hp - totalDamageToBrick);
           const brickDestroyed = (totalDamageToBrick + damageToDeal) >= brick.hp;
@@ -284,6 +378,36 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
       }
     }
     return mutableBall;
+  });
+
+  // Handle Catalyst brick destruction and empowerment
+  let catalystEmpowermentApplied = false;
+  workingBricks = workingBricks.map(brick => {
+    const totalDamage = damageMap.get(brick.id) || 0;
+    if (totalDamage >= brick.hp && brick.type === BrickType.Catalyst && !catalystEmpowermentApplied) {
+      // Catalyst brick is being destroyed - find and empower adjacent elemental bricks
+      const adjacentBricks = findAdjacentBricks(brick, workingBricks);
+      const empoweredBricks = empowerElementalBricks(adjacentBricks, now);
+
+      // Update working bricks with empowered versions
+      workingBricks = workingBricks.map(wb => {
+        const empoweredVersion = empoweredBricks.find(eb => eb.id === wb.id);
+        return empoweredVersion || wb;
+      });
+
+      catalystEmpowermentApplied = true;
+
+      // Create visual effect for catalyst activation
+      newExplosions.push({
+        id: now + Math.random(),
+        x: brick.x + brick.width / 2,
+        y: brick.y + brick.height / 2,
+        radius: BRICK_WIDTH * 2,
+        duration: 500,
+        createdAt: now
+      });
+    }
+    return brick;
   });
 
   return {

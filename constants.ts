@@ -64,6 +64,8 @@ export const BRICK_PROPERTIES: Record<BrickType, { color: string; maxHp: number;
     [BrickType.Piston]: { color: 'bg-zinc-500', maxHp: 4, points: 120 },
     [BrickType.Assembly]: { color: 'bg-orange-800', maxHp: 5, points: 150 },
     [BrickType.ChronoEngineerBoss]: { color: 'bg-yellow-800', maxHp: 280, points: 8000 },
+    // Catalyst Bricks
+    [BrickType.Catalyst]: { color: 'bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900', maxHp: 1, points: 0 },
 };
 
 export const LEVEL_UP_XP = 200;
