@@ -1,38 +1,22 @@
 import React from 'react';
+import { useGameStore } from '@/src/core/state/gameStore';
 import { LEVEL_UP_XP } from '@/constants';
 import { IconGoldCoin } from '@/components/Icons';
 
-interface TopUIProps {
-  hp: number;
-  maxHp: number;
-  mana: number;
-  maxMana: number;
-  xp: number;
-  level: number;
-  gold: number;
-  world: number;
-  worldStartTime: number;
-}
+export const TopUI: React.FC = () => {
+  const { game, ui } = useGameStore();
+  const { hp, maxHp, mana, maxMana, xp, level, gold, startHp, elapsedTime } = game;
+  const world = ui.selectedWorldId || 1;
 
-export const TopUI: React.FC<TopUIProps> = ({ hp, maxHp, mana, maxMana, xp, level, gold, world, worldStartTime }) => {
-  const [elapsedTime, setElapsedTime] = React.useState(0);
-
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setElapsedTime(Date.now() - worldStartTime);
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [worldStartTime]);
-
-  const formatTime = (ms: number) => {
-    const minutes = Math.floor(ms / 60000);
-    const seconds = Math.floor((ms % 60000) / 1000);
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes}:${secs.toString().padStart(2, '0')}`;
   };
 
   const hpPercentage = (hp / maxHp) * 100;
   const manaPercentage = maxMana > 0 ? (mana / maxMana) * 100 : 0;
-  const xpPercentage = (xp / LEVEL_UP_XP) * 100;
+  const xpPercentage = (xp / LEVEL_UP_XP[Math.min(level - 1, LEVEL_UP_XP.length - 1)]) * 100;
 
   return (
     <div className="w-full bg-gradient-to-b from-slate-700 to-slate-800 rounded-lg p-2 border-t-2 border-slate-600 border-b-2 border-slate-900 shadow-lg">
@@ -56,7 +40,7 @@ export const TopUI: React.FC<TopUIProps> = ({ hp, maxHp, mana, maxMana, xp, leve
           <div className="w-full bg-black/50 rounded-full h-4 shadow-inner border border-black/30">
             <div className="bg-blue-500 h-full rounded-full transition-all duration-300 border-r-2 border-blue-400" style={{ width: `${xpPercentage}%` }}></div>
           </div>
-          <div className="text-center text-sm font-semibold -mt-[17px] text-white" style={{ textShadow: '1px 1px 2px #000' }}>{xp} / {LEVEL_UP_XP}</div>
+          <div className="text-center text-sm font-semibold -mt-[17px] text-white" style={{ textShadow: '1px 1px 2px #000' }}>{xp} / {LEVEL_UP_XP[Math.min(level - 1, LEVEL_UP_XP.length - 1)]}</div>
         </div>
       </div>
       {world > 1 && maxMana > 0 && (
@@ -72,6 +56,7 @@ export const TopUI: React.FC<TopUIProps> = ({ hp, maxHp, mana, maxMana, xp, leve
         <IconGoldCoin className="w-7 h-7" />
         <span>{gold}</span>
         <span className="text-white ml-4">{formatTime(elapsedTime)}</span>
+        <span className="text-gray-400 ml-2 text-sm">(Started: {startHp} HP)</span>
       </div>
     </div>
   );

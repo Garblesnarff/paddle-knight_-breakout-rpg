@@ -1,5 +1,6 @@
 import React from 'react';
-import { PlayerStats, RunicEmpowermentBuffs, Skill } from '@/types';
+import { useGameStore } from '@/src/core/state/gameStore';
+import { PlayerStats, RunicEmpowermentBuffs, Skill, GameStatus } from '@/types';
 import { IconBan, IconBolt, IconBrain, IconHeart, IconShield, IconSitemap, IconWind } from '@/components/Icons';
 
 const StatDisplay: React.FC<{ icon: React.ReactNode; label: string; value: number; color: string }> = ({ icon, label, value, color }) => (
@@ -63,24 +64,30 @@ const BuffsDisplay: React.FC<{ buffs: RunicEmpowermentBuffs }> = ({ buffs }) => 
   );
 };
 
-interface BottomUIProps {
-  stats: PlayerStats;
-  skills: Record<string, Skill>;
-  equippedSkills: string[];
-  maxActiveSkills: number; // reserved
-  onActivateSkill: (skillId: string) => void;
-  onOpenSkillTree: () => void;
-  skillPoints: number;
-  unlockedSkills: Record<string, number>;
-  world: number;
-  activeBuffs: RunicEmpowermentBuffs;
-  manaBurnActiveUntil: number | null;
-}
-
-export const BottomUI: React.FC<BottomUIProps> = ({ stats, skills, equippedSkills, onActivateSkill, onOpenSkillTree, skillPoints, world, activeBuffs, manaBurnActiveUntil }) => {
+export const BottomUI: React.FC = () => {
+  const { game, ui, setGameStatus } = useGameStore();
+  const { 
+    playerStats: stats, 
+    skills, 
+    equippedSkills, 
+    skillPoints, 
+    activeBuffs, 
+    manaBurnActiveUntil 
+  } = game;
+  const world = ui.selectedWorldId || 1;
+  
   const now = Date.now();
   const activeSkillsToShow = equippedSkills.map((id) => skills[id]).filter(Boolean);
   const isManaBurned = !!manaBurnActiveUntil && now < manaBurnActiveUntil;
+  
+  const onActivateSkill = (skillId: string) => {
+    // TODO: Implement skill activation
+    console.log('Activate skill:', skillId);
+  };
+  
+  const onOpenSkillTree = () => {
+    setGameStatus(GameStatus.SkillTree);
+  };
 
   const skillHotkeys: Record<string, string> = {
     multiBall: '1',
