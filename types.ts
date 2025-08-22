@@ -105,6 +105,11 @@ export interface Ball {
   // Clockwork Spire temporary speed-up (overclock) window and stacks
   overclockUntil?: number;
   overclockStacks?: number;
+  // Aegis Parry enhancement properties
+  isEmpowered?: boolean;
+  empowermentType?: 'damage' | 'piercing' | 'speed';
+  empoweredUntil?: number;
+  piercingHitsRemaining?: number;
 }
 
 export interface PlayerStats {

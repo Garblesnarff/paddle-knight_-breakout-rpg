@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { GameStatus, Brick, Ball, PlayerStats, Skill, BrickType, Projectile, Explosion, RunicEmpowermentBuffs, ArcaneOrb, ElementalBeam, BallHistoryEntry, HomingProjectile, FireRainZone, IceSpikeField, LightningStrike, ArcaneOverloadRing, FinalGambitBeam, SkillType, Cosmetics } from './types';
-import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, INITIAL_PLAYER_STATS, INITIAL_SKILLS, BRICK_PROPERTIES, LEVEL_UP_XP, BOSS_ENRAGE_THRESHOLD, ARCHMAGE_MANA_BURN_DURATION } from './constants';
+import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, INITIAL_PLAYER_STATS, INITIAL_SKILLS, BRICK_PROPERTIES, LEVEL_UP_XP, BOSS_ENRAGE_THRESHOLD, ARCHMAGE_MANA_BURN_DURATION, PARRY_WINDOW_DURATION } from './constants';
 import { SKILL_TREE_DATA } from './game/skills';
 import { SHOP_ITEMS } from './game/shop-items';
 import { MAX_LEVELS, createBricksForWorld, createBricksForStage } from './game/level-manager';
@@ -16,6 +16,9 @@ import { StageSelector } from './components/StageSelector';
 import { runGameIteration } from './game/gameEngine';
 import { useGameLoop } from './hooks/useGameLoop';
 import SaveManager from './services/SaveManager';
+import { GameEffectsManager } from './src/services/GameEffectsManager';
+import { CSSParticleEffect } from './src/effects/CSSParticleEffects';
+import { AudioManager } from './src/services/AudioManager';
 
 const App: React.FC = () => {
     const [gameStatus, setGameStatus] = useState<GameStatus>(GameStatus.Start);
@@ -64,6 +67,18 @@ const App: React.FC = () => {
     const [worldStartTime, setWorldStartTime] = useState(0);
   const [usedEmergencyRepair, setUsedEmergencyRepair] = useState(false);
 
+    // Effects state
+    const [activeParticleEffects, setActiveParticleEffects] = useState<Array<{id: string, effectId: string, position: {x: number, y: number}}>>([]);
+    const levelUpRef = useRef<HTMLDivElement>(null);
+    const lastBricksDestroyed = useRef<number>(0);
+
+    // Physics debug system
+    // const physicsDebug = usePhysicsDebug();
+
+    // Aegis Parry state
+    const [parryWindowUntil, setParryWindowUntil] = useState<number>(0);
+    const [lastParryTime, setLastParryTime] = useState<number>(0);
+
     const calculateStars = (): number => {
         const stageConfig = WORLD_CONFIG.find(s => s.id === currentStageId);
         if (!stageConfig) return 1;
@@ -85,6 +100,33 @@ const App: React.FC = () => {
 
         return stars;
     };
+
+    // Initialize effects manager
+    useEffect(() => {
+        // Set up particle callback with safety limit
+        GameEffectsManager.setParticleCallback((effect) => {
+            setActiveParticleEffects(effects => {
+                const newEffects = [...effects, effect];
+                // Limit to maximum 10 concurrent particle effects for performance
+                if (newEffects.length > 10) {
+                    return newEffects.slice(-10); // Keep only the 10 most recent
+                }
+                return newEffects;
+            });
+        });
+        
+        // Initialize audio manager with preloaded sounds
+        try {
+            AudioManager.preloadSounds();
+            GameEffectsManager.menuMusic();
+        } catch (error) {
+            console.warn('Audio initialization failed:', error);
+        }
+        
+        return () => {
+            GameEffectsManager.cleanup();
+        };
+    }, []);
 
     useEffect(() => {
         // Load saved data on component mount
@@ -279,6 +321,9 @@ const App: React.FC = () => {
         setWorldStartTime(Date.now());
         setStageInitialHp(maxHp);
         setGameStatus(GameStatus.Playing);
+        
+        // Start world-specific music
+        GameEffectsManager.worldStart(stageConfig.world.toString());
     };
 
     const handleStageComplete = (stageId: number, stars: number, score: number) => {
@@ -435,6 +480,8 @@ const App: React.FC = () => {
                     return prev;
                 });
                 updatedSkill = { ...skill, lastUsed: now, activeUntil: skill.duration ? now + effectiveDuration : undefined };
+                // Trigger skill activation effects
+                GameEffectsManager.skillActivated(skillId, { x: paddleX + paddleWidth / 2, y: PADDLE_Y });
                 break;
             case 'arcaneOrb': {
                 const MANA_COST = 50;
@@ -447,6 +494,7 @@ const App: React.FC = () => {
             }
             case 'elementalInfusion':
                 updatedSkill = { ...skill, lastUsed: now, charges: INITIAL_SKILLS.elementalInfusion.charges };
+                GameEffectsManager.skillActivated(skillId, { x: paddleX + paddleWidth / 2, y: PADDLE_Y });
                 break;
             case 'overclockSkill': {
                 // Apply overclock buff to balls
@@ -502,6 +550,14 @@ const App: React.FC = () => {
                 updatedSkill = { ...skill, lastUsed: now };
                 break;
             }
+            case 'aegisParry': {
+                // Activate parry window
+                const parryWindow = now + PARRY_WINDOW_DURATION;
+                setParryWindowUntil(parryWindow);
+                setLastParryTime(now);
+                updatedSkill = { ...skill, lastUsed: now };
+                break;
+            }
             default:
                  updatedSkill = { ...skill, lastUsed: now, activeUntil: skill.duration ? now + effectiveDuration : undefined };
         }
@@ -534,6 +590,16 @@ const App: React.FC = () => {
                     if ((unlockedSkills['timeWarp'] || 0) > 0) {
                         handleSkillActivation('timeWarp');
                     }
+                } else if (key === 'p') {
+                    if ((unlockedSkills['aegisParry'] || 0) > 0) {
+                        handleSkillActivation('aegisParry');
+                    }
+                } else if (key === ' ' || key === 'space') {
+                    // Spacebar activates Aegis Parry
+                    e.preventDefault(); // Prevent page scroll
+                    if ((unlockedSkills['aegisParry'] || 0) > 0) {
+                        handleSkillActivation('aegisParry');
+                    }
                 }
             } else if (gameStatus === GameStatus.SkillTree) {
                  if (key === 't' || key === 'escape') {
@@ -547,6 +613,23 @@ const App: React.FC = () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
     }, [gameStatus, unlockedSkills, handleSkillActivation, handleOpenSkillTree, handleCloseSkillTree]);
+
+    // Right-click handler for Aegis Parry
+    useEffect(() => {
+        const handleContextMenu = (e: MouseEvent) => {
+            if (gameStatus === GameStatus.Playing) {
+                e.preventDefault(); // Prevent context menu
+                if ((unlockedSkills['aegisParry'] || 0) > 0) {
+                    handleSkillActivation('aegisParry');
+                }
+            }
+        };
+
+        window.addEventListener('contextmenu', handleContextMenu);
+        return () => {
+            window.removeEventListener('contextmenu', handleContextMenu);
+        };
+    }, [gameStatus, unlockedSkills, handleSkillActivation]);
 
 
     const handleGameClick = useCallback(() => {
@@ -627,6 +710,7 @@ const App: React.FC = () => {
             activeBuffs,
             maxActiveSkills,
             equippedSkills,
+            parryWindowUntil,
         });
 
         if (updates.balls) {
@@ -650,6 +734,11 @@ const App: React.FC = () => {
         if (updates.projectiles) setProjectiles(updates.projectiles);
         if (updates.homingProjectiles) setHomingProjectiles(updates.homingProjectiles);
         if (updates.arcaneOrbs) setArcaneOrbs(updates.arcaneOrbs);
+        
+        // Periodic cleanup of particle effects (every ~1 second)
+        if (Date.now() % 1000 < 16) { // Roughly once per second
+            GameEffectsManager.cleanupExpiredEffects();
+        }
         if (updates.fireRainZones) setFireRainZones(updates.fireRainZones);
         if (updates.iceSpikeFields) setIceSpikeFields(updates.iceSpikeFields);
         if (updates.lightningStrikes) setLightningStrikes(updates.lightningStrikes);
@@ -659,6 +748,14 @@ const App: React.FC = () => {
         
         if (updates.newExplosions) {
             setExplosions((current: Explosion[]) => [...current, ...updates.newExplosions!]);
+            // Trigger explosion sound and particle effects
+            updates.newExplosions.forEach(explosion => {
+                GameEffectsManager.triggerComboEffect({
+                    audio: 'explosion',
+                    particle: 'explosion',
+                    position: { x: explosion.x, y: explosion.y }
+                });
+            });
         }
         if (updates.newElementalBeams) {
             setElementalBeams((current: ElementalBeam[]) => [...current, ...updates.newElementalBeams!]);
@@ -681,6 +778,9 @@ const App: React.FC = () => {
             setLevel((l: number) => l + updates.levelUps!);
             setLevelUpMessage(`Level Up! +${updates.levelUps} Skill Point!`);
             setTimeout(() => setLevelUpMessage(null), 2500);
+            
+            // Trigger level up effects
+            GameEffectsManager.levelUp(levelUpRef.current || undefined);
         }
         if (updates.xpGained) setXp(xp + updates.xpGained);
         if (updates.xp) setXp(updates.xp);
@@ -724,10 +824,35 @@ const App: React.FC = () => {
             })
         }
 
+        // Trigger brick break effects (for all players) - only when new bricks are destroyed
+        if (updates.bricksDestroyed && updates.bricksDestroyed > 0) {
+            // Check if this is a new destruction event by comparing with previous frame
+            if (updates.bricksDestroyed !== lastBricksDestroyed.current) {
+                lastBricksDestroyed.current = updates.bricksDestroyed;
+                
+                // Limit effects to prevent performance issues
+                const effectCount = Math.min(updates.bricksDestroyed, 3);
+                for (let i = 0; i < effectCount; i++) {
+                    GameEffectsManager.triggerComboEffect({
+                        audio: 'brick-break',
+                        particle: 'brickBreak',
+                        position: { 
+                            x: (Math.random() * 0.8 + 0.1) * 100, // 10-90% of screen width 
+                            y: (Math.random() * 0.4 + 0.1) * 100  // 10-50% of screen height
+                        }
+                    });
+                }
+            }
+        } else {
+            // Reset the counter when no bricks are destroyed
+            lastBricksDestroyed.current = 0;
+        }
+
         // Runic Empowerment Logic
         if ((unlockedSkills.runicEmpowerment || 0) > 0) {
             if (updates.bricksDestroyed && updates.bricksDestroyed > 0) {
                 const counter = runicEmpowermentCounter + updates.bricksDestroyed;
+                
                 if (counter >= 5) {
                     const newCount = counter % 5;
                     setRunicEmpowermentCounter(newCount);
@@ -740,6 +865,9 @@ const App: React.FC = () => {
                     } else {
                         setActiveBuffs((b: RunicEmpowermentBuffs) => ({ ...b, shield: true }));
                     }
+                    
+                    // Trigger power-up effect for runic empowerment activation
+                    GameEffectsManager.powerUpCollected({ x: 50, y: 50 }); // Center of screen in percentages
                 } else {
                     setRunicEmpowermentCounter(counter);
                 }
@@ -751,6 +879,7 @@ const App: React.FC = () => {
 
         if (hp > 0 && finalHp <= 0) {
             setGameStatus(GameStatus.GameOver);
+            GameEffectsManager.gameOver();
         } else if (updates.worldCompleted) {
             const stars = calculateStars();
             const goldEarned = 100 + (stars * 25) + (stars === 3 ? 50 : 0);
@@ -758,6 +887,7 @@ const App: React.FC = () => {
             setLastWorldStars(stars);
             handleStageComplete(currentStageId, stars, score);
             setGameStatus(GameStatus.VictoryScreen);
+            GameEffectsManager.gameVictory();
         }
     }, [balls, bricks, projectiles, homingProjectiles, arcaneOrbs, fireRainZones, iceSpikeFields, lightningStrikes, arcaneOverloadRings, finalGambitBeams, paddleX, paddleWidth, playerStats, skills, isBallLaunched, hp, mana, maxMana, xp, level, unlockedSkills, world, score, gold, activeBuffs, runicEmpowermentCounter]);
 
@@ -849,6 +979,27 @@ const App: React.FC = () => {
                     <TopUI hp={hp} maxHp={maxHp} mana={mana} maxMana={maxMana} xp={xp} level={level} gold={gold} world={world} worldStartTime={worldStartTime} />
                     
                     <div className="relative shadow-inner cursor-pointer bg-black/50 border-2 border-slate-900" style={{ width: GAME_WIDTH, height: GAME_HEIGHT }} ref={gameAreaRef} onClick={handleGameClick}>
+                        
+                        {/* Particle Effects Layer */}
+                        <div className="absolute inset-0 pointer-events-none z-30">
+                            {activeParticleEffects.map(effect => (
+                                <CSSParticleEffect
+                                    key={effect.id}
+                                    effectId={effect.effectId}
+                                    position={effect.position}
+                                    onComplete={() => {
+                                        setActiveParticleEffects(effects => 
+                                            effects.filter(e => e.id !== effect.id)
+                                        );
+                                    }}
+                                />
+                            ))}
+                        </div>
+                        
+                        {/* Parry Window Visual Feedback */}
+                        {parryWindowUntil > 0 && Date.now() < parryWindowUntil && (
+                            <div className="absolute inset-0 border-4 border-blue-400 bg-blue-400/20 animate-pulse rounded-lg pointer-events-none z-50" />
+                        )}
                         
                         {fireRainZones.map(zone => {
                             const progress = (Date.now() - zone.createdAt) / zone.duration;
@@ -1029,7 +1180,7 @@ const App: React.FC = () => {
                         )}
                         
                          {levelUpMessage && (
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl font-medieval text-yellow-300 animate-bounce drop-shadow-lg z-50">
+                            <div ref={levelUpRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-5xl font-medieval text-yellow-300 drop-shadow-lg z-50">
                                 {levelUpMessage}
                             </div>
                         )}

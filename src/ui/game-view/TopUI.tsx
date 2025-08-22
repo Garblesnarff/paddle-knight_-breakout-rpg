@@ -2,6 +2,7 @@ import React from 'react';
 import { useGameStore } from '@/src/core/state/gameStore';
 import { LEVEL_UP_XP } from '@/constants';
 import { IconGoldCoin } from '@/components/Icons';
+import { AudioControls } from '@/src/ui/components/AudioControls';
 
 export const TopUI: React.FC = () => {
   const { game, ui } = useGameStore();
@@ -52,11 +53,16 @@ export const TopUI: React.FC = () => {
           <div className="text-center text-xs font-semibold -mt-[13px] text-white" style={{ textShadow: '1px 1px 2px #000' }}>{Math.round(mana)} / {maxMana}</div>
         </div>
       )}
-      <div className="flex items-center justify-center text-2xl font-bold text-yellow-400 text-center mt-3 gap-2">
-        <IconGoldCoin className="w-7 h-7" />
-        <span>{gold}</span>
-        <span className="text-white ml-4">{formatTime(elapsedTime)}</span>
-        <span className="text-gray-400 ml-2 text-sm">(Started: {startHp} HP)</span>
+      <div className="flex items-center justify-between text-2xl font-bold text-yellow-400 text-center mt-3">
+        <div className="flex items-center gap-2">
+          <IconGoldCoin className="w-7 h-7" />
+          <span>{gold}</span>
+          <span className="text-white ml-4">{formatTime(elapsedTime)}</span>
+          <span className="text-gray-400 ml-2 text-sm">(Started: {startHp} HP)</span>
+        </div>
+        <div className="relative">
+          <AudioControls compact={true} />
+        </div>
       </div>
     </div>
   );

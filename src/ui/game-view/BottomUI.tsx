@@ -94,6 +94,7 @@ export const BottomUI: React.FC = () => {
     elementalInfusion: '2',
     arcaneOrb: '3',
     timeWarp: '4',
+    aegisParry: 'P / Space / Right-Click',
   };
 
   return (

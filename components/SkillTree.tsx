@@ -10,6 +10,7 @@ const SKILL_ICONS: Record<string, React.ReactNode> = {
     breakthrough: <IconSitemap />,
     defenseBoost: <IconShield />,
     multiBallUnlock: <IconStar />,
+    aegisParry: <IconShield />,
     // World 2
     arcaneIntellect: <IconBrain />,
     manaShield: <IconSparkles />,

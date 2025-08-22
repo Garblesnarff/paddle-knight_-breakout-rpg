@@ -54,6 +54,7 @@ interface GameState {
     activeBuffs: RunicEmpowermentBuffs;
     maxActiveSkills: number;
     equippedSkills: string[];
+    parryWindowUntil?: number;
     // Bio-Forge Nexus state
     overgrowthZones?: OvergrowthZone[];
     energySurges?: EnergySurge[];
@@ -118,7 +119,7 @@ const findEmptySpotForBrick = (bricks: Brick[], width: number, height: number): 
 };
 
 export const runGameIteration = (state: GameState): GameStateUpdate => {
-    let { balls, bricks: originalBricks, projectiles, homingProjectiles, arcaneOrbs, fireRainZones, iceSpikeFields, lightningStrikes, arcaneOverloadRings, finalGambitBeams, paddleX, paddleWidth, playerStats, skills, isBallLaunched, hp, xp, level, unlockedSkills, mana, maxMana, activeBuffs, overgrowthZones = [], energySurges = [], replicationFields = [], playerDebuffs = [] } = state;
+    let { balls, bricks: originalBricks, projectiles, homingProjectiles, arcaneOrbs, fireRainZones, iceSpikeFields, lightningStrikes, arcaneOverloadRings, finalGambitBeams, paddleX, paddleWidth, playerStats, skills, isBallLaunched, hp, xp, level, unlockedSkills, mana, maxMana, activeBuffs, parryWindowUntil, overgrowthZones = [], energySurges = [], replicationFields = [], playerDebuffs = [] } = state;
 
     let workingBricks: Brick[] = originalBricks.map(b => ({ ...b }));
 

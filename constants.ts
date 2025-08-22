@@ -19,6 +19,13 @@ export const INITIAL_PLAYER_STATS: PlayerStats = {
   ingenuity: 0,
 };
 
+// Aegis Parry constants
+export const PARRY_WINDOW_DURATION = 150; // ms
+export const PARRY_EMPOWERMENT_DURATION = 3000; // ms
+export const PARRY_DAMAGE_MULTIPLIER = 2.0;
+export const PARRY_SPEED_MULTIPLIER = 1.25;
+export const PARRY_PIERCING_HITS = 1;
+
 export const INITIAL_SKILLS: Record<string, Skill> = {
     multiBall: { id: 'multiBall', name: 'Multi-Ball', cooldown: 20000, lastUsed: -20000, duration: 5000 },
     timeSlow: { id: 'timeSlow', name: 'Time Slow', cooldown: 25000, lastUsed: -25000, duration: 7000 },
@@ -29,6 +36,7 @@ export const INITIAL_SKILLS: Record<string, Skill> = {
     overclockSkill: { id: 'overclockSkill', name: 'Overclock', cooldown: 30000, lastUsed: -30000, duration: 5000 },
     steamBurst: { id: 'steamBurst', name: 'Steam Burst', cooldown: 45000, lastUsed: -45000 },
     chronoBreak: { id: 'chronoBreak', name: 'Chrono Break', cooldown: 90000, lastUsed: -90000, duration: 3000 },
+    aegisParry: { id: 'aegisParry', name: 'Aegis Parry', cooldown: 5000, lastUsed: -5000, duration: PARRY_WINDOW_DURATION },
 };
 
 export const BRICK_PROPERTIES: Record<BrickType, { color: string; maxHp: number; points: number }> = {

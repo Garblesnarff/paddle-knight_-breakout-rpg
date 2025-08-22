@@ -40,18 +40,8 @@ const SkillButton: React.FC<{ skill: Skill; onActivate: () => void; now: number;
             <div className="z-10 relative flex flex-col items-center justify-center h-full text-center">
                 <span className="text-xs font-bold leading-tight">{skill.name}</span>
                 {hotkey && <span className="text-2xs text-yellow-300">({hotkey})</span>}
-                {hasCharges ? (
-                     <span className="text-sm font-bold">{skill.charges}</span>
-                ) : (
-                    !isOnCooldown && !isActive && <span className="text-2xs">(Ready)</span>
-                )}
+                {hasCharges ? <span className="text-sm font-bold">{skill.charges}</span> : !isOnCooldown && !isActive && <span className="text-2xs">(Ready)</span>}
             </div>
-            {isOnCooldown && !hasCharges && (
-                <div className="absolute bottom-0 left-0 h-full bg-black/70 w-full" style={{ transform: `translateY(${100 - cooldownProgress}%)` }} />
-            )}
-             {isActive && (
-                <div className="absolute top-0 left-0 w-full h-full bg-yellow-400/30 animate-pulse" />
-            )}
         </button>
     );
 };
@@ -171,6 +161,7 @@ export const BottomUI: React.FC<BottomUIProps> = ({ stats, skills, equippedSkill
         elementalInfusion: '2',
         arcaneOrb: '3',
         timeWarp: '4',
+        aegisParry: 'P / Space / Right-Click',
     };
 
     return (

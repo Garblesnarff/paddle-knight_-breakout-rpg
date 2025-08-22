@@ -61,6 +61,16 @@ export const WORLD_1_SKILLS: Record<string, SkillNode> = {
         type: SkillType.Active,
         position: { row: 3, col: 0 },
     },
+    'aegisParry': {
+        id: 'aegisParry',
+        name: 'Aegis Parry',
+        description: () => 'Active: Brief parry window. If ball hits paddle during parry, it gains +100% damage, +25% speed, and pierces 1 brick. (Spacebar/Right-Click)',
+        maxLevel: 1,
+        cost: () => 3,
+        dependencies: ['defenseBoost'],
+        type: SkillType.Active,
+        position: { row: 2, col: 2 },
+    },
 };
 
 

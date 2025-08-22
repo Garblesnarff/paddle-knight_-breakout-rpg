@@ -6,10 +6,13 @@
  */
 
 import { Ball, Brick, Explosion, ElementalBeam, RunicEmpowermentBuffs, FireRainZone, IceSpikeField, LightningStrike, ArcaneOverloadRing, FinalGambitBeam } from '../../types';
-import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, BRICK_PROPERTIES, BRICK_WIDTH, BRICK_HEIGHT, LIGHTNING_STRIKE_WARNING_DURATION, LIGHTNING_STRIKE_STRIKE_DURATION, LIGHTNING_STRIKE_DAMAGE, LIGHTNING_STRIKE_WIDTH, FIRE_RAIN_DURATION, FIRE_RAIN_DAMAGE, FIRE_RAIN_RADIUS, ICE_SPIKE_DURATION, ICE_SPIKE_HEIGHT, ICE_SPIKE_WIDTH, ARCHMAGE_FINAL_GAMBIT_THRESHOLD, FINAL_GAMBIT_BEAM_WARNING_DURATION, FINAL_GAMBIT_BEAM_STRIKE_DURATION } from '../../constants';
+import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, BRICK_PROPERTIES, BRICK_WIDTH, BRICK_HEIGHT, LIGHTNING_STRIKE_WARNING_DURATION, LIGHTNING_STRIKE_STRIKE_DURATION, LIGHTNING_STRIKE_DAMAGE, LIGHTNING_STRIKE_WIDTH, FIRE_RAIN_DURATION, FIRE_RAIN_DAMAGE, FIRE_RAIN_RADIUS, ICE_SPIKE_DURATION, ICE_SPIKE_HEIGHT, ICE_SPIKE_WIDTH, ARCHMAGE_FINAL_GAMBIT_THRESHOLD, FINAL_GAMBIT_BEAM_WARNING_DURATION, FINAL_GAMBIT_BEAM_STRIKE_DURATION, PARRY_WINDOW_DURATION, PARRY_EMPOWERMENT_DURATION, PARRY_DAMAGE_MULTIPLIER, PARRY_SPEED_MULTIPLIER, PARRY_PIERCING_HITS } from '../../constants';
 import { BrickType } from '../../types';
 import { lineRectCollision } from './collisions';
 import { handleGearspriteDodge } from './bio-forge';
+// Enhanced physics imports disabled due to integration issues
+// import { getBallPhysicsIntegration } from '../../src/physics/ballPhysicsIntegration';
+// import { isEnhancedPhysicsEnabled } from '../../src/config/features.config';
 
 export interface UpdateBallsArgs {
   balls: Ball[];
@@ -27,6 +30,8 @@ export interface UpdateBallsArgs {
   isBallLaunched: boolean;
   maxMana: number;
   hp: number;
+  parryWindowUntil?: number;
+  playerLuck?: number;
 }
 
 export interface UpdateBallsResult {
@@ -181,6 +186,31 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
       let hitPos = (x - (paddleX + paddleWidth / 2)) / (paddleWidth / 2);
       vx = hitPos * 5;
       damage = playerPower;
+      
+      // Aegis Parry: Check if parry window is active
+      const parryWindowUntil = args.parryWindowUntil || 0;
+      const isParryActive = parryWindowUntil > 0 && now < parryWindowUntil;
+      
+      if (isParryActive) {
+        // Successful parry! Empower the ball
+        const empoweredBall = {
+          isEmpowered: true,
+          empowermentType: 'damage' as const,
+          empoweredUntil: now + PARRY_EMPOWERMENT_DURATION,
+          piercingHitsRemaining: PARRY_PIERCING_HITS
+        };
+        
+        // Apply parry bonuses
+        damage = playerPower * PARRY_DAMAGE_MULTIPLIER;
+        const speed = Math.hypot(vx, vy);
+        const newSpeed = speed * PARRY_SPEED_MULTIPLIER;
+        const speedRatio = newSpeed / speed;
+        vx *= speedRatio;
+        vy *= speedRatio;
+        
+        return { ...ball, x, y, vx, vy, damage, ...empoweredBall };
+      }
+      
       // Precision Timing: center 20% doubles damage
       const hasPrecisionTiming = (unlockedSkills.precisionTiming || 0) > 0;
       if (hasPrecisionTiming && Math.abs(hitPos) <= 0.2) {
@@ -332,6 +362,24 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
           brick.empoweredUntil = undefined;
         }
 
+        // Handle empowered ball logic
+        let ballPierced = false;
+        if (mutableBall.isEmpowered && mutableBall.empowermentType === 'damage' && 
+            mutableBall.empoweredUntil && now < mutableBall.empoweredUntil &&
+            mutableBall.piercingHitsRemaining && mutableBall.piercingHitsRemaining > 0) {
+          // Empowered ball with piercing hits remaining
+          ballPierced = true;
+          mutableBall.piercingHitsRemaining--;
+          
+          // Remove empowerment if no piercing hits remain
+          if (mutableBall.piercingHitsRemaining <= 0) {
+            mutableBall.isEmpowered = false;
+            mutableBall.empowermentType = undefined;
+            mutableBall.empoweredUntil = undefined;
+            mutableBall.piercingHitsRemaining = undefined;
+          }
+        }
+
         if (hasBreakthrough && mutableBall.damage > 0) {
           const damageToDeal = Math.min(mutableBall.damage, brick.hp - totalDamageToBrick);
           const brickDestroyed = (totalDamageToBrick + damageToDeal) >= brick.hp;
@@ -367,13 +415,24 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
         } else {
           // Crit chance via Ingenuity
           const ingenuity = (args as any).playerIngenuity || 0;
-          const baseDamage = ballDamage;
+          let baseDamage = ballDamage;
+          
+          // Apply empowered ball damage multiplier
+          if (mutableBall.isEmpowered && mutableBall.empowermentType === 'damage' && 
+              mutableBall.empoweredUntil && now < mutableBall.empoweredUntil) {
+            baseDamage *= PARRY_DAMAGE_MULTIPLIER;
+          }
+          
           const critChance = Math.min(0.75, ingenuity * 0.02 + ((args as any).playerLuck || 0) * 0.01);
           const isCrit = Math.random() < critChance;
           const critMultiplier = isCrit ? 2 : 1;
           damageMap.set(brick.id, totalDamageToBrick + baseDamage * critMultiplier);
-          if (overlapX < overlapY) { mutableBall.vx = -mutableBall.vx; } else { mutableBall.vy = -mutableBall.vy; }
-          break;
+          
+          // Don't bounce if ball is piercing
+          if (!ballPierced) {
+            if (overlapX < overlapY) { mutableBall.vx = -mutableBall.vx; } else { mutableBall.vy = -mutableBall.vy; }
+            break;
+          }
         }
       }
     }

@@ -8,6 +8,7 @@ import { SkillSystem } from '@/src/core/systems/SkillSystem';
 import { BuffSystem } from '@/src/core/systems/BuffSystem';
 import { ProgressionSystem } from '@/src/core/systems/ProgressionSystem';
 import { SaveSystem } from '@/src/core/systems/SaveSystem';
+import { AudioSystem } from '@/src/core/systems/AudioSystem';
 
 export class GameEngine {
   private systems: IGameSystem[] = [];
@@ -25,6 +26,7 @@ export class GameEngine {
   private initializeSystems(): void {
     // Placeholder systems; will be filled during migration
     this.systems = [
+      new AudioSystem(),
       new SaveSystem(),
       new PhysicsSystem(),
       new CollisionSystem(),
@@ -51,6 +53,10 @@ export class GameEngine {
 
   listSystems(): Array<{ name: string; priority: number; deps: string[] }> {
     return this.systems.map((s) => ({ name: s.name, priority: s.priority, deps: s.dependencies }));
+  }
+
+  getAudioSystem(): AudioSystem | null {
+    return this.systems.find(s => s.name === 'AudioSystem') as AudioSystem || null;
   }
 }
 
