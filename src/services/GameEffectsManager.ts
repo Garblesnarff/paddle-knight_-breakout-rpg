@@ -1,4 +1,3 @@
-import { AudioSystem } from '../core/systems/AudioSystem';
 import { AnimationUtils } from '../utils/AnimationUtils';
 import { AudioManager } from './AudioManager';
 
@@ -20,17 +19,12 @@ export interface ComboEffect {
 }
 
 class GameEffectsManagerService {
-  private audioSystem: AudioSystem | null = null;
   private activeEffects: Map<string, any> = new Map();
   private effectQueue: GameEffect[] = [];
   private isProcessing = false;
   private particleCallback: ((effect: {id: string, effectId: string, position: {x: number, y: number}}) => void) | null = null;
   private effectThrottle: number = 0;
   private lastEffectTime: number = 0;
-
-  public setAudioSystem(audioSystem: AudioSystem): void {
-    this.audioSystem = audioSystem;
-  }
 
   public setParticleCallback(callback: (effect: {id: string, effectId: string, position: {x: number, y: number}}) => void): void {
     this.particleCallback = callback;

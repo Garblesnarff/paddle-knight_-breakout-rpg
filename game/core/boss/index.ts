@@ -2,16 +2,16 @@ export {
   stepBossArchmage,
   type StepBossArchmageArgs,
   type StepBossArchmageResult,
-} from './archmage';
+} from './Archmage';
 
 export {
   stepBossClassic,
   type StepBossClassicArgs,
   type StepBossClassicResult,
-} from './classic';
+} from './Classic';
 
 export {
   stepChronoEngineer,
   type StepChronoEngineerArgs,
   type StepChronoEngineerResult,
-} from './chrono-engineer';
+} from './ChronoEngineer';

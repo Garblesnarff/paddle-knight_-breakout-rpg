@@ -9,7 +9,7 @@ import { Ball, Brick, Explosion, ElementalBeam, RunicEmpowermentBuffs, FireRainZ
 import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, BRICK_PROPERTIES, BRICK_WIDTH, BRICK_HEIGHT, LIGHTNING_STRIKE_WARNING_DURATION, LIGHTNING_STRIKE_STRIKE_DURATION, LIGHTNING_STRIKE_DAMAGE, LIGHTNING_STRIKE_WIDTH, FIRE_RAIN_DURATION, FIRE_RAIN_DAMAGE, FIRE_RAIN_RADIUS, ICE_SPIKE_DURATION, ICE_SPIKE_HEIGHT, ICE_SPIKE_WIDTH, ARCHMAGE_FINAL_GAMBIT_THRESHOLD, FINAL_GAMBIT_BEAM_WARNING_DURATION, FINAL_GAMBIT_BEAM_STRIKE_DURATION, PARRY_WINDOW_DURATION, PARRY_EMPOWERMENT_DURATION, PARRY_DAMAGE_MULTIPLIER, PARRY_SPEED_MULTIPLIER, PARRY_PIERCING_HITS } from '../../constants';
 import { BrickType } from '../../types';
 import { lineRectCollision } from './collisions';
-import { handleGearspriteDodge } from './bio-forge';
+import { handleGearspriteDodge } from './BioForge';
 // Enhanced physics imports disabled due to integration issues
 // import { getBallPhysicsIntegration } from '../../src/physics/ballPhysicsIntegration';
 // import { isEnhancedPhysicsEnabled } from '../../src/config/features.config';

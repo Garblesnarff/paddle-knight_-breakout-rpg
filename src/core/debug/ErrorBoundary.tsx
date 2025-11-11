@@ -1,5 +1,4 @@
 import React from 'react';
-import { GameLogger } from './Logger';
 
 type ErrorBoundaryState = { hasError: boolean };
 
@@ -14,7 +13,7 @@ export class GameErrorBoundary extends React.Component<React.PropsWithChildren<u
   }
 
   componentDidCatch(error: Error): void {
-    GameLogger.error('React error boundary triggered', error);
+    console.error('React error boundary triggered', error);
   }
 
   render(): React.ReactNode {
