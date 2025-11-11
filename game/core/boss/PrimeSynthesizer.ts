@@ -25,7 +25,7 @@ import {
     BRICK_HEIGHT
 } from '../../../constants';
 import { BRICK_PROPERTIES } from '../../../constants';
-import { createSkillDisableDebuff } from '../debuffs';
+import { createSkillDisableDebuff } from '../Debuffs';
 
 export interface PrimeSynthesizerArgs {
     boss: Brick;
