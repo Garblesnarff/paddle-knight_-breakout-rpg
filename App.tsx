@@ -4,7 +4,7 @@ import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS, INITIAL_
 import { SKILL_TREE_DATA } from './game/skills';
 import { SHOP_ITEMS } from './game/shop-items';
 import { MAX_LEVELS, createBricksForWorld, createBricksForStage } from './game/level-manager';
-import { WORLD_CONFIG } from './game/world-config';
+import { WORLD_CONFIG } from './game/WorldConfig';
 import { StartScreen } from './components/StartScreen';
 import { GameOverScreen } from './components/GameOverScreen';
 import { VictoryScreen } from './components/VictoryScreen';
@@ -13,7 +13,7 @@ import { TopUI, BottomUI } from './components/GameUI';
 import { SkillTree } from './components/SkillTree';
 import { WorldSelector } from './components/WorldSelector';
 import { StageSelector } from './components/StageSelector';
-import { runGameIteration } from './game/gameEngine';
+import { runGameIteration } from './game/GameEngine';
 import { useGameLoop } from './hooks/useGameLoop';
 import SaveManager from './services/SaveManager';
 import { GameEffectsManager } from './src/services/GameEffectsManager';

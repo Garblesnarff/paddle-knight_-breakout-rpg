@@ -1,6 +1,6 @@
 // StageSelector.tsx
 import React from 'react';
-import { WORLD_CONFIG, getWorldStages, getWorldTheme } from '../game/world-config';
+import { WORLD_CONFIG, getWorldStages, getWorldTheme } from '../game/WorldConfig';
 import SaveManager from '../services/SaveManager';
 
 interface StageSelectorProps {

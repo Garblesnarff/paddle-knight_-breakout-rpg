@@ -1,6 +1,6 @@
 // WorldSelector.tsx
 import React from 'react';
-import { getWorldStages, getWorldTotalStars, getWorldEarnedStars, getWorldTheme } from '../game/world-config';
+import { getWorldStages, getWorldTotalStars, getWorldEarnedStars, getWorldTheme } from '../game/WorldConfig';
 import SaveManager from '../services/SaveManager';
 
 interface WorldSelectorProps {
