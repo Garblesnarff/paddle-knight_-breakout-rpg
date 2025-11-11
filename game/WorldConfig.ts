@@ -1,4 +1,4 @@
-// world-config.ts
+// WorldConfig.ts
 export interface WorldInfo {
     id: number;
     name: string;
