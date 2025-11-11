@@ -25,7 +25,7 @@ import {
 } from './core/Hazards';
 import { stepBossArchmage, stepBossClassic, stepChronoEngineer } from './core/Boss';
 import { stepBioForgeMechanics, handleScrapGolemExplosion } from './core/BioForge';
-import { stepEnvironmentalHazards as stepBioForgeEnvironmental } from './core/BioForge/environmental';
+import { stepEnvironmentalHazards as stepBioForgeEnvironmental } from './core/BioForge/Environmental';
 import { stepPrimeSynthesizer } from './core/boss/PrimeSynthesizer';
 import { stepDebuffSystem } from './core/Debuffs';
 
