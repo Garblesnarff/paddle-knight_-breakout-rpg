@@ -1,5 +1,5 @@
 import React from 'react';
-import { SHOP_ITEMS } from '../game/shop-items';
+import { SHOP_ITEMS } from '../game/ShopItems';
 import SaveManager from '../services/SaveManager';
 
 interface ShopProps {

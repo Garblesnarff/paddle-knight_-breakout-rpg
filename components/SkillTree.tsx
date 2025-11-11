@@ -1,5 +1,5 @@
 import React from 'react';
-import { SKILL_TREE_DATA } from '../game/skills';
+import { SKILL_TREE_DATA } from '../game/Skills';
 import { SkillNode } from '../types';
 import { IconBolt, IconHeart, IconShield, IconStar, IconSitemap, IconBrain, IconSparkles, IconWind, IconOrb, IconElementalTrail, IconTimeRewind } from './Icons';
 

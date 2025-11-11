@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import { useGameStore } from '@/src/core/state/gameStore';
 import { runGameIteration } from '@/game/GameEngine';
-import { createBricksForStage } from '@/game/level-manager';
+import { createBricksForStage } from '@/game/LevelManager';
 import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS } from '@/constants';
 import GameCanvas from './GameCanvas';
 import TopUI from './TopUI';
