@@ -1,6 +1,6 @@
 import React from 'react';
 import { GameStatus } from '@/types';
-import { useGameStore } from '@/src/core/state/gameStore';
+import { useGameStore } from '@/src/core/state/GameStore';
 import { StartScreen } from '@/components/StartScreen';
 import { WorldSelector } from '@/components/WorldSelector';
 import { StageSelector } from '@/components/StageSelector';

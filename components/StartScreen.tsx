@@ -1,6 +1,6 @@
 
 import React, { useState, useCallback } from 'react';
-import { generateBackstory } from '../services/geminiService';
+import { generateBackstory } from '../services/GeminiService';
 import { IconBook, IconLoader } from './Icons';
 
 interface StartScreenProps {

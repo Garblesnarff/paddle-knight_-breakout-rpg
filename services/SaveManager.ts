@@ -33,7 +33,7 @@ export interface SaveData {
     };
 }
 
-import { SaveSchema } from '@/src/data/schemas/save.schema';
+import { SaveSchema } from '@/src/data/schemas/SaveSchema';
 
 class SaveManager {
     private static instance: SaveManager;

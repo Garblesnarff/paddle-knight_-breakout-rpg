@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGameStore } from '@/src/core/state/gameStore';
+import { useGameStore } from '@/src/core/state/GameStore';
 import { LEVEL_UP_XP } from '@/constants';
 import { IconGoldCoin } from '@/components/Icons';
 import { AudioControls } from '@/src/ui/components/AudioControls';

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import { useGameStore } from '@/src/core/state/gameStore';
+import { useGameStore } from '@/src/core/state/GameStore';
 import { runGameIteration } from '@/game/GameEngine';
 import { createBricksForStage } from '@/game/LevelManager';
 import { GAME_WIDTH, GAME_HEIGHT, PADDLE_HEIGHT, PADDLE_Y, BALL_RADIUS } from '@/constants';

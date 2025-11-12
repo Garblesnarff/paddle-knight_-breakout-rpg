@@ -14,10 +14,10 @@
  */
 import { Brick, BrickType } from '../types';
 import { GAME_WIDTH, BRICK_WIDTH, BRICK_HEIGHT, BRICK_GAP, BRICK_PROPERTIES, BOSS_MOVE_SPEED, GEARSPRITE_DODGE_CHANCE } from '../constants';
-import { LEVEL_LAYOUTS as WORLD1_LAYOUTS } from './worlds/world-1/layouts';
-import { LEVEL_LAYOUTS as WORLD2_LAYOUTS } from './worlds/world-2/layouts';
-import { LEVEL_LAYOUTS as WORLD3_LAYOUTS } from './worlds/world-3/layouts';
-import { LEVEL_LAYOUTS as WORLD4_LAYOUTS } from './worlds/world-4/layouts';
+import { LEVEL_LAYOUTS as WORLD1_LAYOUTS } from './worlds/world-1/Layouts';
+import { LEVEL_LAYOUTS as WORLD2_LAYOUTS } from './worlds/world-2/Layouts';
+import { LEVEL_LAYOUTS as WORLD3_LAYOUTS } from './worlds/world-3/Layouts';
+import { LEVEL_LAYOUTS as WORLD4_LAYOUTS } from './worlds/world-4/Layouts';
 
 export const ALL_LEVEL_LAYOUTS = [
     ...WORLD1_LAYOUTS,

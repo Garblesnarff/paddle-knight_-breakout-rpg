@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGameStore } from '@/src/core/state/gameStore';
+import { useGameStore } from '@/src/core/state/GameStore';
 import { PlayerStats, RunicEmpowermentBuffs, Skill, GameStatus } from '@/types';
 import { IconBan, IconBolt, IconBrain, IconHeart, IconShield, IconSitemap, IconWind } from '@/components/Icons';
 

@@ -14,7 +14,7 @@ import { SkillTree } from './components/SkillTree';
 import { WorldSelector } from './components/WorldSelector';
 import { StageSelector } from './components/StageSelector';
 import { runGameIteration } from './game/GameEngine';
-import { useGameLoop } from './hooks/useGameLoop';
+import { useGameLoop } from './hooks/UseGameLoop';
 import SaveManager from './services/SaveManager';
 import { GameEffectsManager } from './src/services/GameEffectsManager';
 import { CSSParticleEffect } from './src/effects/CSSParticleEffects';

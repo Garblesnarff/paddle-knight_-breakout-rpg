@@ -25,4 +25,4 @@ export * from './skills';
 export * from './ui';
 
 // Game state
-export * from './game-state';
+export * from './GameState';
