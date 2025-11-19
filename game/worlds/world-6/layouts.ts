@@ -44,4 +44,56 @@ export const LEVEL_LAYOUTS = [
     [Ruby, Sapphire, Emerald, Quartz, Quartz, Emerald, Sapphire, Ruby],
     [Emerald, Ruby, Sapphire, null, null, Sapphire, Ruby, Emerald],
   ],
+
+  // Stage 6: Obsidian Shards
+  [
+    [Obsidian, Diamond, Quartz, Ruby, Ruby, Quartz, Diamond, Obsidian],
+    [Diamond, Quartz, Obsidian, Sapphire, Sapphire, Obsidian, Quartz, Diamond],
+    [Quartz, Obsidian, Diamond, Emerald, Emerald, Diamond, Obsidian, Quartz],
+    [Ruby, Sapphire, Emerald, Quartz, Quartz, Emerald, Sapphire, Ruby],
+    [Obsidian, Diamond, Quartz, Ruby, Ruby, Quartz, Diamond, Obsidian],
+  ],
+
+  // Stage 7: Diamond Fortress
+  [
+    [Diamond, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Diamond],
+    [Obsidian, Diamond, Quartz, Diamond, Diamond, Quartz, Diamond, Obsidian],
+    [Diamond, Quartz, Obsidian, Ruby, Ruby, Obsidian, Quartz, Diamond],
+    [Quartz, Diamond, Sapphire, Emerald, Emerald, Sapphire, Diamond, Quartz],
+    [Diamond, Obsidian, Diamond, Quartz, Quartz, Diamond, Obsidian, Diamond],
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+  ],
+
+  // Stage 8: Crystalline Labyrinth
+  [
+    [Obsidian, Obsidian, Diamond, Diamond, Diamond, Diamond, Obsidian, Obsidian],
+    [Diamond, Quartz, Obsidian, Quartz, Quartz, Obsidian, Quartz, Diamond],
+    [Obsidian, Diamond, Quartz, Obsidian, Obsidian, Quartz, Diamond, Obsidian],
+    [Diamond, Obsidian, Diamond, Quartz, Quartz, Diamond, Obsidian, Diamond],
+    [Quartz, Diamond, Obsidian, Ruby, Ruby, Obsidian, Diamond, Quartz],
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+  ],
+
+  // Stage 9: Obsidian Legion
+  [
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+    [Diamond, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Diamond],
+    [Obsidian, Diamond, Quartz, Diamond, Diamond, Quartz, Diamond, Obsidian],
+    [Diamond, Obsidian, Diamond, Quartz, Quartz, Diamond, Obsidian, Diamond],
+    [Obsidian, Quartz, Obsidian, Diamond, Diamond, Obsidian, Quartz, Obsidian],
+    [Diamond, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Diamond],
+    [Obsidian, Obsidian, Obsidian, Diamond, Diamond, Obsidian, Obsidian, Obsidian],
+  ],
+
+  // Stage 10: Gem Palace
+  [
+    [Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian],
+    [Obsidian, Diamond, Diamond, Diamond, Diamond, Diamond, Diamond, Obsidian],
+    [Diamond, Obsidian, Quartz, Obsidian, Obsidian, Quartz, Obsidian, Diamond],
+    [Diamond, Quartz, Obsidian, Diamond, Diamond, Obsidian, Quartz, Diamond],
+    [Obsidian, Diamond, Quartz, Obsidian, Obsidian, Quartz, Diamond, Obsidian],
+    [Diamond, Obsidian, Diamond, Quartz, Quartz, Diamond, Obsidian, Diamond],
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+    [Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian],
+  ],
 ];

@@ -44,4 +44,56 @@ export const LEVEL_LAYOUTS = [
     [Rootguard, Blossom, Thorn, Wildvine, Wildvine, Thorn, Blossom, Rootguard],
     [Thorn, Sprout, Blossom, null, null, Blossom, Sprout, Thorn],
   ],
+
+  // Stage 6: Wildvine Tangle
+  [
+    [Wildvine, Canopy, Rootguard, Blossom, Blossom, Rootguard, Canopy, Wildvine],
+    [Canopy, Rootguard, Wildvine, Thorn, Thorn, Wildvine, Rootguard, Canopy],
+    [Rootguard, Blossom, Thorn, Sprout, Sprout, Thorn, Blossom, Rootguard],
+    [Blossom, Thorn, Sprout, Rootguard, Rootguard, Sprout, Thorn, Blossom],
+    [Wildvine, Canopy, Rootguard, Blossom, Blossom, Rootguard, Canopy, Wildvine],
+  ],
+
+  // Stage 7: Canopy Maze
+  [
+    [Canopy, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Canopy],
+    [Wildvine, Canopy, Rootguard, Canopy, Canopy, Rootguard, Canopy, Wildvine],
+    [Canopy, Rootguard, Wildvine, Blossom, Blossom, Wildvine, Rootguard, Canopy],
+    [Rootguard, Wildvine, Blossom, Thorn, Thorn, Blossom, Wildvine, Rootguard],
+    [Wildvine, Canopy, Rootguard, Blossom, Blossom, Rootguard, Canopy, Wildvine],
+    [Canopy, Wildvine, Canopy, Rootguard, Rootguard, Canopy, Wildvine, Canopy],
+  ],
+
+  // Stage 8: Overgrown Fortress
+  [
+    [Wildvine, Wildvine, Canopy, Canopy, Canopy, Canopy, Wildvine, Wildvine],
+    [Canopy, Rootguard, Wildvine, Blossom, Blossom, Wildvine, Rootguard, Canopy],
+    [Wildvine, Canopy, Rootguard, Wildvine, Wildvine, Rootguard, Canopy, Wildvine],
+    [Canopy, Wildvine, Canopy, Rootguard, Rootguard, Canopy, Wildvine, Canopy],
+    [Rootguard, Canopy, Wildvine, Blossom, Blossom, Wildvine, Canopy, Rootguard],
+    [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
+  ],
+
+  // Stage 9: Verdant Onslaught
+  [
+    [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
+    [Canopy, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Canopy],
+    [Wildvine, Canopy, Rootguard, Blossom, Blossom, Rootguard, Canopy, Wildvine],
+    [Canopy, Rootguard, Wildvine, Canopy, Canopy, Wildvine, Rootguard, Canopy],
+    [Wildvine, Canopy, Wildvine, Rootguard, Rootguard, Wildvine, Canopy, Wildvine],
+    [Canopy, Wildvine, Canopy, Blossom, Blossom, Canopy, Wildvine, Canopy],
+    [Wildvine, Wildvine, Wildvine, Canopy, Canopy, Wildvine, Wildvine, Wildvine],
+  ],
+
+  // Stage 10: Primordial Grove
+  [
+    [Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine],
+    [Wildvine, Canopy, Canopy, Canopy, Canopy, Canopy, Canopy, Wildvine],
+    [Canopy, Wildvine, Rootguard, Blossom, Blossom, Rootguard, Wildvine, Canopy],
+    [Canopy, Rootguard, Wildvine, Canopy, Canopy, Wildvine, Rootguard, Canopy],
+    [Wildvine, Blossom, Canopy, Wildvine, Wildvine, Canopy, Blossom, Wildvine],
+    [Canopy, Wildvine, Rootguard, Blossom, Blossom, Rootguard, Wildvine, Canopy],
+    [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
+    [Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine],
+  ],
 ];

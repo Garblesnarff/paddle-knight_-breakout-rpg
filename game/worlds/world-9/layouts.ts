@@ -44,4 +44,56 @@ export const LEVEL_LAYOUTS = [
     [Deepcrawler, Brine, Whirlpool, Leviathan, Leviathan, Whirlpool, Brine, Deepcrawler],
     [Whirlpool, Tide, Brine, null, null, Brine, Tide, Whirlpool],
   ],
+
+  // Stage 6: Trench Awakening
+  [
+    [Trench, Leviathan, Deepcrawler, Brine, Brine, Deepcrawler, Leviathan, Trench],
+    [Leviathan, Deepcrawler, Trench, Whirlpool, Whirlpool, Trench, Deepcrawler, Leviathan],
+    [Deepcrawler, Brine, Whirlpool, Tide, Tide, Whirlpool, Brine, Deepcrawler],
+    [Brine, Whirlpool, Tide, Deepcrawler, Deepcrawler, Tide, Whirlpool, Brine],
+    [Trench, Leviathan, Deepcrawler, Brine, Brine, Deepcrawler, Leviathan, Trench],
+  ],
+
+  // Stage 7: Leviathan's Hunt
+  [
+    [Leviathan, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Leviathan],
+    [Trench, Leviathan, Deepcrawler, Leviathan, Leviathan, Deepcrawler, Leviathan, Trench],
+    [Leviathan, Deepcrawler, Trench, Brine, Brine, Trench, Deepcrawler, Leviathan],
+    [Deepcrawler, Trench, Brine, Whirlpool, Whirlpool, Brine, Trench, Deepcrawler],
+    [Trench, Leviathan, Deepcrawler, Brine, Brine, Deepcrawler, Leviathan, Trench],
+    [Leviathan, Trench, Leviathan, Deepcrawler, Deepcrawler, Leviathan, Trench, Leviathan],
+  ],
+
+  // Stage 8: Deep Sea Pressure
+  [
+    [Trench, Trench, Leviathan, Leviathan, Leviathan, Leviathan, Trench, Trench],
+    [Leviathan, Deepcrawler, Trench, Brine, Brine, Trench, Deepcrawler, Leviathan],
+    [Trench, Leviathan, Deepcrawler, Trench, Trench, Deepcrawler, Leviathan, Trench],
+    [Leviathan, Trench, Leviathan, Deepcrawler, Deepcrawler, Leviathan, Trench, Leviathan],
+    [Deepcrawler, Leviathan, Trench, Brine, Brine, Trench, Leviathan, Deepcrawler],
+    [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
+  ],
+
+  // Stage 9: Abyssal Nightmare
+  [
+    [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
+    [Leviathan, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Leviathan],
+    [Trench, Leviathan, Deepcrawler, Brine, Brine, Deepcrawler, Leviathan, Trench],
+    [Leviathan, Deepcrawler, Trench, Leviathan, Leviathan, Trench, Deepcrawler, Leviathan],
+    [Trench, Leviathan, Trench, Deepcrawler, Deepcrawler, Trench, Leviathan, Trench],
+    [Leviathan, Trench, Leviathan, Brine, Brine, Leviathan, Trench, Leviathan],
+    [Trench, Trench, Trench, Leviathan, Leviathan, Trench, Trench, Trench],
+  ],
+
+  // Stage 10: Depths of Despair
+  [
+    [Trench, Trench, Trench, Trench, Trench, Trench, Trench, Trench],
+    [Trench, Leviathan, Leviathan, Leviathan, Leviathan, Leviathan, Leviathan, Trench],
+    [Leviathan, Trench, Deepcrawler, Brine, Brine, Deepcrawler, Trench, Leviathan],
+    [Leviathan, Deepcrawler, Trench, Leviathan, Leviathan, Trench, Deepcrawler, Leviathan],
+    [Trench, Brine, Leviathan, Trench, Trench, Leviathan, Brine, Trench],
+    [Leviathan, Trench, Deepcrawler, Brine, Brine, Deepcrawler, Trench, Leviathan],
+    [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
+    [Trench, Trench, Trench, Trench, Trench, Trench, Trench, Trench],
+  ],
 ];

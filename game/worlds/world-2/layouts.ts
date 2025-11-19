@@ -61,6 +61,46 @@ export const LEVEL_LAYOUTS = [
         [Lightning, Mirror, Tank, Tank, Tank, Tank, Tank, Tank, Mirror, Lightning],
         [Ice, Mirror, Tank, Apprentice, Apprentice, Apprentice, Apprentice, Tank, Mirror, Ice],
         [Rune, Fire, Lightning, Ice, Mirror, Mirror, Ice, Lightning, Fire, Rune],
+    ],
+    // Level 14: Elemental Chaos
+    [
+        [Lightning, Rune, Fire, Ice, Ice, Fire, Rune, Lightning],
+        [Rune, Mirror, Apprentice, Lightning, Lightning, Apprentice, Mirror, Rune],
+        [Fire, Apprentice, Rune, Mirror, Mirror, Rune, Apprentice, Fire],
+        [Ice, Lightning, Mirror, Apprentice, Apprentice, Mirror, Lightning, Ice],
+        [Lightning, Fire, Ice, Rune, Rune, Ice, Fire, Lightning],
+    ],
+    // Level 15: Runic Convergence
+    [
+        [Rune, Rune, Mirror, Fire, Fire, Mirror, Rune, Rune],
+        [Mirror, Lightning, Ice, Rune, Rune, Ice, Lightning, Mirror],
+        [Fire, Ice, Rune, Apprentice, Apprentice, Rune, Ice, Fire],
+        [Ice, Rune, Apprentice, Mirror, Mirror, Apprentice, Rune, Ice],
+        [Rune, Mirror, Fire, Lightning, Lightning, Fire, Mirror, Rune],
+    ],
+    // Level 16: Mirror Dimension
+    [
+        [Mirror, Mirror, Mirror, Rune, Rune, Mirror, Mirror, Mirror],
+        [Mirror, Fire, Lightning, Mirror, Mirror, Lightning, Fire, Mirror],
+        [Rune, Lightning, Ice, Apprentice, Apprentice, Ice, Lightning, Rune],
+        [Mirror, Ice, Apprentice, Fire, Fire, Apprentice, Ice, Mirror],
+        [Mirror, Rune, Fire, Lightning, Lightning, Fire, Rune, Mirror],
+    ],
+    // Level 17: Magical Apex
+    [
+        [Rune, Fire, Lightning, Ice, Ice, Lightning, Fire, Rune],
+        [Fire, Mirror, Rune, Mirror, Mirror, Rune, Mirror, Fire],
+        [Lightning, Rune, Mirror, Apprentice, Apprentice, Mirror, Rune, Lightning],
+        [Ice, Mirror, Apprentice, Rune, Rune, Apprentice, Mirror, Ice],
+        [Rune, Fire, Lightning, Ice, Ice, Lightning, Fire, Rune],
+    ],
+    // Level 18: Arcane Mastery
+    [
+        [Mirror, Rune, Rune, Fire, Fire, Rune, Rune, Mirror],
+        [Rune, Lightning, Ice, Mirror, Mirror, Ice, Lightning, Rune],
+        [Fire, Ice, Mirror, Rune, Rune, Mirror, Ice, Fire],
+        [Lightning, Mirror, Rune, Apprentice, Apprentice, Rune, Mirror, Lightning],
+        [Mirror, Fire, Lightning, Ice, Ice, Lightning, Fire, Mirror],
     ]
 ];
 

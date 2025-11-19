@@ -44,4 +44,56 @@ export const LEVEL_LAYOUTS = [
     [null, Phantom, null, Shade, null, Phantom, null],
     [Shade, null, Phantom, null, Phantom, null, Shade],
   ],
+
+  // Stage 6: Void Echoes
+  [
+    [Voidwalker, Nightstalker, Specter, Wraith, Wraith, Specter, Nightstalker, Voidwalker],
+    [Nightstalker, Specter, Voidwalker, Phantom, Phantom, Voidwalker, Specter, Nightstalker],
+    [Specter, Wraith, Phantom, Shade, Shade, Phantom, Wraith, Specter],
+    [Wraith, Phantom, Shade, Specter, Specter, Shade, Phantom, Wraith],
+    [Voidwalker, Nightstalker, Specter, Wraith, Wraith, Specter, Nightstalker, Voidwalker],
+  ],
+
+  // Stage 7: Spectral Maze
+  [
+    [Nightstalker, Voidwalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker, Nightstalker],
+    [Voidwalker, Specter, Wraith, Specter, Specter, Wraith, Specter, Voidwalker],
+    [Specter, Wraith, Nightstalker, Phantom, Phantom, Nightstalker, Wraith, Specter],
+    [Wraith, Specter, Phantom, Voidwalker, Voidwalker, Phantom, Specter, Wraith],
+    [Nightstalker, Voidwalker, Specter, Wraith, Wraith, Specter, Voidwalker, Nightstalker],
+    [Voidwalker, Nightstalker, Wraith, Specter, Specter, Wraith, Nightstalker, Voidwalker],
+  ],
+
+  // Stage 8: Nightstalker's Hunt
+  [
+    [Voidwalker, Voidwalker, Nightstalker, Nightstalker, Nightstalker, Nightstalker, Voidwalker, Voidwalker],
+    [Nightstalker, Specter, Voidwalker, Wraith, Wraith, Voidwalker, Specter, Nightstalker],
+    [Voidwalker, Wraith, Specter, Nightstalker, Nightstalker, Specter, Wraith, Voidwalker],
+    [Specter, Nightstalker, Wraith, Voidwalker, Voidwalker, Wraith, Nightstalker, Specter],
+    [Wraith, Voidwalker, Nightstalker, Specter, Specter, Nightstalker, Voidwalker, Wraith],
+    [Voidwalker, Nightstalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Nightstalker, Voidwalker],
+  ],
+
+  // Stage 9: Voidwalker's Gauntlet
+  [
+    [Voidwalker, Nightstalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Nightstalker, Voidwalker],
+    [Nightstalker, Voidwalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker, Nightstalker],
+    [Voidwalker, Specter, Wraith, Nightstalker, Nightstalker, Wraith, Specter, Voidwalker],
+    [Nightstalker, Wraith, Specter, Voidwalker, Voidwalker, Specter, Wraith, Nightstalker],
+    [Voidwalker, Nightstalker, Voidwalker, Specter, Specter, Voidwalker, Nightstalker, Voidwalker],
+    [Nightstalker, Voidwalker, Nightstalker, Wraith, Wraith, Nightstalker, Voidwalker, Nightstalker],
+    [Voidwalker, Voidwalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Voidwalker, Voidwalker],
+  ],
+
+  // Stage 10: Abyss of Shadows
+  [
+    [Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker],
+    [Voidwalker, Nightstalker, Nightstalker, Nightstalker, Nightstalker, Nightstalker, Nightstalker, Voidwalker],
+    [Nightstalker, Voidwalker, Specter, Wraith, Wraith, Specter, Voidwalker, Nightstalker],
+    [Nightstalker, Specter, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Specter, Nightstalker],
+    [Voidwalker, Wraith, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Wraith, Voidwalker],
+    [Nightstalker, Voidwalker, Specter, Wraith, Wraith, Specter, Voidwalker, Nightstalker],
+    [Voidwalker, Nightstalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Nightstalker, Voidwalker],
+    [Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker],
+  ],
 ];

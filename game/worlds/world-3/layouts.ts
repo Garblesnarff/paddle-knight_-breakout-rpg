@@ -65,4 +65,49 @@ export const LEVEL_LAYOUTS = [
         [ScrapGolem, VineBot, Corruptor, ScrapGolem, ScrapGolem, Corruptor, VineBot, ScrapGolem],
         [Replicator, Corruptor, HiveMind, Replicator, Replicator, HiveMind, Corruptor, Replicator],
     ],
+
+    // Stage 8: "Biomechanical Fusion"
+    [
+        [HiveMind, Replicator, Corruptor, HiveMind, HiveMind, Corruptor, Replicator, HiveMind],
+        [Replicator, ScrapGolem, VineBot, Replicator, Replicator, VineBot, ScrapGolem, Replicator],
+        [Corruptor, VineBot, HiveMind, Gearsprite, Gearsprite, HiveMind, VineBot, Corruptor],
+        [ScrapGolem, Corruptor, Gearsprite, Replicator, Replicator, Gearsprite, Corruptor, ScrapGolem],
+        [HiveMind, Replicator, ScrapGolem, Corruptor, Corruptor, ScrapGolem, Replicator, HiveMind],
+    ],
+
+    // Stage 9: "Adaptive Swarm"
+    [
+        [Replicator, Replicator, HiveMind, Corruptor, Corruptor, HiveMind, Replicator, Replicator],
+        [HiveMind, Corruptor, ScrapGolem, HiveMind, HiveMind, ScrapGolem, Corruptor, HiveMind],
+        [Corruptor, ScrapGolem, Replicator, VineBot, VineBot, Replicator, ScrapGolem, Corruptor],
+        [ScrapGolem, HiveMind, VineBot, Gearsprite, Gearsprite, VineBot, HiveMind, ScrapGolem],
+        [Replicator, Corruptor, HiveMind, ScrapGolem, ScrapGolem, HiveMind, Corruptor, Replicator],
+    ],
+
+    // Stage 10: "Synthesis Overflow"
+    [
+        [HiveMind, Corruptor, Replicator, HiveMind, HiveMind, Replicator, Corruptor, HiveMind],
+        [Corruptor, ScrapGolem, HiveMind, Corruptor, Corruptor, HiveMind, ScrapGolem, Corruptor],
+        [Replicator, HiveMind, Corruptor, Replicator, Replicator, Corruptor, HiveMind, Replicator],
+        [ScrapGolem, Replicator, VineBot, ScrapGolem, ScrapGolem, VineBot, Replicator, ScrapGolem],
+        [HiveMind, Corruptor, Replicator, HiveMind, HiveMind, Replicator, Corruptor, HiveMind],
+    ],
+
+    // Stage 11: "Final Corruption"
+    [
+        [Replicator, HiveMind, HiveMind, Corruptor, Corruptor, HiveMind, HiveMind, Replicator],
+        [HiveMind, Corruptor, Replicator, HiveMind, HiveMind, Replicator, Corruptor, HiveMind],
+        [Corruptor, Replicator, ScrapGolem, Corruptor, Corruptor, ScrapGolem, Replicator, Corruptor],
+        [HiveMind, ScrapGolem, VineBot, Replicator, Replicator, VineBot, ScrapGolem, HiveMind],
+        [Replicator, Corruptor, HiveMind, ScrapGolem, ScrapGolem, HiveMind, Corruptor, Replicator],
+    ],
+
+    // Stage 12: "Nexus Finale"
+    [
+        [HiveMind, Replicator, Corruptor, HiveMind, HiveMind, Corruptor, Replicator, HiveMind],
+        [Replicator, Corruptor, HiveMind, Replicator, Replicator, HiveMind, Corruptor, Replicator],
+        [Corruptor, HiveMind, Replicator, Corruptor, Corruptor, Replicator, HiveMind, Corruptor],
+        [HiveMind, Replicator, ScrapGolem, HiveMind, HiveMind, ScrapGolem, Replicator, HiveMind],
+        [Replicator, Corruptor, HiveMind, Replicator, Replicator, HiveMind, Corruptor, Replicator],
+    ],
 ];

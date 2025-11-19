@@ -44,4 +44,56 @@ export const LEVEL_LAYOUTS = [
     [Scarab, Mirage, Dust, Mummy, Mummy, Dust, Mirage, Scarab],
     [Dust, Sand, Mirage, null, null, Mirage, Sand, Dust],
   ],
+
+  // Stage 6: Obelisk Rise
+  [
+    [Obelisk, Mummy, Scarab, Mirage, Mirage, Scarab, Mummy, Obelisk],
+    [Mummy, Scarab, Obelisk, Dust, Dust, Obelisk, Scarab, Mummy],
+    [Scarab, Mirage, Dust, Sand, Sand, Dust, Mirage, Scarab],
+    [Mirage, Dust, Sand, Scarab, Scarab, Sand, Dust, Mirage],
+    [Obelisk, Mummy, Scarab, Mirage, Mirage, Scarab, Mummy, Obelisk],
+  ],
+
+  // Stage 7: Mummy's Curse
+  [
+    [Mummy, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Mummy],
+    [Obelisk, Mummy, Scarab, Mummy, Mummy, Scarab, Mummy, Obelisk],
+    [Mummy, Scarab, Obelisk, Mirage, Mirage, Obelisk, Scarab, Mummy],
+    [Scarab, Obelisk, Mirage, Dust, Dust, Mirage, Obelisk, Scarab],
+    [Obelisk, Mummy, Scarab, Mirage, Mirage, Scarab, Mummy, Obelisk],
+    [Mummy, Obelisk, Mummy, Scarab, Scarab, Mummy, Obelisk, Mummy],
+  ],
+
+  // Stage 8: Ancient Sanctum
+  [
+    [Obelisk, Obelisk, Mummy, Mummy, Mummy, Mummy, Obelisk, Obelisk],
+    [Mummy, Scarab, Obelisk, Mirage, Mirage, Obelisk, Scarab, Mummy],
+    [Obelisk, Mummy, Scarab, Obelisk, Obelisk, Scarab, Mummy, Obelisk],
+    [Mummy, Obelisk, Mummy, Scarab, Scarab, Mummy, Obelisk, Mummy],
+    [Scarab, Mummy, Obelisk, Mirage, Mirage, Obelisk, Mummy, Scarab],
+    [Obelisk, Mummy, Obelisk, Mummy, Mummy, Obelisk, Mummy, Obelisk],
+  ],
+
+  // Stage 9: Desert Ruins
+  [
+    [Obelisk, Mummy, Obelisk, Mummy, Mummy, Obelisk, Mummy, Obelisk],
+    [Mummy, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Mummy],
+    [Obelisk, Mummy, Scarab, Mirage, Mirage, Scarab, Mummy, Obelisk],
+    [Mummy, Scarab, Obelisk, Mummy, Mummy, Obelisk, Scarab, Mummy],
+    [Obelisk, Mummy, Obelisk, Scarab, Scarab, Obelisk, Mummy, Obelisk],
+    [Mummy, Obelisk, Mummy, Mirage, Mirage, Mummy, Obelisk, Mummy],
+    [Obelisk, Obelisk, Obelisk, Mummy, Mummy, Obelisk, Obelisk, Obelisk],
+  ],
+
+  // Stage 10: Sandstorm Apocalypse
+  [
+    [Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk],
+    [Obelisk, Mummy, Mummy, Mummy, Mummy, Mummy, Mummy, Obelisk],
+    [Mummy, Obelisk, Scarab, Mirage, Mirage, Scarab, Obelisk, Mummy],
+    [Mummy, Scarab, Obelisk, Mummy, Mummy, Obelisk, Scarab, Mummy],
+    [Obelisk, Mirage, Mummy, Obelisk, Obelisk, Mummy, Mirage, Obelisk],
+    [Mummy, Obelisk, Scarab, Mirage, Mirage, Scarab, Obelisk, Mummy],
+    [Obelisk, Mummy, Obelisk, Mummy, Mummy, Obelisk, Mummy, Obelisk],
+    [Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk],
+  ],
 ];

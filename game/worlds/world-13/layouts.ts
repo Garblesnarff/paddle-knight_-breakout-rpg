@@ -44,4 +44,56 @@ export const LEVEL_LAYOUTS = [
     [Thunder, Tempest, Gust, Hurricane, Hurricane, Gust, Tempest, Thunder],
     [Gust, Breeze, Tempest, null, null, Tempest, Breeze, Gust],
   ],
+
+  // Stage 6: Cyclone Surge
+  [
+    [Cyclone, Hurricane, Thunder, Tempest, Tempest, Thunder, Hurricane, Cyclone],
+    [Hurricane, Thunder, Cyclone, Gust, Gust, Cyclone, Thunder, Hurricane],
+    [Thunder, Tempest, Gust, Breeze, Breeze, Gust, Tempest, Thunder],
+    [Tempest, Gust, Breeze, Thunder, Thunder, Breeze, Gust, Tempest],
+    [Cyclone, Hurricane, Thunder, Tempest, Tempest, Thunder, Hurricane, Cyclone],
+  ],
+
+  // Stage 7: Hurricane Wall
+  [
+    [Hurricane, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Hurricane],
+    [Cyclone, Hurricane, Thunder, Hurricane, Hurricane, Thunder, Hurricane, Cyclone],
+    [Hurricane, Thunder, Cyclone, Tempest, Tempest, Cyclone, Thunder, Hurricane],
+    [Thunder, Cyclone, Tempest, Gust, Gust, Tempest, Cyclone, Thunder],
+    [Cyclone, Hurricane, Thunder, Tempest, Tempest, Thunder, Hurricane, Cyclone],
+    [Hurricane, Cyclone, Hurricane, Thunder, Thunder, Hurricane, Cyclone, Hurricane],
+  ],
+
+  // Stage 8: Tempest Fury
+  [
+    [Cyclone, Cyclone, Hurricane, Hurricane, Hurricane, Hurricane, Cyclone, Cyclone],
+    [Hurricane, Thunder, Cyclone, Tempest, Tempest, Cyclone, Thunder, Hurricane],
+    [Cyclone, Hurricane, Thunder, Cyclone, Cyclone, Thunder, Hurricane, Cyclone],
+    [Hurricane, Cyclone, Hurricane, Thunder, Thunder, Hurricane, Cyclone, Hurricane],
+    [Thunder, Hurricane, Cyclone, Tempest, Tempest, Cyclone, Hurricane, Thunder],
+    [Cyclone, Hurricane, Cyclone, Hurricane, Hurricane, Cyclone, Hurricane, Cyclone],
+  ],
+
+  // Stage 9: Maelstrom
+  [
+    [Cyclone, Hurricane, Cyclone, Hurricane, Hurricane, Cyclone, Hurricane, Cyclone],
+    [Hurricane, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Hurricane],
+    [Cyclone, Hurricane, Thunder, Tempest, Tempest, Thunder, Hurricane, Cyclone],
+    [Hurricane, Thunder, Cyclone, Hurricane, Hurricane, Cyclone, Thunder, Hurricane],
+    [Cyclone, Hurricane, Cyclone, Thunder, Thunder, Cyclone, Hurricane, Cyclone],
+    [Hurricane, Cyclone, Hurricane, Tempest, Tempest, Hurricane, Cyclone, Hurricane],
+    [Cyclone, Cyclone, Cyclone, Hurricane, Hurricane, Cyclone, Cyclone, Cyclone],
+  ],
+
+  // Stage 10: Eye of the Storm
+  [
+    [Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone],
+    [Cyclone, Hurricane, Hurricane, Hurricane, Hurricane, Hurricane, Hurricane, Cyclone],
+    [Hurricane, Cyclone, Thunder, Tempest, Tempest, Thunder, Cyclone, Hurricane],
+    [Hurricane, Thunder, Cyclone, Hurricane, Hurricane, Cyclone, Thunder, Hurricane],
+    [Cyclone, Tempest, Hurricane, Cyclone, Cyclone, Hurricane, Tempest, Cyclone],
+    [Hurricane, Cyclone, Thunder, Tempest, Tempest, Thunder, Cyclone, Hurricane],
+    [Cyclone, Hurricane, Cyclone, Hurricane, Hurricane, Cyclone, Hurricane, Cyclone],
+    [Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone],
+  ],
 ];

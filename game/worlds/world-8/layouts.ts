@@ -44,4 +44,56 @@ export const LEVEL_LAYOUTS = [
     [Nebula, Comet, Starling, Pulsar, Pulsar, Starling, Comet, Nebula],
     [Comet, Starling, null, Nebula, Nebula, null, Starling, Comet],
   ],
+
+  // Stage 6: Stellar Collision
+  [
+    [Supernova, Asteroid, Pulsar, Nebula, Nebula, Pulsar, Asteroid, Supernova],
+    [Asteroid, Pulsar, Supernova, Comet, Comet, Supernova, Pulsar, Asteroid],
+    [Pulsar, Nebula, Comet, Starling, Starling, Comet, Nebula, Pulsar],
+    [Nebula, Comet, Starling, Pulsar, Pulsar, Starling, Comet, Nebula],
+    [Supernova, Asteroid, Pulsar, Nebula, Nebula, Pulsar, Asteroid, Supernova],
+  ],
+
+  // Stage 7: Supernova Surge
+  [
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+    [Asteroid, Supernova, Pulsar, Supernova, Supernova, Pulsar, Supernova, Asteroid],
+    [Supernova, Pulsar, Asteroid, Nebula, Nebula, Asteroid, Pulsar, Supernova],
+    [Pulsar, Asteroid, Nebula, Comet, Comet, Nebula, Asteroid, Pulsar],
+    [Asteroid, Supernova, Pulsar, Nebula, Nebula, Pulsar, Supernova, Asteroid],
+    [Supernova, Asteroid, Supernova, Pulsar, Pulsar, Supernova, Asteroid, Supernova],
+  ],
+
+  // Stage 8: Cosmic Tempest
+  [
+    [Supernova, Supernova, Asteroid, Asteroid, Asteroid, Asteroid, Supernova, Supernova],
+    [Asteroid, Pulsar, Supernova, Nebula, Nebula, Supernova, Pulsar, Asteroid],
+    [Supernova, Asteroid, Pulsar, Supernova, Supernova, Pulsar, Asteroid, Supernova],
+    [Asteroid, Supernova, Asteroid, Pulsar, Pulsar, Asteroid, Supernova, Asteroid],
+    [Pulsar, Asteroid, Supernova, Nebula, Nebula, Supernova, Asteroid, Pulsar],
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+  ],
+
+  // Stage 9: Asteroid Apocalypse
+  [
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+    [Asteroid, Supernova, Asteroid, Supernova, Supernova, Asteroid, Supernova, Asteroid],
+    [Supernova, Asteroid, Pulsar, Nebula, Nebula, Pulsar, Asteroid, Supernova],
+    [Asteroid, Pulsar, Supernova, Asteroid, Asteroid, Supernova, Pulsar, Asteroid],
+    [Supernova, Asteroid, Supernova, Pulsar, Pulsar, Supernova, Asteroid, Supernova],
+    [Asteroid, Supernova, Asteroid, Nebula, Nebula, Asteroid, Supernova, Asteroid],
+    [Supernova, Supernova, Supernova, Asteroid, Asteroid, Supernova, Supernova, Supernova],
+  ],
+
+  // Stage 10: Celestial Endgame
+  [
+    [Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova],
+    [Supernova, Asteroid, Asteroid, Asteroid, Asteroid, Asteroid, Asteroid, Supernova],
+    [Asteroid, Supernova, Pulsar, Nebula, Nebula, Pulsar, Supernova, Asteroid],
+    [Asteroid, Pulsar, Supernova, Asteroid, Asteroid, Supernova, Pulsar, Asteroid],
+    [Supernova, Nebula, Asteroid, Supernova, Supernova, Asteroid, Nebula, Supernova],
+    [Asteroid, Supernova, Pulsar, Nebula, Nebula, Pulsar, Supernova, Asteroid],
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+    [Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova],
+  ],
 ];

@@ -13,6 +13,12 @@ import { WORLD_11_SKILLS } from './worlds/world-11/skills';
 import { WORLD_12_SKILLS } from './worlds/world-12/skills';
 import { WORLD_13_SKILLS } from './worlds/world-13/skills';
 import { WORLD_14_SKILLS } from './worlds/world-14/skills';
+import { WORLD_15_SKILLS } from './worlds/world-15/skills';
+import { WORLD_16_SKILLS } from './worlds/world-16/skills';
+import { WORLD_17_SKILLS } from './worlds/world-17/skills';
+import { WORLD_18_SKILLS } from './worlds/world-18/skills';
+import { WORLD_19_SKILLS } from './worlds/world-19/skills';
+import { WORLD_20_SKILLS } from './worlds/world-20/skills';
 
 export const SKILL_TREE_DATA: Record<string, SkillNode> = {
   ...WORLD_1_SKILLS,
@@ -29,4 +35,10 @@ export const SKILL_TREE_DATA: Record<string, SkillNode> = {
   ...WORLD_12_SKILLS,
   ...WORLD_13_SKILLS,
   ...WORLD_14_SKILLS,
+  ...WORLD_15_SKILLS,
+  ...WORLD_16_SKILLS,
+  ...WORLD_17_SKILLS,
+  ...WORLD_18_SKILLS,
+  ...WORLD_19_SKILLS,
+  ...WORLD_20_SKILLS,
 };

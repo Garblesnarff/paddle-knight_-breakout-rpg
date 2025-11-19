@@ -62,6 +62,51 @@ export const LEVEL_LAYOUTS = [
     [Clockwork, Assembly, Piston, Steam, Steam, Piston, Assembly, Clockwork],
     [Assembly, Tesla, Clockwork, Piston, Piston, Clockwork, Tesla, Assembly],
   ],
+
+  // Stage 8: Chronometric Core
+  [
+    [Tesla, Assembly, Tesla, Clockwork, Clockwork, Tesla, Assembly, Tesla],
+    [Assembly, Piston, Clockwork, Assembly, Assembly, Clockwork, Piston, Assembly],
+    [Clockwork, Assembly, Tesla, Piston, Piston, Tesla, Assembly, Clockwork],
+    [Piston, Clockwork, Assembly, Tesla, Tesla, Assembly, Clockwork, Piston],
+    [Tesla, Assembly, Clockwork, Piston, Piston, Clockwork, Assembly, Tesla],
+  ],
+
+  // Stage 9: Gear Matrix
+  [
+    [Assembly, Clockwork, Tesla, Assembly, Assembly, Tesla, Clockwork, Assembly],
+    [Clockwork, Tesla, Piston, Clockwork, Clockwork, Piston, Tesla, Clockwork],
+    [Tesla, Piston, Assembly, Tesla, Tesla, Assembly, Piston, Tesla],
+    [Piston, Assembly, Clockwork, Piston, Piston, Clockwork, Assembly, Piston],
+    [Assembly, Tesla, Clockwork, Assembly, Assembly, Clockwork, Tesla, Assembly],
+  ],
+
+  // Stage 10: Steam Surge
+  [
+    [Piston, Tesla, Assembly, Clockwork, Clockwork, Assembly, Tesla, Piston],
+    [Tesla, Assembly, Piston, Tesla, Tesla, Piston, Assembly, Tesla],
+    [Assembly, Piston, Clockwork, Assembly, Assembly, Clockwork, Piston, Assembly],
+    [Clockwork, Tesla, Assembly, Piston, Piston, Assembly, Tesla, Clockwork],
+    [Piston, Assembly, Tesla, Clockwork, Clockwork, Tesla, Assembly, Piston],
+  ],
+
+  // Stage 11: Mechanical Perfection
+  [
+    [Assembly, Assembly, Tesla, Piston, Piston, Tesla, Assembly, Assembly],
+    [Tesla, Clockwork, Assembly, Tesla, Tesla, Assembly, Clockwork, Tesla],
+    [Piston, Assembly, Clockwork, Piston, Piston, Clockwork, Assembly, Piston],
+    [Clockwork, Tesla, Piston, Assembly, Assembly, Piston, Tesla, Clockwork],
+    [Assembly, Piston, Tesla, Clockwork, Clockwork, Tesla, Piston, Assembly],
+  ],
+
+  // Stage 12: Time's End
+  [
+    [Assembly, Tesla, Clockwork, Assembly, Assembly, Clockwork, Tesla, Assembly],
+    [Tesla, Piston, Assembly, Tesla, Tesla, Assembly, Piston, Tesla],
+    [Clockwork, Assembly, Piston, Clockwork, Clockwork, Piston, Assembly, Clockwork],
+    [Piston, Clockwork, Tesla, Piston, Piston, Tesla, Clockwork, Piston],
+    [Assembly, Tesla, Clockwork, Piston, Piston, Clockwork, Tesla, Assembly],
+  ],
 ];
 
 

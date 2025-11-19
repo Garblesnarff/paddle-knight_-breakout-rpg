@@ -44,4 +44,56 @@ export const LEVEL_LAYOUTS = [
     [Ethereal, Voidspawn, Riftborn, Paradox, Paradox, Riftborn, Voidspawn, Ethereal],
     [Riftborn, Anomaly, Voidspawn, null, null, Voidspawn, Anomaly, Riftborn],
   ],
+
+  // Stage 6: Paradox Cascade
+  [
+    [Paradox, Nullifier, Ethereal, Voidspawn, Voidspawn, Ethereal, Nullifier, Paradox],
+    [Nullifier, Ethereal, Paradox, Riftborn, Riftborn, Paradox, Ethereal, Nullifier],
+    [Ethereal, Voidspawn, Riftborn, Anomaly, Anomaly, Riftborn, Voidspawn, Ethereal],
+    [Voidspawn, Riftborn, Anomaly, Ethereal, Ethereal, Anomaly, Riftborn, Voidspawn],
+    [Paradox, Nullifier, Ethereal, Voidspawn, Voidspawn, Ethereal, Nullifier, Paradox],
+  ],
+
+  // Stage 7: Nullification Chamber
+  [
+    [Nullifier, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Nullifier],
+    [Paradox, Nullifier, Ethereal, Nullifier, Nullifier, Ethereal, Nullifier, Paradox],
+    [Nullifier, Ethereal, Paradox, Voidspawn, Voidspawn, Paradox, Ethereal, Nullifier],
+    [Ethereal, Paradox, Voidspawn, Riftborn, Riftborn, Voidspawn, Paradox, Ethereal],
+    [Paradox, Nullifier, Ethereal, Voidspawn, Voidspawn, Ethereal, Nullifier, Paradox],
+    [Nullifier, Paradox, Nullifier, Ethereal, Ethereal, Nullifier, Paradox, Nullifier],
+  ],
+
+  // Stage 8: Dimensional Rift
+  [
+    [Paradox, Paradox, Nullifier, Nullifier, Nullifier, Nullifier, Paradox, Paradox],
+    [Nullifier, Ethereal, Paradox, Voidspawn, Voidspawn, Paradox, Ethereal, Nullifier],
+    [Paradox, Nullifier, Ethereal, Paradox, Paradox, Ethereal, Nullifier, Paradox],
+    [Nullifier, Paradox, Nullifier, Ethereal, Ethereal, Nullifier, Paradox, Nullifier],
+    [Ethereal, Nullifier, Paradox, Voidspawn, Voidspawn, Paradox, Nullifier, Ethereal],
+    [Paradox, Nullifier, Paradox, Nullifier, Nullifier, Paradox, Nullifier, Paradox],
+  ],
+
+  // Stage 9: Reality Collapse
+  [
+    [Paradox, Nullifier, Paradox, Nullifier, Nullifier, Paradox, Nullifier, Paradox],
+    [Nullifier, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Nullifier],
+    [Paradox, Nullifier, Ethereal, Voidspawn, Voidspawn, Ethereal, Nullifier, Paradox],
+    [Nullifier, Ethereal, Paradox, Nullifier, Nullifier, Paradox, Ethereal, Nullifier],
+    [Paradox, Nullifier, Paradox, Ethereal, Ethereal, Paradox, Nullifier, Paradox],
+    [Nullifier, Paradox, Nullifier, Voidspawn, Voidspawn, Nullifier, Paradox, Nullifier],
+    [Paradox, Paradox, Paradox, Nullifier, Nullifier, Paradox, Paradox, Paradox],
+  ],
+
+  // Stage 10: Void Singularity
+  [
+    [Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox],
+    [Paradox, Nullifier, Nullifier, Nullifier, Nullifier, Nullifier, Nullifier, Paradox],
+    [Nullifier, Paradox, Ethereal, Voidspawn, Voidspawn, Ethereal, Paradox, Nullifier],
+    [Nullifier, Ethereal, Paradox, Nullifier, Nullifier, Paradox, Ethereal, Nullifier],
+    [Paradox, Voidspawn, Nullifier, Paradox, Paradox, Nullifier, Voidspawn, Paradox],
+    [Nullifier, Paradox, Ethereal, Voidspawn, Voidspawn, Ethereal, Paradox, Nullifier],
+    [Paradox, Nullifier, Paradox, Nullifier, Nullifier, Paradox, Nullifier, Paradox],
+    [Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox],
+  ],
 ];

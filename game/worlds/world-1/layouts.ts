@@ -62,6 +62,46 @@ export const LEVEL_LAYOUTS = [
         [Mage,Tank,Mage,Tank,Mage,Tank,Mage,Tank,Mage,Tank],
         [Archer,Soldier,Archer,Soldier,Chaos,Chaos,Soldier,Archer,Soldier,Archer],
         [Tank,Tank,Mage,Mage,Archer,Archer,Mage,Mage,Tank,Tank],
+    ],
+    // Level 9: Forbidden Vault
+    [
+        [Tank,Chaos,Chaos,Mage,Mage,Chaos,Chaos,Tank],
+        [Chaos,Archer,Tank,Chaos,Chaos,Tank,Archer,Chaos],
+        [Chaos,Tank,Soldier,Mage,Mage,Soldier,Tank,Chaos],
+        [Mage,Chaos,Mage,Archer,Archer,Mage,Chaos,Mage],
+        [Tank,Tank,Chaos,Chaos,Chaos,Chaos,Tank,Tank],
+    ],
+    // Level 10: Shadow Keep
+    [
+        [Chaos,Tank,Tank,Chaos,Chaos,Tank,Tank,Chaos],
+        [Tank,Mage,Archer,Mage,Mage,Archer,Mage,Tank],
+        [Mage,Archer,Chaos,Tank,Tank,Chaos,Archer,Mage],
+        [Chaos,Mage,Tank,Soldier,Soldier,Tank,Mage,Chaos],
+        [Tank,Chaos,Mage,Archer,Archer,Mage,Chaos,Tank],
+    ],
+    // Level 11: Elite Guard
+    [
+        [Chaos,Chaos,Tank,Tank,Tank,Tank,Chaos,Chaos],
+        [Tank,Mage,Mage,Chaos,Chaos,Mage,Mage,Tank],
+        [Chaos,Mage,Archer,Archer,Archer,Archer,Mage,Chaos],
+        [Tank,Chaos,Archer,Soldier,Soldier,Archer,Chaos,Tank],
+        [Chaos,Tank,Mage,Archer,Archer,Mage,Tank,Chaos],
+    ],
+    // Level 12: Final Defense
+    [
+        [Chaos,Tank,Chaos,Tank,Tank,Chaos,Tank,Chaos],
+        [Tank,Chaos,Mage,Chaos,Chaos,Mage,Chaos,Tank],
+        [Chaos,Mage,Tank,Mage,Mage,Tank,Mage,Chaos],
+        [Mage,Chaos,Archer,Tank,Tank,Archer,Chaos,Mage],
+        [Tank,Mage,Chaos,Archer,Archer,Chaos,Mage,Tank],
+    ],
+    // Level 13: Kingdom's End
+    [
+        [Chaos,Chaos,Chaos,Tank,Tank,Chaos,Chaos,Chaos],
+        [Chaos,Tank,Mage,Chaos,Chaos,Mage,Tank,Chaos],
+        [Tank,Mage,Chaos,Archer,Archer,Chaos,Mage,Tank],
+        [Mage,Chaos,Archer,Tank,Tank,Archer,Chaos,Mage],
+        [Chaos,Tank,Mage,Archer,Archer,Mage,Tank,Chaos],
     ]
 ];
 

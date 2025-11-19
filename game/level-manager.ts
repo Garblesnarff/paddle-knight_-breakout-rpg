@@ -28,6 +28,12 @@ import { LEVEL_LAYOUTS as WORLD11_LAYOUTS } from './worlds/world-11/layouts';
 import { LEVEL_LAYOUTS as WORLD12_LAYOUTS } from './worlds/world-12/layouts';
 import { LEVEL_LAYOUTS as WORLD13_LAYOUTS } from './worlds/world-13/layouts';
 import { LEVEL_LAYOUTS as WORLD14_LAYOUTS } from './worlds/world-14/layouts';
+import { LEVEL_LAYOUTS as WORLD15_LAYOUTS } from './worlds/world-15/layouts';
+import { LEVEL_LAYOUTS as WORLD16_LAYOUTS } from './worlds/world-16/layouts';
+import { LEVEL_LAYOUTS as WORLD17_LAYOUTS } from './worlds/world-17/layouts';
+import { LEVEL_LAYOUTS as WORLD18_LAYOUTS } from './worlds/world-18/layouts';
+import { LEVEL_LAYOUTS as WORLD19_LAYOUTS } from './worlds/world-19/layouts';
+import { LEVEL_LAYOUTS as WORLD20_LAYOUTS } from './worlds/world-20/layouts';
 
 export const ALL_LEVEL_LAYOUTS = [
     ...WORLD1_LAYOUTS,
@@ -44,6 +50,12 @@ export const ALL_LEVEL_LAYOUTS = [
     ...WORLD12_LAYOUTS,
     ...WORLD13_LAYOUTS,
     ...WORLD14_LAYOUTS,
+    ...WORLD15_LAYOUTS,
+    ...WORLD16_LAYOUTS,
+    ...WORLD17_LAYOUTS,
+    ...WORLD18_LAYOUTS,
+    ...WORLD19_LAYOUTS,
+    ...WORLD20_LAYOUTS,
 ];
 
 export const MAX_LEVELS = ALL_LEVEL_LAYOUTS.length;
