@@ -7,6 +7,39 @@
 import { SkillNode, SkillType } from '../../../types';
 
 export const WORLD_5_SKILLS: Record<string, SkillNode> = {
+    'umbralStrike': {
+        id: 'umbralStrike',
+        name: 'Umbral Strike',
+        description: (level) => `Ball gains +${level * 8}% damage. Shadow-type enemies take ${level * 15}% additional damage from all sources.`,
+        maxLevel: 4,
+        cost: (level) => 1 + level,
+        dependencies: [],
+        type: SkillType.Passive,
+        position: { row: 0, col: 2 }
+    },
+
+    'soulReaper': {
+        id: 'soulReaper',
+        name: 'Soul Reaper',
+        description: (level) => `Destroying a brick restores ${level * 2} HP. Killing shadow enemies grants ${level * 5}% temporary damage boost for 5s.`,
+        maxLevel: 3,
+        cost: (level) => 2 + level,
+        dependencies: ['umbralStrike'],
+        type: SkillType.Passive,
+        position: { row: 1, col: 2 }
+    },
+
+    'phantomBall': {
+        id: 'phantomBall',
+        name: 'Phantom Ball',
+        description: (level) => `Active: Your next ball becomes invisible to enemies for ${2 + level}s and phases through ${level} bricks before dealing damage.`,
+        maxLevel: 3,
+        cost: (level) => 3 + level,
+        dependencies: ['soulReaper'],
+        type: SkillType.Active,
+        position: { row: 2, col: 2 }
+    },
+
     'shadowStep': {
         id: 'shadowStep',
         name: 'Shadow Step',

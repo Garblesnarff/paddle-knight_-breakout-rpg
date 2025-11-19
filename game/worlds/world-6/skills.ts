@@ -7,6 +7,39 @@
 import { SkillNode, SkillType } from '../../../types';
 
 export const WORLD_6_SKILLS: Record<string, SkillNode> = {
+    'facetedFocus': {
+        id: 'facetedFocus',
+        name: 'Faceted Focus',
+        description: (level) => `+${level * 5}% critical hit chance. Critical hits refract, dealing ${level * 20}% damage to adjacent bricks.`,
+        maxLevel: 4,
+        cost: (level) => 1 + level,
+        dependencies: [],
+        type: SkillType.Passive,
+        position: { row: 0, col: 2 }
+    },
+
+    'crystalLattice': {
+        id: 'crystalLattice',
+        name: 'Crystal Lattice',
+        description: (level) => `When a brick is destroyed, ${level * 15}% of damage spreads to ${level + 1} adjacent bricks. Creates chain reactions.`,
+        maxLevel: 3,
+        cost: (level) => 2 + level,
+        dependencies: ['facetedFocus'],
+        type: SkillType.Passive,
+        position: { row: 1, col: 2 }
+    },
+
+    'refraction': {
+        id: 'refraction',
+        name: 'Refraction',
+        description: (level) => `Active: Next ball impact splits into ${2 + level} weaker balls at different angles, each dealing ${40 + (level * 10)}% damage.`,
+        maxLevel: 3,
+        cost: (level) => 3 + level,
+        dependencies: ['crystalLattice'],
+        type: SkillType.Active,
+        position: { row: 2, col: 2 }
+    },
+
     'crystalResonance': {
         id: 'crystalResonance',
         name: 'Crystal Resonance',

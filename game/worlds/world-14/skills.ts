@@ -47,6 +47,39 @@ export const WORLD_14_SKILLS: Record<string, SkillNode> = {
         dependencies: ['voidMastery', 'realityAnchor'],
         type: SkillType.Active,
         position: { row: 5, col: 2 }
+    },
+
+    'dimensionalRift': {
+        id: 'dimensionalRift',
+        name: 'Dimensional Rift',
+        description: (level) => `Active: Create a rift that teleports your attacks ${15 + (level * 10)}% further and duplicates them ${level} time(s). Lasts ${4 + level}s. Cooldown: ${Math.max(50 - level * 5, 35)}s`,
+        maxLevel: 3,
+        cost: (level) => 6 + level,
+        dependencies: ['voidMastery'],
+        type: SkillType.Active,
+        position: { row: 4, col: 3 }
+    },
+
+    'voidChains': {
+        id: 'voidChains',
+        name: 'Void Chains',
+        description: (level) => `Enemies killed by void damage spawn ${level} void chains that seek ${level + 1} nearby enemies for ${40 + (level * 20)} damage each`,
+        maxLevel: 3,
+        cost: (level) => 5 + level,
+        dependencies: ['realityAnchor', 'entropyHarvest'],
+        type: SkillType.Triggered,
+        position: { row: 4, col: 1 }
+    },
+
+    'realityFracture': {
+        id: 'realityFracture',
+        name: 'Reality Fracture',
+        description: (level) => `${10 + (level * 8)}% chance to split attacks through dimensional fractures, hitting ${1 + level} additional random enemies for ${level * 30}% damage`,
+        maxLevel: 4,
+        cost: (level) => 4 + level,
+        dependencies: ['wisdom'],
+        type: SkillType.Passive,
+        position: { row: 3, col: 2 }
     }
 };
 

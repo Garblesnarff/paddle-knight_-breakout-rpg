@@ -96,4 +96,63 @@ export const LEVEL_LAYOUTS = [
     [Permafrost, Glacial, Permafrost, Glacial, Glacial, Permafrost, Glacial, Permafrost],
     [Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost],
   ],
+
+  // Stage 11: Frozen Abyss
+  [
+    [Permafrost, Permafrost, Glacial, Permafrost, Permafrost, Glacial, Permafrost, Permafrost],
+    [Permafrost, Glacial, Permafrost, Glacial, Glacial, Permafrost, Glacial, Permafrost],
+    [Glacial, Permafrost, Glacial, Permafrost, Permafrost, Glacial, Permafrost, Glacial],
+    [Permafrost, Glacial, Permafrost, Frostbite, Frostbite, Permafrost, Glacial, Permafrost],
+    [Glacial, Permafrost, Frostbite, Glacial, Glacial, Frostbite, Permafrost, Glacial],
+    [Permafrost, Glacial, Permafrost, Glacial, Glacial, Permafrost, Glacial, Permafrost],
+    [Permafrost, Permafrost, Glacial, Permafrost, Permafrost, Glacial, Permafrost, Permafrost],
+  ],
+
+  // Stage 12: Glacial Citadel
+  [
+    [Permafrost, Permafrost, Permafrost, Glacial, Glacial, Permafrost, Permafrost, Permafrost],
+    [Permafrost, Glacial, Permafrost, Permafrost, Permafrost, Permafrost, Glacial, Permafrost],
+    [Glacial, Permafrost, Glacial, Permafrost, Permafrost, Glacial, Permafrost, Glacial],
+    [Permafrost, Permafrost, Glacial, Permafrost, Permafrost, Glacial, Permafrost, Permafrost],
+    [Glacial, Permafrost, Permafrost, Glacial, Glacial, Permafrost, Permafrost, Glacial],
+    [Permafrost, Glacial, Permafrost, Permafrost, Permafrost, Permafrost, Glacial, Permafrost],
+    [Permafrost, Permafrost, Glacial, Permafrost, Permafrost, Glacial, Permafrost, Permafrost],
+    [Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost],
+  ],
+
+  // Stage 13: Icebound Crypt
+  [
+    [Permafrost, Glacial, Permafrost, Permafrost, Permafrost, Permafrost, Glacial, Permafrost],
+    [Glacial, Permafrost, Permafrost, Glacial, Glacial, Permafrost, Permafrost, Glacial],
+    [Permafrost, Permafrost, Glacial, Permafrost, Permafrost, Glacial, Permafrost, Permafrost],
+    [Permafrost, Glacial, Permafrost, Permafrost, Permafrost, Permafrost, Glacial, Permafrost],
+    [Glacial, Permafrost, Permafrost, Glacial, Glacial, Permafrost, Permafrost, Glacial],
+    [Permafrost, Permafrost, Glacial, Permafrost, Permafrost, Glacial, Permafrost, Permafrost],
+    [Glacial, Permafrost, Permafrost, Glacial, Glacial, Permafrost, Permafrost, Glacial],
+    [Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost],
+  ],
+
+  // Stage 14: Permafrost Nexus
+  [
+    [Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost],
+    [Permafrost, Permafrost, Glacial, Permafrost, Permafrost, Glacial, Permafrost, Permafrost],
+    [Permafrost, Glacial, Permafrost, Permafrost, Permafrost, Permafrost, Glacial, Permafrost],
+    [Glacial, Permafrost, Permafrost, Glacial, Glacial, Permafrost, Permafrost, Glacial],
+    [Permafrost, Permafrost, Glacial, Permafrost, Permafrost, Glacial, Permafrost, Permafrost],
+    [Permafrost, Glacial, Permafrost, Permafrost, Permafrost, Permafrost, Glacial, Permafrost],
+    [Permafrost, Permafrost, Glacial, Permafrost, Permafrost, Glacial, Permafrost, Permafrost],
+    [Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost],
+  ],
+
+  // Stage 15: Ice Queen's Revenge
+  [
+    [Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost],
+    [Permafrost, null, null, IceQueenBoss, IceQueenBoss, null, null, Permafrost],
+    [Permafrost, Permafrost, Glacial, Permafrost, Permafrost, Glacial, Permafrost, Permafrost],
+    [Glacial, Permafrost, Permafrost, Glacial, Glacial, Permafrost, Permafrost, Glacial],
+    [Permafrost, Permafrost, Glacial, Permafrost, Permafrost, Glacial, Permafrost, Permafrost],
+    [Glacial, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Glacial],
+    [Permafrost, Glacial, Permafrost, Permafrost, Permafrost, Permafrost, Glacial, Permafrost],
+    [Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost, Permafrost],
+  ],
 ];

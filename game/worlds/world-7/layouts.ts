@@ -96,4 +96,63 @@ export const LEVEL_LAYOUTS = [
     [Ashen, Lavabeast, Ashen, Lavabeast, Lavabeast, Ashen, Lavabeast, Ashen],
     [Ashen, Ashen, Ashen, Ashen, Ashen, Ashen, Ashen, Ashen],
   ],
+
+  // Stage 11: Infernal Citadel
+  [
+    [Ashen, Ashen, Lavabeast, Ashen, Ashen, Lavabeast, Ashen, Ashen],
+    [Ashen, Lavabeast, Ashen, Lavabeast, Lavabeast, Ashen, Lavabeast, Ashen],
+    [Lavabeast, Ashen, Lavabeast, Ashen, Ashen, Lavabeast, Ashen, Lavabeast],
+    [Ashen, Lavabeast, Ashen, Lavabeast, Lavabeast, Ashen, Lavabeast, Ashen],
+    [Lavabeast, Ashen, Ashen, Pyroclast, Pyroclast, Ashen, Ashen, Lavabeast],
+    [Ashen, Lavabeast, Ashen, Lavabeast, Lavabeast, Ashen, Lavabeast, Ashen],
+    [Ashen, Ashen, Lavabeast, Ashen, Ashen, Lavabeast, Ashen, Ashen],
+  ],
+
+  // Stage 12: Lava Titan's Fortress
+  [
+    [Ashen, Ashen, Ashen, Lavabeast, Lavabeast, Ashen, Ashen, Ashen],
+    [Ashen, Lavabeast, Ashen, Ashen, Ashen, Ashen, Lavabeast, Ashen],
+    [Lavabeast, Ashen, Lavabeast, Ashen, Ashen, Lavabeast, Ashen, Lavabeast],
+    [Ashen, Ashen, Lavabeast, Ashen, Ashen, Lavabeast, Ashen, Ashen],
+    [Ashen, Lavabeast, Ashen, Lavabeast, Lavabeast, Ashen, Lavabeast, Ashen],
+    [Lavabeast, Ashen, Lavabeast, Ashen, Ashen, Lavabeast, Ashen, Lavabeast],
+    [Ashen, Lavabeast, Ashen, Lavabeast, Lavabeast, Ashen, Lavabeast, Ashen],
+    [Ashen, Ashen, Ashen, Ashen, Ashen, Ashen, Ashen, Ashen],
+  ],
+
+  // Stage 13: Pyroclastic Hell
+  [
+    [Ashen, Lavabeast, Ashen, Ashen, Ashen, Ashen, Lavabeast, Ashen],
+    [Lavabeast, Ashen, Lavabeast, Ashen, Ashen, Lavabeast, Ashen, Lavabeast],
+    [Ashen, Lavabeast, Ashen, Lavabeast, Lavabeast, Ashen, Lavabeast, Ashen],
+    [Ashen, Ashen, Lavabeast, Ashen, Ashen, Lavabeast, Ashen, Ashen],
+    [Lavabeast, Ashen, Ashen, Lavabeast, Lavabeast, Ashen, Ashen, Lavabeast],
+    [Ashen, Lavabeast, Ashen, Ashen, Ashen, Ashen, Lavabeast, Ashen],
+    [Lavabeast, Ashen, Lavabeast, Ashen, Ashen, Lavabeast, Ashen, Lavabeast],
+    [Ashen, Ashen, Ashen, Lavabeast, Lavabeast, Ashen, Ashen, Ashen],
+  ],
+
+  // Stage 14: Eternal Flames
+  [
+    [Ashen, Ashen, Ashen, Ashen, Ashen, Ashen, Ashen, Ashen],
+    [Ashen, Lavabeast, Ashen, Lavabeast, Lavabeast, Ashen, Lavabeast, Ashen],
+    [Ashen, Ashen, Lavabeast, Ashen, Ashen, Lavabeast, Ashen, Ashen],
+    [Lavabeast, Ashen, Ashen, Lavabeast, Lavabeast, Ashen, Ashen, Lavabeast],
+    [Ashen, Lavabeast, Ashen, Ashen, Ashen, Ashen, Lavabeast, Ashen],
+    [Lavabeast, Ashen, Lavabeast, Ashen, Ashen, Lavabeast, Ashen, Lavabeast],
+    [Ashen, Lavabeast, Ashen, Lavabeast, Lavabeast, Ashen, Lavabeast, Ashen],
+    [Ashen, Ashen, Ashen, Ashen, Ashen, Ashen, Ashen, Ashen],
+  ],
+
+  // Stage 15: Volcano Titan's Wrath
+  [
+    [Ashen, Ashen, Ashen, null, null, Ashen, Ashen, Ashen],
+    [Ashen, Lavabeast, Ashen, VolcanoTitanBoss, VolcanoTitanBoss, Ashen, Lavabeast, Ashen],
+    [Lavabeast, Ashen, Lavabeast, null, null, Lavabeast, Ashen, Lavabeast],
+    [Ashen, Lavabeast, Ashen, Lavabeast, Lavabeast, Ashen, Lavabeast, Ashen],
+    [Lavabeast, Ashen, Ashen, Ashen, Ashen, Ashen, Ashen, Lavabeast],
+    [Ashen, Lavabeast, Ashen, Lavabeast, Lavabeast, Ashen, Lavabeast, Ashen],
+    [Lavabeast, Ashen, Lavabeast, Ashen, Ashen, Lavabeast, Ashen, Lavabeast],
+    [Ashen, Ashen, Ashen, Ashen, Ashen, Ashen, Ashen, Ashen],
+  ],
 ];

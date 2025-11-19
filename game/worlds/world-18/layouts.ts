@@ -97,4 +97,64 @@ export const LEVEL_LAYOUTS = [
     [Divinity, Eternal, Transcendent, Eternal, Eternal, Transcendent, Eternal, Divinity],
     [Eternal, Eternal, Eternal, Transcendent, Transcendent, Eternal, Eternal, Eternal],
   ],
+
+  // Stage 11: Beyond Transcendence
+  [
+    [Eternal, Eternal, Transcendent, Eternal, Eternal, Transcendent, Eternal, Eternal],
+    [Transcendent, Eternal, Eternal, Transcendent, Transcendent, Eternal, Eternal, Transcendent],
+    [Eternal, Transcendent, Eternal, Eternal, Eternal, Eternal, Transcendent, Eternal],
+    [Eternal, Eternal, Transcendent, Eternal, Eternal, Transcendent, Eternal, Eternal],
+    [Transcendent, Eternal, Eternal, Transcendent, Transcendent, Eternal, Eternal, Transcendent],
+    [Eternal, Transcendent, Eternal, Eternal, Eternal, Eternal, Transcendent, Eternal],
+    [Transcendent, Eternal, Transcendent, Eternal, Eternal, Transcendent, Eternal, Transcendent],
+    [Eternal, Eternal, Eternal, Transcendent, Transcendent, Eternal, Eternal, Eternal],
+  ],
+
+  // Stage 12: Infinite Ascension
+  [
+    [Eternal, Transcendent, Eternal, Transcendent, Transcendent, Eternal, Transcendent, Eternal],
+    [Transcendent, Eternal, Transcendent, Eternal, Eternal, Transcendent, Eternal, Transcendent],
+    [Eternal, Transcendent, Eternal, Transcendent, Transcendent, Eternal, Transcendent, Eternal],
+    [Transcendent, Eternal, Transcendent, Eternal, Eternal, Transcendent, Eternal, Transcendent],
+    [Eternal, Transcendent, Eternal, Transcendent, Transcendent, Eternal, Transcendent, Eternal],
+    [Transcendent, Eternal, Transcendent, Eternal, Eternal, Transcendent, Eternal, Transcendent],
+    [Eternal, Transcendent, Eternal, Transcendent, Transcendent, Eternal, Transcendent, Eternal],
+    [Transcendent, Eternal, Transcendent, Eternal, Eternal, Transcendent, Eternal, Transcendent],
+  ],
+
+  // Stage 13: Eternal Supremacy
+  [
+    [Transcendent, Transcendent, Eternal, Transcendent, Transcendent, Eternal, Transcendent, Transcendent],
+    [Eternal, Transcendent, Transcendent, Eternal, Eternal, Transcendent, Transcendent, Eternal],
+    [Transcendent, Eternal, Transcendent, Transcendent, Transcendent, Transcendent, Eternal, Transcendent],
+    [Eternal, Transcendent, Eternal, Transcendent, Transcendent, Eternal, Transcendent, Eternal],
+    [Transcendent, Transcendent, Transcendent, Eternal, Eternal, Transcendent, Transcendent, Transcendent],
+    [Eternal, Transcendent, Transcendent, Eternal, Eternal, Transcendent, Transcendent, Eternal],
+    [Transcendent, Eternal, Transcendent, Transcendent, Transcendent, Transcendent, Eternal, Transcendent],
+    [Transcendent, Transcendent, Eternal, Transcendent, Transcendent, Eternal, Transcendent, Transcendent],
+  ],
+
+  // Stage 14: Apex of Eternity
+  [
+    [Transcendent, Transcendent, Transcendent, Eternal, Eternal, Transcendent, Transcendent, Transcendent],
+    [Transcendent, Eternal, Transcendent, Transcendent, Transcendent, Transcendent, Eternal, Transcendent],
+    [Eternal, Transcendent, Transcendent, Eternal, Eternal, Transcendent, Transcendent, Eternal],
+    [Transcendent, Transcendent, Eternal, Transcendent, Transcendent, Eternal, Transcendent, Transcendent],
+    [Transcendent, Eternal, Transcendent, Transcendent, Transcendent, Transcendent, Eternal, Transcendent],
+    [Eternal, Transcendent, Transcendent, Eternal, Eternal, Transcendent, Transcendent, Eternal],
+    [Transcendent, Transcendent, Eternal, Transcendent, Transcendent, Eternal, Transcendent, Transcendent],
+    [Transcendent, Transcendent, Transcendent, Transcendent, Transcendent, Transcendent, Transcendent, Transcendent],
+  ],
+
+  // Stage 15: Overmind Ascendant
+  [
+    [null, null, Transcendent, OvermindBoss, OvermindBoss, Transcendent, null, null],
+    [Transcendent, Eternal, null, Transcendent, Transcendent, null, Eternal, Transcendent],
+    [Eternal, Transcendent, Eternal, null, null, Eternal, Transcendent, Eternal],
+    [Transcendent, Eternal, Transcendent, Eternal, Eternal, Transcendent, Eternal, Transcendent],
+    [Eternal, Transcendent, Transcendent, Eternal, Eternal, Transcendent, Transcendent, Eternal],
+    [Transcendent, Transcendent, Eternal, Transcendent, Transcendent, Eternal, Transcendent, Transcendent],
+    [Eternal, Transcendent, Transcendent, Eternal, Eternal, Transcendent, Transcendent, Eternal],
+    [Transcendent, Transcendent, Transcendent, Transcendent, Transcendent, Transcendent, Transcendent, Transcendent],
+  ],
 ];

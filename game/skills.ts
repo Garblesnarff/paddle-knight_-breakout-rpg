@@ -19,6 +19,16 @@ import { WORLD_17_SKILLS } from './worlds/world-17/skills';
 import { WORLD_18_SKILLS } from './worlds/world-18/skills';
 import { WORLD_19_SKILLS } from './worlds/world-19/skills';
 import { WORLD_20_SKILLS } from './worlds/world-20/skills';
+import { WORLD_21_SKILLS } from './worlds/world-21/skills';
+import { WORLD_22_SKILLS } from './worlds/world-22/skills';
+import { WORLD_23_SKILLS } from './worlds/world-23/skills';
+import { WORLD_24_SKILLS } from './worlds/world-24/skills';
+import { WORLD_25_SKILLS } from './worlds/world-25/skills';
+import { WORLD_26_SKILLS } from './worlds/world-26/skills';
+import { WORLD_27_SKILLS } from './worlds/world-27/skills';
+import { WORLD_28_SKILLS } from './worlds/world-28/skills';
+import { WORLD_29_SKILLS } from './worlds/world-29/skills';
+import { WORLD_30_SKILLS } from './worlds/world-30/skills';
 
 export const SKILL_TREE_DATA: Record<string, SkillNode> = {
   ...WORLD_1_SKILLS,
@@ -41,4 +51,14 @@ export const SKILL_TREE_DATA: Record<string, SkillNode> = {
   ...WORLD_18_SKILLS,
   ...WORLD_19_SKILLS,
   ...WORLD_20_SKILLS,
+  ...WORLD_21_SKILLS,
+  ...WORLD_22_SKILLS,
+  ...WORLD_23_SKILLS,
+  ...WORLD_24_SKILLS,
+  ...WORLD_25_SKILLS,
+  ...WORLD_26_SKILLS,
+  ...WORLD_27_SKILLS,
+  ...WORLD_28_SKILLS,
+  ...WORLD_29_SKILLS,
+  ...WORLD_30_SKILLS,
 };

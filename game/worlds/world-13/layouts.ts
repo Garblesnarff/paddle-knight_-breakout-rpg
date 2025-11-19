@@ -96,4 +96,63 @@ export const LEVEL_LAYOUTS = [
     [Cyclone, Hurricane, Cyclone, Hurricane, Hurricane, Cyclone, Hurricane, Cyclone],
     [Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone],
   ],
+
+  // Stage 11: Raging Vortex
+  [
+    [Cyclone, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Cyclone],
+    [Cyclone, Hurricane, Cyclone, Hurricane, Hurricane, Cyclone, Hurricane, Cyclone],
+    [Hurricane, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Hurricane],
+    [Cyclone, Hurricane, Cyclone, Thunder, Thunder, Cyclone, Hurricane, Cyclone],
+    [Hurricane, Cyclone, Thunder, Hurricane, Hurricane, Thunder, Cyclone, Hurricane],
+    [Cyclone, Hurricane, Cyclone, Hurricane, Hurricane, Cyclone, Hurricane, Cyclone],
+    [Cyclone, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Cyclone],
+  ],
+
+  // Stage 12: Storm Fortress
+  [
+    [Cyclone, Cyclone, Cyclone, Hurricane, Hurricane, Cyclone, Cyclone, Cyclone],
+    [Cyclone, Hurricane, Cyclone, Cyclone, Cyclone, Cyclone, Hurricane, Cyclone],
+    [Hurricane, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Hurricane],
+    [Cyclone, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Cyclone],
+    [Hurricane, Cyclone, Cyclone, Hurricane, Hurricane, Cyclone, Cyclone, Hurricane],
+    [Cyclone, Hurricane, Cyclone, Cyclone, Cyclone, Cyclone, Hurricane, Cyclone],
+    [Cyclone, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Cyclone],
+    [Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone],
+  ],
+
+  // Stage 13: Cyclone Prison
+  [
+    [Cyclone, Hurricane, Cyclone, Cyclone, Cyclone, Cyclone, Hurricane, Cyclone],
+    [Hurricane, Cyclone, Cyclone, Hurricane, Hurricane, Cyclone, Cyclone, Hurricane],
+    [Cyclone, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Cyclone],
+    [Cyclone, Hurricane, Cyclone, Cyclone, Cyclone, Cyclone, Hurricane, Cyclone],
+    [Hurricane, Cyclone, Cyclone, Hurricane, Hurricane, Cyclone, Cyclone, Hurricane],
+    [Cyclone, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Cyclone],
+    [Hurricane, Cyclone, Cyclone, Hurricane, Hurricane, Cyclone, Cyclone, Hurricane],
+    [Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone],
+  ],
+
+  // Stage 14: Tempest Apex
+  [
+    [Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone],
+    [Cyclone, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Cyclone],
+    [Cyclone, Hurricane, Cyclone, Cyclone, Cyclone, Cyclone, Hurricane, Cyclone],
+    [Hurricane, Cyclone, Cyclone, Hurricane, Hurricane, Cyclone, Cyclone, Hurricane],
+    [Cyclone, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Cyclone],
+    [Cyclone, Hurricane, Cyclone, Cyclone, Cyclone, Cyclone, Hurricane, Cyclone],
+    [Cyclone, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Cyclone],
+    [Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone],
+  ],
+
+  // Stage 15: Storm King's Fury
+  [
+    [Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone],
+    [Cyclone, null, null, StormKingBoss, StormKingBoss, null, null, Cyclone],
+    [Cyclone, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Cyclone],
+    [Hurricane, Cyclone, Cyclone, Hurricane, Hurricane, Cyclone, Cyclone, Hurricane],
+    [Cyclone, Cyclone, Hurricane, Cyclone, Cyclone, Hurricane, Cyclone, Cyclone],
+    [Hurricane, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Hurricane],
+    [Cyclone, Hurricane, Cyclone, Cyclone, Cyclone, Cyclone, Hurricane, Cyclone],
+    [Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone, Cyclone],
+  ],
 ];

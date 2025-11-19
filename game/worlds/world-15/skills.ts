@@ -47,6 +47,39 @@ export const WORLD_15_SKILLS: Record<string, SkillNode> = {
         dependencies: ['dreamWeave', 'etherealForm'],
         type: SkillType.Active,
         position: { row: 5, col: 2 }
+    },
+
+    'memoryEcho': {
+        id: 'memoryEcho',
+        name: 'Memory Echo',
+        description: (level) => `Store your ${level} most powerful attacks. When you fall below 30% HP, replay all stored attacks simultaneously at ${80 + (level * 10)}% power`,
+        maxLevel: 3,
+        cost: (level) => 6 + level,
+        dependencies: ['etherealForm', 'dreamWeave'],
+        type: SkillType.Triggered,
+        position: { row: 4, col: 1 }
+    },
+
+    'astralProjection': {
+        id: 'astralProjection',
+        name: 'Astral Projection',
+        description: (level) => `Leave behind ${level} ethereal copies every ${8 - level}s that mimic your attacks at ${25 + (level * 15)}% power for ${3 + level}s`,
+        maxLevel: 3,
+        cost: (level) => 5 + level,
+        dependencies: ['phantomStrike'],
+        type: SkillType.Passive,
+        position: { row: 3, col: 3 }
+    },
+
+    'nightmareFuel': {
+        id: 'nightmareFuel',
+        name: 'Nightmare Fuel',
+        description: (level) => `Attacks have ${20 + (level * 15)}% chance to terrify enemies, reducing their damage by ${level * 20}% and making them flee for ${2 + level}s`,
+        maxLevel: 3,
+        cost: (level) => 4 + level,
+        dependencies: ['dreamWeave'],
+        type: SkillType.Passive,
+        position: { row: 4, col: 2 }
     }
 };
 

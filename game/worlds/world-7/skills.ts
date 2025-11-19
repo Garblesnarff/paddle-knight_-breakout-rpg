@@ -47,6 +47,39 @@ export const WORLD_7_SKILLS: Record<string, SkillNode> = {
         dependencies: ['burningSoul', 'moltenArmor'],
         type: SkillType.Active,
         position: { row: 5, col: 2 }
+    },
+
+    'magmaVeins': {
+        id: 'magmaVeins',
+        name: 'Magma Veins',
+        description: (level) => `Critical hits create lava pools that deal ${12 + (level * 8)} damage/s for ${3 + level}s`,
+        maxLevel: 3,
+        cost: (level) => 4 + level,
+        dependencies: ['moltenArmor'],
+        type: SkillType.Triggered,
+        position: { row: 4, col: 1 }
+    },
+
+    'forgeMastery': {
+        id: 'forgeMastery',
+        name: 'Forge Mastery',
+        description: (level) => `Damage increases by ${2 + level}% every 10s in combat, up to ${20 + (level * 10)}% bonus`,
+        maxLevel: 3,
+        cost: (level) => 3 + level,
+        dependencies: ['powerBoost'],
+        type: SkillType.Passive,
+        position: { row: 4, col: 2 }
+    },
+
+    'infernalChains': {
+        id: 'infernalChains',
+        name: 'Infernal Chains',
+        description: (level) => `Ball leaves a ${level * 2}% longer fire trail. Enemies in trail take ${8 + (level * 6)} damage/s and are slowed by 25%`,
+        maxLevel: 4,
+        cost: (level) => 4 + level,
+        dependencies: ['pyroclasticSurge', 'magmaVeins'],
+        type: SkillType.Passive,
+        position: { row: 5, col: 1 }
     }
 };
 

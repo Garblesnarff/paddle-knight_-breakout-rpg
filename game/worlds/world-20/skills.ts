@@ -47,6 +47,39 @@ export const WORLD_20_SKILLS: Record<string, SkillNode> = {
         dependencies: ['absolutePower', 'primordialForce', 'eternalResilience'],
         type: SkillType.Active,
         position: { row: 5, col: 2 }
+    },
+
+    'transcendentMastery': {
+        id: 'transcendentMastery',
+        name: 'Transcendent Mastery',
+        description: (level) => `Gain ${level * 5}% bonus to all stats for each skill at maximum level. Your mastery transcends mortal limits`,
+        maxLevel: 5,
+        cost: (level) => 8 + level * 3,
+        dependencies: ['absolutePower'],
+        type: SkillType.Passive,
+        position: { row: 2, col: 2 }
+    },
+
+    'omegaStrike': {
+        id: 'omegaStrike',
+        name: 'Omega Strike',
+        description: (level) => `Critical hits deal ${50 + (level * 30)}% bonus damage, ignore all armor, and have ${level * 15}% chance to instantly destroy weakened enemies (<${20 + level * 10}% HP)`,
+        maxLevel: 4,
+        cost: (level) => 9 + level * 2,
+        dependencies: ['primordialForce'],
+        type: SkillType.Triggered,
+        position: { row: 4, col: 4 }
+    },
+
+    'ascensionAura': {
+        id: 'ascensionAura',
+        name: 'Ascension Aura',
+        description: (level) => `Convert ${level * 15}% of damage taken into pure energy. At ${100 - (level * 10)} energy, release a devastating shockwave dealing ${level * 100} damage to all enemies`,
+        maxLevel: 5,
+        cost: (level) => 10 + level * 2,
+        dependencies: ['eternalResilience', 'absolutePower'],
+        type: SkillType.Passive,
+        position: { row: 4, col: 0 }
     }
 };
 

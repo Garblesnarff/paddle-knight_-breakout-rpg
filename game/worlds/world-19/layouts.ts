@@ -97,4 +97,64 @@ export const LEVEL_LAYOUTS = [
     [Mutation, ChaosBeast, Aberration, ChaosBeast, ChaosBeast, Aberration, ChaosBeast, Mutation],
     [ChaosBeast, ChaosBeast, ChaosBeast, Aberration, Aberration, ChaosBeast, ChaosBeast, ChaosBeast],
   ],
+
+  // Stage 11: Chaotic Convergence
+  [
+    [ChaosBeast, ChaosBeast, Aberration, ChaosBeast, ChaosBeast, Aberration, ChaosBeast, ChaosBeast],
+    [Aberration, ChaosBeast, ChaosBeast, Aberration, Aberration, ChaosBeast, ChaosBeast, Aberration],
+    [ChaosBeast, Aberration, ChaosBeast, ChaosBeast, ChaosBeast, ChaosBeast, Aberration, ChaosBeast],
+    [ChaosBeast, ChaosBeast, Aberration, ChaosBeast, ChaosBeast, Aberration, ChaosBeast, ChaosBeast],
+    [Aberration, ChaosBeast, ChaosBeast, Aberration, Aberration, ChaosBeast, ChaosBeast, Aberration],
+    [ChaosBeast, Aberration, ChaosBeast, ChaosBeast, ChaosBeast, ChaosBeast, Aberration, ChaosBeast],
+    [Aberration, ChaosBeast, Aberration, ChaosBeast, ChaosBeast, Aberration, ChaosBeast, Aberration],
+    [ChaosBeast, ChaosBeast, ChaosBeast, Aberration, Aberration, ChaosBeast, ChaosBeast, ChaosBeast],
+  ],
+
+  // Stage 12: Unstable Annihilation
+  [
+    [ChaosBeast, Aberration, ChaosBeast, Aberration, Aberration, ChaosBeast, Aberration, ChaosBeast],
+    [Aberration, ChaosBeast, Aberration, ChaosBeast, ChaosBeast, Aberration, ChaosBeast, Aberration],
+    [ChaosBeast, Aberration, ChaosBeast, Aberration, Aberration, ChaosBeast, Aberration, ChaosBeast],
+    [Aberration, ChaosBeast, Aberration, ChaosBeast, ChaosBeast, Aberration, ChaosBeast, Aberration],
+    [ChaosBeast, Aberration, ChaosBeast, Aberration, Aberration, ChaosBeast, Aberration, ChaosBeast],
+    [Aberration, ChaosBeast, Aberration, ChaosBeast, ChaosBeast, Aberration, ChaosBeast, Aberration],
+    [ChaosBeast, Aberration, ChaosBeast, Aberration, Aberration, ChaosBeast, Aberration, ChaosBeast],
+    [Aberration, ChaosBeast, Aberration, ChaosBeast, ChaosBeast, Aberration, ChaosBeast, Aberration],
+  ],
+
+  // Stage 13: Aberration Storm
+  [
+    [Aberration, Aberration, ChaosBeast, Aberration, Aberration, ChaosBeast, Aberration, Aberration],
+    [ChaosBeast, Aberration, Aberration, ChaosBeast, ChaosBeast, Aberration, Aberration, ChaosBeast],
+    [Aberration, ChaosBeast, Aberration, Aberration, Aberration, Aberration, ChaosBeast, Aberration],
+    [ChaosBeast, Aberration, ChaosBeast, Aberration, Aberration, ChaosBeast, Aberration, ChaosBeast],
+    [Aberration, Aberration, Aberration, ChaosBeast, ChaosBeast, Aberration, Aberration, Aberration],
+    [ChaosBeast, Aberration, Aberration, ChaosBeast, ChaosBeast, Aberration, Aberration, ChaosBeast],
+    [Aberration, ChaosBeast, Aberration, Aberration, Aberration, Aberration, ChaosBeast, Aberration],
+    [Aberration, Aberration, ChaosBeast, Aberration, Aberration, ChaosBeast, Aberration, Aberration],
+  ],
+
+  // Stage 14: Chaotic Oblivion
+  [
+    [Aberration, Aberration, Aberration, ChaosBeast, ChaosBeast, Aberration, Aberration, Aberration],
+    [Aberration, ChaosBeast, Aberration, Aberration, Aberration, Aberration, ChaosBeast, Aberration],
+    [ChaosBeast, Aberration, Aberration, ChaosBeast, ChaosBeast, Aberration, Aberration, ChaosBeast],
+    [Aberration, Aberration, ChaosBeast, Aberration, Aberration, ChaosBeast, Aberration, Aberration],
+    [Aberration, ChaosBeast, Aberration, Aberration, Aberration, Aberration, ChaosBeast, Aberration],
+    [ChaosBeast, Aberration, Aberration, ChaosBeast, ChaosBeast, Aberration, Aberration, ChaosBeast],
+    [Aberration, Aberration, ChaosBeast, Aberration, Aberration, ChaosBeast, Aberration, Aberration],
+    [Aberration, Aberration, Aberration, Aberration, Aberration, Aberration, Aberration, Aberration],
+  ],
+
+  // Stage 15: Chaos Emperor's Reign
+  [
+    [null, null, Aberration, ChaosEmperorBoss, ChaosEmperorBoss, Aberration, null, null],
+    [Aberration, ChaosBeast, null, Aberration, Aberration, null, ChaosBeast, Aberration],
+    [ChaosBeast, Aberration, ChaosBeast, null, null, ChaosBeast, Aberration, ChaosBeast],
+    [Aberration, ChaosBeast, Aberration, ChaosBeast, ChaosBeast, Aberration, ChaosBeast, Aberration],
+    [ChaosBeast, Aberration, Aberration, ChaosBeast, ChaosBeast, Aberration, Aberration, ChaosBeast],
+    [Aberration, Aberration, ChaosBeast, Aberration, Aberration, ChaosBeast, Aberration, Aberration],
+    [ChaosBeast, Aberration, Aberration, ChaosBeast, ChaosBeast, Aberration, Aberration, ChaosBeast],
+    [Aberration, Aberration, Aberration, Aberration, Aberration, Aberration, Aberration, Aberration],
+  ],
 ];

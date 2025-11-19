@@ -96,4 +96,63 @@ export const LEVEL_LAYOUTS = [
     [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
     [Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian],
   ],
+
+  // Stage 11: Obsidian Citadel
+  [
+    [Obsidian, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Obsidian],
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+    [Diamond, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Diamond],
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+    [Diamond, Obsidian, Obsidian, Quartz, Quartz, Obsidian, Obsidian, Diamond],
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+    [Obsidian, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Obsidian],
+  ],
+
+  // Stage 12: Diamond Fortress Supreme
+  [
+    [Obsidian, Obsidian, Obsidian, Diamond, Diamond, Obsidian, Obsidian, Obsidian],
+    [Obsidian, Diamond, Obsidian, Obsidian, Obsidian, Obsidian, Diamond, Obsidian],
+    [Diamond, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Diamond],
+    [Obsidian, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Obsidian],
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+    [Diamond, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Diamond],
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+    [Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian],
+  ],
+
+  // Stage 13: Crystalline Nightmare
+  [
+    [Obsidian, Diamond, Obsidian, Obsidian, Obsidian, Obsidian, Diamond, Obsidian],
+    [Diamond, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Diamond],
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+    [Obsidian, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Obsidian],
+    [Diamond, Obsidian, Obsidian, Diamond, Diamond, Obsidian, Obsidian, Diamond],
+    [Obsidian, Diamond, Obsidian, Obsidian, Obsidian, Obsidian, Diamond, Obsidian],
+    [Diamond, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Diamond],
+    [Obsidian, Obsidian, Obsidian, Diamond, Diamond, Obsidian, Obsidian, Obsidian],
+  ],
+
+  // Stage 14: Eternal Gemstone
+  [
+    [Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian],
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+    [Obsidian, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Obsidian],
+    [Diamond, Obsidian, Obsidian, Diamond, Diamond, Obsidian, Obsidian, Diamond],
+    [Obsidian, Diamond, Obsidian, Obsidian, Obsidian, Obsidian, Diamond, Obsidian],
+    [Diamond, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Diamond],
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+    [Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian],
+  ],
+
+  // Stage 15: Crystal King's Revenge
+  [
+    [Obsidian, Obsidian, Obsidian, null, null, Obsidian, Obsidian, Obsidian],
+    [Obsidian, Diamond, Obsidian, CrystalKingBoss, CrystalKingBoss, Obsidian, Diamond, Obsidian],
+    [Diamond, Obsidian, Diamond, null, null, Diamond, Obsidian, Diamond],
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+    [Diamond, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Diamond],
+    [Obsidian, Diamond, Obsidian, Diamond, Diamond, Obsidian, Diamond, Obsidian],
+    [Diamond, Obsidian, Diamond, Obsidian, Obsidian, Diamond, Obsidian, Diamond],
+    [Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian, Obsidian],
+  ],
 ];

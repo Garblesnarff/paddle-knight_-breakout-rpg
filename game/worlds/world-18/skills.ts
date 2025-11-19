@@ -47,6 +47,39 @@ export const WORLD_18_SKILLS: Record<string, SkillNode> = {
         dependencies: ['divineBlessing', 'ascension'],
         type: SkillType.Active,
         position: { row: 5, col: 2 }
+    },
+
+    'starfall': {
+        id: 'starfall',
+        name: 'Starfall',
+        description: (level) => `Active: Call down ${2 + level} cosmic meteors that deal ${45 + (level * 30)} damage each and leave stellar fields dealing ${level * 10} damage/s. Cooldown: ${Math.max(65 - level * 8, 45)}s`,
+        maxLevel: 3,
+        cost: (level) => 6 + level,
+        dependencies: ['celestialWard', 'divineBlessing'],
+        type: SkillType.Active,
+        position: { row: 4, col: 1 }
+    },
+
+    'cosmicInsight': {
+        id: 'cosmicInsight',
+        name: 'Cosmic Insight',
+        description: (level) => `Channel cosmic wisdom to predict enemy movements. Gain ${15 + (level * 12)}% critical hit chance and crits deal ${level * 25}% more damage`,
+        maxLevel: 4,
+        cost: (level) => 4 + level,
+        dependencies: ['powerBoost'],
+        type: SkillType.Passive,
+        position: { row: 3, col: 3 }
+    },
+
+    'stellarResonance': {
+        id: 'stellarResonance',
+        name: 'Stellar Resonance',
+        description: (level) => `Every ${8 - level} attacks, harmonize with the cosmos to release ${60 + (level * 40)} burst damage to all nearby enemies and restore ${level * 5}% HP`,
+        maxLevel: 3,
+        cost: (level) => 5 + level,
+        dependencies: ['ascension', 'celestialWard'],
+        type: SkillType.Triggered,
+        position: { row: 4, col: 2 }
     }
 };
 

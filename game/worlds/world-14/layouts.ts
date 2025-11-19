@@ -96,4 +96,63 @@ export const LEVEL_LAYOUTS = [
     [Paradox, Nullifier, Paradox, Nullifier, Nullifier, Paradox, Nullifier, Paradox],
     [Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox],
   ],
+
+  // Stage 11: Dimensional Breach
+  [
+    [Paradox, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Paradox],
+    [Paradox, Nullifier, Paradox, Nullifier, Nullifier, Paradox, Nullifier, Paradox],
+    [Nullifier, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Nullifier],
+    [Paradox, Nullifier, Paradox, Ethereal, Ethereal, Paradox, Nullifier, Paradox],
+    [Nullifier, Paradox, Ethereal, Nullifier, Nullifier, Ethereal, Paradox, Nullifier],
+    [Paradox, Nullifier, Paradox, Nullifier, Nullifier, Paradox, Nullifier, Paradox],
+    [Paradox, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Paradox],
+  ],
+
+  // Stage 12: Void Nexus
+  [
+    [Paradox, Paradox, Paradox, Nullifier, Nullifier, Paradox, Paradox, Paradox],
+    [Paradox, Nullifier, Paradox, Paradox, Paradox, Paradox, Nullifier, Paradox],
+    [Nullifier, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Nullifier],
+    [Paradox, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Paradox],
+    [Nullifier, Paradox, Paradox, Nullifier, Nullifier, Paradox, Paradox, Nullifier],
+    [Paradox, Nullifier, Paradox, Paradox, Paradox, Paradox, Nullifier, Paradox],
+    [Paradox, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Paradox],
+    [Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox],
+  ],
+
+  // Stage 13: Nullspace Labyrinth
+  [
+    [Paradox, Nullifier, Paradox, Paradox, Paradox, Paradox, Nullifier, Paradox],
+    [Nullifier, Paradox, Paradox, Nullifier, Nullifier, Paradox, Paradox, Nullifier],
+    [Paradox, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Paradox],
+    [Paradox, Nullifier, Paradox, Paradox, Paradox, Paradox, Nullifier, Paradox],
+    [Nullifier, Paradox, Paradox, Nullifier, Nullifier, Paradox, Paradox, Nullifier],
+    [Paradox, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Paradox],
+    [Nullifier, Paradox, Paradox, Nullifier, Nullifier, Paradox, Paradox, Nullifier],
+    [Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox],
+  ],
+
+  // Stage 14: Paradox Throne
+  [
+    [Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox],
+    [Paradox, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Paradox],
+    [Paradox, Nullifier, Paradox, Paradox, Paradox, Paradox, Nullifier, Paradox],
+    [Nullifier, Paradox, Paradox, Nullifier, Nullifier, Paradox, Paradox, Nullifier],
+    [Paradox, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Paradox],
+    [Paradox, Nullifier, Paradox, Paradox, Paradox, Paradox, Nullifier, Paradox],
+    [Paradox, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Paradox],
+    [Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox],
+  ],
+
+  // Stage 15: Void Lord's Return
+  [
+    [Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox],
+    [Paradox, null, null, VoidLordBoss, VoidLordBoss, null, null, Paradox],
+    [Paradox, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Paradox],
+    [Nullifier, Paradox, Paradox, Nullifier, Nullifier, Paradox, Paradox, Nullifier],
+    [Paradox, Paradox, Nullifier, Paradox, Paradox, Nullifier, Paradox, Paradox],
+    [Nullifier, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Nullifier],
+    [Paradox, Nullifier, Paradox, Paradox, Paradox, Paradox, Nullifier, Paradox],
+    [Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox, Paradox],
+  ],
 ];

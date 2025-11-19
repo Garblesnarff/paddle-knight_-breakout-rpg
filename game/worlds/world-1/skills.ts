@@ -71,6 +71,36 @@ export const WORLD_1_SKILLS: Record<string, SkillNode> = {
         type: SkillType.Active,
         position: { row: 2, col: 2 },
     },
+    'royalDecree': {
+        id: 'royalDecree',
+        name: 'Royal Decree',
+        description: (level) => `Increases gold gained from bricks by ${level * 10}%. Command presence grants +${level * 5}% XP. Next: +10% gold, +5% XP.`,
+        maxLevel: 3,
+        cost: (level) => level + 1,
+        dependencies: ['powerBoost', 'vitalityBoost'],
+        type: SkillType.Passive,
+        position: { row: 1, col: 1 },
+    },
+    'shieldWall': {
+        id: 'shieldWall',
+        name: 'Shield Wall',
+        description: () => 'Active: Paddle width increases by 50% for 4 seconds. Grants immunity to damage during this time. Cooldown: 25s.',
+        maxLevel: 1,
+        cost: () => 3,
+        dependencies: ['royalDecree'],
+        type: SkillType.Active,
+        position: { row: 2, col: 1 },
+    },
+    'knightsResolve': {
+        id: 'knightsResolve',
+        name: "Knight's Resolve",
+        description: (level) => `When below 30% HP, gain +${level * 20}% damage, +${level * 10}% defense, and heal ${level * 2} HP per brick destroyed.`,
+        maxLevel: 3,
+        cost: (level) => 2 + level,
+        dependencies: ['shieldWall'],
+        type: SkillType.Passive,
+        position: { row: 3, col: 1 },
+    },
 };
 
 

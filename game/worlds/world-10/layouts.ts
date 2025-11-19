@@ -96,4 +96,63 @@ export const LEVEL_LAYOUTS = [
     [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
     [Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine],
   ],
+
+  // Stage 11: Verdant Stronghold
+  [
+    [Wildvine, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Wildvine],
+    [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
+    [Canopy, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Canopy],
+    [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
+    [Canopy, Wildvine, Wildvine, Rootguard, Rootguard, Wildvine, Wildvine, Canopy],
+    [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
+    [Wildvine, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Wildvine],
+  ],
+
+  // Stage 12: Canopy Cathedral
+  [
+    [Wildvine, Wildvine, Wildvine, Canopy, Canopy, Wildvine, Wildvine, Wildvine],
+    [Wildvine, Canopy, Wildvine, Wildvine, Wildvine, Wildvine, Canopy, Wildvine],
+    [Canopy, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Canopy],
+    [Wildvine, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Wildvine],
+    [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
+    [Canopy, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Canopy],
+    [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
+    [Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine],
+  ],
+
+  // Stage 13: Overgrown Nightmare
+  [
+    [Wildvine, Canopy, Wildvine, Wildvine, Wildvine, Wildvine, Canopy, Wildvine],
+    [Canopy, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Canopy],
+    [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
+    [Wildvine, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Wildvine],
+    [Canopy, Wildvine, Wildvine, Canopy, Canopy, Wildvine, Wildvine, Canopy],
+    [Wildvine, Canopy, Wildvine, Wildvine, Wildvine, Wildvine, Canopy, Wildvine],
+    [Canopy, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Canopy],
+    [Wildvine, Wildvine, Wildvine, Canopy, Canopy, Wildvine, Wildvine, Wildvine],
+  ],
+
+  // Stage 14: Ancient Sanctuary
+  [
+    [Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine],
+    [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
+    [Wildvine, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Wildvine],
+    [Canopy, Wildvine, Wildvine, Canopy, Canopy, Wildvine, Wildvine, Canopy],
+    [Wildvine, Canopy, Wildvine, Wildvine, Wildvine, Wildvine, Canopy, Wildvine],
+    [Canopy, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Canopy],
+    [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
+    [Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine],
+  ],
+
+  // Stage 15: Forest Keeper's Fury
+  [
+    [Wildvine, Wildvine, Wildvine, null, null, Wildvine, Wildvine, Wildvine],
+    [Wildvine, Canopy, Wildvine, ForestKeeperBoss, ForestKeeperBoss, Wildvine, Canopy, Wildvine],
+    [Canopy, Wildvine, Canopy, null, null, Canopy, Wildvine, Canopy],
+    [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
+    [Canopy, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Canopy],
+    [Wildvine, Canopy, Wildvine, Canopy, Canopy, Wildvine, Canopy, Wildvine],
+    [Canopy, Wildvine, Canopy, Wildvine, Wildvine, Canopy, Wildvine, Canopy],
+    [Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine, Wildvine],
+  ],
 ];

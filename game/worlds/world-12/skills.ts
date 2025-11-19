@@ -47,6 +47,39 @@ export const WORLD_12_SKILLS: Record<string, SkillNode> = {
         dependencies: ['sandstorm', 'ancientCurse'],
         type: SkillType.Active,
         position: { row: 5, col: 2 }
+    },
+
+    'scarabSwarm': {
+        id: 'scarabSwarm',
+        name: 'Scarab Swarm',
+        description: (level) => `Killing enemies summons ${level} scarabs that seek other enemies, dealing ${15 + (level * 10)} damage each`,
+        maxLevel: 3,
+        cost: (level) => 4 + level,
+        dependencies: ['ancientCurse'],
+        type: SkillType.Triggered,
+        position: { row: 5, col: 3 }
+    },
+
+    'desertMirage': {
+        id: 'desertMirage',
+        name: 'Desert Mirage',
+        description: (level) => `Create ${level} illusory duplicates that confuse enemies. Each duplicate has ${20 + (level * 15)}% chance to dodge attacks`,
+        maxLevel: 3,
+        cost: (level) => 4 + level,
+        dependencies: ['mirageCloak'],
+        type: SkillType.Passive,
+        position: { row: 4, col: 1 }
+    },
+
+    'tombGuardian': {
+        id: 'tombGuardian',
+        name: 'Tomb Guardian',
+        description: (level) => `Active: Summon an ancient guardian for ${8 + (level * 2)}s. Guardian has ${100 + (level * 50)} HP and taunts enemies. Cooldown: ${Math.max(55 - level * 5, 40)}s`,
+        maxLevel: 3,
+        cost: (level) => 5 + level,
+        dependencies: ['sandstorm', 'mirageCloak'],
+        type: SkillType.Active,
+        position: { row: 5, col: 1 }
     }
 };
 

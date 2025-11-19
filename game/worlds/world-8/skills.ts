@@ -47,6 +47,39 @@ export const WORLD_8_SKILLS: Record<string, SkillNode> = {
         dependencies: ['stellarGravity', 'cosmicShield'],
         type: SkillType.Active,
         position: { row: 5, col: 2 }
+    },
+
+    'starfall': {
+        id: 'starfall',
+        name: 'Starfall',
+        description: (level) => `Every ${8 - level} hits summons ${level} meteor that strikes random enemy for ${20 + (level * 15)} damage`,
+        maxLevel: 3,
+        cost: (level) => 4 + level,
+        dependencies: ['supernovaBlast'],
+        type: SkillType.Triggered,
+        position: { row: 5, col: 3 }
+    },
+
+    'lunarResonance': {
+        id: 'lunarResonance',
+        name: 'Lunar Resonance',
+        description: (level) => `Damage oscillates in ${6 - level}s cycles between ${100 + (level * 10)}% and ${100 - (level * 5)}%, averaging higher overall`,
+        maxLevel: 3,
+        cost: (level) => 3 + level,
+        dependencies: ['stellarGravity'],
+        type: SkillType.Passive,
+        position: { row: 4, col: 2 }
+    },
+
+    'nebulaVeil': {
+        id: 'nebulaVeil',
+        name: 'Nebula Veil',
+        description: (level) => `Gain ${10 + (level * 8)}% evasion. When you dodge, release cosmic energy dealing ${15 + (level * 10)} damage nearby`,
+        maxLevel: 3,
+        cost: (level) => 4 + level,
+        dependencies: ['cosmicShield'],
+        type: SkillType.Passive,
+        position: { row: 4, col: 1 }
     }
 };
 

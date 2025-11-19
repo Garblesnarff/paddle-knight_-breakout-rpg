@@ -47,6 +47,39 @@ export const WORLD_9_SKILLS: Record<string, SkillNode> = {
         dependencies: ['tidalForce', 'pressureAdapt'],
         type: SkillType.Active,
         position: { row: 5, col: 2 }
+    },
+
+    'crushingDepths': {
+        id: 'crushingDepths',
+        name: 'Crushing Depths',
+        description: (level) => `Enemies take ${3 + (level * 2)} pressure damage/s, increasing by ${level}% every second (max ${50 + (level * 25)}%)`,
+        maxLevel: 3,
+        cost: (level) => 4 + level,
+        dependencies: ['pressureAdapt'],
+        type: SkillType.Passive,
+        position: { row: 4, col: 1 }
+    },
+
+    'predatorsFrenzy': {
+        id: 'predatorsFrenzy',
+        name: "Predator's Frenzy",
+        description: (level) => `Killing an enemy grants ${15 + (level * 10)}% attack speed for ${3 + level}s. Stacks up to ${level + 1} times`,
+        maxLevel: 3,
+        cost: (level) => 3 + level,
+        dependencies: ['tidalForce'],
+        type: SkillType.Triggered,
+        position: { row: 4, col: 3 }
+    },
+
+    'sonarPulse': {
+        id: 'sonarPulse',
+        name: 'Sonar Pulse',
+        description: (level) => `Active: Emit pulse revealing all enemies and stunning them for ${1 + (level * 0.5)}s within range. Cooldown: ${Math.max(40 - level * 5, 25)}s`,
+        maxLevel: 3,
+        cost: (level) => 4 + level,
+        dependencies: ['bioluminescence'],
+        type: SkillType.Active,
+        position: { row: 5, col: 1 }
     }
 };
 

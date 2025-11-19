@@ -47,6 +47,39 @@ export const WORLD_19_SKILLS: Record<string, SkillNode> = {
         dependencies: ['chaosEmbrace', 'chaoticMutation'],
         type: SkillType.Active,
         position: { row: 5, col: 2 }
+    },
+
+    'probabilityStorm': {
+        id: 'probabilityStorm',
+        name: 'Probability Storm',
+        description: (level) => `Every ${Math.max(15 - level * 2, 8)}s, randomly activate one of your learned skills without consuming cooldown. ${level * 10}% chance for double effect`,
+        maxLevel: 4,
+        cost: (level) => 7 + level * 2,
+        dependencies: ['chaosEmbrace', 'luck'],
+        type: SkillType.Passive,
+        position: { row: 4, col: 1 }
+    },
+
+    'chaoticResonance': {
+        id: 'chaoticResonance',
+        name: 'Chaotic Resonance',
+        description: (level) => `Each time a random buff changes, gain ${level * 8}% stacking damage (max ${level * 40}%). Stacks decay after ${4 + level}s without changes`,
+        maxLevel: 5,
+        cost: (level) => 6 + level * 2,
+        dependencies: ['chaosEmbrace'],
+        type: SkillType.Triggered,
+        position: { row: 4, col: 2 }
+    },
+
+    'voidRifts': {
+        id: 'voidRifts',
+        name: 'Void Rifts',
+        description: (level) => `Active: Tear ${level + 1} rifts in reality. Each rift pulls enemies within ${100 + level * 25}px radius and applies random debuffs: slow, weaken, or chaos damage. Lasts ${4 + level}s. Cooldown: ${Math.max(70 - level * 10, 40)}s`,
+        maxLevel: 4,
+        cost: (level) => 9 + level * 2,
+        dependencies: ['entropyShield', 'realityBreak'],
+        type: SkillType.Active,
+        position: { row: 6, col: 1 }
     }
 };
 

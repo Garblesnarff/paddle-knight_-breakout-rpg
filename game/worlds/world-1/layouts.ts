@@ -102,6 +102,25 @@ export const LEVEL_LAYOUTS = [
         [Tank,Mage,Chaos,Archer,Archer,Chaos,Mage,Tank],
         [Mage,Chaos,Archer,Tank,Tank,Archer,Chaos,Mage],
         [Chaos,Tank,Mage,Archer,Archer,Mage,Tank,Chaos],
+    ],
+    // Level 14: Chaos Ascendant
+    [
+        [Chaos,Tank,Tank,Chaos,Chaos,Tank,Tank,Chaos],
+        [Tank,Chaos,Chaos,Tank,Tank,Chaos,Chaos,Tank],
+        [Chaos,Chaos,Mage,Chaos,Chaos,Mage,Chaos,Chaos],
+        [Tank,Tank,Chaos,Archer,Archer,Chaos,Tank,Tank],
+        [Chaos,Chaos,Tank,Mage,Mage,Tank,Chaos,Chaos],
+        [Tank,Chaos,Chaos,Tank,Tank,Chaos,Chaos,Tank],
+    ],
+    // Level 15: The Brick Lord Returns
+    [
+        [Chaos,Chaos,Boss,Boss,Boss,Chaos,Chaos],
+        [Tank,Tank,Tank,Chaos,Tank,Tank,Tank],
+        [Chaos,Mage,Chaos,Tank,Chaos,Mage,Chaos],
+        [Tank,Chaos,Mage,Chaos,Mage,Chaos,Tank],
+        [Chaos,Tank,Chaos,Mage,Chaos,Tank,Chaos],
+        [Tank,Chaos,Tank,Chaos,Tank,Chaos,Tank],
+        [Chaos,Chaos,Chaos,Tank,Chaos,Chaos,Chaos],
     ]
 ];
 

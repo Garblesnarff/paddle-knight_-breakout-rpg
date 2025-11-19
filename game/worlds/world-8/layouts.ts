@@ -96,4 +96,63 @@ export const LEVEL_LAYOUTS = [
     [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
     [Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova],
   ],
+
+  // Stage 11: Cosmic Stronghold
+  [
+    [Supernova, Supernova, Asteroid, Supernova, Supernova, Asteroid, Supernova, Supernova],
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+    [Asteroid, Supernova, Asteroid, Supernova, Supernova, Asteroid, Supernova, Asteroid],
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+    [Asteroid, Supernova, Supernova, Pulsar, Pulsar, Supernova, Supernova, Asteroid],
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+    [Supernova, Supernova, Asteroid, Supernova, Supernova, Asteroid, Supernova, Supernova],
+  ],
+
+  // Stage 12: Supernova Cascade
+  [
+    [Supernova, Supernova, Supernova, Asteroid, Asteroid, Supernova, Supernova, Supernova],
+    [Supernova, Asteroid, Supernova, Supernova, Supernova, Supernova, Asteroid, Supernova],
+    [Asteroid, Supernova, Asteroid, Supernova, Supernova, Asteroid, Supernova, Asteroid],
+    [Supernova, Supernova, Asteroid, Supernova, Supernova, Asteroid, Supernova, Supernova],
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+    [Asteroid, Supernova, Asteroid, Supernova, Supernova, Asteroid, Supernova, Asteroid],
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+    [Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova],
+  ],
+
+  // Stage 13: Asteroid Annihilation
+  [
+    [Supernova, Asteroid, Supernova, Supernova, Supernova, Supernova, Asteroid, Supernova],
+    [Asteroid, Supernova, Asteroid, Supernova, Supernova, Asteroid, Supernova, Asteroid],
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+    [Supernova, Supernova, Asteroid, Supernova, Supernova, Asteroid, Supernova, Supernova],
+    [Asteroid, Supernova, Supernova, Asteroid, Asteroid, Supernova, Supernova, Asteroid],
+    [Supernova, Asteroid, Supernova, Supernova, Supernova, Supernova, Asteroid, Supernova],
+    [Asteroid, Supernova, Asteroid, Supernova, Supernova, Asteroid, Supernova, Asteroid],
+    [Supernova, Supernova, Supernova, Asteroid, Asteroid, Supernova, Supernova, Supernova],
+  ],
+
+  // Stage 14: Galactic Oblivion
+  [
+    [Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova],
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+    [Supernova, Supernova, Asteroid, Supernova, Supernova, Asteroid, Supernova, Supernova],
+    [Asteroid, Supernova, Supernova, Asteroid, Asteroid, Supernova, Supernova, Asteroid],
+    [Supernova, Asteroid, Supernova, Supernova, Supernova, Supernova, Asteroid, Supernova],
+    [Asteroid, Supernova, Asteroid, Supernova, Supernova, Asteroid, Supernova, Asteroid],
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+    [Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova],
+  ],
+
+  // Stage 15: Cosmos Guardian Ascension
+  [
+    [Supernova, Supernova, Supernova, null, null, Supernova, Supernova, Supernova],
+    [Supernova, Asteroid, Supernova, CosmosGuardianBoss, CosmosGuardianBoss, Supernova, Asteroid, Supernova],
+    [Asteroid, Supernova, Asteroid, null, null, Asteroid, Supernova, Asteroid],
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+    [Asteroid, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Asteroid],
+    [Supernova, Asteroid, Supernova, Asteroid, Asteroid, Supernova, Asteroid, Supernova],
+    [Asteroid, Supernova, Asteroid, Supernova, Supernova, Asteroid, Supernova, Asteroid],
+    [Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova, Supernova],
+  ],
 ];

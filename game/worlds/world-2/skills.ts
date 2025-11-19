@@ -81,6 +81,36 @@ export const WORLD_2_SKILLS: Record<string, SkillNode> = {
         type: SkillType.Active,
         position: { row: 4, col: 4 },
     },
+    'manaSurge': {
+        id: 'manaSurge',
+        name: 'Mana Surge',
+        description: (level) => `Mana regeneration increased by ${level * 2} per second. Max Mana +${level * 15}. Next: +2 Mana/s, +15 Max Mana.`,
+        maxLevel: 5,
+        cost: (level) => level + 1,
+        dependencies: [],
+        type: SkillType.Passive,
+        position: { row: 0, col: 5 },
+    },
+    'spellEcho': {
+        id: 'spellEcho',
+        name: 'Spell Echo',
+        description: (level) => `${10 + (level * 10)}% chance for active abilities to trigger twice without additional cost. Next: +10% chance.`,
+        maxLevel: 3,
+        cost: (level) => 2 + level,
+        dependencies: ['manaSurge'],
+        type: SkillType.Triggered,
+        position: { row: 1, col: 5 },
+    },
+    'mysticBarrier': {
+        id: 'mysticBarrier',
+        name: 'Mystic Barrier',
+        description: (level) => `Consume ${15 - level} Mana to reduce incoming damage by ${level * 20}%. While active, ball damage +${level * 5}%.`,
+        maxLevel: 3,
+        cost: (level) => 2 + level,
+        dependencies: ['manaShield'],
+        type: SkillType.Passive,
+        position: { row: 2, col: 2 },
+    },
 };
 
 

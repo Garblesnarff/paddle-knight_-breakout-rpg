@@ -47,6 +47,39 @@ export const WORLD_11_SKILLS: Record<string, SkillNode> = {
         dependencies: ['frostbite', 'iceArmor'],
         type: SkillType.Active,
         position: { row: 5, col: 2 }
+    },
+
+    'glacialSpike': {
+        id: 'glacialSpike',
+        name: 'Glacial Spike',
+        description: (level) => `${12 + (level * 8)}% chance on hit to impale enemy, freezing them for ${1 + (level * 0.5)}s and dealing ${25 + (level * 15)} damage`,
+        maxLevel: 3,
+        cost: (level) => 4 + level,
+        dependencies: ['frostbite'],
+        type: SkillType.Triggered,
+        position: { row: 4, col: 2 }
+    },
+
+    'frostweave': {
+        id: 'frostweave',
+        name: 'Frostweave',
+        description: (level) => `When an enemy is frozen, ${level * 15}% chance to freeze ${level} nearby enemies. Chain effect can spread`,
+        maxLevel: 3,
+        cost: (level) => 5 + level,
+        dependencies: ['permafrost', 'glacialSpike'],
+        type: SkillType.Passive,
+        position: { row: 5, col: 3 }
+    },
+
+    'hypothermia': {
+        id: 'hypothermia',
+        name: 'Hypothermia',
+        description: (level) => `Slowed enemies lose ${2 + level} HP/s. For each second slowed, slow effect increases by ${level * 3}% (max 60%)`,
+        maxLevel: 3,
+        cost: (level) => 3 + level,
+        dependencies: ['iceArmor'],
+        type: SkillType.Passive,
+        position: { row: 4, col: 1 }
     }
 };
 

@@ -7,6 +7,40 @@
 import { SkillNode, SkillType } from '../../../types';
 
 export const WORLD3_SKILLS: Record<string, SkillNode> = {
+    // Bio-tech foundation skills
+    'nanobotSwarm': {
+        id: 'nanobotSwarm',
+        name: 'Nanobot Swarm',
+        description: (level) => `Passive regeneration of ${level * 3} HP every 5 seconds. Nanobots also repair ${level * 2}% paddle integrity.`,
+        maxLevel: 4,
+        cost: (level) => 1 + level,
+        dependencies: [],
+        type: SkillType.Passive,
+        position: { row: 0, col: 1 }
+    },
+
+    'viralStrike': {
+        id: 'viralStrike',
+        name: 'Viral Strike',
+        description: (level) => `Ball hits inflict a virus dealing ${level * 5} damage over 3 seconds. Stacks up to ${2 + level} times on same target.`,
+        maxLevel: 3,
+        cost: (level) => 2 + level,
+        dependencies: ['nanobotSwarm'],
+        type: SkillType.Passive,
+        position: { row: 1, col: 2 }
+    },
+
+    'geneticMutation': {
+        id: 'geneticMutation',
+        name: 'Genetic Mutation',
+        description: (level) => `Every 10 brick destructions triggers mutation: +${level * 15}% to a random stat (Power/Defense/Speed) for ${3 + level}s.`,
+        maxLevel: 3,
+        cost: (level) => 2 + level,
+        dependencies: ['viralStrike'],
+        type: SkillType.Triggered,
+        position: { row: 2, col: 2 }
+    },
+
     // Defensive skills against Bio-Forge mechanics
     'systemPurge': {
         id: 'systemPurge',

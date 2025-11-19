@@ -1955,6 +1955,2291 @@ export const WORLD_CONFIG: WorldInfo[] = [
         position: { x: 1450, y: 2520 },
         starCriteria: { time: 600000, minHpPercent: 5 }
     },
+    // World 1 Extended Stages 11-15
+    {
+        id: 211,
+        name: "Royal Vanguard",
+        description: "Elite knights defend the kingdom's honor",
+        world: 1,
+        stage: 11,
+        position: { x: 1600, y: 400 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 212,
+        name: "Crown's Bastion",
+        description: "Impenetrable fortress of the royal guard",
+        world: 1,
+        stage: 12,
+        position: { x: 1750, y: 450 },
+        starCriteria: { time: 380000, minHpPercent: 75 }
+    },
+    {
+        id: 213,
+        name: "Throne's Shadow",
+        description: "Dark secrets beneath the kingdom",
+        world: 1,
+        stage: 13,
+        position: { x: 1900, y: 500 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    {
+        id: 214,
+        name: "Royal Ascension",
+        description: "Climb to the highest tower of power",
+        world: 1,
+        stage: 14,
+        position: { x: 2050, y: 550 },
+        starCriteria: { time: 420000, minHpPercent: 75 }
+    },
+    {
+        id: 215,
+        name: "Crown's Legacy",
+        description: "The kingdom's ultimate medieval trial",
+        world: 1,
+        stage: 15,
+        position: { x: 2200, y: 600 },
+        starCriteria: { time: 440000, minHpPercent: 75 }
+    },
+    // World 2 Extended Stages 11-15
+    {
+        id: 216,
+        name: "Mystic Nexus",
+        description: "Where all magical ley lines converge",
+        world: 2,
+        stage: 11,
+        position: { x: 1600, y: 620 },
+        starCriteria: { time: 370000, minHpPercent: 75 }
+    },
+    {
+        id: 217,
+        name: "Arcane Pinnacle",
+        description: "The highest point of magical power",
+        world: 2,
+        stage: 12,
+        position: { x: 1750, y: 660 },
+        starCriteria: { time: 390000, minHpPercent: 75 }
+    },
+    {
+        id: 218,
+        name: "Sorcerer's Crucible",
+        description: "Where the greatest wizards are forged",
+        world: 2,
+        stage: 13,
+        position: { x: 1900, y: 700 },
+        starCriteria: { time: 410000, minHpPercent: 75 }
+    },
+    {
+        id: 219,
+        name: "Ethereal Convergence",
+        description: "Magic transcends the bounds of reality",
+        world: 2,
+        stage: 14,
+        position: { x: 2050, y: 740 },
+        starCriteria: { time: 430000, minHpPercent: 75 }
+    },
+    {
+        id: 220,
+        name: "Spell's Zenith",
+        description: "The ultimate manifestation of arcane mastery",
+        world: 2,
+        stage: 15,
+        position: { x: 2200, y: 780 },
+        starCriteria: { time: 450000, minHpPercent: 75 }
+    },
+    // World 3 Extended Stages 11-15
+    {
+        id: 221,
+        name: "Bio-Fusion Core",
+        description: "Organic and mechanical merge completely",
+        world: 3,
+        stage: 11,
+        position: { x: 1600, y: 740 },
+        starCriteria: { time: 380000, minHpPercent: 75 }
+    },
+    {
+        id: 222,
+        name: "Nexus Heart",
+        description: "The Bio-Forge's pulsing central chamber",
+        world: 3,
+        stage: 12,
+        position: { x: 1750, y: 780 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    {
+        id: 223,
+        name: "Organic Apocalypse",
+        description: "Nature's technology reaches critical mass",
+        world: 3,
+        stage: 13,
+        position: { x: 1900, y: 820 },
+        starCriteria: { time: 420000, minHpPercent: 75 }
+    },
+    {
+        id: 224,
+        name: "Synthesis Peak",
+        description: "The pinnacle of bio-engineering prowess",
+        world: 3,
+        stage: 14,
+        position: { x: 2050, y: 860 },
+        starCriteria: { time: 440000, minHpPercent: 75 }
+    },
+    {
+        id: 225,
+        name: "Evolution's End",
+        description: "The ultimate techno-organic transformation",
+        world: 3,
+        stage: 15,
+        position: { x: 2200, y: 900 },
+        starCriteria: { time: 460000, minHpPercent: 75 }
+    },
+    // World 4 Extended Stages 11-15
+    {
+        id: 226,
+        name: "Clockwork Ascendant",
+        description: "Mechanical precision reaches perfection",
+        world: 4,
+        stage: 11,
+        position: { x: 1600, y: 880 },
+        starCriteria: { time: 390000, minHpPercent: 75 }
+    },
+    {
+        id: 227,
+        name: "Temporal Cascade",
+        description: "Time flows in impossible directions",
+        world: 4,
+        stage: 12,
+        position: { x: 1750, y: 920 },
+        starCriteria: { time: 410000, minHpPercent: 75 }
+    },
+    {
+        id: 228,
+        name: "Temporal Nexus",
+        description: "The crossroads of all timelines",
+        world: 4,
+        stage: 13,
+        position: { x: 1900, y: 960 },
+        starCriteria: { time: 430000, minHpPercent: 75 }
+    },
+    {
+        id: 229,
+        name: "Chrono Summit",
+        description: "The peak of temporal mastery",
+        world: 4,
+        stage: 14,
+        position: { x: 2050, y: 1000 },
+        starCriteria: { time: 450000, minHpPercent: 75 }
+    },
+    {
+        id: 230,
+        name: "Infinity Engine",
+        description: "Where time and space are forged eternal",
+        world: 4,
+        stage: 15,
+        position: { x: 2200, y: 1040 },
+        starCriteria: { time: 470000, minHpPercent: 75 }
+    },
+    // World 5 Extended Stages 11-15
+    {
+        id: 231,
+        name: "Umbral Passage",
+        description: "Navigate through the deepest shadows",
+        world: 5,
+        stage: 11,
+        position: { x: 1600, y: 1060 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 232,
+        name: "Nightfall Sanctum",
+        description: "Where eternal night reigns supreme",
+        world: 5,
+        stage: 12,
+        position: { x: 1750, y: 1100 },
+        starCriteria: { time: 260000, minHpPercent: 75 }
+    },
+    {
+        id: 233,
+        name: "Eclipse Chamber",
+        description: "Darkness swallows all light",
+        world: 5,
+        stage: 13,
+        position: { x: 1900, y: 1140 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 234,
+        name: "Void Nexus",
+        description: "The convergence of absolute darkness",
+        world: 5,
+        stage: 14,
+        position: { x: 2050, y: 1180 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 235,
+        name: "Shadow Sovereign",
+        description: "Face the ultimate master of shadows",
+        world: 5,
+        stage: 15,
+        position: { x: 2200, y: 1220 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    // World 6 Extended Stages 11-15
+    {
+        id: 236,
+        name: "Prismatic Depths",
+        description: "Descend into crystalline mysteries",
+        world: 6,
+        stage: 11,
+        position: { x: 1600, y: 1160 },
+        starCriteria: { time: 250000, minHpPercent: 75 }
+    },
+    {
+        id: 237,
+        name: "Geode Labyrinth",
+        description: "Lost among sparkling formations",
+        world: 6,
+        stage: 12,
+        position: { x: 1750, y: 1200 },
+        starCriteria: { time: 270000, minHpPercent: 75 }
+    },
+    {
+        id: 238,
+        name: "Diamond Citadel",
+        description: "Fortress of impenetrable gems",
+        world: 6,
+        stage: 13,
+        position: { x: 1900, y: 1240 },
+        starCriteria: { time: 290000, minHpPercent: 75 }
+    },
+    {
+        id: 239,
+        name: "Crystal Convergence",
+        description: "Where all gemstones unite in power",
+        world: 6,
+        stage: 14,
+        position: { x: 2050, y: 1280 },
+        starCriteria: { time: 310000, minHpPercent: 75 }
+    },
+    {
+        id: 240,
+        name: "Gemstone Monarch",
+        description: "The eternal ruler of crystal caverns",
+        world: 6,
+        stage: 15,
+        position: { x: 2200, y: 1320 },
+        starCriteria: { time: 330000, minHpPercent: 75 }
+    },
+    // World 7 Extended Stages 11-15
+    {
+        id: 241,
+        name: "Magma Core",
+        description: "The heart of volcanic fury",
+        world: 7,
+        stage: 11,
+        position: { x: 1600, y: 1260 },
+        starCriteria: { time: 260000, minHpPercent: 75 }
+    },
+    {
+        id: 242,
+        name: "Lava Cascade",
+        description: "Rivers of molten destruction",
+        world: 7,
+        stage: 12,
+        position: { x: 1750, y: 1300 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 243,
+        name: "Inferno Sanctum",
+        description: "Where flames reach their zenith",
+        world: 7,
+        stage: 13,
+        position: { x: 1900, y: 1340 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 244,
+        name: "Volcanic Crucible",
+        description: "Forge of world-ending power",
+        world: 7,
+        stage: 14,
+        position: { x: 2050, y: 1380 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 245,
+        name: "Pyroclasm Emperor",
+        description: "Supreme lord of fire and lava",
+        world: 7,
+        stage: 15,
+        position: { x: 2200, y: 1420 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    // World 8 Extended Stages 11-15
+    {
+        id: 246,
+        name: "Nebula Drift",
+        description: "Lost among cosmic clouds",
+        world: 8,
+        stage: 11,
+        position: { x: 1600, y: 1360 },
+        starCriteria: { time: 270000, minHpPercent: 75 }
+    },
+    {
+        id: 247,
+        name: "Stellar Confluence",
+        description: "Where stars collide and merge",
+        world: 8,
+        stage: 12,
+        position: { x: 1750, y: 1400 },
+        starCriteria: { time: 290000, minHpPercent: 75 }
+    },
+    {
+        id: 248,
+        name: "Cosmic Rift",
+        description: "Tear in the fabric of space",
+        world: 8,
+        stage: 13,
+        position: { x: 1900, y: 1440 },
+        starCriteria: { time: 310000, minHpPercent: 75 }
+    },
+    {
+        id: 249,
+        name: "Celestial Nexus",
+        description: "The center of all celestial bodies",
+        world: 8,
+        stage: 14,
+        position: { x: 2050, y: 1480 },
+        starCriteria: { time: 330000, minHpPercent: 75 }
+    },
+    {
+        id: 250,
+        name: "Astral Overseer",
+        description: "Master of the infinite cosmos",
+        world: 8,
+        stage: 15,
+        position: { x: 2200, y: 1520 },
+        starCriteria: { time: 350000, minHpPercent: 75 }
+    },
+    // World 9 Extended Stages 11-15
+    {
+        id: 251,
+        name: "Twilight Trench",
+        description: "Where sunlight fades to nothing",
+        world: 9,
+        stage: 11,
+        position: { x: 1600, y: 1460 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 252,
+        name: "Hadal Expanse",
+        description: "The deepest depths of the ocean",
+        world: 9,
+        stage: 12,
+        position: { x: 1750, y: 1500 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 253,
+        name: "Pressure Forge",
+        description: "Crushing forces beyond comprehension",
+        world: 9,
+        stage: 13,
+        position: { x: 1900, y: 1540 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 254,
+        name: "Abyssal Throne",
+        description: "Domain of the deep-sea leviathan",
+        world: 9,
+        stage: 14,
+        position: { x: 2050, y: 1580 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    {
+        id: 255,
+        name: "Leviathan's Maw",
+        description: "Face the ultimate oceanic terror",
+        world: 9,
+        stage: 15,
+        position: { x: 2200, y: 1620 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    // World 10 Extended Stages 11-15
+    {
+        id: 256,
+        name: "Thornwood Passage",
+        description: "Navigate the savage undergrowth",
+        world: 10,
+        stage: 11,
+        position: { x: 1600, y: 1560 },
+        starCriteria: { time: 290000, minHpPercent: 75 }
+    },
+    {
+        id: 257,
+        name: "Wildbloom Sanctum",
+        description: "Where nature's fury blooms eternal",
+        world: 10,
+        stage: 12,
+        position: { x: 1750, y: 1600 },
+        starCriteria: { time: 310000, minHpPercent: 75 }
+    },
+    {
+        id: 258,
+        name: "Primal Grove",
+        description: "The ancient heart of the forest",
+        world: 10,
+        stage: 13,
+        position: { x: 1900, y: 1640 },
+        starCriteria: { time: 330000, minHpPercent: 75 }
+    },
+    {
+        id: 259,
+        name: "Nature's Wrath",
+        description: "Unleashed power of the wild",
+        world: 10,
+        stage: 14,
+        position: { x: 2050, y: 1680 },
+        starCriteria: { time: 350000, minHpPercent: 75 }
+    },
+    {
+        id: 260,
+        name: "Verdant Primarch",
+        description: "Supreme guardian of all nature",
+        world: 10,
+        stage: 15,
+        position: { x: 2200, y: 1720 },
+        starCriteria: { time: 370000, minHpPercent: 75 }
+    },
+    // World 11 Extended Stages 11-15
+    {
+        id: 261,
+        name: "Frozen Nexus",
+        description: "The heart of eternal winter",
+        world: 11,
+        stage: 11,
+        position: { x: 1600, y: 1660 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 262,
+        name: "Crystalline Halls",
+        description: "Ice crystals refract deadly light",
+        world: 11,
+        stage: 12,
+        position: { x: 1750, y: 1700 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 263,
+        name: "Blizzard Core",
+        description: "Where all storms converge",
+        world: 11,
+        stage: 13,
+        position: { x: 1900, y: 1740 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 264,
+        name: "Glacial Throne",
+        description: "The Ice Queen's final sanctuary",
+        world: 11,
+        stage: 14,
+        position: { x: 2050, y: 1780 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 265,
+        name: "Winter's End",
+        description: "Beyond the eternal freeze",
+        world: 11,
+        stage: 15,
+        position: { x: 2200, y: 1820 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    // World 12 Extended Stages 11-15
+    {
+        id: 266,
+        name: "Buried Temple",
+        description: "Ancient secrets beneath the sands",
+        world: 12,
+        stage: 11,
+        position: { x: 1600, y: 1760 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 267,
+        name: "Cursed Catacombs",
+        description: "The pharaoh's curse awakens",
+        world: 12,
+        stage: 12,
+        position: { x: 1750, y: 1800 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 268,
+        name: "Pyramid Depths",
+        description: "Descend into darkness eternal",
+        world: 12,
+        stage: 13,
+        position: { x: 1900, y: 1840 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 269,
+        name: "Anubis Chamber",
+        description: "The guardian judges your soul",
+        world: 12,
+        stage: 14,
+        position: { x: 2050, y: 1880 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 270,
+        name: "Pharaoh's Wrath",
+        description: "Face the ancient king's fury",
+        world: 12,
+        stage: 15,
+        position: { x: 2200, y: 1920 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    // World 13 Extended Stages 11-15
+    {
+        id: 271,
+        name: "Thunder Bastion",
+        description: "Lightning strikes without mercy",
+        world: 13,
+        stage: 11,
+        position: { x: 1600, y: 1860 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 272,
+        name: "Wind Razor Peak",
+        description: "Cutting winds tear through all",
+        world: 13,
+        stage: 12,
+        position: { x: 1750, y: 1900 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 273,
+        name: "Storm Forge",
+        description: "Where tempests are born",
+        world: 13,
+        stage: 13,
+        position: { x: 1900, y: 1940 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 274,
+        name: "Tempest Crown",
+        description: "The Storm King's domain",
+        world: 13,
+        stage: 14,
+        position: { x: 2050, y: 1980 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 275,
+        name: "Apex Maelstrom",
+        description: "The ultimate storm awaits",
+        world: 13,
+        stage: 15,
+        position: { x: 2200, y: 2020 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    // World 14 Extended Stages 11-15
+    {
+        id: 276,
+        name: "Void Echo",
+        description: "Reality's distant whisper",
+        world: 14,
+        stage: 11,
+        position: { x: 1600, y: 1960 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 277,
+        name: "Null Realm",
+        description: "Where existence ceases",
+        world: 14,
+        stage: 12,
+        position: { x: 1750, y: 2000 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 278,
+        name: "Fracture Zone",
+        description: "Reality shatters completely",
+        world: 14,
+        stage: 13,
+        position: { x: 1900, y: 2040 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 279,
+        name: "Paradox Throne",
+        description: "The Void Lord's impossible seat",
+        world: 14,
+        stage: 14,
+        position: { x: 2050, y: 2080 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 280,
+        name: "Beyond Nothing",
+        description: "Past the edge of the void",
+        world: 14,
+        stage: 15,
+        position: { x: 2200, y: 2120 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    // World 15 Extended Stages 11-15
+    {
+        id: 281,
+        name: "Lucid Passage",
+        description: "Dreams become tangible",
+        world: 15,
+        stage: 11,
+        position: { x: 1600, y: 2060 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 282,
+        name: "Oneiric Sanctuary",
+        description: "Where dreams take refuge",
+        world: 15,
+        stage: 12,
+        position: { x: 1750, y: 2100 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 283,
+        name: "Subconscious Depths",
+        description: "Dive into the mind's abyss",
+        world: 15,
+        stage: 13,
+        position: { x: 1900, y: 2140 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 284,
+        name: "Morpheus Gate",
+        description: "The Dream Lord's final test",
+        world: 15,
+        stage: 14,
+        position: { x: 2050, y: 2180 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 285,
+        name: "Eternal Slumber",
+        description: "Sleep forever in perfect dreams",
+        world: 15,
+        stage: 15,
+        position: { x: 2200, y: 2220 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    // World 16 Extended Stages 11-15
+    {
+        id: 286,
+        name: "Hellforge Depths",
+        description: "Forged in the deepest flames",
+        world: 16,
+        stage: 11,
+        position: { x: 1600, y: 2160 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 287,
+        name: "Brimstone Citadel",
+        description: "Sulfur and fire consume all",
+        world: 16,
+        stage: 12,
+        position: { x: 1750, y: 2200 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 288,
+        name: "Demon Emperor's Hall",
+        description: "Where arch-demons gather",
+        world: 16,
+        stage: 13,
+        position: { x: 1900, y: 2240 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 289,
+        name: "Damnation's Heart",
+        description: "The core of all evil",
+        world: 16,
+        stage: 14,
+        position: { x: 2050, y: 2280 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 290,
+        name: "Hell's Judgement",
+        description: "Face the ultimate infernal trial",
+        world: 16,
+        stage: 15,
+        position: { x: 2200, y: 2320 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    // World 17 Extended Stages 11-15
+    {
+        id: 291,
+        name: "Data Stream Nexus",
+        description: "Rivers of data flow through cybernetic channels",
+        world: 17,
+        stage: 11,
+        position: { x: 1600, y: 2270 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 292,
+        name: "Virtual Reality Core",
+        description: "The boundary between real and virtual dissolves",
+        world: 17,
+        stage: 12,
+        position: { x: 1750, y: 2320 },
+        starCriteria: { time: 310000, minHpPercent: 75 }
+    },
+    {
+        id: 293,
+        name: "Nanotech Assembly",
+        description: "Microscopic machines construct reality",
+        world: 17,
+        stage: 13,
+        position: { x: 1900, y: 2370 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    {
+        id: 294,
+        name: "Techno-Transcendence",
+        description: "Where technology becomes consciousness",
+        world: 17,
+        stage: 14,
+        position: { x: 2050, y: 2420 },
+        starCriteria: { time: 370000, minHpPercent: 75 }
+    },
+    {
+        id: 295,
+        name: "Digital Godhood",
+        description: "Achieve omnipotence in the digital realm",
+        world: 17,
+        stage: 15,
+        position: { x: 2200, y: 2470 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    // World 18 Extended Stages 11-15
+    {
+        id: 296,
+        name: "Stellar Gateway",
+        description: "Portal to the cosmic beyond",
+        world: 18,
+        stage: 11,
+        position: { x: 1600, y: 2370 },
+        starCriteria: { time: 290000, minHpPercent: 75 }
+    },
+    {
+        id: 297,
+        name: "Cosmic Harmony",
+        description: "All celestial forces align in perfect balance",
+        world: 18,
+        stage: 12,
+        position: { x: 1750, y: 2420 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 298,
+        name: "Astral Ascendant",
+        description: "Rise beyond physical limitations",
+        world: 18,
+        stage: 13,
+        position: { x: 1900, y: 2470 },
+        starCriteria: { time: 350000, minHpPercent: 75 }
+    },
+    {
+        id: 299,
+        name: "Universal Consciousness",
+        description: "Merge with the universal mind",
+        world: 18,
+        stage: 14,
+        position: { x: 2050, y: 2520 },
+        starCriteria: { time: 380000, minHpPercent: 75 }
+    },
+    {
+        id: 300,
+        name: "Cosmic Enlightenment",
+        description: "Achieve ultimate cosmic understanding",
+        world: 18,
+        stage: 15,
+        position: { x: 2200, y: 2570 },
+        starCriteria: { time: 410000, minHpPercent: 75 }
+    },
+    // World 19 Extended Stages 11-15
+    {
+        id: 301,
+        name: "Entropic Surge",
+        description: "Chaos energy surges uncontrollably",
+        world: 19,
+        stage: 11,
+        position: { x: 1600, y: 2470 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 302,
+        name: "Disorder Manifest",
+        description: "Pure disorder takes physical form",
+        world: 19,
+        stage: 12,
+        position: { x: 1750, y: 2520 },
+        starCriteria: { time: 330000, minHpPercent: 75 }
+    },
+    {
+        id: 303,
+        name: "Chaotic Singularity",
+        description: "All chaos collapses into a single point",
+        world: 19,
+        stage: 13,
+        position: { x: 1900, y: 2570 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 304,
+        name: "Entropy's Throne",
+        description: "The seat of ultimate chaos",
+        world: 19,
+        stage: 14,
+        position: { x: 2050, y: 2620 },
+        starCriteria: { time: 390000, minHpPercent: 75 }
+    },
+    {
+        id: 305,
+        name: "Chaos Eternal",
+        description: "Chaos that transcends time itself",
+        world: 19,
+        stage: 15,
+        position: { x: 2200, y: 2670 },
+        starCriteria: { time: 420000, minHpPercent: 75 }
+    },
+    // World 20 Extended Stages 11-15
+    {
+        id: 306,
+        name: "Threshold Guardian",
+        description: "The final gate's eternal sentinel",
+        world: 20,
+        stage: 11,
+        position: { x: 1600, y: 2570 },
+        starCriteria: { time: 310000, minHpPercent: 75 }
+    },
+    {
+        id: 307,
+        name: "Absolute Trial",
+        description: "The ultimate test of worthiness",
+        world: 20,
+        stage: 12,
+        position: { x: 1750, y: 2620 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    {
+        id: 308,
+        name: "Eternal Judgment",
+        description: "Face judgment across all time",
+        world: 20,
+        stage: 13,
+        position: { x: 1900, y: 2670 },
+        starCriteria: { time: 370000, minHpPercent: 75 }
+    },
+    {
+        id: 309,
+        name: "Apex Convergence",
+        description: "All paths converge at the apex",
+        world: 20,
+        stage: 14,
+        position: { x: 2050, y: 2720 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    {
+        id: 310,
+        name: "Ultimate Transcendence",
+        description: "Transcend all existence and limitation",
+        world: 20,
+        stage: 15,
+        position: { x: 2200, y: 2770 },
+        starCriteria: { time: 450000, minHpPercent: 75 }
+    },
+
+    // World 21: Quantum Realm
+    {
+        id: 311,
+        name: "Probability Gates",
+        description: "Where all outcomes exist simultaneously",
+        world: 21,
+        stage: 1,
+        position: { x: 100, y: 2600 },
+        starCriteria: { time: 200000, minHpPercent: 75 }
+    },
+    {
+        id: 312,
+        name: "Superposition Chamber",
+        description: "Exist in multiple states at once",
+        world: 21,
+        stage: 2,
+        position: { x: 250, y: 2620 },
+        starCriteria: { time: 220000, minHpPercent: 75 }
+    },
+    {
+        id: 313,
+        name: "Entangled Corridors",
+        description: "Paths linked across space and time",
+        world: 21,
+        stage: 3,
+        position: { x: 400, y: 2640 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 314,
+        name: "Wave Function Collapse",
+        description: "Reality crystallizes from infinite possibilities",
+        world: 21,
+        stage: 4,
+        position: { x: 550, y: 2660 },
+        starCriteria: { time: 260000, minHpPercent: 75 }
+    },
+    {
+        id: 315,
+        name: "Particle Accelerator",
+        description: "Smash through subatomic barriers",
+        world: 21,
+        stage: 5,
+        position: { x: 700, y: 2680 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 316,
+        name: "Uncertainty Principle",
+        description: "Nothing is certain in the quantum realm",
+        world: 21,
+        stage: 6,
+        position: { x: 850, y: 2700 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 317,
+        name: "Schrodinger's Arena",
+        description: "Both alive and dead until observed",
+        world: 21,
+        stage: 7,
+        position: { x: 1000, y: 2720 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 318,
+        name: "Quantum Tunneling",
+        description: "Pass through impossible barriers",
+        world: 21,
+        stage: 8,
+        position: { x: 1150, y: 2740 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    {
+        id: 319,
+        name: "Planck Dimension",
+        description: "The smallest possible scale of existence",
+        world: 21,
+        stage: 9,
+        position: { x: 1300, y: 2760 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 320,
+        name: "Observer Effect",
+        description: "Observation changes reality itself",
+        world: 21,
+        stage: 10,
+        position: { x: 1450, y: 2780 },
+        starCriteria: { time: 380000, minHpPercent: 75 }
+    },
+    {
+        id: 321,
+        name: "Zero Point Energy",
+        description: "Harness the vacuum of space itself",
+        world: 21,
+        stage: 11,
+        position: { x: 1600, y: 2800 },
+        starCriteria: { time: 420000, minHpPercent: 75 }
+    },
+    {
+        id: 322,
+        name: "Quantum Decoherence",
+        description: "Where quantum meets classical reality",
+        world: 21,
+        stage: 12,
+        position: { x: 1750, y: 2820 },
+        starCriteria: { time: 440000, minHpPercent: 75 }
+    },
+    {
+        id: 323,
+        name: "Heisenberg Fortress",
+        description: "Momentum and position cannot coexist",
+        world: 21,
+        stage: 13,
+        position: { x: 1900, y: 2840 },
+        starCriteria: { time: 460000, minHpPercent: 75 }
+    },
+    {
+        id: 324,
+        name: "Quantum Singularity",
+        description: "All probabilities converge into one",
+        world: 21,
+        stage: 14,
+        position: { x: 2050, y: 2860 },
+        starCriteria: { time: 480000, minHpPercent: 75 }
+    },
+    {
+        id: 325,
+        name: "The Qubit Throne",
+        description: "Face the Quantum Emperor in perfect superposition",
+        world: 21,
+        stage: 15,
+        position: { x: 2200, y: 2880 },
+        starCriteria: { time: 500000, minHpPercent: 75 }
+    },
+
+    // World 22: Ancient Ruins
+    {
+        id: 326,
+        name: "Forgotten Entrance",
+        description: "Crumbling gates of a lost civilization",
+        world: 22,
+        stage: 1,
+        position: { x: 100, y: 2700 },
+        starCriteria: { time: 200000, minHpPercent: 75 }
+    },
+    {
+        id: 327,
+        name: "Hieroglyph Hall",
+        description: "Ancient writings tell of terrible secrets",
+        world: 22,
+        stage: 2,
+        position: { x: 250, y: 2720 },
+        starCriteria: { time: 220000, minHpPercent: 75 }
+    },
+    {
+        id: 328,
+        name: "Sandstone Catacombs",
+        description: "Buried beneath millennia of dust",
+        world: 22,
+        stage: 3,
+        position: { x: 400, y: 2740 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 329,
+        name: "Temple of the Ancients",
+        description: "Where forgotten gods were worshipped",
+        world: 22,
+        stage: 4,
+        position: { x: 550, y: 2760 },
+        starCriteria: { time: 260000, minHpPercent: 75 }
+    },
+    {
+        id: 330,
+        name: "Obsidian Archive",
+        description: "Knowledge preserved in black glass",
+        world: 22,
+        stage: 5,
+        position: { x: 700, y: 2780 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 331,
+        name: "Cursed Reliquary",
+        description: "Ancient artifacts pulse with dark energy",
+        world: 22,
+        stage: 6,
+        position: { x: 850, y: 2800 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 332,
+        name: "Pyramid Depths",
+        description: "Descend into the heart of the pyramid",
+        world: 22,
+        stage: 7,
+        position: { x: 1000, y: 2820 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 333,
+        name: "Sunken Plaza",
+        description: "Once great, now reclaimed by nature",
+        world: 22,
+        stage: 8,
+        position: { x: 1150, y: 2840 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    {
+        id: 334,
+        name: "Guardian Statues",
+        description: "Stone sentinels awaken after eons",
+        world: 22,
+        stage: 9,
+        position: { x: 1300, y: 2860 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 335,
+        name: "Throne of Eternity",
+        description: "Where the immortal emperor once ruled",
+        world: 22,
+        stage: 10,
+        position: { x: 1450, y: 2880 },
+        starCriteria: { time: 380000, minHpPercent: 75 }
+    },
+    {
+        id: 336,
+        name: "Forbidden Vault",
+        description: "Sealed for good reason, now opened",
+        world: 22,
+        stage: 11,
+        position: { x: 1600, y: 2900 },
+        starCriteria: { time: 420000, minHpPercent: 75 }
+    },
+    {
+        id: 337,
+        name: "Sacrificial Chamber",
+        description: "Blood stains never fade from these stones",
+        world: 22,
+        stage: 12,
+        position: { x: 1750, y: 2920 },
+        starCriteria: { time: 440000, minHpPercent: 75 }
+    },
+    {
+        id: 338,
+        name: "Crystal Obelisk",
+        description: "A monument to powers beyond comprehension",
+        world: 22,
+        stage: 13,
+        position: { x: 1900, y: 2940 },
+        starCriteria: { time: 460000, minHpPercent: 75 }
+    },
+    {
+        id: 339,
+        name: "Cosmic Observatory",
+        description: "They mapped the stars from this pinnacle",
+        world: 22,
+        stage: 14,
+        position: { x: 2050, y: 2960 },
+        starCriteria: { time: 480000, minHpPercent: 75 }
+    },
+    {
+        id: 340,
+        name: "The Last Pharaoh",
+        description: "Face the undying ruler of the lost empire",
+        world: 22,
+        stage: 15,
+        position: { x: 2200, y: 2980 },
+        starCriteria: { time: 500000, minHpPercent: 75 }
+    },
+
+    // World 23: Plague Lands
+    {
+        id: 341,
+        name: "Quarantine Zone",
+        description: "The disease begins its terrible spread",
+        world: 23,
+        stage: 1,
+        position: { x: 100, y: 2800 },
+        starCriteria: { time: 200000, minHpPercent: 75 }
+    },
+    {
+        id: 342,
+        name: "Contaminated Streets",
+        description: "Infection spreads through abandoned cities",
+        world: 23,
+        stage: 2,
+        position: { x: 250, y: 2820 },
+        starCriteria: { time: 220000, minHpPercent: 75 }
+    },
+    {
+        id: 343,
+        name: "Viral Laboratory",
+        description: "Where the plague was first created",
+        world: 23,
+        stage: 3,
+        position: { x: 400, y: 2840 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 344,
+        name: "Pestilent Gardens",
+        description: "Once beautiful, now twisted by disease",
+        world: 23,
+        stage: 4,
+        position: { x: 550, y: 2860 },
+        starCriteria: { time: 260000, minHpPercent: 75 }
+    },
+    {
+        id: 345,
+        name: "Infectious Ward",
+        description: "The sick and dying cry out in agony",
+        world: 23,
+        stage: 5,
+        position: { x: 700, y: 2880 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 346,
+        name: "Epidemic Center",
+        description: "Ground zero of the pandemic",
+        world: 23,
+        stage: 6,
+        position: { x: 850, y: 2900 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 347,
+        name: "Plague Doctor's Domain",
+        description: "Masked figures promise false cures",
+        world: 23,
+        stage: 7,
+        position: { x: 1000, y: 2920 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 348,
+        name: "Contagion Swamps",
+        description: "Disease festers in putrid waters",
+        world: 23,
+        stage: 8,
+        position: { x: 1150, y: 2940 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    {
+        id: 349,
+        name: "Rotten Necropolis",
+        description: "The dead rise, spreading infection",
+        world: 23,
+        stage: 9,
+        position: { x: 1300, y: 2960 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 350,
+        name: "Miasma Citadel",
+        description: "Toxic clouds form an impenetrable fortress",
+        world: 23,
+        stage: 10,
+        position: { x: 1450, y: 2980 },
+        starCriteria: { time: 380000, minHpPercent: 75 }
+    },
+    {
+        id: 351,
+        name: "Mutation Chamber",
+        description: "The plague evolves into something worse",
+        world: 23,
+        stage: 11,
+        position: { x: 1600, y: 3000 },
+        starCriteria: { time: 420000, minHpPercent: 75 }
+    },
+    {
+        id: 352,
+        name: "Virulent Breeding Ground",
+        description: "New strains emerge constantly",
+        world: 23,
+        stage: 12,
+        position: { x: 1750, y: 3020 },
+        starCriteria: { time: 440000, minHpPercent: 75 }
+    },
+    {
+        id: 353,
+        name: "Patient Zero's Tomb",
+        description: "Where the first infection still lingers",
+        world: 23,
+        stage: 13,
+        position: { x: 1900, y: 3040 },
+        starCriteria: { time: 460000, minHpPercent: 75 }
+    },
+    {
+        id: 354,
+        name: "Pandemic Apex",
+        description: "The disease reaches its ultimate form",
+        world: 23,
+        stage: 14,
+        position: { x: 2050, y: 3060 },
+        starCriteria: { time: 480000, minHpPercent: 75 }
+    },
+    {
+        id: 355,
+        name: "The Plague Incarnate",
+        description: "Face the living embodiment of disease itself",
+        world: 23,
+        stage: 15,
+        position: { x: 2200, y: 3080 },
+        starCriteria: { time: 500000, minHpPercent: 75 }
+    },
+
+    // World 24: Lightning Realm
+    {
+        id: 356,
+        name: "Static Fields",
+        description: "Electricity crackles through the air",
+        world: 24,
+        stage: 1,
+        position: { x: 100, y: 2900 },
+        starCriteria: { time: 200000, minHpPercent: 75 }
+    },
+    {
+        id: 357,
+        name: "Tesla Coils",
+        description: "Arcs of power dance between towers",
+        world: 24,
+        stage: 2,
+        position: { x: 250, y: 2920 },
+        starCriteria: { time: 220000, minHpPercent: 75 }
+    },
+    {
+        id: 358,
+        name: "Voltage Conduits",
+        description: "Channels of pure electrical energy",
+        world: 24,
+        stage: 3,
+        position: { x: 400, y: 2940 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 359,
+        name: "Thunderstorm Arena",
+        description: "Lightning strikes without warning",
+        world: 24,
+        stage: 4,
+        position: { x: 550, y: 2960 },
+        starCriteria: { time: 260000, minHpPercent: 75 }
+    },
+    {
+        id: 360,
+        name: "Capacitor Banks",
+        description: "Massive stores of electrical potential",
+        world: 24,
+        stage: 5,
+        position: { x: 700, y: 2980 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 361,
+        name: "Plasma Generators",
+        description: "Matter transformed into pure energy",
+        world: 24,
+        stage: 6,
+        position: { x: 850, y: 3000 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 362,
+        name: "Electron Storm",
+        description: "Subatomic particles rage in chaos",
+        world: 24,
+        stage: 7,
+        position: { x: 1000, y: 3020 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 363,
+        name: "Magnetic Labyrinth",
+        description: "Forces pull and push in all directions",
+        world: 24,
+        stage: 8,
+        position: { x: 1150, y: 3040 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    {
+        id: 364,
+        name: "Ionized Chambers",
+        description: "Atoms stripped of their electrons",
+        world: 24,
+        stage: 9,
+        position: { x: 1300, y: 3060 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 365,
+        name: "Lightning Spire",
+        description: "A tower that reaches into the storm",
+        world: 24,
+        stage: 10,
+        position: { x: 1450, y: 3080 },
+        starCriteria: { time: 380000, minHpPercent: 75 }
+    },
+    {
+        id: 366,
+        name: "Electromagnetic Nexus",
+        description: "Where all forces converge",
+        world: 24,
+        stage: 11,
+        position: { x: 1600, y: 3100 },
+        starCriteria: { time: 420000, minHpPercent: 75 }
+    },
+    {
+        id: 367,
+        name: "Superconductor Core",
+        description: "Perfect flow of infinite current",
+        world: 24,
+        stage: 12,
+        position: { x: 1750, y: 3120 },
+        starCriteria: { time: 440000, minHpPercent: 75 }
+    },
+    {
+        id: 368,
+        name: "Arc Flash Zone",
+        description: "Instantaneous releases of devastating power",
+        world: 24,
+        stage: 13,
+        position: { x: 1900, y: 3140 },
+        starCriteria: { time: 460000, minHpPercent: 75 }
+    },
+    {
+        id: 369,
+        name: "The Megavolt Throne",
+        description: "A billion volts surge through this chamber",
+        world: 24,
+        stage: 14,
+        position: { x: 2050, y: 3160 },
+        starCriteria: { time: 480000, minHpPercent: 75 }
+    },
+    {
+        id: 370,
+        name: "Storm God's Wrath",
+        description: "Face the elemental lord of lightning itself",
+        world: 24,
+        stage: 15,
+        position: { x: 2200, y: 3180 },
+        starCriteria: { time: 500000, minHpPercent: 75 }
+    },
+
+    // World 25: Blood Moon
+    {
+        id: 371,
+        name: "Crimson Gates",
+        description: "Blood-red moonlight illuminates the path",
+        world: 25,
+        stage: 1,
+        position: { x: 100, y: 3000 },
+        starCriteria: { time: 200000, minHpPercent: 75 }
+    },
+    {
+        id: 372,
+        name: "Vampire's Lair",
+        description: "Ancient bloodsuckers stir from their slumber",
+        world: 25,
+        stage: 2,
+        position: { x: 250, y: 3020 },
+        starCriteria: { time: 220000, minHpPercent: 75 }
+    },
+    {
+        id: 373,
+        name: "Gothic Cathedral",
+        description: "Twisted spires pierce the bleeding sky",
+        world: 25,
+        stage: 3,
+        position: { x: 400, y: 3040 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 374,
+        name: "Hemomancy Circle",
+        description: "Blood magic flows through arcane rituals",
+        world: 25,
+        stage: 4,
+        position: { x: 550, y: 3060 },
+        starCriteria: { time: 260000, minHpPercent: 75 }
+    },
+    {
+        id: 375,
+        name: "Gargoyle Roost",
+        description: "Stone demons watch from shadowed perches",
+        world: 25,
+        stage: 5,
+        position: { x: 700, y: 3080 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 376,
+        name: "Sanguine Crypts",
+        description: "The undead rest in blood-soaked tombs",
+        world: 25,
+        stage: 6,
+        position: { x: 850, y: 3100 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 377,
+        name: "Nosferatu's Chamber",
+        description: "The ancient vampire lord's domain",
+        world: 25,
+        stage: 7,
+        position: { x: 1000, y: 3120 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 378,
+        name: "Blood Fountain Plaza",
+        description: "Crimson waters flow eternally",
+        world: 25,
+        stage: 8,
+        position: { x: 1150, y: 3140 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    {
+        id: 379,
+        name: "Moonlit Ballroom",
+        description: "Pale dancers waltz in eternal night",
+        world: 25,
+        stage: 9,
+        position: { x: 1300, y: 3160 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 380,
+        name: "Crimson Spire",
+        description: "A tower built from blood and bone",
+        world: 25,
+        stage: 10,
+        position: { x: 1450, y: 3180 },
+        starCriteria: { time: 380000, minHpPercent: 75 }
+    },
+    {
+        id: 381,
+        name: "Exsanguination Chamber",
+        description: "Where victims are drained of their life essence",
+        world: 25,
+        stage: 11,
+        position: { x: 1600, y: 3200 },
+        starCriteria: { time: 420000, minHpPercent: 75 }
+    },
+    {
+        id: 382,
+        name: "Undying Throne Room",
+        description: "Immortal nobility gather in darkness",
+        world: 25,
+        stage: 12,
+        position: { x: 1750, y: 3220 },
+        starCriteria: { time: 440000, minHpPercent: 75 }
+    },
+    {
+        id: 383,
+        name: "Eclipse Sanctum",
+        description: "Where the blood moon reaches its zenith",
+        world: 25,
+        stage: 13,
+        position: { x: 1900, y: 3240 },
+        starCriteria: { time: 460000, minHpPercent: 75 }
+    },
+    {
+        id: 384,
+        name: "Vampiric Convergence",
+        description: "All bloodlines unite in terrible power",
+        world: 25,
+        stage: 14,
+        position: { x: 2050, y: 3260 },
+        starCriteria: { time: 480000, minHpPercent: 75 }
+    },
+    {
+        id: 385,
+        name: "The Eternal Count",
+        description: "Face the immortal vampire emperor under the blood moon",
+        world: 25,
+        stage: 15,
+        position: { x: 2200, y: 3280 },
+        starCriteria: { time: 500000, minHpPercent: 75 }
+    },
+    // World 26: Machine Core
+    {
+        id: 386,
+        name: "Boot Sequence",
+        description: "Initialize systems and breach the outer firewall",
+        world: 26,
+        stage: 1,
+        position: { x: 100, y: 3600 },
+        starCriteria: { time: 220000, minHpPercent: 75 }
+    },
+    {
+        id: 387,
+        name: "Data Streams",
+        description: "Navigate through rivers of binary data",
+        world: 26,
+        stage: 2,
+        position: { x: 200, y: 3620 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 388,
+        name: "Nanobot Swarm",
+        description: "Defend against microscopic machine hordes",
+        world: 26,
+        stage: 3,
+        position: { x: 300, y: 3640 },
+        starCriteria: { time: 260000, minHpPercent: 75 }
+    },
+    {
+        id: 389,
+        name: "Protocol Gateway",
+        description: "Override security protocols to advance",
+        world: 26,
+        stage: 4,
+        position: { x: 400, y: 3660 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 390,
+        name: "Mainframe Nexus",
+        description: "Hack into the central processing hub",
+        world: 26,
+        stage: 5,
+        position: { x: 500, y: 3680 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 391,
+        name: "Firewall Fortress",
+        description: "Break through layered security defenses",
+        world: 26,
+        stage: 6,
+        position: { x: 600, y: 3700 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 392,
+        name: "Encryption Labyrinth",
+        description: "Decode the encrypted pathways ahead",
+        world: 26,
+        stage: 7,
+        position: { x: 700, y: 3720 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    {
+        id: 393,
+        name: "Automaton Factory",
+        description: "Shut down the endless machine production",
+        world: 26,
+        stage: 8,
+        position: { x: 800, y: 3740 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 394,
+        name: "Neural Network",
+        description: "Traverse the AI's learning pathways",
+        world: 26,
+        stage: 9,
+        position: { x: 900, y: 3760 },
+        starCriteria: { time: 380000, minHpPercent: 75 }
+    },
+    {
+        id: 395,
+        name: "Quantum Processor",
+        description: "Face the quantum computing arrays",
+        world: 26,
+        stage: 10,
+        position: { x: 1000, y: 3780 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    {
+        id: 396,
+        name: "Memory Banks",
+        description: "Erase corrupted data from the archives",
+        world: 26,
+        stage: 11,
+        position: { x: 1100, y: 3800 },
+        starCriteria: { time: 420000, minHpPercent: 75 }
+    },
+    {
+        id: 397,
+        name: "System Override",
+        description: "Take control of the machine consciousness",
+        world: 26,
+        stage: 12,
+        position: { x: 1200, y: 3820 },
+        starCriteria: { time: 440000, minHpPercent: 75 }
+    },
+    {
+        id: 398,
+        name: "Digital Consciousness",
+        description: "Confront the awakened AI entity",
+        world: 26,
+        stage: 13,
+        position: { x: 1300, y: 3840 },
+        starCriteria: { time: 460000, minHpPercent: 75 }
+    },
+    {
+        id: 399,
+        name: "Core Access",
+        description: "Breach the innermost sanctum of the machine",
+        world: 26,
+        stage: 14,
+        position: { x: 1400, y: 3860 },
+        starCriteria: { time: 480000, minHpPercent: 75 }
+    },
+    {
+        id: 400,
+        name: "Core AI Terminus",
+        description: "Face the Core AI in its digital domain",
+        world: 26,
+        stage: 15,
+        position: { x: 1500, y: 3880 },
+        starCriteria: { time: 500000, minHpPercent: 75 }
+    },
+    // World 27: Spirit Realm
+    {
+        id: 401,
+        name: "Ethereal Gateway",
+        description: "Step through the veil into the spirit world",
+        world: 27,
+        stage: 1,
+        position: { x: 100, y: 3800 },
+        starCriteria: { time: 220000, minHpPercent: 75 }
+    },
+    {
+        id: 402,
+        name: "Ghostly Mists",
+        description: "Navigate through spectral fog and phantoms",
+        world: 27,
+        stage: 2,
+        position: { x: 200, y: 3820 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 403,
+        name: "Poltergeist Manor",
+        description: "Survive the chaos of angry spirits",
+        world: 27,
+        stage: 3,
+        position: { x: 300, y: 3840 },
+        starCriteria: { time: 260000, minHpPercent: 75 }
+    },
+    {
+        id: 404,
+        name: "Spectral Gardens",
+        description: "Walk among the souls of the departed",
+        world: 27,
+        stage: 4,
+        position: { x: 400, y: 3860 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 405,
+        name: "Haunted Halls",
+        description: "Face the restless dead in their domain",
+        world: 27,
+        stage: 5,
+        position: { x: 500, y: 3880 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 406,
+        name: "Ectoplasmic Pool",
+        description: "Traverse the ethereal essence of spirits",
+        world: 27,
+        stage: 6,
+        position: { x: 600, y: 3900 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 407,
+        name: "Spirit Sanctum",
+        description: "Enter the sacred gathering place of ghosts",
+        world: 27,
+        stage: 7,
+        position: { x: 700, y: 3920 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    {
+        id: 408,
+        name: "Possession Chamber",
+        description: "Resist the attempts to control your body",
+        world: 27,
+        stage: 8,
+        position: { x: 800, y: 3940 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 409,
+        name: "Wraith Convergence",
+        description: "Face the gathering of powerful wraiths",
+        world: 27,
+        stage: 9,
+        position: { x: 900, y: 3960 },
+        starCriteria: { time: 380000, minHpPercent: 75 }
+    },
+    {
+        id: 410,
+        name: "Ethereal Nexus",
+        description: "Stand at the center of spirit energy",
+        world: 27,
+        stage: 10,
+        position: { x: 1000, y: 3980 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    {
+        id: 411,
+        name: "Soul Chamber",
+        description: "Navigate the realm where souls converge",
+        world: 27,
+        stage: 11,
+        position: { x: 1100, y: 4000 },
+        starCriteria: { time: 420000, minHpPercent: 75 }
+    },
+    {
+        id: 412,
+        name: "Spirit Council",
+        description: "Face judgment before the spirit elders",
+        world: 27,
+        stage: 12,
+        position: { x: 1200, y: 4020 },
+        starCriteria: { time: 440000, minHpPercent: 75 }
+    },
+    {
+        id: 413,
+        name: "Afterlife Threshold",
+        description: "Stand at the boundary of life and death",
+        world: 27,
+        stage: 13,
+        position: { x: 1300, y: 4040 },
+        starCriteria: { time: 460000, minHpPercent: 75 }
+    },
+    {
+        id: 414,
+        name: "Ghost King's Court",
+        description: "Approach the throne of the spirit monarch",
+        world: 27,
+        stage: 14,
+        position: { x: 1400, y: 4060 },
+        starCriteria: { time: 480000, minHpPercent: 75 }
+    },
+    {
+        id: 415,
+        name: "Spirit King Ascension",
+        description: "Challenge the sovereign of all spirits",
+        world: 27,
+        stage: 15,
+        position: { x: 1500, y: 4080 },
+        starCriteria: { time: 500000, minHpPercent: 75 }
+    },
+    // World 28: Dragon's Domain
+    {
+        id: 416,
+        name: "Dragon's Gate",
+        description: "Enter the legendary realm of dragons",
+        world: 28,
+        stage: 1,
+        position: { x: 100, y: 4000 },
+        starCriteria: { time: 220000, minHpPercent: 75 }
+    },
+    {
+        id: 417,
+        name: "Wyvern Rookery",
+        description: "Navigate the nesting grounds of young dragons",
+        world: 28,
+        stage: 2,
+        position: { x: 200, y: 4020 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 418,
+        name: "Drake Caverns",
+        description: "Delve into caves filled with lesser drakes",
+        world: 28,
+        stage: 3,
+        position: { x: 300, y: 4040 },
+        starCriteria: { time: 260000, minHpPercent: 75 }
+    },
+    {
+        id: 419,
+        name: "Serpent's Coil",
+        description: "Face the massive wyrm guardians",
+        world: 28,
+        stage: 4,
+        position: { x: 400, y: 4060 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 420,
+        name: "Firebreath Peak",
+        description: "Climb through infernos of dragonfire",
+        world: 28,
+        stage: 5,
+        position: { x: 500, y: 4080 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 421,
+        name: "Scaled Fortress",
+        description: "Assault the dragon-guarded stronghold",
+        world: 28,
+        stage: 6,
+        position: { x: 600, y: 4100 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 422,
+        name: "Dragon's Hoard",
+        description: "Navigate the treasure vault of ancient dragons",
+        world: 28,
+        stage: 7,
+        position: { x: 700, y: 4120 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    {
+        id: 423,
+        name: "Wing Shadow Valley",
+        description: "Fight under the shadow of circling dragons",
+        world: 28,
+        stage: 8,
+        position: { x: 800, y: 4140 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 424,
+        name: "Ancient Roost",
+        description: "Challenge dragons in their resting place",
+        world: 28,
+        stage: 9,
+        position: { x: 900, y: 4160 },
+        starCriteria: { time: 380000, minHpPercent: 75 }
+    },
+    {
+        id: 425,
+        name: "Elder Wyrm Lair",
+        description: "Face the wisdom and fury of elder dragons",
+        world: 28,
+        stage: 10,
+        position: { x: 1000, y: 4180 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    {
+        id: 426,
+        name: "Draconic Council",
+        description: "Stand before the gathering of great dragons",
+        world: 28,
+        stage: 11,
+        position: { x: 1100, y: 4200 },
+        starCriteria: { time: 420000, minHpPercent: 75 }
+    },
+    {
+        id: 427,
+        name: "Flame Citadel",
+        description: "Storm the fortress of eternal dragonfire",
+        world: 28,
+        stage: 12,
+        position: { x: 1200, y: 4220 },
+        starCriteria: { time: 440000, minHpPercent: 75 }
+    },
+    {
+        id: 428,
+        name: "Emperor's Approach",
+        description: "Ascend to the Dragon Emperor's throne",
+        world: 28,
+        stage: 13,
+        position: { x: 1300, y: 4240 },
+        starCriteria: { time: 460000, minHpPercent: 75 }
+    },
+    {
+        id: 429,
+        name: "Imperial Sanctum",
+        description: "Enter the sacred chamber of the dragon ruler",
+        world: 28,
+        stage: 14,
+        position: { x: 1400, y: 4260 },
+        starCriteria: { time: 480000, minHpPercent: 75 }
+    },
+    {
+        id: 430,
+        name: "Dragon Emperor's Throne",
+        description: "Face the supreme ruler of all dragonkind",
+        world: 28,
+        stage: 15,
+        position: { x: 1500, y: 4280 },
+        starCriteria: { time: 500000, minHpPercent: 75 }
+    },
+    // World 29: Multiverse Nexus
+    {
+        id: 431,
+        name: "Reality Fracture",
+        description: "Step through the cracks between worlds",
+        world: 29,
+        stage: 1,
+        position: { x: 100, y: 4200 },
+        starCriteria: { time: 220000, minHpPercent: 75 }
+    },
+    {
+        id: 432,
+        name: "Parallel Paths",
+        description: "Navigate through converging timelines",
+        world: 29,
+        stage: 2,
+        position: { x: 200, y: 4220 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 433,
+        name: "Alternate Echoes",
+        description: "Face reflections from other realities",
+        world: 29,
+        stage: 3,
+        position: { x: 300, y: 4240 },
+        starCriteria: { time: 260000, minHpPercent: 75 }
+    },
+    {
+        id: 434,
+        name: "Divergence Point",
+        description: "Stand where possibilities split infinitely",
+        world: 29,
+        stage: 4,
+        position: { x: 400, y: 4260 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 435,
+        name: "Mirror Dimension",
+        description: "Battle through the reversed reality",
+        world: 29,
+        stage: 5,
+        position: { x: 500, y: 4280 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 436,
+        name: "Quantum Bridge",
+        description: "Cross the connection between universes",
+        world: 29,
+        stage: 6,
+        position: { x: 600, y: 4300 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 437,
+        name: "Probability Storm",
+        description: "Survive the chaos of colliding possibilities",
+        world: 29,
+        stage: 7,
+        position: { x: 700, y: 4320 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    {
+        id: 438,
+        name: "Dimensional Rift",
+        description: "Face entities from beyond your reality",
+        world: 29,
+        stage: 8,
+        position: { x: 800, y: 4340 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 439,
+        name: "Convergence Zone",
+        description: "Stand where all realities meet",
+        world: 29,
+        stage: 9,
+        position: { x: 900, y: 4360 },
+        starCriteria: { time: 380000, minHpPercent: 75 }
+    },
+    {
+        id: 440,
+        name: "Nexus Core",
+        description: "Reach the heart of the multiverse",
+        world: 29,
+        stage: 10,
+        position: { x: 1000, y: 4380 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    {
+        id: 441,
+        name: "Reality Weaver",
+        description: "Face those who shape dimensional threads",
+        world: 29,
+        stage: 11,
+        position: { x: 1100, y: 4400 },
+        starCriteria: { time: 420000, minHpPercent: 75 }
+    },
+    {
+        id: 442,
+        name: "Infinite Crossroads",
+        description: "Choose your path among endless realities",
+        world: 29,
+        stage: 12,
+        position: { x: 1200, y: 4420 },
+        starCriteria: { time: 440000, minHpPercent: 75 }
+    },
+    {
+        id: 443,
+        name: "Dimensional Throne",
+        description: "Approach the seat of multiverse power",
+        world: 29,
+        stage: 13,
+        position: { x: 1300, y: 4440 },
+        starCriteria: { time: 460000, minHpPercent: 75 }
+    },
+    {
+        id: 444,
+        name: "Nexus Sanctum",
+        description: "Enter the chamber of ultimate convergence",
+        world: 29,
+        stage: 14,
+        position: { x: 1400, y: 4460 },
+        starCriteria: { time: 480000, minHpPercent: 75 }
+    },
+    {
+        id: 445,
+        name: "Nexus Entity Summit",
+        description: "Challenge the being that binds all realities",
+        world: 29,
+        stage: 15,
+        position: { x: 1500, y: 4480 },
+        starCriteria: { time: 500000, minHpPercent: 75 }
+    },
+    // World 30: The Absolute End
+    {
+        id: 446,
+        name: "Final Threshold",
+        description: "Cross into the realm beyond existence",
+        world: 30,
+        stage: 1,
+        position: { x: 100, y: 4400 },
+        starCriteria: { time: 220000, minHpPercent: 75 }
+    },
+    {
+        id: 447,
+        name: "Omega Beginning",
+        description: "Where endings become beginnings",
+        world: 30,
+        stage: 2,
+        position: { x: 200, y: 4420 },
+        starCriteria: { time: 240000, minHpPercent: 75 }
+    },
+    {
+        id: 448,
+        name: "Alpha Terminus",
+        description: "Face the paradox of first and last",
+        world: 30,
+        stage: 3,
+        position: { x: 300, y: 4440 },
+        starCriteria: { time: 260000, minHpPercent: 75 }
+    },
+    {
+        id: 449,
+        name: "Eternal Moment",
+        description: "Experience infinity in a single instant",
+        world: 30,
+        stage: 4,
+        position: { x: 400, y: 4460 },
+        starCriteria: { time: 280000, minHpPercent: 75 }
+    },
+    {
+        id: 450,
+        name: "Beyond Time",
+        description: "Transcend the limitations of temporal flow",
+        world: 30,
+        stage: 5,
+        position: { x: 500, y: 4480 },
+        starCriteria: { time: 300000, minHpPercent: 75 }
+    },
+    {
+        id: 451,
+        name: "Infinite Power",
+        description: "Witness power without limit or bound",
+        world: 30,
+        stage: 6,
+        position: { x: 600, y: 4500 },
+        starCriteria: { time: 320000, minHpPercent: 75 }
+    },
+    {
+        id: 452,
+        name: "Perfect Void",
+        description: "Stand in the emptiness that contains all",
+        world: 30,
+        stage: 7,
+        position: { x: 700, y: 4520 },
+        starCriteria: { time: 340000, minHpPercent: 75 }
+    },
+    {
+        id: 453,
+        name: "Absolute Clarity",
+        description: "See through all illusions to truth itself",
+        world: 30,
+        stage: 8,
+        position: { x: 800, y: 4540 },
+        starCriteria: { time: 360000, minHpPercent: 75 }
+    },
+    {
+        id: 454,
+        name: "Transcendent Gate",
+        description: "Pass through the portal to ultimate being",
+        world: 30,
+        stage: 9,
+        position: { x: 900, y: 4560 },
+        starCriteria: { time: 380000, minHpPercent: 75 }
+    },
+    {
+        id: 455,
+        name: "Perfection's Edge",
+        description: "Approach the boundary of absolute perfection",
+        world: 30,
+        stage: 10,
+        position: { x: 1000, y: 4580 },
+        starCriteria: { time: 400000, minHpPercent: 75 }
+    },
+    {
+        id: 456,
+        name: "Ultimate Truth",
+        description: "Face the reality behind all realities",
+        world: 30,
+        stage: 11,
+        position: { x: 1100, y: 4600 },
+        starCriteria: { time: 420000, minHpPercent: 75 }
+    },
+    {
+        id: 457,
+        name: "Omega Ascension",
+        description: "Rise to the highest plane of existence",
+        world: 30,
+        stage: 12,
+        position: { x: 1200, y: 4620 },
+        starCriteria: { time: 440000, minHpPercent: 75 }
+    },
+    {
+        id: 458,
+        name: "Absolute Horizon",
+        description: "Stand before the edge of everything",
+        world: 30,
+        stage: 13,
+        position: { x: 1300, y: 4640 },
+        starCriteria: { time: 460000, minHpPercent: 75 }
+    },
+    {
+        id: 459,
+        name: "End Eternal",
+        description: "Face the ending that never ends",
+        world: 30,
+        stage: 14,
+        position: { x: 1400, y: 4660 },
+        starCriteria: { time: 480000, minHpPercent: 75 }
+    },
+    {
+        id: 460,
+        name: "The Perfect End",
+        description: "Challenge perfection itself in the ultimate transcendence",
+        world: 30,
+        stage: 15,
+        position: { x: 1500, y: 4680 },
+        starCriteria: { time: 500000, minHpPercent: 75 }
+    },
 ];
 
 // Helper functions for world management
@@ -2232,6 +4517,126 @@ export const WORLD_THEMES: WorldTheme[] = [
         difficulty: "Expert",
         keyFeatures: ["Ultimate Power", "Final Challenge", "Absolute Mastery"],
         enemies: ["Guardians", "Sentinels", "Wardens", "Keepers", "Primordials", "Absolutes", "Final Boss"]
+    },
+    {
+        worldId: 21,
+        title: "Quantum Realm",
+        subtitle: "Wave-Particle Duality",
+        description: "Enter a dimension where quantum mechanics reign supreme. Superposition, entanglement, and uncertainty define this reality-bending realm.",
+        icon: "⚛️",
+        gradient: "from-purple-600 via-cyan-500 to-violet-700",
+        accentColor: "border-cyan-400",
+        difficulty: "Expert",
+        keyFeatures: ["Quantum Entanglement", "Superposition States", "Wave Functions"],
+        enemies: ["Quantum Flux", "Superposition", "Entangled", "Wave Function", "Observer", "Uncertainty", "Quantum Singularity"]
+    },
+    {
+        worldId: 22,
+        title: "Ancient Ruins",
+        subtitle: "Lost Civilization",
+        description: "Explore forgotten temples and tombs filled with ancient curses and hieroglyphic magic. The pharaohs' guardians await.",
+        icon: "🏛️",
+        gradient: "from-amber-700 via-yellow-600 to-orange-700",
+        accentColor: "border-yellow-500",
+        difficulty: "Expert",
+        keyFeatures: ["Ancient Curses", "Hieroglyphic Magic", "Resurrection Rites"],
+        enemies: ["Rune Stones", "Ancient Golems", "Sphinx", "Anubis", "Ancient Mummies", "Hieroglyphs", "Ancient One"]
+    },
+    {
+        worldId: 23,
+        title: "Plague Lands",
+        subtitle: "Pandemic Zone",
+        description: "A diseased wasteland where contagion spreads unchecked. The plague doctor awaits in his quarantine domain.",
+        icon: "☣️",
+        gradient: "from-green-900 via-lime-700 to-emerald-600",
+        accentColor: "border-green-500",
+        difficulty: "Expert",
+        keyFeatures: ["Disease Mechanics", "Contagion Spread", "Plague Immunity"],
+        enemies: ["Infected", "Carriers", "Diseased", "Plaguebearers", "Quarantine", "Epidemic", "Plague Doctor"]
+    },
+    {
+        worldId: 24,
+        title: "Lightning Realm",
+        subtitle: "Electrified Domain",
+        description: "A world of pure electrical energy where storms rage eternally. Master the power of lightning and become the storm.",
+        icon: "⚡",
+        gradient: "from-yellow-500 via-blue-600 to-purple-700",
+        accentColor: "border-yellow-400",
+        difficulty: "Expert",
+        keyFeatures: ["Chain Lightning", "Static Charge", "Thunderstrike"],
+        enemies: ["Sparks", "Charges", "Static", "Voltage", "Conductors", "Thunderbolts", "Lightning God"]
+    },
+    {
+        worldId: 25,
+        title: "Blood Moon",
+        subtitle: "Gothic Horror",
+        description: "Under the crimson moon, vampires, werewolves, and undead horrors reign. Face the Blood Lord in his dark domain.",
+        icon: "🩸",
+        gradient: "from-red-950 via-rose-800 to-red-700",
+        accentColor: "border-red-500",
+        difficulty: "Expert",
+        keyFeatures: ["Blood Magic", "Lycanthropy", "Soul Reaping"],
+        enemies: ["Vampires", "Werewolves", "Ghouls", "Banshees", "Reapers", "Liches", "Blood Lord"]
+    },
+    {
+        worldId: 26,
+        title: "Machine Core",
+        subtitle: "Digital Consciousness",
+        description: "Deep within the AI's central processor. Hack through firewalls and protocols to reach the Core AI itself.",
+        icon: "💾",
+        gradient: "from-gray-700 via-slate-600 to-zinc-800",
+        accentColor: "border-slate-400",
+        difficulty: "Expert",
+        keyFeatures: ["System Hacking", "Firewall Bypass", "Protocol Override"],
+        enemies: ["Nanobots", "Automatons", "Mainframes", "Protocols", "Firewalls", "Encryption", "Core AI"]
+    },
+    {
+        worldId: 27,
+        title: "Spirit Realm",
+        subtitle: "Ethereal Plane",
+        description: "Walk among spirits and ghosts in this otherworldly dimension. Face the Spirit King who rules the afterlife.",
+        icon: "👻",
+        gradient: "from-slate-400 via-indigo-300 to-purple-400",
+        accentColor: "border-indigo-300",
+        difficulty: "Expert",
+        keyFeatures: ["Ethereal Form", "Spirit Channeling", "Possession Resistance"],
+        enemies: ["Ghosts", "Poltergeists", "Spirits", "Haunts", "Ectoplasm", "Possession", "Spirit King"]
+    },
+    {
+        worldId: 28,
+        title: "Dragon's Domain",
+        subtitle: "Draconic Empire",
+        description: "Enter the realm of ancient dragons where fire and fury reign. Challenge the Dragon Emperor for ultimate glory.",
+        icon: "🐉",
+        gradient: "from-red-800 via-orange-600 to-yellow-500",
+        accentColor: "border-orange-500",
+        difficulty: "Expert",
+        keyFeatures: ["Dragonfire", "Draconic Resilience", "Ancient Wisdom"],
+        enemies: ["Wyverns", "Drakes", "Wyrms", "Serpents", "Dragons", "Elder Dragons", "Dragon Emperor"]
+    },
+    {
+        worldId: 29,
+        title: "Multiverse Nexus",
+        subtitle: "Infinite Realities",
+        description: "Where all dimensions converge. Face alternate versions of reality and challenge the Nexus Entity that binds them all.",
+        icon: "🌈",
+        gradient: "from-pink-500 via-purple-500 to-cyan-500",
+        accentColor: "border-fuchsia-400",
+        difficulty: "Expert",
+        keyFeatures: ["Reality Shift", "Parallel Existence", "Dimensional Breach"],
+        enemies: ["Alternates", "Parallels", "Divergents", "Convergence", "Dimensional", "Multiverse", "Nexus Entity"]
+    },
+    {
+        worldId: 30,
+        title: "The Absolute End",
+        subtitle: "Ultimate Transcendence",
+        description: "The final realm beyond existence. Face perfection itself and witness the absolute end of all things.",
+        icon: "♾️",
+        gradient: "from-black via-white to-black",
+        accentColor: "border-gray-100",
+        difficulty: "Expert",
+        keyFeatures: ["Omega Strike", "Infinite Power", "Perfect Transcendence"],
+        enemies: ["Omega", "Alpha", "End Eternal", "Infinite", "End Absolute", "Perfection", "The End"]
     }
 ];
 

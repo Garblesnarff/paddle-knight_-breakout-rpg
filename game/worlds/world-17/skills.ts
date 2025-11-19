@@ -47,6 +47,39 @@ export const WORLD_17_SKILLS: Record<string, SkillNode> = {
         dependencies: ['techUpgrade', 'cyberAttack'],
         type: SkillType.Active,
         position: { row: 5, col: 2 }
+    },
+
+    'digitalGhost': {
+        id: 'digitalGhost',
+        name: 'Digital Ghost',
+        description: (level) => `Create ${level} digital copies of yourself every ${10 - level * 2}s. Each copy attacks independently for ${30 + (level * 15)}% damage for ${4 + level}s`,
+        maxLevel: 3,
+        cost: (level) => 5 + level,
+        dependencies: ['techUpgrade', 'nanoBots'],
+        type: SkillType.Passive,
+        position: { row: 4, col: 2 }
+    },
+
+    'empPulse': {
+        id: 'empPulse',
+        name: 'EMP Pulse',
+        description: (level) => `Active: Emit electromagnetic pulse, disabling all electronics for ${3 + level}s and dealing ${35 + (level * 25)} damage. ${level * 20}% to destroy projectiles. Cooldown: ${Math.max(55 - level * 5, 40)}s`,
+        maxLevel: 3,
+        cost: (level) => 6 + level,
+        dependencies: ['cyberAttack'],
+        type: SkillType.Active,
+        position: { row: 4, col: 3 }
+    },
+
+    'neuralLink': {
+        id: 'neuralLink',
+        name: 'Neural Link',
+        description: (level) => `Link to enemies' neural networks. Gain ${level * 10}% dodge chance and see attack patterns ${0.5 + (level * 0.3)}s in advance`,
+        maxLevel: 4,
+        cost: (level) => 4 + level,
+        dependencies: ['agility'],
+        type: SkillType.Passive,
+        position: { row: 3, col: 1 }
     }
 };
 

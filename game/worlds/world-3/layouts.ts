@@ -110,4 +110,35 @@ export const LEVEL_LAYOUTS = [
         [HiveMind, Replicator, ScrapGolem, HiveMind, HiveMind, ScrapGolem, Replicator, HiveMind],
         [Replicator, Corruptor, HiveMind, Replicator, Replicator, HiveMind, Corruptor, Replicator],
     ],
+
+    // Stage 13: "Replication Overflow"
+    [
+        [Replicator, Replicator, HiveMind, Corruptor, Corruptor, HiveMind, Replicator, Replicator],
+        [HiveMind, Corruptor, Replicator, HiveMind, HiveMind, Replicator, Corruptor, HiveMind],
+        [Corruptor, Replicator, HiveMind, Corruptor, Corruptor, HiveMind, Replicator, Corruptor],
+        [Replicator, HiveMind, Corruptor, Replicator, Replicator, Corruptor, HiveMind, Replicator],
+        [HiveMind, Corruptor, Replicator, ScrapGolem, ScrapGolem, Replicator, Corruptor, HiveMind],
+        [Replicator, Replicator, HiveMind, Corruptor, Corruptor, HiveMind, Replicator, Replicator],
+    ],
+
+    // Stage 14: "Hivemind Ascension"
+    [
+        [HiveMind, HiveMind, Replicator, Corruptor, Corruptor, Replicator, HiveMind, HiveMind],
+        [Replicator, Corruptor, HiveMind, Replicator, Replicator, HiveMind, Corruptor, Replicator],
+        [Corruptor, HiveMind, Replicator, HiveMind, HiveMind, Replicator, HiveMind, Corruptor],
+        [HiveMind, Replicator, Corruptor, HiveMind, HiveMind, Corruptor, Replicator, HiveMind],
+        [Replicator, Corruptor, HiveMind, Replicator, Replicator, HiveMind, Corruptor, Replicator],
+        [HiveMind, HiveMind, Corruptor, Replicator, Replicator, Corruptor, HiveMind, HiveMind],
+    ],
+
+    // Stage 15: "The Prime Convergence"
+    [
+        [Replicator, HiveMind, PrimeSynthesizer, PrimeSynthesizer, HiveMind, Replicator],
+        [HiveMind, Corruptor, Replicator, Replicator, Corruptor, HiveMind],
+        [Corruptor, Replicator, HiveMind, HiveMind, Replicator, Corruptor],
+        [Replicator, HiveMind, Corruptor, Corruptor, HiveMind, Replicator],
+        [HiveMind, Corruptor, Replicator, Replicator, Corruptor, HiveMind],
+        [Corruptor, Replicator, HiveMind, HiveMind, Replicator, Corruptor],
+        [Replicator, HiveMind, Corruptor, Corruptor, HiveMind, Replicator],
+    ],
 ];

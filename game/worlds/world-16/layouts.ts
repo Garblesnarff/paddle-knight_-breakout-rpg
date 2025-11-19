@@ -97,4 +97,64 @@ export const LEVEL_LAYOUTS = [
     [Succubus, ArchDemon, Tormentor, ArchDemon, ArchDemon, Tormentor, ArchDemon, Succubus],
     [ArchDemon, ArchDemon, ArchDemon, Tormentor, Tormentor, ArchDemon, ArchDemon, ArchDemon],
   ],
+
+  // Stage 11: Eternal Damnation
+  [
+    [ArchDemon, ArchDemon, Tormentor, ArchDemon, ArchDemon, Tormentor, ArchDemon, ArchDemon],
+    [Tormentor, ArchDemon, ArchDemon, Tormentor, Tormentor, ArchDemon, ArchDemon, Tormentor],
+    [ArchDemon, Tormentor, ArchDemon, ArchDemon, ArchDemon, ArchDemon, Tormentor, ArchDemon],
+    [ArchDemon, ArchDemon, Tormentor, ArchDemon, ArchDemon, Tormentor, ArchDemon, ArchDemon],
+    [Tormentor, ArchDemon, ArchDemon, Tormentor, Tormentor, ArchDemon, ArchDemon, Tormentor],
+    [ArchDemon, Tormentor, ArchDemon, ArchDemon, ArchDemon, ArchDemon, Tormentor, ArchDemon],
+    [Tormentor, ArchDemon, Tormentor, ArchDemon, ArchDemon, Tormentor, ArchDemon, Tormentor],
+    [ArchDemon, ArchDemon, ArchDemon, Tormentor, Tormentor, ArchDemon, ArchDemon, ArchDemon],
+  ],
+
+  // Stage 12: Devouring Darkness
+  [
+    [ArchDemon, Tormentor, ArchDemon, Tormentor, Tormentor, ArchDemon, Tormentor, ArchDemon],
+    [Tormentor, ArchDemon, Tormentor, ArchDemon, ArchDemon, Tormentor, ArchDemon, Tormentor],
+    [ArchDemon, Tormentor, ArchDemon, Tormentor, Tormentor, ArchDemon, Tormentor, ArchDemon],
+    [Tormentor, ArchDemon, Tormentor, ArchDemon, ArchDemon, Tormentor, ArchDemon, Tormentor],
+    [ArchDemon, Tormentor, ArchDemon, Tormentor, Tormentor, ArchDemon, Tormentor, ArchDemon],
+    [Tormentor, ArchDemon, Tormentor, ArchDemon, ArchDemon, Tormentor, ArchDemon, Tormentor],
+    [ArchDemon, Tormentor, ArchDemon, Tormentor, Tormentor, ArchDemon, Tormentor, ArchDemon],
+    [Tormentor, ArchDemon, Tormentor, ArchDemon, ArchDemon, Tormentor, ArchDemon, Tormentor],
+  ],
+
+  // Stage 13: Hellfire Supremacy
+  [
+    [Tormentor, Tormentor, ArchDemon, Tormentor, Tormentor, ArchDemon, Tormentor, Tormentor],
+    [ArchDemon, Tormentor, Tormentor, ArchDemon, ArchDemon, Tormentor, Tormentor, ArchDemon],
+    [Tormentor, ArchDemon, Tormentor, Tormentor, Tormentor, Tormentor, ArchDemon, Tormentor],
+    [ArchDemon, Tormentor, ArchDemon, Tormentor, Tormentor, ArchDemon, Tormentor, ArchDemon],
+    [Tormentor, Tormentor, Tormentor, ArchDemon, ArchDemon, Tormentor, Tormentor, Tormentor],
+    [ArchDemon, Tormentor, Tormentor, ArchDemon, ArchDemon, Tormentor, Tormentor, ArchDemon],
+    [Tormentor, ArchDemon, Tormentor, Tormentor, Tormentor, Tormentor, ArchDemon, Tormentor],
+    [Tormentor, Tormentor, ArchDemon, Tormentor, Tormentor, ArchDemon, Tormentor, Tormentor],
+  ],
+
+  // Stage 14: Abyssal Legions
+  [
+    [Tormentor, Tormentor, Tormentor, ArchDemon, ArchDemon, Tormentor, Tormentor, Tormentor],
+    [Tormentor, ArchDemon, Tormentor, Tormentor, Tormentor, Tormentor, ArchDemon, Tormentor],
+    [ArchDemon, Tormentor, Tormentor, ArchDemon, ArchDemon, Tormentor, Tormentor, ArchDemon],
+    [Tormentor, Tormentor, ArchDemon, Tormentor, Tormentor, ArchDemon, Tormentor, Tormentor],
+    [Tormentor, ArchDemon, Tormentor, Tormentor, Tormentor, Tormentor, ArchDemon, Tormentor],
+    [ArchDemon, Tormentor, Tormentor, ArchDemon, ArchDemon, Tormentor, Tormentor, ArchDemon],
+    [Tormentor, Tormentor, ArchDemon, Tormentor, Tormentor, ArchDemon, Tormentor, Tormentor],
+    [Tormentor, Tormentor, Tormentor, Tormentor, Tormentor, Tormentor, Tormentor, Tormentor],
+  ],
+
+  // Stage 15: Lord of Hell's Wrath
+  [
+    [null, null, Tormentor, LordOfHellBoss, LordOfHellBoss, Tormentor, null, null],
+    [Tormentor, ArchDemon, null, Tormentor, Tormentor, null, ArchDemon, Tormentor],
+    [ArchDemon, Tormentor, ArchDemon, null, null, ArchDemon, Tormentor, ArchDemon],
+    [Tormentor, ArchDemon, Tormentor, ArchDemon, ArchDemon, Tormentor, ArchDemon, Tormentor],
+    [ArchDemon, Tormentor, Tormentor, ArchDemon, ArchDemon, Tormentor, Tormentor, ArchDemon],
+    [Tormentor, Tormentor, ArchDemon, Tormentor, Tormentor, ArchDemon, Tormentor, Tormentor],
+    [ArchDemon, Tormentor, Tormentor, ArchDemon, ArchDemon, Tormentor, Tormentor, ArchDemon],
+    [Tormentor, Tormentor, Tormentor, Tormentor, Tormentor, Tormentor, Tormentor, Tormentor],
+  ],
 ];

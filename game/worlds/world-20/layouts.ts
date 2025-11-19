@@ -97,4 +97,64 @@ export const LEVEL_LAYOUTS = [
     [Keeper, Absolute, Primordial, Absolute, Absolute, Primordial, Absolute, Keeper],
     [Absolute, Absolute, Absolute, Primordial, Primordial, Absolute, Absolute, Absolute],
   ],
+
+  // Stage 11: Beyond the Absolute
+  [
+    [Absolute, Absolute, Primordial, Absolute, Absolute, Primordial, Absolute, Absolute],
+    [Primordial, Absolute, Absolute, Primordial, Primordial, Absolute, Absolute, Primordial],
+    [Absolute, Primordial, Absolute, Absolute, Absolute, Absolute, Primordial, Absolute],
+    [Absolute, Absolute, Primordial, Absolute, Absolute, Primordial, Absolute, Absolute],
+    [Primordial, Absolute, Absolute, Primordial, Primordial, Absolute, Absolute, Primordial],
+    [Absolute, Primordial, Absolute, Absolute, Absolute, Absolute, Primordial, Absolute],
+    [Primordial, Absolute, Primordial, Absolute, Absolute, Primordial, Absolute, Primordial],
+    [Absolute, Absolute, Absolute, Primordial, Primordial, Absolute, Absolute, Absolute],
+  ],
+
+  // Stage 12: Primordial Convergence
+  [
+    [Absolute, Primordial, Absolute, Primordial, Primordial, Absolute, Primordial, Absolute],
+    [Primordial, Absolute, Primordial, Absolute, Absolute, Primordial, Absolute, Primordial],
+    [Absolute, Primordial, Absolute, Primordial, Primordial, Absolute, Primordial, Absolute],
+    [Primordial, Absolute, Primordial, Absolute, Absolute, Primordial, Absolute, Primordial],
+    [Absolute, Primordial, Absolute, Primordial, Primordial, Absolute, Primordial, Absolute],
+    [Primordial, Absolute, Primordial, Absolute, Absolute, Primordial, Absolute, Primordial],
+    [Absolute, Primordial, Absolute, Primordial, Primordial, Absolute, Primordial, Absolute],
+    [Primordial, Absolute, Primordial, Absolute, Absolute, Primordial, Absolute, Primordial],
+  ],
+
+  // Stage 13: Absolute Dominion
+  [
+    [Primordial, Primordial, Absolute, Primordial, Primordial, Absolute, Primordial, Primordial],
+    [Absolute, Primordial, Primordial, Absolute, Absolute, Primordial, Primordial, Absolute],
+    [Primordial, Absolute, Primordial, Primordial, Primordial, Primordial, Absolute, Primordial],
+    [Absolute, Primordial, Absolute, Primordial, Primordial, Absolute, Primordial, Absolute],
+    [Primordial, Primordial, Primordial, Absolute, Absolute, Primordial, Primordial, Primordial],
+    [Absolute, Primordial, Primordial, Absolute, Absolute, Primordial, Primordial, Absolute],
+    [Primordial, Absolute, Primordial, Primordial, Primordial, Primordial, Absolute, Primordial],
+    [Primordial, Primordial, Absolute, Primordial, Primordial, Absolute, Primordial, Primordial],
+  ],
+
+  // Stage 14: Genesis and Omega
+  [
+    [Primordial, Primordial, Primordial, Absolute, Absolute, Primordial, Primordial, Primordial],
+    [Primordial, Absolute, Primordial, Primordial, Primordial, Primordial, Absolute, Primordial],
+    [Absolute, Primordial, Primordial, Absolute, Absolute, Primordial, Primordial, Absolute],
+    [Primordial, Primordial, Absolute, Primordial, Primordial, Absolute, Primordial, Primordial],
+    [Primordial, Absolute, Primordial, Primordial, Primordial, Primordial, Absolute, Primordial],
+    [Absolute, Primordial, Primordial, Absolute, Absolute, Primordial, Primordial, Absolute],
+    [Primordial, Primordial, Absolute, Primordial, Primordial, Absolute, Primordial, Primordial],
+    [Primordial, Primordial, Primordial, Primordial, Primordial, Primordial, Primordial, Primordial],
+  ],
+
+  // Stage 15: The Final Reckoning
+  [
+    [null, null, Primordial, FinalBoss, FinalBoss, Primordial, null, null],
+    [Primordial, Absolute, null, Primordial, Primordial, null, Absolute, Primordial],
+    [Absolute, Primordial, Absolute, null, null, Absolute, Primordial, Absolute],
+    [Primordial, Absolute, Primordial, Absolute, Absolute, Primordial, Absolute, Primordial],
+    [Absolute, Primordial, Primordial, Absolute, Absolute, Primordial, Primordial, Absolute],
+    [Primordial, Primordial, Absolute, Primordial, Primordial, Absolute, Primordial, Primordial],
+    [Absolute, Primordial, Primordial, Absolute, Absolute, Primordial, Primordial, Absolute],
+    [Primordial, Primordial, Primordial, Primordial, Primordial, Primordial, Primordial, Primordial],
+  ],
 ];

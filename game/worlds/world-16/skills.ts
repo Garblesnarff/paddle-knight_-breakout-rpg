@@ -47,6 +47,39 @@ export const WORLD_16_SKILLS: Record<string, SkillNode> = {
         dependencies: ['hellfire', 'infernalArmor'],
         type: SkillType.Active,
         position: { row: 5, col: 2 }
+    },
+
+    'soulHarvest': {
+        id: 'soulHarvest',
+        name: 'Soul Harvest',
+        description: (level) => `Collect souls from kills. Each soul grants ${level * 2}% damage (max ${level * 20} souls). Lose ${level * 5} souls when hit`,
+        maxLevel: 4,
+        cost: (level) => 5 + level,
+        dependencies: ['hellfire'],
+        type: SkillType.Triggered,
+        position: { row: 4, col: 3 }
+    },
+
+    'brimstoneCascade': {
+        id: 'brimstoneCascade',
+        name: 'Brimstone Cascade',
+        description: (level) => `Enemies killed by hellfire explode for ${40 + (level * 25)} AoE damage and leave molten ground that deals ${level * 8} damage/s for ${3 + level}s`,
+        maxLevel: 3,
+        cost: (level) => 5 + level,
+        dependencies: ['vitality'],
+        type: SkillType.Passive,
+        position: { row: 3, col: 2 }
+    },
+
+    'demonSummon': {
+        id: 'demonSummon',
+        name: 'Demon Summon',
+        description: (level) => `Active: Summon a ${level === 1 ? 'lesser' : level === 2 ? 'greater' : 'arch'} demon for ${8 + (level * 4)}s that deals ${15 + (level * 20)} damage/s. Cooldown: ${Math.max(60 - level * 8, 40)}s`,
+        maxLevel: 3,
+        cost: (level) => 6 + level,
+        dependencies: ['demonicPact'],
+        type: SkillType.Active,
+        position: { row: 4, col: 1 }
     }
 };
 

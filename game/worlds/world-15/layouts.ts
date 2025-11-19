@@ -99,4 +99,63 @@ ering Meadows
     [Phantasm, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Phantasm],
     [Reverie, Reverie, Reverie, Mirage, Mirage, Reverie, Reverie, Reverie],
   ],
+
+  // Stage 11: Lucid Nightmare
+  [
+    [Reverie, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Reverie],
+    [Reverie, Mirage, Reverie, Mirage, Mirage, Reverie, Mirage, Reverie],
+    [Mirage, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Mirage],
+    [Reverie, Mirage, Reverie, Phantasm, Phantasm, Reverie, Mirage, Reverie],
+    [Mirage, Reverie, Phantasm, Mirage, Mirage, Phantasm, Reverie, Mirage],
+    [Reverie, Mirage, Reverie, Mirage, Mirage, Reverie, Mirage, Reverie],
+    [Reverie, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Reverie],
+  ],
+
+  // Stage 12: Reverie Sanctum
+  [
+    [Reverie, Reverie, Reverie, Mirage, Mirage, Reverie, Reverie, Reverie],
+    [Reverie, Mirage, Reverie, Reverie, Reverie, Reverie, Mirage, Reverie],
+    [Mirage, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Mirage],
+    [Reverie, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Reverie],
+    [Mirage, Reverie, Reverie, Mirage, Mirage, Reverie, Reverie, Mirage],
+    [Reverie, Mirage, Reverie, Reverie, Reverie, Reverie, Mirage, Reverie],
+    [Reverie, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Reverie],
+    [Reverie, Reverie, Reverie, Reverie, Reverie, Reverie, Reverie, Reverie],
+  ],
+
+  // Stage 13: Phantasmal Veil
+  [
+    [Reverie, Mirage, Reverie, Reverie, Reverie, Reverie, Mirage, Reverie],
+    [Mirage, Reverie, Reverie, Mirage, Mirage, Reverie, Reverie, Mirage],
+    [Reverie, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Reverie],
+    [Reverie, Mirage, Reverie, Reverie, Reverie, Reverie, Mirage, Reverie],
+    [Mirage, Reverie, Reverie, Mirage, Mirage, Reverie, Reverie, Mirage],
+    [Reverie, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Reverie],
+    [Mirage, Reverie, Reverie, Mirage, Mirage, Reverie, Reverie, Mirage],
+    [Reverie, Reverie, Reverie, Reverie, Reverie, Reverie, Reverie, Reverie],
+  ],
+
+  // Stage 14: Dream Eternal
+  [
+    [Reverie, Reverie, Reverie, Reverie, Reverie, Reverie, Reverie, Reverie],
+    [Reverie, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Reverie],
+    [Reverie, Mirage, Reverie, Reverie, Reverie, Reverie, Mirage, Reverie],
+    [Mirage, Reverie, Reverie, Mirage, Mirage, Reverie, Reverie, Mirage],
+    [Reverie, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Reverie],
+    [Reverie, Mirage, Reverie, Reverie, Reverie, Reverie, Mirage, Reverie],
+    [Reverie, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Reverie],
+    [Reverie, Reverie, Reverie, Reverie, Reverie, Reverie, Reverie, Reverie],
+  ],
+
+  // Stage 15: Dream Lord's Dominion
+  [
+    [Reverie, Reverie, Reverie, Reverie, Reverie, Reverie, Reverie, Reverie],
+    [Reverie, null, null, DreamLordBoss, DreamLordBoss, null, null, Reverie],
+    [Reverie, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Reverie],
+    [Mirage, Reverie, Reverie, Mirage, Mirage, Reverie, Reverie, Mirage],
+    [Reverie, Reverie, Mirage, Reverie, Reverie, Mirage, Reverie, Reverie],
+    [Mirage, Reverie, Reverie, Reverie, Reverie, Reverie, Reverie, Mirage],
+    [Reverie, Mirage, Reverie, Reverie, Reverie, Reverie, Mirage, Reverie],
+    [Reverie, Reverie, Reverie, Reverie, Reverie, Reverie, Reverie, Reverie],
+  ],
 ];

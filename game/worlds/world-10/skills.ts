@@ -47,6 +47,39 @@ export const WORLD_10_SKILLS: Record<string, SkillNode> = {
         dependencies: ['thornArmor', 'poisonThorns'],
         type: SkillType.Active,
         position: { row: 5, col: 2 }
+    },
+
+    'photosynthesis': {
+        id: 'photosynthesis',
+        name: 'Photosynthesis',
+        description: (level) => `Heal for ${8 + (level * 4)}% of damage dealt. Healing increased by ${level * 10}% at full health (converts to shield)`,
+        maxLevel: 3,
+        cost: (level) => 4 + level,
+        dependencies: ['wildGrowth'],
+        type: SkillType.Passive,
+        position: { row: 5, col: 1 }
+    },
+
+    'entanglingRoots': {
+        id: 'entanglingRoots',
+        name: 'Entangling Roots',
+        description: (level) => `${15 + (level * 10)}% chance on hit to root enemy for ${1.5 + (level * 0.5)}s. Rooted enemies take ${level * 10}% more damage`,
+        maxLevel: 3,
+        cost: (level) => 4 + level,
+        dependencies: ['thornArmor'],
+        type: SkillType.Triggered,
+        position: { row: 4, col: 2 }
+    },
+
+    'sporeBloom': {
+        id: 'sporeBloom',
+        name: 'Spore Bloom',
+        description: (level) => `Poisoned enemies spread ${level * 20}% of poison damage to nearby enemies. Creates toxic clouds on death`,
+        maxLevel: 3,
+        cost: (level) => 4 + level,
+        dependencies: ['poisonThorns'],
+        type: SkillType.Passive,
+        position: { row: 4, col: 3 }
     }
 };
 

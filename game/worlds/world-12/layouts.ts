@@ -96,4 +96,63 @@ export const LEVEL_LAYOUTS = [
     [Obelisk, Mummy, Obelisk, Mummy, Mummy, Obelisk, Mummy, Obelisk],
     [Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk],
   ],
+
+  // Stage 11: Buried Empire
+  [
+    [Obelisk, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Obelisk],
+    [Obelisk, Mummy, Obelisk, Mummy, Mummy, Obelisk, Mummy, Obelisk],
+    [Mummy, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Mummy],
+    [Obelisk, Mummy, Obelisk, Scarab, Scarab, Obelisk, Mummy, Obelisk],
+    [Mummy, Obelisk, Scarab, Mummy, Mummy, Scarab, Obelisk, Mummy],
+    [Obelisk, Mummy, Obelisk, Mummy, Mummy, Obelisk, Mummy, Obelisk],
+    [Obelisk, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Obelisk],
+  ],
+
+  // Stage 12: Eternal Sands
+  [
+    [Obelisk, Obelisk, Obelisk, Mummy, Mummy, Obelisk, Obelisk, Obelisk],
+    [Obelisk, Mummy, Obelisk, Obelisk, Obelisk, Obelisk, Mummy, Obelisk],
+    [Mummy, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Mummy],
+    [Obelisk, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Obelisk],
+    [Mummy, Obelisk, Obelisk, Mummy, Mummy, Obelisk, Obelisk, Mummy],
+    [Obelisk, Mummy, Obelisk, Obelisk, Obelisk, Obelisk, Mummy, Obelisk],
+    [Obelisk, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Obelisk],
+    [Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk],
+  ],
+
+  // Stage 13: Pyramid Depths
+  [
+    [Obelisk, Mummy, Obelisk, Obelisk, Obelisk, Obelisk, Mummy, Obelisk],
+    [Mummy, Obelisk, Obelisk, Mummy, Mummy, Obelisk, Obelisk, Mummy],
+    [Obelisk, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Obelisk],
+    [Obelisk, Mummy, Obelisk, Obelisk, Obelisk, Obelisk, Mummy, Obelisk],
+    [Mummy, Obelisk, Obelisk, Mummy, Mummy, Obelisk, Obelisk, Mummy],
+    [Obelisk, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Obelisk],
+    [Mummy, Obelisk, Obelisk, Mummy, Mummy, Obelisk, Obelisk, Mummy],
+    [Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk],
+  ],
+
+  // Stage 14: Obelisk Colossus
+  [
+    [Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk],
+    [Obelisk, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Obelisk],
+    [Obelisk, Mummy, Obelisk, Obelisk, Obelisk, Obelisk, Mummy, Obelisk],
+    [Mummy, Obelisk, Obelisk, Mummy, Mummy, Obelisk, Obelisk, Mummy],
+    [Obelisk, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Obelisk],
+    [Obelisk, Mummy, Obelisk, Obelisk, Obelisk, Obelisk, Mummy, Obelisk],
+    [Obelisk, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Obelisk],
+    [Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk],
+  ],
+
+  // Stage 15: Pharaoh's Wrath
+  [
+    [Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk],
+    [Obelisk, null, null, PharaohBoss, PharaohBoss, null, null, Obelisk],
+    [Obelisk, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Obelisk],
+    [Mummy, Obelisk, Obelisk, Mummy, Mummy, Obelisk, Obelisk, Mummy],
+    [Obelisk, Obelisk, Mummy, Obelisk, Obelisk, Mummy, Obelisk, Obelisk],
+    [Mummy, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Mummy],
+    [Obelisk, Mummy, Obelisk, Obelisk, Obelisk, Obelisk, Mummy, Obelisk],
+    [Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk, Obelisk],
+  ],
 ];

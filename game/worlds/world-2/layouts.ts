@@ -101,6 +101,25 @@ export const LEVEL_LAYOUTS = [
         [Fire, Ice, Mirror, Rune, Rune, Mirror, Ice, Fire],
         [Lightning, Mirror, Rune, Apprentice, Apprentice, Rune, Mirror, Lightning],
         [Mirror, Fire, Lightning, Ice, Ice, Lightning, Fire, Mirror],
+    ],
+    // Level 14: Prismatic Onslaught
+    [
+        [Rune, Rune, Mirror, Mirror, Mirror, Mirror, Rune, Rune],
+        [Mirror, Fire, Lightning, Rune, Rune, Lightning, Fire, Mirror],
+        [Rune, Lightning, Ice, Mirror, Mirror, Ice, Lightning, Rune],
+        [Mirror, Ice, Rune, Fire, Fire, Rune, Ice, Mirror],
+        [Rune, Mirror, Fire, Lightning, Lightning, Fire, Mirror, Rune],
+        [Mirror, Rune, Ice, Rune, Rune, Ice, Rune, Mirror],
+    ],
+    // Level 15: The Archmage Reborn
+    [
+        [Rune, Rune, ArchmageBoss, ArchmageBoss, Rune, Rune],
+        [Mirror, Mirror, Rune, Rune, Mirror, Mirror],
+        [Fire, Lightning, Ice, Ice, Lightning, Fire],
+        [Rune, Mirror, Fire, Fire, Mirror, Rune],
+        [Mirror, Apprentice, Lightning, Lightning, Apprentice, Mirror],
+        [Rune, Mirror, Ice, Ice, Mirror, Rune],
+        [Mirror, Fire, Rune, Rune, Fire, Mirror],
     ]
 ];
 

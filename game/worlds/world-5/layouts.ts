@@ -96,4 +96,65 @@ export const LEVEL_LAYOUTS = [
     [Voidwalker, Nightstalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Nightstalker, Voidwalker],
     [Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker],
   ],
+
+  // Stage 11: Eternal Night
+  [
+    [Voidwalker, Nightstalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker],
+    [Nightstalker, Voidwalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker, Nightstalker],
+    [Voidwalker, Nightstalker, Specter, Nightstalker, Nightstalker, Specter, Nightstalker, Voidwalker],
+    [Voidwalker, Voidwalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker, Voidwalker],
+    [Nightstalker, Voidwalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker],
+    [Voidwalker, Nightstalker, Specter, Voidwalker, Voidwalker, Specter, Nightstalker, Voidwalker],
+    [Nightstalker, Voidwalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker, Nightstalker],
+    [Voidwalker, Nightstalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Nightstalker, Voidwalker],
+  ],
+
+  // Stage 12: Void Convergence
+  [
+    [Voidwalker, Voidwalker, Nightstalker, Nightstalker, Nightstalker, Nightstalker, Voidwalker, Voidwalker],
+    [Voidwalker, Nightstalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker],
+    [Nightstalker, Voidwalker, Nightstalker, Specter, Specter, Nightstalker, Voidwalker, Nightstalker],
+    [Nightstalker, Voidwalker, Specter, Voidwalker, Voidwalker, Specter, Voidwalker, Nightstalker],
+    [Voidwalker, Nightstalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Nightstalker, Voidwalker],
+    [Nightstalker, Voidwalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker, Nightstalker],
+    [Voidwalker, Nightstalker, Voidwalker, Specter, Specter, Voidwalker, Nightstalker, Voidwalker],
+    [Voidwalker, Voidwalker, Nightstalker, Nightstalker, Nightstalker, Nightstalker, Voidwalker, Voidwalker],
+  ],
+
+  // Stage 13: Shadowfall
+  [
+    [Nightstalker, Voidwalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker, Nightstalker],
+    [Voidwalker, Voidwalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Voidwalker, Voidwalker],
+    [Nightstalker, Voidwalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker, Nightstalker],
+    [Voidwalker, Nightstalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Nightstalker, Voidwalker],
+    [Nightstalker, Voidwalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker, Nightstalker],
+    [Voidwalker, Nightstalker, Voidwalker, Specter, Specter, Voidwalker, Nightstalker, Voidwalker],
+    [Nightstalker, Voidwalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker, Nightstalker],
+    [Voidwalker, Voidwalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Voidwalker, Voidwalker],
+  ],
+
+  // Stage 14: Oblivion's Edge
+  [
+    [Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker],
+    [Voidwalker, Nightstalker, Nightstalker, Nightstalker, Nightstalker, Nightstalker, Nightstalker, Voidwalker],
+    [Voidwalker, Nightstalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker],
+    [Voidwalker, Nightstalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Nightstalker, Voidwalker],
+    [Voidwalker, Nightstalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Nightstalker, Voidwalker],
+    [Voidwalker, Nightstalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker],
+    [Voidwalker, Nightstalker, Nightstalker, Nightstalker, Nightstalker, Nightstalker, Nightstalker, Voidwalker],
+    [Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker, Voidwalker],
+  ],
+
+  // Stage 15: The Shadow Lord Eternal
+  [
+    [Voidwalker, Voidwalker, ShadowLordBoss, ShadowLordBoss, Voidwalker, Voidwalker],
+    [Voidwalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker],
+    [Nightstalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Nightstalker],
+    [Voidwalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker],
+    [Nightstalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Nightstalker],
+    [Voidwalker, Nightstalker, Specter, Specter, Nightstalker, Voidwalker],
+    [Nightstalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Nightstalker],
+    [Voidwalker, Nightstalker, Voidwalker, Voidwalker, Nightstalker, Voidwalker],
+    [Voidwalker, Voidwalker, Nightstalker, Nightstalker, Voidwalker, Voidwalker],
+  ],
 ];

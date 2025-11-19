@@ -96,4 +96,63 @@ export const LEVEL_LAYOUTS = [
     [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
     [Trench, Trench, Trench, Trench, Trench, Trench, Trench, Trench],
   ],
+
+  // Stage 11: Abyssal Stronghold
+  [
+    [Trench, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Trench],
+    [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
+    [Leviathan, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Leviathan],
+    [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
+    [Leviathan, Trench, Trench, Deepcrawler, Deepcrawler, Trench, Trench, Leviathan],
+    [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
+    [Trench, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Trench],
+  ],
+
+  // Stage 12: Leviathan's Domain
+  [
+    [Trench, Trench, Trench, Leviathan, Leviathan, Trench, Trench, Trench],
+    [Trench, Leviathan, Trench, Trench, Trench, Trench, Leviathan, Trench],
+    [Leviathan, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Leviathan],
+    [Trench, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Trench],
+    [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
+    [Leviathan, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Leviathan],
+    [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
+    [Trench, Trench, Trench, Trench, Trench, Trench, Trench, Trench],
+  ],
+
+  // Stage 13: Crushing Depths
+  [
+    [Trench, Leviathan, Trench, Trench, Trench, Trench, Leviathan, Trench],
+    [Leviathan, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Leviathan],
+    [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
+    [Trench, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Trench],
+    [Leviathan, Trench, Trench, Leviathan, Leviathan, Trench, Trench, Leviathan],
+    [Trench, Leviathan, Trench, Trench, Trench, Trench, Leviathan, Trench],
+    [Leviathan, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Leviathan],
+    [Trench, Trench, Trench, Leviathan, Leviathan, Trench, Trench, Trench],
+  ],
+
+  // Stage 14: Eternal Darkness
+  [
+    [Trench, Trench, Trench, Trench, Trench, Trench, Trench, Trench],
+    [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
+    [Trench, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Trench],
+    [Leviathan, Trench, Trench, Leviathan, Leviathan, Trench, Trench, Leviathan],
+    [Trench, Leviathan, Trench, Trench, Trench, Trench, Leviathan, Trench],
+    [Leviathan, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Leviathan],
+    [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
+    [Trench, Trench, Trench, Trench, Trench, Trench, Trench, Trench],
+  ],
+
+  // Stage 15: Abyssal Horror Unleashed
+  [
+    [Trench, Trench, Trench, null, null, Trench, Trench, Trench],
+    [Trench, Leviathan, Trench, AbyssalHorrorBoss, AbyssalHorrorBoss, Trench, Leviathan, Trench],
+    [Leviathan, Trench, Leviathan, null, null, Leviathan, Trench, Leviathan],
+    [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
+    [Leviathan, Trench, Trench, Trench, Trench, Trench, Trench, Leviathan],
+    [Trench, Leviathan, Trench, Leviathan, Leviathan, Trench, Leviathan, Trench],
+    [Leviathan, Trench, Leviathan, Trench, Trench, Leviathan, Trench, Leviathan],
+    [Trench, Trench, Trench, Trench, Trench, Trench, Trench, Trench],
+  ],
 ];

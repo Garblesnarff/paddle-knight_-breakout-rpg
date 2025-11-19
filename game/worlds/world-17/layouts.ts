@@ -97,4 +97,64 @@ export const LEVEL_LAYOUTS = [
     [Hacker, AI_Core, Cyborg, AI_Core, AI_Core, Cyborg, AI_Core, Hacker],
     [AI_Core, AI_Core, AI_Core, Cyborg, Cyborg, AI_Core, AI_Core, AI_Core],
   ],
+
+  // Stage 11: Digital Supremacy
+  [
+    [AI_Core, AI_Core, Cyborg, AI_Core, AI_Core, Cyborg, AI_Core, AI_Core],
+    [Cyborg, AI_Core, AI_Core, Cyborg, Cyborg, AI_Core, AI_Core, Cyborg],
+    [AI_Core, Cyborg, AI_Core, AI_Core, AI_Core, AI_Core, Cyborg, AI_Core],
+    [AI_Core, AI_Core, Cyborg, AI_Core, AI_Core, Cyborg, AI_Core, AI_Core],
+    [Cyborg, AI_Core, AI_Core, Cyborg, Cyborg, AI_Core, AI_Core, Cyborg],
+    [AI_Core, Cyborg, AI_Core, AI_Core, AI_Core, AI_Core, Cyborg, AI_Core],
+    [Cyborg, AI_Core, Cyborg, AI_Core, AI_Core, Cyborg, AI_Core, Cyborg],
+    [AI_Core, AI_Core, AI_Core, Cyborg, Cyborg, AI_Core, AI_Core, AI_Core],
+  ],
+
+  // Stage 12: System Override
+  [
+    [AI_Core, Cyborg, AI_Core, Cyborg, Cyborg, AI_Core, Cyborg, AI_Core],
+    [Cyborg, AI_Core, Cyborg, AI_Core, AI_Core, Cyborg, AI_Core, Cyborg],
+    [AI_Core, Cyborg, AI_Core, Cyborg, Cyborg, AI_Core, Cyborg, AI_Core],
+    [Cyborg, AI_Core, Cyborg, AI_Core, AI_Core, Cyborg, AI_Core, Cyborg],
+    [AI_Core, Cyborg, AI_Core, Cyborg, Cyborg, AI_Core, Cyborg, AI_Core],
+    [Cyborg, AI_Core, Cyborg, AI_Core, AI_Core, Cyborg, AI_Core, Cyborg],
+    [AI_Core, Cyborg, AI_Core, Cyborg, Cyborg, AI_Core, Cyborg, AI_Core],
+    [Cyborg, AI_Core, Cyborg, AI_Core, AI_Core, Cyborg, AI_Core, Cyborg],
+  ],
+
+  // Stage 13: Cybernetic Dominion
+  [
+    [Cyborg, Cyborg, AI_Core, Cyborg, Cyborg, AI_Core, Cyborg, Cyborg],
+    [AI_Core, Cyborg, Cyborg, AI_Core, AI_Core, Cyborg, Cyborg, AI_Core],
+    [Cyborg, AI_Core, Cyborg, Cyborg, Cyborg, Cyborg, AI_Core, Cyborg],
+    [AI_Core, Cyborg, AI_Core, Cyborg, Cyborg, AI_Core, Cyborg, AI_Core],
+    [Cyborg, Cyborg, Cyborg, AI_Core, AI_Core, Cyborg, Cyborg, Cyborg],
+    [AI_Core, Cyborg, Cyborg, AI_Core, AI_Core, Cyborg, Cyborg, AI_Core],
+    [Cyborg, AI_Core, Cyborg, Cyborg, Cyborg, Cyborg, AI_Core, Cyborg],
+    [Cyborg, Cyborg, AI_Core, Cyborg, Cyborg, AI_Core, Cyborg, Cyborg],
+  ],
+
+  // Stage 14: Hyper-Advanced Protocol
+  [
+    [Cyborg, Cyborg, Cyborg, AI_Core, AI_Core, Cyborg, Cyborg, Cyborg],
+    [Cyborg, AI_Core, Cyborg, Cyborg, Cyborg, Cyborg, AI_Core, Cyborg],
+    [AI_Core, Cyborg, Cyborg, AI_Core, AI_Core, Cyborg, Cyborg, AI_Core],
+    [Cyborg, Cyborg, AI_Core, Cyborg, Cyborg, AI_Core, Cyborg, Cyborg],
+    [Cyborg, AI_Core, Cyborg, Cyborg, Cyborg, Cyborg, AI_Core, Cyborg],
+    [AI_Core, Cyborg, Cyborg, AI_Core, AI_Core, Cyborg, Cyborg, AI_Core],
+    [Cyborg, Cyborg, AI_Core, Cyborg, Cyborg, AI_Core, Cyborg, Cyborg],
+    [Cyborg, Cyborg, Cyborg, Cyborg, Cyborg, Cyborg, Cyborg, Cyborg],
+  ],
+
+  // Stage 15: MegaCorp Takeover
+  [
+    [null, null, Cyborg, MegaCorporationBoss, MegaCorporationBoss, Cyborg, null, null],
+    [Cyborg, AI_Core, null, Cyborg, Cyborg, null, AI_Core, Cyborg],
+    [AI_Core, Cyborg, AI_Core, null, null, AI_Core, Cyborg, AI_Core],
+    [Cyborg, AI_Core, Cyborg, AI_Core, AI_Core, Cyborg, AI_Core, Cyborg],
+    [AI_Core, Cyborg, Cyborg, AI_Core, AI_Core, Cyborg, Cyborg, AI_Core],
+    [Cyborg, Cyborg, AI_Core, Cyborg, Cyborg, AI_Core, Cyborg, Cyborg],
+    [AI_Core, Cyborg, Cyborg, AI_Core, AI_Core, Cyborg, Cyborg, AI_Core],
+    [Cyborg, Cyborg, Cyborg, Cyborg, Cyborg, Cyborg, Cyborg, Cyborg],
+  ],
 ];

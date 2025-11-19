@@ -107,6 +107,39 @@ export const LEVEL_LAYOUTS = [
     [Piston, Clockwork, Tesla, Piston, Piston, Tesla, Clockwork, Piston],
     [Assembly, Tesla, Clockwork, Piston, Piston, Clockwork, Tesla, Assembly],
   ],
+
+  // Stage 13: Assembly Line Chaos
+  [
+    [Assembly, Assembly, Tesla, Piston, Piston, Tesla, Assembly, Assembly],
+    [Tesla, Clockwork, Assembly, Clockwork, Clockwork, Assembly, Clockwork, Tesla],
+    [Piston, Assembly, Clockwork, Tesla, Tesla, Clockwork, Assembly, Piston],
+    [Assembly, Piston, Tesla, Assembly, Assembly, Tesla, Piston, Assembly],
+    [Clockwork, Tesla, Piston, Clockwork, Clockwork, Piston, Tesla, Clockwork],
+    [Assembly, Assembly, Clockwork, Piston, Piston, Clockwork, Assembly, Assembly],
+  ],
+
+  // Stage 14: Temporal Maelstrom
+  [
+    [Assembly, Tesla, Assembly, Tesla, Tesla, Assembly, Tesla, Assembly],
+    [Tesla, Piston, Clockwork, Piston, Piston, Clockwork, Piston, Tesla],
+    [Assembly, Clockwork, Piston, Assembly, Assembly, Piston, Clockwork, Assembly],
+    [Clockwork, Assembly, Tesla, Clockwork, Clockwork, Tesla, Assembly, Clockwork],
+    [Piston, Tesla, Assembly, Piston, Piston, Assembly, Tesla, Piston],
+    [Assembly, Clockwork, Piston, Tesla, Tesla, Piston, Clockwork, Assembly],
+    [Tesla, Assembly, Clockwork, Assembly, Assembly, Clockwork, Assembly, Tesla],
+  ],
+
+  // Stage 15: The Chrono Engineer's Revenge
+  [
+    [Assembly, Assembly, ChronoEngineerBoss, ChronoEngineerBoss, Assembly, Assembly],
+    [Tesla, Piston, Assembly, Assembly, Piston, Tesla],
+    [Piston, Clockwork, Tesla, Tesla, Clockwork, Piston],
+    [Assembly, Tesla, Piston, Piston, Tesla, Assembly],
+    [Clockwork, Piston, Assembly, Assembly, Piston, Clockwork],
+    [Tesla, Assembly, Clockwork, Clockwork, Assembly, Tesla],
+    [Assembly, Clockwork, Piston, Piston, Clockwork, Assembly],
+    [Piston, Tesla, Assembly, Assembly, Tesla, Piston],
+  ],
 ];
 
 

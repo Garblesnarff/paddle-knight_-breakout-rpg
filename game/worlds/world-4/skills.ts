@@ -81,6 +81,36 @@ export const WORLD_4_SKILLS: Record<string, SkillNode> = {
     type: SkillType.Active,
     position: { row: 3, col: 2 },
   },
+  gearShift: {
+    id: 'gearShift',
+    name: 'Gear Shift',
+    description: (level) => `Active: Toggle between Speed Mode (+${level * 20}% ball speed) and Power Mode (+${level * 30}% damage). Cooldown: 12s.`,
+    maxLevel: 3,
+    cost: (level) => 2 + level,
+    dependencies: ['ingeniousMind'],
+    type: SkillType.Active,
+    position: { row: 1, col: 0 },
+  },
+  clockworkPrecision: {
+    id: 'clockworkPrecision',
+    name: 'Clockwork Precision',
+    description: (level) => `${5 + (level * 5)}% chance for ball hits to deal ${level * 50}% bonus critical damage. Perfect timing increases crit rate.`,
+    maxLevel: 4,
+    cost: (level) => 2 + level,
+    dependencies: ['gearShift'],
+    type: SkillType.Passive,
+    position: { row: 2, col: 0 },
+  },
+  momentumGenerator: {
+    id: 'momentumGenerator',
+    name: 'Momentum Generator',
+    description: (level) => `Ball speed increases by ${level * 3}% each consecutive hit (max 10 stacks). Paddle catches reset but grant ${level * 10}% damage boost.`,
+    maxLevel: 3,
+    cost: (level) => 2 + level,
+    dependencies: ['emergencyRepair'],
+    type: SkillType.Passive,
+    position: { row: 2, col: 3 },
+  },
 };
 
 
