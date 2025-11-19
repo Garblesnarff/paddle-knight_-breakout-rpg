@@ -37,6 +37,30 @@ export const LEVEL_LAYOUTS = [
         [Apprentice, null, Ice, null, Fire, null, Ice, null, Apprentice, null],
         [Tank, Tank, Tank, Tank, Tank, Tank, Tank, Tank, Tank, Tank],
         [Archer, Archer, Archer, Archer, Archer, Archer, Archer, Archer, Archer, Archer],
+    ],
+    // Level 11: Crystal Nexus
+    [
+        [Fire, Lightning, Ice, Fire, Lightning, Ice, Fire, Lightning, Ice, Fire],
+        [Rune, Mirror, Rune, Mirror, Rune, Mirror, Rune, Mirror, Rune, Mirror],
+        [Lightning, Fire, Lightning, Ice, Lightning, Fire, Lightning, Ice, Lightning, Fire],
+        [Mirror, Apprentice, Mirror, Apprentice, Mirror, Apprentice, Mirror, Apprentice, Mirror, Apprentice],
+        [Ice, Lightning, Fire, Ice, Lightning, Fire, Ice, Lightning, Fire, Ice],
+    ],
+    // Level 12: Mirror Maze
+    [
+        [Mirror, Mirror, Mirror, Mirror, Mirror, Mirror, Mirror, Mirror, Mirror, Mirror],
+        [Rune, null, null, Apprentice, null, null, Apprentice, null, null, Rune],
+        [Mirror, null, Fire, Ice, Lightning, Lightning, Ice, Fire, null, Mirror],
+        [Rune, null, null, Apprentice, null, null, Apprentice, null, null, Rune],
+        [Mirror, Mirror, Mirror, Mirror, Mirror, Mirror, Mirror, Mirror, Mirror, Mirror],
+    ],
+    // Level 13: Astral Sanctum
+    [
+        [Rune, Fire, Lightning, Ice, Rune, Rune, Ice, Lightning, Fire, Rune],
+        [Fire, Mirror, Mirror, Mirror, Apprentice, Apprentice, Mirror, Mirror, Mirror, Fire],
+        [Lightning, Mirror, Tank, Tank, Tank, Tank, Tank, Tank, Mirror, Lightning],
+        [Ice, Mirror, Tank, Apprentice, Apprentice, Apprentice, Apprentice, Tank, Mirror, Ice],
+        [Rune, Fire, Lightning, Ice, Mirror, Mirror, Ice, Lightning, Fire, Rune],
     ]
 ];
 

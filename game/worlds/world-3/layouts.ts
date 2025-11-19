@@ -47,4 +47,22 @@ export const LEVEL_LAYOUTS = [
         [null, ScrapGolem, null, Replicator, null, ScrapGolem, null],
         [VineBot, null, Gearsprite, null, Gearsprite, null, VineBot],
     ],
+
+    // Stage 6: "Neural Network Core"
+    [
+        [HiveMind, Gearsprite, Gearsprite, Corruptor, Corruptor, Gearsprite, Gearsprite, HiveMind],
+        [Gearsprite, Replicator, VineBot, Gearsprite, Gearsprite, VineBot, Replicator, Gearsprite],
+        [Corruptor, Gearsprite, HiveMind, ScrapGolem, ScrapGolem, HiveMind, Gearsprite, Corruptor],
+        [Gearsprite, VineBot, ScrapGolem, Replicator, Replicator, ScrapGolem, VineBot, Gearsprite],
+        [HiveMind, Corruptor, Gearsprite, Gearsprite, Gearsprite, Gearsprite, Corruptor, HiveMind],
+    ],
+
+    // Stage 7: "Evolution Chamber"
+    [
+        [Replicator, HiveMind, Corruptor, Replicator, Replicator, Corruptor, HiveMind, Replicator],
+        [Corruptor, ScrapGolem, Gearsprite, HiveMind, HiveMind, Gearsprite, ScrapGolem, Corruptor],
+        [HiveMind, Gearsprite, Replicator, Gearsprite, Gearsprite, Replicator, Gearsprite, HiveMind],
+        [ScrapGolem, VineBot, Corruptor, ScrapGolem, ScrapGolem, Corruptor, VineBot, ScrapGolem],
+        [Replicator, Corruptor, HiveMind, Replicator, Replicator, HiveMind, Corruptor, Replicator],
+    ],
 ];

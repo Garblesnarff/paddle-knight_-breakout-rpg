@@ -18,12 +18,32 @@ import { LEVEL_LAYOUTS as WORLD1_LAYOUTS } from './worlds/world-1/layouts';
 import { LEVEL_LAYOUTS as WORLD2_LAYOUTS } from './worlds/world-2/layouts';
 import { LEVEL_LAYOUTS as WORLD3_LAYOUTS } from './worlds/world-3/layouts';
 import { LEVEL_LAYOUTS as WORLD4_LAYOUTS } from './worlds/world-4/layouts';
+import { LEVEL_LAYOUTS as WORLD5_LAYOUTS } from './worlds/world-5/layouts';
+import { LEVEL_LAYOUTS as WORLD6_LAYOUTS } from './worlds/world-6/layouts';
+import { LEVEL_LAYOUTS as WORLD7_LAYOUTS } from './worlds/world-7/layouts';
+import { LEVEL_LAYOUTS as WORLD8_LAYOUTS } from './worlds/world-8/layouts';
+import { LEVEL_LAYOUTS as WORLD9_LAYOUTS } from './worlds/world-9/layouts';
+import { LEVEL_LAYOUTS as WORLD10_LAYOUTS } from './worlds/world-10/layouts';
+import { LEVEL_LAYOUTS as WORLD11_LAYOUTS } from './worlds/world-11/layouts';
+import { LEVEL_LAYOUTS as WORLD12_LAYOUTS } from './worlds/world-12/layouts';
+import { LEVEL_LAYOUTS as WORLD13_LAYOUTS } from './worlds/world-13/layouts';
+import { LEVEL_LAYOUTS as WORLD14_LAYOUTS } from './worlds/world-14/layouts';
 
 export const ALL_LEVEL_LAYOUTS = [
     ...WORLD1_LAYOUTS,
     ...WORLD2_LAYOUTS,
     ...WORLD3_LAYOUTS,
     ...WORLD4_LAYOUTS,
+    ...WORLD5_LAYOUTS,
+    ...WORLD6_LAYOUTS,
+    ...WORLD7_LAYOUTS,
+    ...WORLD8_LAYOUTS,
+    ...WORLD9_LAYOUTS,
+    ...WORLD10_LAYOUTS,
+    ...WORLD11_LAYOUTS,
+    ...WORLD12_LAYOUTS,
+    ...WORLD13_LAYOUTS,
+    ...WORLD14_LAYOUTS,
 ];
 
 export const MAX_LEVELS = ALL_LEVEL_LAYOUTS.length;

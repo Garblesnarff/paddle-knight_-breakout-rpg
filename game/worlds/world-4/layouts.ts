@@ -44,6 +44,24 @@ export const LEVEL_LAYOUTS = [
     [Gear, Steam, Clockwork, Tesla, Piston, Clockwork, Steam, Gear],
     [Assembly, Piston, Gear, Steam, Clockwork, Gear, Piston, Assembly],
   ],
+
+  // Stage 6: Temporal Nexus
+  [
+    [Tesla, Assembly, Tesla, Clockwork, Clockwork, Tesla, Assembly, Tesla],
+    [Clockwork, Piston, Steam, Gear, Gear, Steam, Piston, Clockwork],
+    [Assembly, Gear, Tesla, Piston, Piston, Tesla, Gear, Assembly],
+    [Piston, Clockwork, Gear, Steam, Steam, Gear, Clockwork, Piston],
+    [Tesla, Steam, Assembly, Gear, Gear, Assembly, Steam, Tesla],
+  ],
+
+  // Stage 7: Infinity Engine
+  [
+    [Assembly, Tesla, Assembly, Piston, Piston, Assembly, Tesla, Assembly],
+    [Tesla, Clockwork, Steam, Assembly, Assembly, Steam, Clockwork, Tesla],
+    [Assembly, Piston, Tesla, Clockwork, Clockwork, Tesla, Piston, Assembly],
+    [Clockwork, Assembly, Piston, Steam, Steam, Piston, Assembly, Clockwork],
+    [Assembly, Tesla, Clockwork, Piston, Piston, Clockwork, Tesla, Assembly],
+  ],
 ];
 
 
