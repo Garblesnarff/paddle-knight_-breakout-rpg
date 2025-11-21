@@ -16,10 +16,12 @@ import { Brick, BrickType } from '../types';
 import { GAME_WIDTH, BRICK_WIDTH, BRICK_HEIGHT, BRICK_GAP, BRICK_PROPERTIES, BOSS_MOVE_SPEED } from '../constants';
 import { LEVEL_LAYOUTS as STAGE1_LAYOUTS } from './stages/stage-1/layouts';
 import { LEVEL_LAYOUTS as STAGE2_LAYOUTS } from './stages/stage-2/layouts';
+import { STAGE_3_LAYOUTS } from './stages/stage-3/layouts';
 
 export const ALL_LEVEL_LAYOUTS = [
     ...STAGE1_LAYOUTS,
     ...STAGE2_LAYOUTS,
+    ...STAGE_3_LAYOUTS,
 ];
 
 export const MAX_LEVELS = ALL_LEVEL_LAYOUTS.length;
@@ -67,6 +69,19 @@ export const createBricksForStage = (stage: number): Brick[] => {
                     lastAttackTime: Date.now(),
                     phase: 1,
                     currentElementalAttack: 'fire'
+                });
+            } else if (brickType === BrickType.ColossalSandwormBoss) {
+                 bricks.push({
+                    id: currentId++,
+                    x: GAME_WIDTH / 2 - 90,
+                    y: 20,
+                    width: 180,
+                    height: 50,
+                    type: BrickType.ColossalSandwormBoss,
+                    hp: brickProps.maxHp,
+                    maxHp: brickProps.maxHp,
+                    lastAttackTime: Date.now(),
+                    phase: 1
                 });
             } else {
                  bricks.push({

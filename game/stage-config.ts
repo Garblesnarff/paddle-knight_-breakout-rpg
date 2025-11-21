@@ -94,4 +94,45 @@ export const STAGE_CONFIG: StageInfo[] = [
         position: { x: 700, y: 420 },
         starCriteria: { time: 240000, minHpPercent: 65 }
     },
+    // World 3: The Arid Wastes
+    {
+        id: 11,
+        name: "Sunken Ruins",
+        description: "Introduction to the wasteland, with basic scavenger and cactus bricks.",
+        world: 3,
+        position: { x: 100, y: 500 },
+        starCriteria: { time: 160000, minHpPercent: 70 }
+    },
+    {
+        id: 12,
+        name: "Shifting Dunes",
+        description: "Introduces sandstorms and sandworm bricks.",
+        world: 3,
+        position: { x: 250, y: 550 },
+        starCriteria: { time: 180000, minHpPercent: 70 }
+    },
+    {
+        id: 13,
+        name: "The Canyon of Echoes",
+        description: "Features quicksand pits and more resilient mutant bricks.",
+        world: 3,
+        position: { x: 400, y: 520 },
+        starCriteria: { time: 200000, minHpPercent: 65 }
+    },
+    {
+        id: 14,
+        name: "The Oasis of Despair",
+        description: "A mini-boss encounter with a larger, more aggressive Sandworm.",
+        world: 3,
+        position: { x: 550, y: 580 },
+        starCriteria: { time: 220000, minHpPercent: 65 }
+    },
+    {
+        id: 15,
+        name: "The Maw of the Desert",
+        description: "The final battle against the Colossal Sandworm.",
+        world: 3,
+        position: { x: 700, y: 550 },
+        starCriteria: { time: 260000, minHpPercent: 60 }
+    },
 ];

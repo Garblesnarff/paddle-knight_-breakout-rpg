@@ -28,23 +28,6 @@ export interface UpdateBallsArgs {
   hp: number;
 }
 
-export interface UpdateBallsResult {
-  updatedBalls: Ball[];
-  workingBricks: Brick[];
-  nextBallLaunchedState: boolean;
-  damageToPlayerDelta: number;
-  damageMap: Map<number, number>;
-  triggeredLightningStrikes: number;
-  newExplosions: Explosion[];
-  newBeams: ElementalBeam[];
-  bricksDestroyedThisTick: number;
-  chaosMagicWasTriggered: boolean;
-}
-
-/**
- * Update ball positions, handle paddle/wall bounces and brick impacts.
- * Produces a per-brick damage map and beam/explosion side-effects matching original behavior.
- */
 export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResult {
   let {
     balls,
@@ -68,6 +51,8 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
   let updatedBalls = [...balls];
   let nextBallLaunchedState = isBallLaunched;
   let damageToPlayerDelta = 0;
+  let paddleStunnedUntil: number | undefined = undefined;
+  let paddleShrunkUntil: number | undefined = undefined;
 
   const isTimeSlowed = skills.timeSlow?.activeUntil && now < (skills.timeSlow.activeUntil || 0);
   const localTimeFactor = isTimeSlowed ? 0.25 : 1;
@@ -100,7 +85,9 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
       newExplosions,
       newBeams,
       bricksDestroyedThisTick,
-      chaosMagicWasTriggered
+      chaosMagicWasTriggered,
+      paddleStunnedUntil,
+      paddleShrunkUntil
     };
   }
 
@@ -166,6 +153,11 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
         const overlapX = combinedHalfWidths - Math.abs(dx);
         const overlapY = combinedHalfHeights - Math.abs(dy);
 
+        if (brick.type === BrickType.Barnacle && !activeBuffs.power) {
+          if (overlapX < overlapY) { mutableBall.vx = -mutableBall.vx; } else { mutableBall.vy = -mutableBall.vy; }
+          break;
+        }
+
         if (brick.isClone) {
           damageMap.set(brick.id, 1);
           if (overlapX < overlapY) { mutableBall.vx = -mutableBall.vx; } else { mutableBall.vy = -mutableBall.vy; }
@@ -194,6 +186,10 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
           break;
         }
 
+        if (brick.type === BrickType.HermitCrab) {
+          (brick as any).invulnerableUntil = now + 2000; // 2 seconds of invulnerability
+        }
+
         if (brick.type === BrickType.Mirror) {
           damageMap.set(brick.id, totalDamageToBrick + ballDamage);
           mutableBall.vx *= -1;
@@ -206,6 +202,15 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
           mutableBall.slowedUntil = now + 2000;
         }
 
+        if (brick.type === BrickType.Cactus && brick.isThorned) {
+            paddleShrunkUntil = now + 1000; // Shrink paddle for 1 second
+            brick.isThorned = false; // Thorns are used up
+        }
+
+        if (brick.type === BrickType.Sandworm) {
+            brick.isBurrowed = true; // Mark as burrowed, game engine will re-spawn
+        }
+
         if (hasBreakthrough && mutableBall.damage > 0) {
           const damageToDeal = Math.min(mutableBall.damage, brick.hp - totalDamageToBrick);
           const brickDestroyed = (totalDamageToBrick + damageToDeal) >= brick.hp;
@@ -213,27 +218,35 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
           damageMap.set(brick.id, totalDamageToBrick + damageToDeal);
           mutableBall.damage -= damageToDeal;
 
-          if (brickDestroyed && hasMasterOfElements) {
-            const beamDamage = playerWisdom * 0.5 * magicDamageModifier;
-            const beamRange = 250;
-            const ballVelMag = Math.hypot(mutableBall.vx, mutableBall.vy);
-            if (ballVelMag > 0) {
-              const normalizedVx = mutableBall.vx / ballVelMag;
-              const normalizedVy = mutableBall.vy / ballVelMag;
+          if (brickDestroyed) {
+            if (brick.type === BrickType.Jellyfish) {
+              paddleStunnedUntil = now + 1000; // Stun for 1 second
+            }
+            if (brick.type === BrickType.Mutant) {
+                newExplosions.push({ id: Date.now() + Math.random(), x: brick.x + brick.width / 2, y: brick.y + brick.height / 2, radius: 50, duration: 300, createdAt: now });
+            }
+            if (hasMasterOfElements) {
+              const beamDamage = playerWisdom * 0.5 * magicDamageModifier;
+              const beamRange = 250;
+              const ballVelMag = Math.hypot(mutableBall.vx, mutableBall.vy);
+              if (ballVelMag > 0) {
+                const normalizedVx = mutableBall.vx / ballVelMag;
+                const normalizedVy = mutableBall.vy / ballVelMag;
 
-              const beamStartX = brick.x + brick.width / 2;
-              const beamStartY = brick.y + brick.height / 2;
-              const beamEndX = beamStartX + normalizedVx * beamRange;
-              const beamEndY = beamStartY + normalizedVy * beamRange;
+                const beamStartX = brick.x + brick.width / 2;
+                const beamStartY = brick.y + brick.height / 2;
+                const beamEndX = beamStartX + normalizedVx * beamRange;
+                const beamEndY = beamStartY + normalizedVy * beamRange;
 
-              newBeams.push({ id: Date.now() + Math.random(), x1: beamStartX, y1: beamStartY, x2: beamEndX, y2: beamEndY, createdAt: now, duration: 150 });
+                newBeams.push({ id: Date.now() + Math.random(), x1: beamStartX, y1: beamStartY, x2: beamEndX, y2: beamEndY, createdAt: now, duration: 150 });
 
-              // Find all bricks hit by this beam
-              for (const otherBrick of workingBricks) {
-                if (otherBrick.id === brick.id) continue;
-                if (lineRectCollision(beamStartX, beamStartY, beamEndX, beamEndY, otherBrick)) {
-                  const currentDamage = damageMap.get(otherBrick.id) || 0;
-                  damageMap.set(otherBrick.id, currentDamage + beamDamage);
+                // Find all bricks hit by this beam
+                for (const otherBrick of workingBricks) {
+                  if (otherBrick.id === brick.id) continue;
+                  if (lineRectCollision(beamStartX, beamStartY, beamEndX, beamEndY, otherBrick)) {
+                    const currentDamage = damageMap.get(otherBrick.id) || 0;
+                    damageMap.set(otherBrick.id, currentDamage + beamDamage);
+                  }
                 }
               }
             }
@@ -258,6 +271,8 @@ export function updateBallsAndCollisions(args: UpdateBallsArgs): UpdateBallsResu
     newExplosions,
     newBeams,
     bricksDestroyedThisTick,
-    chaosMagicWasTriggered
+    chaosMagicWasTriggered,
+    paddleStunnedUntil,
+    paddleShrunkUntil
   };
 }

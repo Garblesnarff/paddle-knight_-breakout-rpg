@@ -27,6 +27,12 @@ export enum BrickType {
   Mirror,
   Rune,
   ArchmageBoss,
+  // Stage 3 (World 4)
+  Scavenger,
+  Cactus,
+  Sandworm,
+  Mutant,
+  ColossalSandwormBoss,
 }
 
 export interface Brick {
@@ -53,6 +59,8 @@ export interface Brick {
   lastArcaneOverloadTime?: number;
   lastChaosMagicTime?: number;
   isFinalGambit?: boolean;
+  isThorned?: boolean; // For Cactus bricks
+  isBurrowed?: boolean; // For Sandworm bricks
 }
 
 export interface Ball {

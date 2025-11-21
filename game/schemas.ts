@@ -19,7 +19,12 @@ export type BrickTypeString =
   | "Lightning"
   | "Mirror"
   | "Rune"
-  | "ArchmageBoss";
+  | "ArchmageBoss"
+  | "Scavenger"
+  | "Cactus"
+  | "Sandworm"
+  | "Mutant"
+  | "ColossalSandwormBoss";
 
 export type LayoutCell = BrickTypeString | null;
 export type Layout = LayoutCell[][];
@@ -175,7 +180,12 @@ function isBrickTypeString(v: unknown): v is BrickTypeString {
     v === "Lightning" ||
     v === "Mirror" ||
     v === "Rune" ||
-    v === "ArchmageBoss"
+    v === "ArchmageBoss" ||
+    v === "Scavenger" ||
+    v === "Cactus" ||
+    v === "Sandworm" ||
+    v === "Mutant" ||
+    v === "ColossalSandwormBoss"
   );
 }
 
